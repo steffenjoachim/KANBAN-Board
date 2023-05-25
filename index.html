@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html lang="de">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KANBAN-Board</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./asssets/css/style.css">
+    <link rel="stylesheet" href="./asssets/css/mobile-login.css">
     <script src="script.js"></script>
 </head>
+
 <body>
-    <h1>KANBAN-Board</h1>
-    
+    <header>
+        <div>
+            <img src="./asssets/img/mobile-login-logo-dark.svg" alt="">
+        </div>
+    </header>
+
+    <div class="insideWindow">
+        <h1>Log in</h1>
+        <img src="asssets/img/line.svg" alt="Trennlinie">
+        <form action="onsubmit">
+            <div class="input-field">
+                <input class="e-mail" type="e-mail" required placeholder="Email">
+                <img src="asssets/img/email-icon.svg" alt="e-mail icon">
+            </div>
+            <div class="input-field">
+                <input class="password" type="password" required placeholder="Password">
+                <img src="./asssets/img/lock-icon.svg" alt="lock">
+            </div>
+        </form>
+    </div>
+
+
+
 </body>
+
 </html>

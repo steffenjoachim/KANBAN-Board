@@ -1,0 +1,90 @@
+
+body {
+    position: relative;
+    width: 428px;
+    height: 926px;
+    background: #F6F7F8;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    position: absolute;
+    width: 64px;
+    height: 78.03px;
+    left: calc(50% - 64px/2 - 144px);
+    top: calc(50% - 78.03px/2 - 386.98px);
+}
+
+header img {
+    width: 64px;
+    height: 78.03px;
+}
+
+.insideWindow{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 35px 0px;
+    gap: 35px;
+    position: absolute;
+    width: 372px;
+    height: 573px;
+    left: 28px;
+    top: 194px;
+    /* white */
+    background: #FFFFFF;
+    /* shadoe backlog box */
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    border-radius: 30px;
+}
+
+h1 {
+    width: 315px;
+    height: 56px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 47px;
+    line-height: 120%;
+    /* or 56px */
+    text-align: center;
+    color: #000000;
+}
+
+.e-mail, .password {
+    height: 41px;
+    background: #FFFFFF;
+    border: none;
+    margin: 8px 21px;
+    font-size: 21px;
+    font-weight: 400;
+    color: black;
+    margin-right: 0;
+    outline: none;
+    cursor: pointer;
+
+}
+
+.e-mail::placeholder, .password::placeholder {
+    color: #d1d1d1c4;
+}
+
+.input-field{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    width: 327px;
+    margin: 49px 0;
+}
+
+.input-field img{
+    margin: 10px 21px;
+    margin-left: 0;
+
+}
