@@ -12,5 +12,64 @@
 
 body{
     font-family: Inter, sans-serif;
+    display: flex;
+    justify-content: center;
 }
 
+h1{
+    margin-left: 34px;
+    margin-top: 20px;
+    font-size: 47px;
+    font-weight: 700;
+}
+
+
+.kanban-pmt{
+    margin-left: 34px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.d-none{
+    display: none;
+}
+
+
+/* ========================= Colors =================== */
+
+.orange{
+    background: #FF7A00;
+}
+
+.light-orange{
+    background: #FFC700;
+}
+
+
+.purple{
+    background: #9327FF;
+}
+
+.light-blue{
+    background: #29ABE2;
+}
+
+.pink{
+    background: #FC71FF;
+}
+
+.green{
+    background: #02CF2F;
+}
+
+.red{
+    background: #AF1616;
+}
+
+.gray{
+    background: #D1D1D1;
+}
+
+.white{
+    color: #FFFFFF;
+}
