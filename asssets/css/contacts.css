@@ -5,6 +5,8 @@
 .new-contact-frame {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+    margin-right: 21px;
     padding-top: 17px;
     gap: 10px;
     width: 428px;
@@ -53,6 +55,7 @@ hr {
 .single-contact-frame {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .name-and-email {
@@ -74,21 +77,18 @@ hr {
     margin-right: 22px;
     font-size: 12px;
     font-weight: 400;
-    cursor: pointer;
 }
 
 .name {
     font-size: 21px;
     font-weight: 400;
     margin-top: 15px;
-    cursor: pointer;
 }
 
 .email {
     color: #007CEE;
     font-size: 16px;
     font-weight: 400;
-    cursor: pointer;
 }
 
 /* ===================== Big Contact ======================= */
@@ -222,6 +222,7 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background:  #F5F5F5;;
 }
 
 .edit-contact-head{
@@ -276,7 +277,7 @@ form{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     height: 41px;
-    margin-top: 64px;
+    margin: 64px 16px 0 16px;
     display: flex;
     justify-content: space-between;
 }
@@ -285,7 +286,7 @@ form{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     height: 41px;
-    margin-top: 32px;
+    margin: 32px 16px 0 16px;
     display: flex;
     justify-content: space-between;
 }
@@ -361,12 +362,9 @@ form{
     height: 120px;
     width: 120px;
     border-radius: 50%;
-    color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 27px;
-    font-weight: 400;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border: 3px solid #FFFFFF;
     z-index: 999;
