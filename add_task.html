@@ -4,11 +4,16 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AddTask</title>
-  <link rel="stylesheet" href="./asssets/css/add_task.css" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="font.css" />
+  <link rel="stylesheet" href="/asssets/css/header.css">
+  <link rel="shortcut icon" href="/asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
+  <link rel="stylesheet" href="/asssets/css/footer.css">
 </head>
 
-<body>
+<body onload="init()">
+  <div w3-header-include-html="/asssets/templates/header.html"></div>
   <header>
     <img class="small-logo" src="./add_task_img/small-logo.svg" alt="Logo" />
     <button id="create-button">Create &#10003;</button>
@@ -107,7 +112,9 @@
     </div>
   </div>
 
-  <footer></footer>
-  <script src="./js/add_task.js"></script>
+  <footer w3-footer-include-html="/asssets/templates/footer.html"></footer>
+  <script src="header_include.js"></script>
+  <script src="footer_includes.js"></script>
+  <script src="add_task.js"></script>
 </body>
 </html>
