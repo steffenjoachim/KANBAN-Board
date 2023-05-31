@@ -1,0 +1,350 @@
+
+body {
+  background-color: #F5F5F5;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Inter';
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  padding: 0 10px;
+  z-index: 10;
+}
+
+footer {
+  background-color: #2A3647;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+}
+
+.small-logo {
+  width: 32px;
+  height: 39px;
+  margin-left: 25px;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+
+
+#create-button {
+  width: 124px;
+height: 51px;
+color: #FFFFFF;
+background: #2A3647;
+border-radius: 10px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: bold;
+font-size: 21px;
+line-height: 120%;
+margin-top: 14px;
+margin-bottom: 14px;
+margin-right: 25px;
+border: none;
+}
+
+.wrapper {
+  margin-top: 114px;
+  margin-left: 31px;
+  margin-right: 34px;
+}
+
+.wrapper p {
+  font-weight: bold;
+}
+
+.all-input, textarea {
+  
+  margin-bottom: 10px;
+  
+  background: #FFFFFF;
+  border: 1px solid #D1D1D1;
+  border-radius: 10px;
+}
+input {
+  height: 41px;
+  width: 100%;
+}
+
+textarea {
+  height: 93px;
+  
+  padding-top:  18px;
+  width: 100%;
+}
+
+label {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  display: block;
+}
+
+#prio-buttons {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.prio-button {
+  
+  height: 41px;
+  width: 100%;
+  margin-right: 10px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  border: #D1D1D1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prio-button span {
+  font-weight: 600;
+}
+
+.prio-button img {
+  width: 16px;
+  margin-left: 10px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  /* machen Sie den Standard-Datumsauswahl-Indikator transparent */
+  opacity: 0;
+  position: absolute;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+}
+
+
+
+.date-input-container {
+  position: relative;
+}
+
+input[type="date"]::before {
+  /* fügen Sie das benutzerdefinierte Bild als Pseudoelement hinzu */
+  content: "";
+  display: block;
+  position: absolute;
+  right: 10px;
+  width: 24px; /* passen Sie diese Werte an, um das Bild passend zu machen */
+  height: 24px;
+  background: url('./img/calender-icon.svg'); /* ersetzen Sie 'path/to/your/image.png' durch den Pfad zu Ihrem Bild */
+  background-size: contain;
+}
+
+
+
+.select-one {
+  background-color: #fff;
+  height: 19px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 125ms;
+  border: 1px solid #D1D1D1;
+}
+
+.select-one span {
+  margin-left: 10px;
+}
+
+.selected {
+  background-color: #fff;
+  height: 19px;
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.selected span{
+  margin-left: 10px;
+}
+
+.selected:hover {
+  background-color: #d1d1d1;
+}
+
+#dropdown {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  
+  
+  
+}
+
+#dropdown:not(.d-none) {
+  max-height: 200px;  
+}
+ #selected-one {
+  
+  border: 1px solid #D1D1D1;
+  border-top: none;
+  border-bottom: none;
+ }
+ #selected-two {
+  border: 1px solid #D1D1D1;
+  border-top: none;
+  border-bottom: none;
+ }
+ #selected-three {
+  border: 1px solid #D1D1D1;
+  border-top: none;
+  
+ }
+
+ /* ... Assigned-to ... */
+
+/* Checkbox-Stil */
+.checkbox-style {
+  width: 15px;
+  margin-right: 10px;
+}
+
+.checkbox-subtask {
+  width: 15px;
+}
+
+/* Icon-Stil */
+.icon-style {
+  margin-left: auto;
+  margin-right: 10px;
+  height: 16px;
+  width: 16px;
+}
+
+.select-one img {
+  width: 16px;
+  margin-right: 10px;
+}
+
+/* Stil für das neue Dropdown-Menü */
+#dropdown-assign {
+display: flex;
+flex-direction: column;
+width: 100%;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s ease-in-out;
+}
+
+#dropdown-assign:not(.d-none) {
+max-height: 200px;  
+}
+
+#assigned-one {
+border: 1px solid #D1D1D1;
+border-top: none;
+border-bottom: none;
+}
+
+#assigned-two {
+border: 1px solid #D1D1D1;
+border-top: none;
+border-bottom: none;
+}
+
+#assigned-three {
+border: 1px solid #D1D1D1;
+border-top: none;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subtask {
+  display: flex;
+  align-items: center;
+}
+
+.subtask-name {
+  margin: 0;
+
+}
+
+@media(min-width:768px) {
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }  
+   .inner-wrap {
+    display: flex;
+    justify-content: center;
+   }
+
+   .section-one {
+    min-width: 330px;
+    padding-right: 15px;
+   }
+
+   .section-two {
+    min-width: 330px;
+    padding-left: 15px;
+   }
+
+   
+}
+
+@media(min-width:831px) {
+  .vertical-line {
+    border-left: 1px solid #D1D1D1;  /* Die Dicke und Farbe der Linie anpassen */
+    height: 500px;  /* Höhe nach Bedarf anpassen */
+    width: 0;
+  }
+
+  .section-one {
+    min-width: 330px;
+    padding-right: 50px;
+   }
+
+   .section-two {
+    min-width: 330px;
+    padding-left: 45px;
+   }
+}
+
+@media(min-width:1080px) {
+  .section-one {
+    min-width: 440px;
+    padding-right: 50px;
+   }
+
+   .section-two {
+    min-width: 440px;
+    padding-left: 45px;
+   }
+}
