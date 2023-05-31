@@ -4,14 +4,13 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="font.css" />
+  <title>AddTask</title>
+  <link rel="stylesheet" href="./asssets/css/add_task.css" />
 </head>
 
 <body>
   <header>
-    <img class="small-logo" src="./img/small-logo.svg" alt="Logo" />
+    <img class="small-logo" src="./add_task_img/small-logo.svg" alt="Logo" />
     <button id="create-button">Create &#10003;</button>
   </header>
 
@@ -30,7 +29,7 @@
           <label for="Category">Category</label>
           <div onclick="selectTaskCategory()" id="select-one" class="select-one">
             <span>Select task category</span>
-            <img src="./img/open.svg" alt="" />
+            <img src="./add_task_img/open.svg" alt="" />
           </div>
 
           <div id="dropdown" class="d-none">
@@ -48,7 +47,7 @@
           <label for="Assigned-to">Assigned to</label>
           <div onclick="selectAssignedTo()" id="assign-one" class="select-one">
             <span>Select assigned person</span>
-            <img src="./img/open.svg" alt="" />
+            <img src="./add_task_img/open.svg" alt="" />
           </div>
 
           <div id="dropdown-assign" class="d-none">
@@ -62,7 +61,7 @@
             </div>
             <div onclick="selectAssign(event)" id="assigned-three" class="selected">
               <span>Invite new contact</span>
-              <img src="./img/kontakt.svg" id="contact-icon" class="icon-style" />
+              <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
             </div>
           </div>
         </form>
@@ -81,22 +80,22 @@
           <div id="prio-buttons">
             <div class="prio-button">
               <span>Urgent</span>
-              <img src="./img/Prio alta.svg" alt="" />
+              <img src="./add_task_img/Prio alta.svg alta.svg" alt="" />
             </div>
             <div class="prio-button">
               <span>Medium</span>
-              <img src="./img/Prio media.svg" alt="" />
+              <img src="./add_task_img/Prio media.svg media.svg" alt="" />
             </div>
             <div class="prio-button">
               <span>low</span>
-              <img src="./img/Prio baja.svg" alt="" />
+              <img src="./add_task_img/Prio baja.svg baja.svg" alt="" />
             </div>
           </div>
 
           <label for="subTask">Subtasks</label>
           <div id="subTask" class="select-one">
             <span>Add new subtask</span>
-            <img src="./img/add.svg" alt="" />
+            <img src="./add_task_img/add.svg" alt="" />
           </div>
 
           <div class="subtask">
@@ -109,6 +108,6 @@
   </div>
 
   <footer></footer>
-  <script src="add_task.js"></script>
+  <script src="./js/add_task.js"></script>
 </body>
 </html>
