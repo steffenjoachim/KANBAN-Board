@@ -1,0 +1,16 @@
+
+@font-face{
+    font-family: Inter;
+    src: url(asssets/fonts/Inter-Regular.ttf);
+}
+
+
+*{
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: Inter, sans-serif;
+}
+
