@@ -1,104 +1,68 @@
 <!DOCTYPE html>
 <html lang="de">
-<link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KANBAN-Board</title>
-    <link rel="stylesheet" href="./asssets/css/style.css">
-    <link rel="stylesheet" href="./asssets/css/mobile-login.css">
-    <script src="script.js"></script>
+    <title>Login</title>
+    <link rel="icon" type="image/x-icon" href="./img/mobile-login-logo-dark.svg">
+    <link rel="stylesheet" href="asssets/css/mobile-login.css">
 </head>
 
-<style>
-    body {
-        position: relative;
-        width: 428px;
-        height: 926px;
-        background: #F6F7F8;
-    }
-
-    header {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        padding: 0px;
-        gap: 10px;
-
-        position: absolute;
-        width: 64px;
-        height: 78.03px;
-        left: calc(50% - 64px/2 - 144px);
-        top: calc(50% - 78.03px/2 - 386.98px);
-
-    }
-
-    header img {
-        width: 64px;
-        height: 78.03px;
-    }
-
-    .insideWindow{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 35px 0px;
-        gap: 35px;
-
-        position: absolute;
-        width: 372px;
-        height: 573px;
-        left: 28px;
-        top: 194px;
-
-        /* white */
-
-        background: #FFFFFF;
-        /* shadoe backlog box */
-
-        box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
-        border-radius: 30px;
-    }
-
-    h1 {
-        width: 315px;
-        height: 56px;
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 47px;
-        line-height: 120%;
-        /* or 56px */
-        text-align: center;
-        color: #000000;
-    }
-
-    .eMail, .passWord {
-        
-
-        width: 327px;
-        height: 41px;
-
-        background: #FFFFFF;
-        /* Style */
-
-        border: 1px solid #D1D1D1;
-        border-radius: 10px;
-    }
-
-
-</style>
-
-
-
-
-
 <body>
-    <h1>KANBAN-Board</h1>
-    
+    <div class="main-content">
+        <header>
+            <div>
+                <img src="./img/mobile-login-logo-dark.svg" alt="">
+            </div>
+        </header>
+
+        <div id="inside-window" class="inside-window">
+            <h1>Log in</h1>
+            <img src="./img/line.svg" alt="Trennlinie">
+            <form action="onsubmit">
+                <div class="input-field">
+                    <input class="e-mail" type="email" name="" required placeholder="Email">
+                    <img src="./img/email-icon.svg" alt="e-mail icon">
+                </div>
+                <div class="input-field">
+                    <input id="input" class="password" type="password" required placeholder="Password">
+                    <div id="lock-icon-container">
+                        <img id="lock-icon" src="./img/lock-icon.svg" alt="lock">
+                    </div>
+                </div>
+                <div class="wrong-password">Wrong password</div>
+                <a class="forgot" href="#">Forgot my Password</a>
+                <div id="checkbox-container" class="checkbox-container">
+                    <div id="checkmark-container">
+                        <img class="checkbox-empty" onclick="checkmarkChecked()" src="img/checkmark_container.svg"
+                            alt="">
+                    </div>
+                    <label>Remember me</label>
+                </div>
+
+                <div class="btn-container">
+                    <div class="login-btn-container">
+                        <button class="login-btn">Log in</button>
+                    </div>
+
+                </div>
+            </form>
+            <div class="guest-btn-container">
+                <button class="guest-btn">Guest Log in</button>
+            </div>
+        </div>
+    </div>
+    <div class="outer-container">
+        <div class="sign-up-container">
+            <span>Not a Join user?</span>
+            <div>
+                <button onclick="signIn()">Sign up</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
