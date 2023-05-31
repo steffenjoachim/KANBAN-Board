@@ -259,7 +259,6 @@ cursor: pointer;
 cursor: pointer;
 }
 
-
 .arrow-container {
    max-width: 372px;
    width: 100%;
@@ -268,10 +267,15 @@ cursor: pointer;
 
 .arrow-container a {
     margin-left: 33px;
+    cursor: pointer;
 }
-.sign-in-headline {
-    margin-top: -48px;
 
+.arrow-container a img {
+    cursor: pointer;
+}
+
+.sign-in-headline {
+    margin-top: -48px
 }
 
 .sign-in-container {
