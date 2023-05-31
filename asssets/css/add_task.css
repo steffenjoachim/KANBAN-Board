@@ -1,3 +1,7 @@
+@font-face{
+  font-family: Inter;
+  src: url(asssets/fonts/Inter-Regular.ttf);
+}
 
 body {
   background-color: #F5F5F5;
@@ -6,7 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Inter';
+  font-family: Inter, sans-serif;
 }
 
 header {
@@ -90,8 +94,7 @@ textarea {
 label {
   margin-top: 20px;
   margin-bottom: 5px;
-  font-family: 'Inter';
-  font-style: normal;
+  font-family: Inter, sans-serif;
   font-weight: 700;
   display: block;
 }
