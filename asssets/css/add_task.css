@@ -10,6 +10,11 @@ body {
   font-family: Inter, sans-serif;
 }
 
+h1 {
+  font-size: 47px;
+  font-weight: 700;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -65,7 +70,7 @@ border: none;
 }
 
 .wrapper p {
-  font-weight: bold;
+  font-weight: 400;
 }
 
 .all-input, textarea {
@@ -83,7 +88,6 @@ input {
 
 textarea {
   height: 93px;
-  
   padding-top:  18px;
   width: 100%;
 }
@@ -92,7 +96,7 @@ label {
   margin-top: 20px;
   margin-bottom: 5px;
   font-family: Inter, sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   display: block;
 }
 
@@ -116,7 +120,7 @@ label {
 }
 
 .prio-button span {
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .prio-button img {
@@ -162,7 +166,7 @@ input[type="date"]::before {
   justify-content: space-between;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-weight: 700;
+  font-weight: 400;
   cursor: pointer;
   transition: 125ms;
   border: 1px solid #D1D1D1;
@@ -179,7 +183,7 @@ input[type="date"]::before {
   align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-weight: 700;
+  font-weight: 400;
   cursor: pointer;
 }
 
@@ -284,6 +288,10 @@ border-top: none;
   justify-content: space-between;
 }
 
+.add-subtask {
+  color: #D1D1D1;
+}
+
 .subtask {
   display: flex;
   align-items: center;
@@ -292,6 +300,35 @@ border-top: none;
 .subtask-name {
   margin: 0;
 
+}
+
+.task-added-container {
+    display: flex;
+    justify-content: center;
+}
+
+#task-added {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 72%;
+  color: #fff;
+  background-color: #2A3647;
+  border-radius: 20px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-right: 30.5px;
+  padding-left: 30.5px;
+}
+
+#task-added span {
+  font-size: 21px;
+}
+
+#task-added img {
+  margin-left: 26px;
+  width: 26px;
+  height: 22px;
 }
 
 @media(min-width:768px) {
