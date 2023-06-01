@@ -1,5 +1,5 @@
-.contact-frame{
-    width: 428px;
+body{
+    flex-direction: column;
 }
 
 .new-contact-frame {
@@ -7,7 +7,11 @@
     flex-direction: column;
     padding-top: 17px;
     gap: 10px;
-    width: 428px;
+}
+
+.new-contact-container-frame{
+    display: flex;
+    justify-content:flex-end;
 }
 
 .new-contact-container {
@@ -17,6 +21,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-right: 21px;
     padding: 18px 10px;
     gap: 10px;
     width: 193px;
@@ -29,12 +34,10 @@
 }
 
 .contact-frame {
-    width: 428px;
-    height: 1085px;
-
-    margin-left: 37, 5px;
     background: #FFFFFF;
-
+    display: flex;
+    flex-direction: column;
+   align-items: center;
 }
 
 .contact-frame h2 {
@@ -53,6 +56,7 @@ hr {
 .single-contact-frame {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .name-and-email {
@@ -74,44 +78,33 @@ hr {
     margin-right: 22px;
     font-size: 12px;
     font-weight: 400;
-    cursor: pointer;
 }
 
 .name {
     font-size: 21px;
     font-weight: 400;
     margin-top: 15px;
-    cursor: pointer;
 }
 
 .email {
     color: #007CEE;
     font-size: 16px;
     font-weight: 400;
-    cursor: pointer;
 }
 
 /* ===================== Big Contact ======================= */
 
-.content-big-contact{
-    width: 428px;
-    
-}
-
 .big-contact-frame {
     position: fixed;
-    top: 0;
-    bottom: 0;
+    top: 80;
+    bottom: 80;
     left: 0;
     right: 0;
     z-index: 99;
-    background: #FFFFFF;
-    width: 428px;
 }
 
 .big-contact-frame-header {
     margin-top: 34px;
-    width: 428px;
 }
 
 .h1-back-arrow{
@@ -214,34 +207,37 @@ hr {
 
 .edit-contact, .add-contact{
     position: fixed;
-    top: 0;
+    top: 80px;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 999;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background:  #F5F5F5;;
+    z-index: 99;
 }
 
 .edit-contact-head{
     height: 364px;
-    width: 406px;
     background: #2A3647;
     border-radius: 20px  20px 0 0;
     position: relative;
 }
 
+.edit-contact-frame{
+    max-width: 320px;
+}
+
 .edit-contact-bottom{
     height: 761px;
-    width: 406px;
     background: #FFFFFF;
     position: relative;
 }
 .close-x{
     margin-top: 21px;
+    margin-right: 16px;
     margin-bottom: 91px;
-    margin-left: 356px;
     cursor: pointer;
 }
 
@@ -276,7 +272,7 @@ form{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     height: 41px;
-    margin-top: 64px;
+    margin: 64px 16px 0 16px;
     display: flex;
     justify-content: space-between;
 }
@@ -285,7 +281,7 @@ form{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     height: 41px;
-    margin-top: 32px;
+    margin: 32px 16px 0 16px;
     display: flex;
     justify-content: space-between;
 }
@@ -348,6 +344,11 @@ form{
     justify-content: center;
 }
 
+.x-container{
+    display: flex;
+    justify-content: flex-end;
+}
+
 .tasks-are-better{
     margin-left: 34px;
     font-size: 21px;
@@ -361,12 +362,9 @@ form{
     height: 120px;
     width: 120px;
     border-radius: 50%;
-    color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 27px;
-    font-weight: 400;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border: 3px solid #FFFFFF;
     z-index: 999;

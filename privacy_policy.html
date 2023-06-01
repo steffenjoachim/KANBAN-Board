@@ -6,13 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./asssets/css/privacy_policy.css" />
+    <link rel="stylesheet" href="/asssets/css/header.css">
+    <link rel="shortcut icon" href="/asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/asssets/css/footer.css">
+    <script src="footer.js"></script>
   </head>
 
-  <body>
-    <header>
+  <body onload="init()">
+    <div w3-header-include-html="/asssets/templates/header.html"></div>
+    <div>
       <img class="small-logo" src="./img_policy/small-logo.svg" alt="Logo" />
-      <button id="create-button">Create &#10003;</button>
-    </header>
+
+    </div>
+    <button id="create-button">Create &#10003;</button>
 
     <div class="wrapper">
       <p>Kanban Project Management Tool</p>
@@ -183,7 +189,8 @@
 
     <p>By email: dev-ak@gmail.com</p>
     </div>
-    <footer></footer>
+    <footer w3-footer-include-html="/asssets/templates/footer.html"></footer>
+    <script src="header_include.js"></script>
     <script src="add_task.js"></script>
   </body>
 </html>

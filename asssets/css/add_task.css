@@ -1,7 +1,4 @@
-@font-face{
-  font-family: Inter;
-  src: url(asssets/fonts/Inter-Regular.ttf);
-}
+
 
 body {
   background-color: #F5F5F5;
@@ -150,7 +147,7 @@ input[type="date"]::before {
   right: 10px;
   width: 24px; /* passen Sie diese Werte an, um das Bild passend zu machen */
   height: 24px;
-  background: url('./img/calender-icon.svg'); /* ersetzen Sie 'path/to/your/image.png' durch den Pfad zu Ihrem Bild */
+  background: url('../../add_task_img/calender-icon.svg'); /* ersetzen Sie 'path/to/your/image.png' durch den Pfad zu Ihrem Bild */
   background-size: contain;
 }
 
@@ -340,7 +337,7 @@ border-top: none;
    }
 }
 
-@media(min-width:1080px) {
+@media(min-width:1440px) {
   .section-one {
     min-width: 440px;
     padding-right: 50px;

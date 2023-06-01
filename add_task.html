@@ -4,11 +4,16 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AddTask</title>
-  <link rel="stylesheet" href="./asssets/css/add_task.css" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/asssets/css/header.css">
+  <link rel="shortcut icon" href="/asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
+  <link rel="stylesheet" href="/asssets/css/footer.css">
+  <script src="footer.js"></script>
+  <link rel="stylesheet" href="asssets/css/add_task.css">
 </head>
 
-<body>
+<body onload="init()">
+  <div w3-header-include-html="/asssets/templates/header.html"></div>
   <header>
     <img class="small-logo" src="./add_task_img/small-logo.svg" alt="Logo" />
     <button id="create-button">Create &#10003;</button>
@@ -80,15 +85,15 @@
           <div id="prio-buttons">
             <div class="prio-button">
               <span>Urgent</span>
-              <img src="./add_task_img/Prio alta.svg alta.svg" alt="" />
+              <img src="./add_task_img/Prio alta.svg" alt="" />
             </div>
             <div class="prio-button">
               <span>Medium</span>
-              <img src="./add_task_img/Prio media.svg media.svg" alt="" />
+              <img src="./add_task_img/Prio media.svg" alt="" />
             </div>
             <div class="prio-button">
               <span>low</span>
-              <img src="./add_task_img/Prio baja.svg baja.svg" alt="" />
+              <img src="./add_task_img/Prio baja.svg" alt="" />
             </div>
           </div>
 
@@ -107,7 +112,9 @@
     </div>
   </div>
 
-  <footer></footer>
+  <footer w3-footer-include-html="/asssets/templates/footer.html"></footer>
+  <script src="header_include.js"></script>
+  <script src="footer_includes.js"></script>
   <script src="./js/add_task.js"></script>
 </body>
 </html>

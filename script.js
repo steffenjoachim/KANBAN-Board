@@ -9,9 +9,9 @@ function togglePasswordVisibility() {
     let passwordIcon = document.getElementById('lock-icon-container');
     let input = document.getElementById('input').value;
     if (input.length >= 1) {
-        passwordIcon.innerHTML = '<img onclick="visibilPassword()" class="password-icon" src="img/show.svg" alt="">';
+        passwordIcon.innerHTML = '<img onclick="visibilPassword()" class="password-icon" src="/asssets/img/show.svg" alt="">';
     } else {
-        passwordIcon.innerHTML = '<img id="lock-icon" src="./img/lock-icon.svg" alt="lock">';
+        passwordIcon.innerHTML = '<img id="lock-icon" src="asssets/img/lock-icon.svg" alt="lock">';
     }
 }
 document.getElementById('input').addEventListener('input', togglePasswordVisibility);
@@ -21,7 +21,7 @@ function visibilPassword() {
     let passwordIcon = document.getElementById('lock-icon-container');
 
     visiblePasswordInput.type = 'text'; // Ändere den Eingabetyp auf "text", um das Passwort sichtbar zu machen
-    passwordIcon.innerHTML = '<img onclick="hidePassword()" class="password-icon" src="img/hide.svg" alt="">';
+    passwordIcon.innerHTML = '<img onclick="hidePassword()" class="password-icon" src="/asssets/img/hide.svg" alt="">';
 }
 
 function hidePassword() {
@@ -32,51 +32,88 @@ function checkmarkChecked() {
     let checkMarkContainer = document.getElementById('checkmark-container');
     checkMarkContainer.innerHTML = '';
     checkMarkContainer.innerHTML += `
-    <img onclick="checkmarkUnChecked()" src="img/checked_full.svg" alt="">
+    <img onclick="checkmarkUnChecked()" src="/asssets/img/checked_full.svg" alt="">
 `
 }
 
 function checkmarkUnChecked() {
     let checkMarkContainer = document.getElementById('checkmark-container');
     checkMarkContainer.innerHTML = '';
-    checkMarkContainer.innerHTML = `<img class="checkbox-empty" onclick="checkmarkChecked()" src="img/checkmark_container.svg" alt="">`
+    checkMarkContainer.innerHTML = `<img class="checkbox-empty" onclick="checkmarkChecked()" src="/asssets/img/checkmark_container.svg" alt="">`
 }
 
 function signIn() {
     let insideWindow = document.getElementById('inside-window');
     insideWindow.innerHTML = '';
-    insideWindow.style.height = '501px'
+    insideWindow.style.height = '432px'
+    document.getElementById('sign-up-container').innerHTML = ''
     insideWindow.innerHTML += generateSignInHtml();
 }
 
 function generateSignInHtml() {
     return `
-    <div class="arrow-container"><a href="index.html"><img onclick="" src="img/back_arrow.svg"></a></div>
+
+    <div class="arrow-container">
+        <a href="index.html">
+            <img src="/asssets/img/back_arrow.svg">
+        </a>
+    </div>
     <h1 class="sign-in-headline">Sign in</h1>
-    <img src="./img/line.svg" alt="Trennlinie">
+    <img class="line" src="/asssets/img/line.svg" alt="Trennlinie">
     <form action="onsubmit">
         <div class="input-field">
+            <input class="name" type="name" name="" required placeholder="Name">
+            <img class="person-img" src="/asssets/img/person.svg" alt="e-mail icon">
+        </div>
+        <div class="input-field">
             <input class="e-mail" itemid="email" type="email" name="" required placeholder="Email">
-            <img src="./img/email-icon.svg" alt="e-mail icon">
+            <img src="/asssets/img/email-icon.svg" alt="e-mail icon">
         </div>
         <div class="input-field">
             <input id="input" class="password" type="password" required placeholder="Password">
             <div id="lock-icon-container">
-                <img id="lock-icon" src="./img/lock-icon.svg" alt="lock">
-            </div>
-        </div>
-        <div class="input-field">
-            <input id="input" class="password" type="password" required placeholder="Confirm Password">
-            <div id="lock-icon-container">
-                <img id="lock-icon" src="./img/lock-icon.svg" alt="lock">
+                <img id="lock-icon" src="/asssets/img/lock-icon.svg" alt="lock">
             </div>
         </div>
         <div class="btn-container">
             <div class="login-btn-container">
-                <button class="login-btn">Sign in</button>
+                <button class="login-btn sign-up-btn">Sign up</button>
             </div>
 
         </div>
     </form>
+
+
+
 `
+};
+
+function forgotPassword() {
+    let insideWindow = document.getElementById('inside-window');
+    insideWindow.innerHTML = '';
+    insideWindow.style.height = '432px'
+    insideWindow.innerHTML += `
+
+    <div class="arrow-container">
+        <a href="index.html">
+            <img src="/asssets/img/back_arrow.svg">
+        </a>
+    </div>
+    <h1 class="forgot-password-headline">I forgot my<br> password</h1>
+    <img src="/asssets/img/line.svg" alt="Trennlinie">
+    <p class="forgot-password-text">Don't worry! We will send you<br> an email with the instructions to<br>reset your password.
+    <form action="onsubmit">
+        <div class="input-field">
+            <input class="e-mail" itemid="email" type="email" name="" required placeholder="Email">
+            <img src="/asssets/img/email-icon.svg" alt="e-mail icon">
+        </div>
+        <div class="btn-container">
+        <div class="forgot-btn-container">
+            <button class="fortgot-password-btn">Send me the E-Mail</button>
+        </div>
+
+    </div>
+    </form>
+    `
+        ;
 }

@@ -23,6 +23,10 @@ h1{
     font-weight: 700;
 }
 
+a{
+text-decoration: none;
+color: black;
+}
 
 .kanban-pmt{
     margin-left: 34px;
@@ -31,7 +35,7 @@ h1{
 }
 
 .d-none{
-    display: none;
+    display: none !important;
 }
 
 
