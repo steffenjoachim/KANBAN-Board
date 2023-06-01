@@ -21,7 +21,7 @@
 
   <div class="wrapper">
     <p>Kanban Project Management Tool</p>
-    <h1 style="font-size: 47px; font-weight: 700; color: #000000">Add Task</h1>
+    <h1 >Add Task</h1>
      <div class="inner-wrap">
       <section class="section-one">
         <form>
@@ -99,7 +99,7 @@
 
           <label for="subTask">Subtasks</label>
           <div id="subTask" class="select-one">
-            <span>Add new subtask</span>
+            <span class="add-subtask">Add new subtask</span>
             <img src="./add_task_img/add.svg" alt="" />
           </div>
 
@@ -110,11 +110,17 @@
         </form>
       </section>
     </div>
+    <div class="task-added-container">
+      <div id="task-added">
+        <span>Task added to board</span>
+        <img src="./add_task_img/gitter.svg" alt="">
+      </div>
+    </div>
   </div>
+  
 
   <footer w3-footer-include-html="/asssets/templates/footer.html"></footer>
   <script src="header_include.js"></script>
-  <script src="footer_includes.js"></script>
   <script src="./js/add_task.js"></script>
 </body>
 </html>
