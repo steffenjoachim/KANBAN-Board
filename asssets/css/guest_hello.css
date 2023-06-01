@@ -10,7 +10,7 @@ body {
 
 .content {
     width: 100%;
-    max-width: 768px;
+    max-width: 1024px;
     height: 90vh;
     display: flex;
     justify-content: center;
