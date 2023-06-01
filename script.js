@@ -52,7 +52,6 @@ function signIn() {
 
 function generateSignInHtml() {
     return `
-
     <div class="arrow-container">
         <a href="index.html">
             <img src="/asssets/img/back_arrow.svg">
@@ -82,9 +81,6 @@ function generateSignInHtml() {
 
         </div>
     </form>
-
-
-
 `
 };
 
@@ -92,8 +88,12 @@ function forgotPassword() {
     let insideWindow = document.getElementById('inside-window');
     insideWindow.innerHTML = '';
     insideWindow.style.height = '432px'
-    insideWindow.innerHTML += `
+    document.getElementById('sign-up-container').innerHTML = ''
+    insideWindow.innerHTML += generateForgotHtml();
+}
 
+function generateForgotHtml() {
+    return `
     <div class="arrow-container">
         <a href="index.html">
             <img src="/asssets/img/back_arrow.svg">
@@ -102,7 +102,7 @@ function forgotPassword() {
     <h1 class="forgot-password-headline">I forgot my<br> password</h1>
     <img src="/asssets/img/line.svg" alt="Trennlinie">
     <p class="forgot-password-text">Don't worry! We will send you<br> an email with the instructions to<br>reset your password.
-    <form action="onsubmit">
+    <form onsubmit="resetPassword()">
         <div class="input-field">
             <input class="e-mail" itemid="email" type="email" name="" required placeholder="Email">
             <img src="/asssets/img/email-icon.svg" alt="e-mail icon">
@@ -115,5 +115,44 @@ function forgotPassword() {
     </div>
     </form>
     `
-        ;
+    return false
+}
+
+function resetPassword() {
+    document.getElementById('sign-up-container').innerHTML = '<img src="/asssets/img/An_e-mail_sent.svg" alt="e-mail icon">'    
+    let insideWindow = document.getElementById('inside-window');
+    insideWindow.innerHTML = ''
+    insideWindow.style.height = '455px'
+    insideWindow.innerHTML = generateResetPasswordHtml();
+ document.getElementById('sign-up-container').innerHTML = '';
+}
+
+function generateResetPasswordHtml() {
+    return  `
+    <div class="arrow-container">
+        <div onclick="forgotPassword()" class="arrow-img-container">
+            <img src="/asssets/img/back_arrow.svg">
+        </div>    
+    </div>
+    <h1 class="reset-password-headline">Reset your<br> password</h1>
+    <img src="/asssets/img/line.svg" alt="Trennlinie">
+    <p class="reset-password-text">Change your account password<br>here.
+    <div class="input-field">
+        <input id="input" class="password" type="password" required placeholder="New password">
+        <div id="lock-icon-container">
+            <img id="lock-icon" src="/asssets/img/lock-icon.svg" alt="lock">
+        </div>
+    </div>
+    <div class="input-field margin-reset-password-input">
+        <input id="input" class="password" type="password" required placeholder="Confirm password">
+        <div id="lock-icon-container">
+            <img id="lock-icon" src="/asssets/img/lock-icon.svg" alt="lock">
+        </div>
+    </div>
+    <div class="btn-container">
+        <div class="forgot-btn-container">
+            <button class="fortgot-password-btn">Continue</button>
+        </div>
+    </div>
+ `
 }

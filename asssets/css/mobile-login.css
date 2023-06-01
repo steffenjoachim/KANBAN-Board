@@ -305,3 +305,26 @@ form {
     margin-top: -12px;
     margin-bottom: -6px;
 }
+
+.arrow-img-container {
+    width: 20px;
+    cursor: pointer;
+    margin-left: 33px;
+}
+.reset-password-headline {
+    font-size: 40px;
+    padding-bottom: 29px;
+    margin-top: -48px;
+}
+
+.reset-password-text {
+    font-size: 21px;
+    text-align: center;
+    font-weight: 400;
+    margin-top:-11px;
+    margin-bottom: -60px;
+}
+
+.margin-reset-password-input {
+margin: -11px;
+}
