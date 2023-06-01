@@ -19,7 +19,7 @@ footer {
     right: 0px;
     left: 0;
     gap: 10px;
-    max-width: 768px;
+    max-width: 1024px;
     Padding: 0px, 12px, 0px, 12px;
     width: 100%;
     z-index: 99;
@@ -28,7 +28,6 @@ footer {
 .icon-container {
     display: flex;
     flex-direction: column;
-    /* padding: 13px; */
     align-items: center;
     width: 80px;
     height: 80px;
