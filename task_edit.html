@@ -5,9 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="task_edit.css">
+    <link rel="stylesheet" href="/asssets/css/header.css">
+    <link rel="stylesheet" href="/asssets/css/footer.css">
+    <script src="footer.js"></script>
     <title>Task edit</title>
 </head>
-<body>
+<body onload="init()">
+  <div w3-header-include-html="/asssets/templates/header.html"></div>
     <div class="main-content"> 
 
             <!-- Input Section -->
@@ -211,5 +215,8 @@ function firstButtonColor() {
   }
 }
     </script>
+
+<footer w3-footer-include-html="/asssets/templates/footer.html"></footer>
+<script src="header_include.js"></script>
 </body>
 </html>
