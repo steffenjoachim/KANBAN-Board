@@ -11,9 +11,13 @@
     <script src="script.js"></script>
     <script src="./js/storage.js"></script>
     <link rel="icon" type="image/x-icon" href="./asssets/img/mobile-login-logo-dark.svg">
+    <link rel="stylesheet" href="/asssets/css/header.css">
+    <link rel="shortcut icon" href="/asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/asssets/css/footer.css">
 </head>
 
-<body>
+<body onload="init()">
+    <header w3-header-include-html="/asssets/templates/header.html"></header>
     <div class="content-big-contact">
         <div class="big-contact-frame">
             <div class="big-contact-frame-header">
@@ -118,7 +122,8 @@
             </div>
         </div> -->
     </div>
-
+    <footer w3-footer-include-html="/asssets/templates/footer.html"></footer>
+    <script src="header_include.js"></script>
 </body>
 
-</html>
+</html> 

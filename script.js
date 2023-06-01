@@ -45,20 +45,26 @@ function checkmarkUnChecked() {
 function signIn() {
     let insideWindow = document.getElementById('inside-window');
     insideWindow.innerHTML = '';
-    insideWindow.style.height = '501px'
+    insideWindow.style.height = '432px'
+    document.getElementById('sign-up-container').innerHTML = ''
     insideWindow.innerHTML += generateSignInHtml();
 }
 
 function generateSignInHtml() {
     return `
+
     <div class="arrow-container">
         <a href="index.html">
             <img src="/asssets/img/back_arrow.svg">
         </a>
     </div>
     <h1 class="sign-in-headline">Sign in</h1>
-    <img src="/asssets/img/line.svg" alt="Trennlinie">
+    <img class="line" src="/asssets/img/line.svg" alt="Trennlinie">
     <form action="onsubmit">
+        <div class="input-field">
+            <input class="name" type="name" name="" required placeholder="Name">
+            <img class="person-img" src="/asssets/img/person.svg" alt="e-mail icon">
+        </div>
         <div class="input-field">
             <input class="e-mail" itemid="email" type="email" name="" required placeholder="Email">
             <img src="/asssets/img/email-icon.svg" alt="e-mail icon">
@@ -66,22 +72,48 @@ function generateSignInHtml() {
         <div class="input-field">
             <input id="input" class="password" type="password" required placeholder="Password">
             <div id="lock-icon-container">
-                <img id="/lock-icon" src="asssets/img/lock-icon.svg" alt="lock">
-            </div>
-        </div>
-        <div class="input-field">
-            <input id="input" class="password" type="password" required placeholder="Confirm Password">
-            <div id="lock-icon-container">
                 <img id="lock-icon" src="/asssets/img/lock-icon.svg" alt="lock">
             </div>
         </div>
         <div class="btn-container">
             <div class="login-btn-container">
-                <button class="login-btn">Sign in</button>
+                <button class="login-btn sign-up-btn">Sign up</button>
             </div>
 
         </div>
     </form>
 
+
+
 `
+};
+
+function forgotPassword() {
+    let insideWindow = document.getElementById('inside-window');
+    insideWindow.innerHTML = '';
+    insideWindow.style.height = '432px'
+    insideWindow.innerHTML += `
+
+    <div class="arrow-container">
+        <a href="index.html">
+            <img src="/asssets/img/back_arrow.svg">
+        </a>
+    </div>
+    <h1 class="forgot-password-headline">I forgot my<br> password</h1>
+    <img src="/asssets/img/line.svg" alt="Trennlinie">
+    <p class="forgot-password-text">Don't worry! We will send you<br> an email with the instructions to<br>reset your password.
+    <form action="onsubmit">
+        <div class="input-field">
+            <input class="e-mail" itemid="email" type="email" name="" required placeholder="Email">
+            <img src="/asssets/img/email-icon.svg" alt="e-mail icon">
+        </div>
+        <div class="btn-container">
+        <div class="forgot-btn-container">
+            <button class="fortgot-password-btn">Send me the E-Mail</button>
+        </div>
+
+    </div>
+    </form>
+    `
+        ;
 }
