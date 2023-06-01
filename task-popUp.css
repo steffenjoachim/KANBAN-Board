@@ -1,0 +1,188 @@
+@font-face{
+    font-family: Inter;
+    src: url(asssets/fonts/Inter-Regular.ttf);
+}
+
+body {
+    font-family: 'Inter';
+    font-style: normal;
+    margin: 0;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+
+.orange{
+    background: #FF7A00;
+}
+
+.purple{
+    background: #9327FF;
+}
+
+.light-blue{
+    background: #29ABE2;
+}
+
+.pink{
+    background: #FC71FF;
+}
+.blue{
+    background: #0038FF;
+}
+
+.green{
+    background: #02CF2F;
+}
+
+.light-green{
+    background: #1FD7C1;
+}
+
+.red{
+    background: #AF1616 ;
+}
+.dark-blue{
+    background: #2A3647 ;
+}
+
+.main-div {
+    background-color: #F5F5F5;;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+    /* Head  */
+
+.popUp-head {
+    margin-top: 140px;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 34px;
+    margin-left: 12px;
+    margin-bottom: 36px;
+}
+
+.task-category {
+    text-align: center;
+    padding: 4px 36.5px;
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 21px;
+    color: #FFFFFF;
+    width: fit-content;
+    margin-left: 21px;
+}
+
+    /* Title  */
+
+.popUp-title {
+    font-weight: 700;
+    font-size: 36px;
+    color: #2A3647;
+    margin-left: 33px;
+    line-height: 120%;
+    margin-right: 114px;
+}
+
+    /* Description */
+
+.popUp-description {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    margin: 25px 33px;
+}
+
+.bold {
+    font-weight: 700;
+    margin-right: 25px;
+}
+
+.popUp-date {
+    margin-left: 33px;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.popUp-prio {
+    display: flex ;
+    align-items: center;
+    margin-left: 33px;
+    font-weight: 400;
+    font-size: 16px;
+    margin-top: 35px;
+}
+
+.popUp-prio-btn {
+    width: fit-content;
+    padding: 4px 18px;
+    background: #FF3D00;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.popUp-prio-btn span {
+    color: #FFFFFF;
+    margin-right: 10px;
+}
+
+/* <!------------- Assigned to Section ------------> */
+
+.assignedTo-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 29px;
+    margin-left: 33px;
+    margin-bottom: 31px;
+}
+
+.assignedTo-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 33px;
+    font-weight: 400;
+    font-size: 16px;
+    gap: 13px;
+}
+
+.assignedTo-div {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.assignedTo-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #FFFFFF;
+    border-radius: 58px;
+    width: 45px;
+    height: 45px;
+    color: #FFFFFF;
+}
+
+.popUp-btns {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: fit-content;
+    gap: 16px;
+    bottom: 46px;
+    left: 80%;
+}
+
+.popUp-delete {
+    max-width: 40px;
+    height: auto;
+}
+
+.popUp-edit {
+    max-width: 50px;
+    height: auto;
+}

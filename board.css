@@ -5,13 +5,50 @@ body {
     scroll-behavior: smooth;
 }
 
+
+
+.orange{
+    background: #FF7A00;
+}
+
+.purple{
+    background: #9327FF;
+}
+
+.light-blue{
+    background: #29ABE2;
+}
+
+.pink{
+    background: #FC71FF;
+}
+.blue{
+    background: #0038FF;
+}
+
+.green{
+    background: #02CF2F;
+}
+
+.light-green{
+    background: #1FD7C1;
+}
+
+.red{
+    background: #AF1616 ;
+}
+.dark-blue{
+    background: #2A3647 ;
+}
+
 .main-div {
     background-color: #F5F5F5;;
     width: 428px;
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    padding-bottom: 48px;
 }
 
 .head-span {
@@ -22,11 +59,12 @@ body {
     margin-left: 33px;
 }
 
-h1{
+.title {
     margin-left: 33px;
     margin-top: 19px;
     font-size: 47px;
     font-weight: 700;
+    margin-bottom: 30px;
 }
 
 .title-section {
@@ -103,11 +141,14 @@ h1{
     margin-bottom: 22px;
 }
 
+.card-head{
+    cursor: pointer;
+}
+
 .task-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
     gap: 10px;
     width: 363px;
     height: auto;
@@ -116,6 +157,7 @@ h1{
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     border-radius: 30px;
     margin-bottom: 22px;
+    cursor: pointer;
 }
 
 .task-category, .task-title, .task-description, .task-progress, .task-assignedTo {
@@ -125,11 +167,11 @@ h1{
 .task-category {
     text-align: center;
     padding: 4px 25px;
-    background: #FF7A00;
     border-radius: 8px;
     font-weight: 400;
     font-size: 16px;
     color: #FFFFFF;
+    width: fit-content;
 }
 
 .task-title {
@@ -145,15 +187,51 @@ h1{
 }
 
 .task-progress {
-    width: 251px;
+    width: 87%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.progress-steps {
+    font-weight: 400;
+    font-size: 12px;
 }
 
 .progress {
     --bs-progress-height: 8px !important;
+    width: 251px;
 }
 
-.task-assignedTo {
-    
+.task-assignedTo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.task-icons{
+    display: flex;
+}
+
+.task-assignedTo img {
+    margin-right: 28px;
+}
+.task-assignedTo span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    padding: 10px 8px;
+    border: 1px solid #FFFFFF;
+    border-radius: 58px;
+    font-weight: 400;
+    font-size: 12px;
+    color: #FFFFFF;
+    margin-right: -6px;
 }
 
 .empty-card {
