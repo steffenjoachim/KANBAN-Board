@@ -95,16 +95,14 @@ hr {
 /* ===================== Big Contact ======================= */
 
 .big-contact-frame {
-    position: fixed;
-    top: 80;
-    bottom: 80;
-    left: 0;
-    right: 0;
-    z-index: 99;
+    background: #F6F7F8;
 }
 
-.big-contact-frame-header {
-    margin-top: 34px;
+.kpmt{
+    padding-top: 16px;
+    margin-left: 34x;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .h1-back-arrow{
@@ -190,7 +188,7 @@ hr {
     height: 40px;
     width: 40px;
     margin-right: 22px;
-    margin-top: 116px;
+    margin-top: 76px;
     cursor: pointer;
 }
 
@@ -230,7 +228,6 @@ hr {
 }
 
 .edit-contact-bottom{
-    height: 761px;
     background: #FFFFFF;
     position: relative;
 }
