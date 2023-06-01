@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="task_edit.css">
+    <title>Task edit</title>
+</head>
+<body>
+    <div class="main-content"> 
+
+            <!-- Input Section -->
+
+        
+        
+                <label class="input-lable">Title</label>
+                <input class="input-field" type="text" placeholder="Enter a title">
+            
+                <label class="input-lable">Description</label>
+                <input class="input-field" type="text" placeholder="Enter a Description">
+            
+                <label class="input-lable">Due date</label>
+                <input class="input-field" type="date">
+
+            <!-- Input Section -->
+
+                <div class="edit-prio-section">
+                    <span class="edit-prio-title">Prio</span>
+                    <div class="prio-btns">
+
+                     <button onclick="firstButtonColor()" id="firstBtn" class="edit-prio-btn">
+                        <span class="prio-type">Urgent</span>
+                        <img src="./asssets/img/inProgress-icon.svg" alt="">
+                    </button>
+                     <button onclick="secondButtonColor()" id="secondBtn" class="edit-prio-btn">
+                        <span class="prio-type">Medium</span>
+                        <img src="./asssets/img/Feedback-icon.svg" alt="">
+                    </button>
+                     <button onclick="thirdButtonColor()" id="thirdBtn" class="edit-prio-btn">
+                        <span class="prio-type">Low</span>
+                        <img src="./asssets/img/toDo icon.svg" alt="">
+                    </button>
+                        
+                    </div>
+                </div>
+
+                <!-- Select Section -->
+
+                <label class="input-lable">Assigned to</label>
+                <div onclick="selectAssignedTo()" id="assign-one" class="select-one">
+                    <span>Select assigned person</span>
+                    <img src="./add_task_img/open.svg" alt="" />
+                  </div>
+        
+                  <div id="dropdown-assign" class="d-none">
+                    <div onclick="selectAssign(event)" id="assigned-one" class="selected space-between">
+                      <span>You</span>
+                      <input type="checkbox" id="checkbox-you" class="checkbox-style" />
+                    </div>
+                    <div onclick="selectAssign(event)" id="assigned-two" class="selected space-between">
+                      <span>Maximilian</span>
+                      <input type="checkbox" id="checkbox-max" class="checkbox-style" />
+                    </div>
+                    <div onclick="selectAssign(event)" id="assigned-three" class="selected">
+                      <span>Invite new contact</span>
+                      <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
+                    </div>
+                  </div>
+
+                    <!-- Selected contacts Section -->
+
+                    <div class="selected-all">
+                        <span class="contact purple">DE</span>
+                        <span class="contact orange">BZ</span>
+                        <span class="contact blue">MB</span>
+                    </div>
+
+                    <button class="edit-prio-doneBTN">
+                        <span class="prio-type">OK</span>
+                        <img src="./asssets/img/ok-icon.svg" alt="">
+                    </button>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+    </div>
+    <script>
+
+        /**
+ * Wechselt die Sichtbarkeit eines Dropdown-Menüs und ändert den Randradius der Container-Elemente.
+ * Wenn das Dropdown-Menü derzeit ausgeblendet ist, wird es angezeigt und der Randradius der Container-Elemente wird so angepasst, dass nur die oberen Ecken abgerundet sind.
+ * Wenn das Dropdown-Menü derzeit sichtbar ist, wird es ausgeblendet und der Randradius der Container-Elemente wird zurückgesetzt.
+ */
+function selectTaskCategory() {
+  let dropdown = document.getElementById('dropdown');
+  let selectOne = document.getElementById('select-one');
+  let selectThree = document.getElementById('selected-three')
+  
+
+  if (dropdown.classList.contains('d-none')) {
+      dropdown.classList.remove('d-none');
+      selectOne.style.borderRadius = "10px 10px 0 0";
+      selectOne.style.borderBottom = "none";
+      selectThree.style.borderRadius = "0 0 10px 10px";
+  } else {
+      dropdown.classList.add('d-none');
+      selectOne.style.borderRadius = "10px";
+      selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn das Dropdown-Menü geschlossen ist.
+  }
+  
+}
+
+/**
+* Aktualisiert den Textinhalt eines Auswahlfelds mit der ausgewählten Option und blendet das Dropdown-Menü aus.
+* 
+* @param {Event} event - Das Event-Objekt, das die Benutzeraktion repräsentiert, z.B. ein Klick-Event.
+*/
+function selectOption(event) {
+  let selectOne = document.getElementById('select-one');
+  selectOne.textContent = event.target.textContent;
+  let dropdown = document.getElementById('dropdown');
+  dropdown.classList.add('d-none');
+  selectOne.style.borderRadius = "10px";
+  selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn eine Option ausgewählt ist.
+}  
+
+/**
+ * Wechselt die Sichtbarkeit eines Dropdown-Menüs und ändert den Randradius der Container-Elemente.
+ * Ist das Dropdown-Menü derzeit ausgeblendet, wird es angezeigt und der Randradius der Container-Elemente angepasst, so dass nur die oberen Ecken abgerundet sind.
+ * Ist das Dropdown-Menü derzeit sichtbar, wird es ausgeblendet und der Randradius der Container-Elemente zurückgesetzt.
+ */
+function selectAssignedTo() {
+  let dropdownAssign = document.getElementById('dropdown-assign');
+  let assignOne = document.getElementById('assign-one');
+  let assignThree = document.getElementById('assigned-three')
+
+  if (dropdownAssign.classList.contains('d-none')) {
+      dropdownAssign.classList.remove('d-none');
+      assignOne.style.borderRadius = "10px 10px 0 0";
+      assignOne.style.borderBottom = "none";
+      assignThree.style.borderRadius = "0 0 10px 10px";
+  } else {
+      dropdownAssign.classList.add('d-none');
+      assignOne.style.borderRadius = "10px";
+      assignOne.style.borderBottom = "";  
+  }
+}
+
+/**
+ * Aktualisiert den Textinhalt eines Auswahlfeldes mit der ausgewählten Option und verbirgt das Dropdown-Menü.
+ * Wird jedoch ein Kontrollkästchen (Checkbox) angeklickt, bleibt das Dropdown-Menü sichtbar.
+ * 
+ * @param {Event} event - Das Event-Objekt, das die Benutzeraktion darstellt, z. B. ein Klick-Event.
+ */
+function selectAssign(event) {
+  // Prüfen, ob das Ziel nicht ein Kontrollkästchen ist
+  if (event.target.type !== 'checkbox') {
+    let assignOne = document.getElementById('assign-one');
+    assignOne.textContent = event.target.textContent;
+    let dropdownAssign = document.getElementById('dropdown-assign');
+    dropdownAssign.classList.add('d-none');
+    assignOne.style.borderRadius = "10px";
+    assignOne.style.borderBottom = "";  
+  }
+}
+
+// Funktionen die die Hintergrundfarbe bei jedem Klick ändern
+
+function firstButtonColor() {
+  var button = document.getElementById('firstBtn');
+  var currentColor = button.style.backgroundColor;
+
+  if (currentColor === 'rgb(255, 61, 0)') {
+    button.style.backgroundColor = '';
+  } else {
+    button.style.backgroundColor = '#FF3D00';
+  }
+}
+
+    function secondButtonColor() {
+  var button = document.getElementById('secondBtn');
+  var currentColor = button.style.backgroundColor;
+
+  if (currentColor === 'rgb(255, 122, 0)') {
+    button.style.backgroundColor = '';
+  } else {
+    button.style.backgroundColor = '#FF7A00';
+  }
+}
+
+    function thirdButtonColor() {
+  var button = document.getElementById('thirdBtn');
+  var currentColor = button.style.backgroundColor;
+
+  if (currentColor === 'rgb(122, 226, 41)') {
+    button.style.backgroundColor = '';
+  } else {
+    button.style.backgroundColor = '#7AE229';
+  }
+}
+    </script>
+</body>
+</html>
