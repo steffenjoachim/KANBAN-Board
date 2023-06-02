@@ -94,15 +94,15 @@ hr {
 
 /* ===================== Big Contact ======================= */
 
-.big-contact-frame {
+.content-big-contact {
     background: #F6F7F8;
 }
 
 .kpmt{
     padding-top: 16px;
-    margin-left: 34x;
     font-size: 16px;
     font-weight: 400;
+    padding-left: 34px;
 }
 
 .h1-back-arrow{
@@ -139,8 +139,8 @@ hr {
 }
 
 .contact-logo-big {
-    height: 80px;
-    width: 80px;
+    height: 65px;
+    width: 65px;
     border-radius: 50%;
     color: #FFFFFF;
     display: flex;
@@ -269,7 +269,7 @@ form{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     height: 41px;
-    margin: 64px 16px 0 16px;
+    margin: 64px 16px 0 0;
     display: flex;
     justify-content: space-between;
 }
@@ -278,7 +278,7 @@ form{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     height: 41px;
-    margin: 32px 16px 0 16px;
+    margin: 32px 16px 0 0;
     display: flex;
     justify-content: space-between;
 }

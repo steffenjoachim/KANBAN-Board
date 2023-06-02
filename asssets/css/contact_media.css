@@ -1,0 +1,11 @@
+@media(min-width: 430px){
+
+    .contact-logo-big{
+        height: 80px;
+        width: 80px;
+    }
+
+    .edit-contact-frame{
+        max-width: 430px;
+    }
+}
