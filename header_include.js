@@ -30,3 +30,15 @@ async function footerIncludeHTML() {
         }
     }
 }
+
+ function burgerMenu() {
+     document.getElementById('background-container').style.display = 'block'
+}
+
+function closeBurgerMenu() {
+    let div = document.getElementById(`background-container`);
+    if (event.target.id !== `background-container`) {
+      return;
+    }
+    div.style.display = 'none'
+ }

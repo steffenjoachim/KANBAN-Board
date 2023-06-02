@@ -156,3 +156,8 @@ function generateResetPasswordHtml() {
     </div>
  `
 }
+
+function guestLogin() {
+    let personImg  = document.getElementById('person-img');
+    personImg.innerHTML = '';
+}
