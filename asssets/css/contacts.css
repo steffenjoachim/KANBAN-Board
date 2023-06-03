@@ -7,6 +7,7 @@ body{
     flex-direction: column;
     padding-top: 17px;
     gap: 10px;
+    margin-bottom: 100px;
 }
 
 .new-contact-container-frame{
@@ -57,11 +58,13 @@ hr {
     display: flex;
     align-items: center;
     cursor: pointer;
+    padding-bottom: 16px;
 }
 
 .name-and-email {
     display: flex;
     flex-direction: column;
+    margin-right: 56px;
 }
 
 .contact-logo {
@@ -90,6 +93,8 @@ hr {
     color: #007CEE;
     font-size: 16px;
     font-weight: 400;
+    min-width: 170px;
+    max-width: 200px;
 }
 
 /* ===================== Big Contact ======================= */
@@ -188,7 +193,7 @@ hr {
     height: 40px;
     width: 40px;
     margin-right: 22px;
-    margin-top: 76px;
+    margin-top: 50px;
     cursor: pointer;
 }
 
@@ -197,7 +202,7 @@ hr {
     width: 50px;
     margin-right: 22px;
     margin-top: 20px;
-    margin-bottom: 48px;
+    margin-bottom: 16px;
     cursor: pointer;
 }
 

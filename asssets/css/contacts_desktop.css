@@ -57,3 +57,11 @@
     flex-direction: column;
 }
 
+.standard-hr{
+    margin-right: 24px;
+}
+
+.close-x-dark{
+    height: 21px;
+    width: 21px;
+}

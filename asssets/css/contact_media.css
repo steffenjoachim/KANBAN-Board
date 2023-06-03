@@ -18,13 +18,14 @@
     }
 
     .content-big-contact{
-        width: 52%;
+        display: block !important;
+        width: 100%;
         margin-top: 5px;
         box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.1);
     }
 
     .contact-frame{
-        max-width:18%;
+        flex: 1;
     }
 
     .hr-blue-small-left{
@@ -51,9 +52,9 @@
 
     .new-contact-container-2{
         display: flex !important;
-        position: relative;
-        bottom: -96px;
-        right: -300px;
+        position: absolute;
+        bottom: 100px;
+        right: 30px;
     } 
 
     .big-contact-frame{
@@ -75,6 +76,72 @@
     .order3{
         margin-top: 16px;
         order: 3;
+    }
+
+    .single-contact-frame:hover{
+        background: #2A3647;
+        color: #FFFFFF;
+        border-radius: 10px;
+    }
+
+    .edit-contact{
+        flex-direction: row;
+        top: -80px;
+        bottom: -80px;
+    }
+
+    .edit-contact-frame{
+        max-width: 800px;
+        display: flex;
+    }
+
+    .contact-logo-bigger{
+        position: static;
+        transform: none;
+        margin: 0 32px;
+    }
+
+    .edit-contact-head{
+        min-width: 353px;
+        border-radius: 20px  0 0 20px;
+        margin-left: 16px;
+    }
+
+    .edit-contact-bottom{
+        position: static;
+        display: flex;
+        align-items: center;
+        border-radius: 0 20px 20px 0;
+        height: 364px;
+    }
+
+    #hr-blue-small-left{
+        height: 3px;
+    width: 90px;
+    background-color: #29ABE2;
+    border: none;
+    }
+
+    .close-x{
+        display: none;
+    }
+    
+    .join-logo-white{
+        display: block !important;
+        margin-top: 64px;
+        margin-left: 34px;
+    }
+
+    .input-field, .input-field-top{
+        max-width: 322px;
+    }
+
+    .delete, .save{
+        margin-bottom: 90px;
+    }
+
+    form{
+        height: 364px;
     }
 
 }
