@@ -19,6 +19,8 @@
 
     .content-big-contact{
         width: 52%;
+        margin-top: 5px;
+        box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.1);
     }
 
     .contact-frame{
