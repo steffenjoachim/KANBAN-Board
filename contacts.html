@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./asssets/css/style.css">
     <link rel="stylesheet" href="./asssets/css/contacts.css">
     <link rel="stylesheet" href="./asssets/css/contact_media.css">
+    <link rel="stylesheet" href="./asssets/css/contacts_desktop.css">
     <script src="./js/storage.js"></script>
     <link rel="stylesheet" href="/asssets/css/header.css">
     <link rel="shortcut icon" href="/asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
@@ -18,81 +19,173 @@
 
 <body onload="init()">
     <div w3-header-include-html="/asssets/templates/header.html"></div>
-    <div class="new-contact-frame">
-        <div class="new-contact-container-frame">
-            <div class="new-contact-container">
-                <span>New Contact</span>
-                <img src="./asssets/img/new-contact.svg" alt="New Contact">
+    <div class="desktop-page">
+        <div class="new-contact-frame">
+            <div class="new-contact-container-frame">
+                <div class="new-contact-container">
+                    <span>New Contact</span>
+                    <img src="./asssets/img/new-contact.svg" alt="New Contact">
+                </div>
+            </div>
+            <div class="contact-frame">
+                <div class="letter-frame">
+                    <h2>A</h2>
+                    <hr>
+                    <a href="./single-contact.html" class="single-contact-frame">
+                        <span class="contact-logo orange">AM</span>
+                        <div class="name-and-email">
+                            <span class="name">Anton Mayer</span>
+                            <span class="email">antonm@gmail.com</span>
+                        </div>
+                    </a>
+                    <div class="single-contact-frame">
+                        <span class="contact-logo purple">AS</span>
+                        <div class="name-and-email">
+                            <span class="name">Anja Schulz</span>
+                            <span class="email">schulz@hotmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="letter-frame">
+                    <h2>B</h2>
+                    <hr>
+                    <div class="single-contact-frame">
+                        <span class="contact-logo light-blue">BZ</span>
+                        <div class="name-and-email">
+                            <span class="name">Benedikt Ziegler</span>
+                            <span class="email">bededikt@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="letter-frame">
+                    <h2>D</h2>
+                    <hr>
+                    <div class="single-contact-frame">
+                        <span class="contact-logo pink">DE</span>
+                        <div class="name-and-email">
+                            <span class="name">David Eisenberg</span>
+                            <span class="email">davidberg@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="letter-frame">
+                    <h2>E</h2>
+                    <hr>
+                    <div class="single-contact-frame">
+                        <span class="contact-logo green">EF</span>
+                        <div class="name-and-email">
+                            <span class="name">Eva Fischer</span>
+                            <span class="email">eva@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="contact-frame">
-            <div class="letter-frame">
-                <h2>A</h2>
-                <hr>
-                <a href="./single-contact.html" class="single-contact-frame">
-                    <span class="contact-logo orange">AM</span>
-                    <div class="name-and-email">
-                        <span class="name">Anton Mayer</span>
-                        <span class="email">antonm@gmail.com</span>
+        <div class="content-big-contact">
+            <div class="big-contact-frame">
+                <div class="big-contact-frame-header">
+                    <h3 class="kpmt">Kanban Project Management Tool</h3>
+                    <a href="./contacts.html" class="h1-back-arrow">
+                        <div class="order1">
+                            <h1>Contacts</h1>
+                        </div>
+                        <img class="back-arrow" src="./asssets/img/arrow-left-line.svg" alt="back arrow">
+                    </a>
+                    <div class="order3">
+                        <h3 class="better-with-a-team">Better with a team</h3>
                     </div>
-                </a>
-                <div class="single-contact-frame">
-                    <span class="contact-logo purple">AS</span>
-                    <div class="name-and-email">
-                        <span class="name">Anja Schulz</span>
-                        <span class="email">schulz@hotmail.com</span>
-                    </div>
-                </div>
-            </div>
-            <div class="letter-frame">
-                <h2>B</h2>
-                <hr>
-                <div class="single-contact-frame">
-                    <span class="contact-logo light-blue">BZ</span>
-                    <div class="name-and-email">
-                        <span class="name">Benedikt Ziegler</span>
-                        <span class="email">bededikt@gmail.com</span>
+                    <div class="order2">
+                        <hr class="hr-blue-small-left">
                     </div>
                 </div>
-            </div>
-            <div class="letter-frame">
-                <h2>D</h2>
-                <hr>
-                <div class="single-contact-frame">
-                    <span class="contact-logo pink">DE</span>
-                    <div class="name-and-email">
-                        <span class="name">David Eisenberg</span>
-                        <span class="email">davidberg@gmail.com</span>
+                <div class="name-add-task-logo">
+                    <span class="contact-logo-big orange">AM</span>
+                    <div class="name-add-task">
+                        <span class="big-name">Anton Mayer</span>
+                        <span class="email">+ Add Task</span>
                     </div>
                 </div>
-            </div>
-            <div class="letter-frame">
-                <h2>E</h2>
-                <hr>
-                <div class="single-contact-frame">
-                    <span class="contact-logo green">EF</span>
-                    <div class="name-and-email">
-                        <span class="name">Eva Fischer</span>
-                        <span class="email">eva@gmail.com</span>
+                <div class="contact-information-frame">
+                    <h3 class="contact-information">Contact Information</h3>
+                    <div class="edit-pen">
+                        <img class="edit-contact-logo" src="./asssets/img/edit_contact.svg" alt="edit contact logo">
+                        <span class="edit-contact-text">Edit Contact</span>
                     </div>
+                </div>
+                <div class="email-data">
+                    <span class="email-head">Email</span>
+                    <span class="email-adress-blue">antom@gmail.com</span>
+                </div>
+                <div class="mobile-data">
+                    <span class="mobile-head">Mobil</span>
+                    <span class="mobile-number-blue">+49 1111 111 11 1</span>
+                </div>
+                <div class="delet-edit-frame">
+                    <img class="bin" src="./asssets/img/delete-bin.svg" alt="delete bin">
+                    <img class="pen" src="./asssets/img/edit.svg" alt="edit pen">
+                </div>
+                <div class="new-contact-container-2">
+                    <span>New Contact</span>
+                    <img src="./asssets/img/new-contact.svg" alt="New Contact">
                 </div>
             </div>
         </div>
     </div>
+    <div class="edit-contact d-none">
+        <div class="edit-contact-frame">
+            <div class="edit-contact-head">
+                <div class="x-container">
+                    <img class="close-x" src="./asssets/img/close-x.svg" alt="close x-icon">
+                </div>
+                <h1 class="white">Edit Contact</h1>
+                <hr class="hr-blue-small-left">
+
+            </div>
+            <div class="edit-contact-bottom">
+                <span class="contact-logo-bigger light-orange">TW</span>
+                <form action="">
+                    <div class="input-field-top">
+                        <textarea class="name-displayed" name="name" id="name-displayed" cols="50"
+                            rows="10">Tatjana Wolf</textarea>
+                        <input class="name-input d-none" type="name" required placeholder="Name">
+                        <img src="./asssets/img/name-head.svg" alt="name icon">
+                    </div>
+                    <div class="input-field">
+                        <textarea class="email-displayed" name="name" id="email-deisplayed" cols="50"
+                            rows="10">wolf@gmail.com</textarea>
+                        <input class="email-input d-none" type="email" placeholder="Email">
+                        <img src="./asssets/img/email-icon.svg" alt="email icon">
+                    </div>
+                    <div class="input-field">
+                        <textarea class="phone-displayed" name="name" id="phone-deisplayed" cols="50"
+                            rows="10">+49 2222 222 22 2</textarea>
+                        <input class="tel-input d-none" type="tel" placeholder="Phone">
+                        <img src="./asssets/img/tel.svg" alt="name icon">
+                    </div>
+                </form>
+                <div class="delete-save">
+                    <div class="delete">Delete</div>
+                    <div class="save">Save</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     <div class="add-contact d-none">
         <div class="edit-contact-frame">
-            <div class="edit-contact-head"> 
+            <div class="edit-contact-head">
                 <div class="x-container">
                     <img class="close-x" src="./asssets/img/close-x.svg" alt="close x-icon">
                 </div>
                 <h1 class="white">Add Contact</h1>
                 <span class="tasks-are-better white">Tasks are better with a team</span>
                 <hr class="hr-blue-small-left">
+
+            </div>
+            <div class="edit-contact-bottom">
                 <span class="contact-logo-template gray">
                     <img class="big-head" src="./asssets/img/big-head.svg" alt="person head">
                 </span>
-            </div>
-            <div class="edit-contact-bottom">
                 <form action="">
                     <div class="input-field-top">
                         <input class="name-input" type="name" required placeholder="Name">

@@ -148,7 +148,7 @@ hr {
     justify-content: center;
     display: flex;
     margin-left: 25px;
-    margin-top: 15px;
+    margin-top: 32px;
     margin-right: 22px;
     font-size: 27px;
     font-weight: 400;
@@ -245,7 +245,7 @@ hr {
 .contact-logo-bigger {
     position: absolute; 
     left: 50%; 
-    transform: translate(-50%, 40%); 
+    transform: translate(-50%, -60%); 
     height: 120px;
     width: 120px;
     border-radius: 50%;
@@ -355,7 +355,7 @@ form{
 .contact-logo-template {
     position: absolute; 
     left: 50%; 
-    transform: translate(-50%, 20%); 
+    transform: translate(-50%, -65%); 
     height: 120px;
     width: 120px;
     border-radius: 50%;

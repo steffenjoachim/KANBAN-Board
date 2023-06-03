@@ -9,3 +9,70 @@
         max-width: 430px;
     }
 }
+
+@media(min-width: 768px){
+
+    .desktop-page{
+        flex-direction: row !important;
+        justify-content: center;
+    }
+
+    .content-big-contact{
+        width: 52%;
+    }
+
+    .contact-frame{
+        max-width:18%;
+    }
+
+    .hr-blue-small-left{
+        height: 59px;
+        width: 3px;
+        background-color: #29ABE2;
+        border: none;
+    }
+
+    .edit-pen{
+        display: flex !important;
+        flex-direction: column;
+        height: 16px;
+        width: 8px;
+    }
+
+    .bin, .pen, .kpmt, .back-arrow{
+        display: none;
+    }
+
+    .new-contact-container{
+        display: none;
+    }
+
+    .new-contact-container-2{
+        display: flex !important;
+        position: relative;
+        bottom: -96px;
+        right: -300px;
+    } 
+
+    .big-contact-frame{
+        margin-top: 40px;
+
+    }
+
+    .big-contact-frame-header{
+        flex-direction: row !important;
+    }
+
+    .order1{
+        order: 1;
+    }
+    
+    .order2{
+        order: 2;
+    }
+    .order3{
+        margin-top: 16px;
+        order: 3;
+    }
+
+}
