@@ -188,7 +188,6 @@ hr {
     align-items: flex-end;
 }
 
-
 .bin{
     height: 40px;
     width: 40px;
@@ -235,6 +234,7 @@ hr {
 .edit-contact-bottom, .add-contact-bottom{
     background: #FFFFFF;
     position: relative;
+    border-radius: 0 0 20px 20px ;
 }
 .close-x{
     margin-top: 21px;
@@ -317,6 +317,7 @@ form{
 
 .delete-save{
     margin-top: 64px;
+    margin-bottom: 16px;
     display: flex;
     justify-content: center;
 }
@@ -392,6 +393,15 @@ form{
 .check-white{
     width: 19.5px;
     height: 19.5px;
+    margin-right: 8px;
+}
+
+.x-dark {
+    width: 19.5px;
+    height: 19.5px;
+}
+
+.cancle-text{
     margin-right: 8px;
 }
 

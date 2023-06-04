@@ -138,6 +138,7 @@
     }
 
     .close-x-dark{
+        display: block !important;
         margin-top: -96px;
         margin-right: 16px;
     }
@@ -157,25 +158,26 @@
         0px;
     }
 
-    .cancle{
-        display: block !important;
-
-    }
-
-
     form{
         height: 364px;
     }
 
     .cancle {
-    display: flex;
+    display: flex !important;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    width: 182px;
-    height: 41px;
+    height: 39px;
     border-radius: 10px;
     margin-top: 56px;
     cursor: pointer;
+    padding: 0 08px;
+    }
+
+    .create-contact-container{
+        justify-content: flex-start;
+    }
+
+    .create-contact{
+        margin-right: 16px;
     }
 }
