@@ -84,18 +84,19 @@
         border-radius: 10px;
     }
 
-    .edit-contact{
+    .edit-contact, .add-contact{
         flex-direction: row;
         top: -80px;
         bottom: -80px;
+        background: rgba(0, 0, 0, 0.5);
     }
 
     .edit-contact-frame{
-        max-width: 800px;
+        max-width: 850px;
         display: flex;
     }
 
-    .contact-logo-bigger{
+    .contact-logo-bigger, .contact-logo-template{
         position: static;
         transform: none;
         margin: 0 32px;
@@ -105,30 +106,45 @@
         min-width: 353px;
         border-radius: 20px  0 0 20px;
         margin-left: 16px;
+        height: 594px;
+        /* width: 44%; */
+        flex: 0.9 1 auto;
     }
 
-    .edit-contact-bottom{
+    .edit-contact-bottom, .add-contact-bottom{
         position: static;
         display: flex;
         align-items: center;
         border-radius: 0 20px 20px 0;
-        height: 364px;
+        height: 594px;
+        /* width: 90%; */
+        flex: 1.5 1 auto;
     }
 
     #hr-blue-small-left{
         height: 3px;
-    width: 90px;
-    background-color: #29ABE2;
-    border: none;
+        width: 90px;
+        background-color: #29ABE2;
+        border: none;
     }
 
     .close-x{
         display: none;
     }
+
+    .clos-x-dark-container{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .close-x-dark{
+        margin-top: -96px;
+        margin-right: 16px;
+    }
     
     .join-logo-white{
         display: block !important;
-        margin-top: 64px;
+        margin-top: 224px;
         margin-left: 34px;
     }
 
@@ -136,12 +152,30 @@
         max-width: 322px;
     }
 
-    .delete, .save{
-        margin-bottom: 90px;
+    .delete, .save {
+        margin-top: 6
+        0px;
     }
+
+    .cancle{
+        display: block !important;
+
+    }
+
 
     form{
         height: 364px;
     }
 
+    .cancle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 182px;
+    height: 41px;
+    border-radius: 10px;
+    margin-top: 56px;
+    cursor: pointer;
+    }
 }

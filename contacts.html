@@ -131,7 +131,7 @@
             </div>
         </div>
     </div>
-    <div class="edit-contact ">
+    <div class="edit-contact d-none">
         <div class="edit-contact-frame">
             <div class="edit-contact-head">
                 <div class="x-container">
@@ -145,7 +145,9 @@
             <div class="edit-contact-bottom">
                 <span class="contact-logo-bigger light-orange">TW</span>
                 <form action="">
-                    <img class="close-x-dark" src="./asssets/img/close-x-dark.svg" alt="close x">
+                    <div class="clos-x-dark-container">
+                        <img class="close-x-dark" src="./asssets/img/close-x-dark.svg" alt="close x">
+                    </div>
                     <div class="input-field-top">
                         <textarea class="name-displayed" name="name" id="name-displayed" cols="50"
                             rows="10">Tatjana Wolf</textarea>
@@ -169,46 +171,52 @@
                         <div class="save">Save</div>
                     </div>
                 </form>
-                
+
             </div>
         </div>
     </div>
     </div>
-    <div class="add-contact d-none">
+    <div class="add-contact">
         <div class="edit-contact-frame">
             <div class="edit-contact-head">
                 <div class="x-container">
                     <img class="close-x" src="./asssets/img/close-x.svg" alt="close x-icon">
                 </div>
+                <img class="join-logo-white d-none" src="./asssets/img/join-logo-white.svg" alt="Join logo">
                 <h1 class="white">Add Contact</h1>
                 <span class="tasks-are-better white">Tasks are better with a team</span>
-                <hr class="hr-blue-small-left">
+                <hr id="hr-blue-small-left" class="hr-blue-small-left">
 
             </div>
-            <div class="edit-contact-bottom">
-                <span class="contact-logo-template gray">
-                    <img class="big-head" src="./asssets/img/big-head.svg" alt="person head">
-                </span>
-                <form action="">
-                    <div class="input-field-top">
-                        <input class="name-input" type="name" required placeholder="Name">
-                        <img src="./asssets/img/name-head.svg" alt="name icon">
-                    </div>
-                    <div class="input-field">
-                        <input class="email-input" type="email" placeholder="Email">
-                        <img src="./asssets/img/email-icon.svg" alt="email icon">
-                    </div>
-                    <div class="input-field">
-                        <input class="tel-input" type="tel" placeholder="Phone">
-                        <img src="./asssets/img/tel.svg" alt="name icon">
-                    </div>
-                </form>
-                <div class="create-contact-container">
-                    <div class="create-contact">
-                        <div class="create-contact-text white">Create contact</div>
-                        <img class="check-white" src="./asssets/img/check-white.svg" alt="check">
-                    </div>
-                </div>
+            <div class="add-contact-bottom">
+                    <span class="contact-logo-template gray">
+                        <img class="big-head" src="./asssets/img/big-head.svg" alt="person head">
+                    </span>
+                    <form action="">
+                        <div class="input-field-top">
+                            <input class="name-input" type="name" required placeholder="Name">
+                            <img src="./asssets/img/name-head.svg" alt="name icon">
+                        </div>
+                        <div class="input-field">
+                            <input class="email-input" type="email" placeholder="Email">
+                            <img src="./asssets/img/email-icon.svg" alt="email icon">
+                        </div>
+                        <div class="input-field">
+                            <input class="tel-input" type="tel" placeholder="Phone">
+                            <img src="./asssets/img/tel.svg" alt="name icon">
+                        </div>
+                        <div class="create-contact-container">
+                            <div class="cancle">
+                                <div class="cancle-text">Cancle</div>
+                                <img class="check-white" src="./asssets/img/close-x-dark.svg" alt="check">
+                            </div>
+                            <div class="create-contact">
+                                <div class="create-contact-text white">Create contact</div>
+                                <img class="check-white" src="./asssets/img/check-white.svg" alt="check">
+                            </div>
+                        </div>
+                    </form>
+                
             </div>
         </div>
     </div>
