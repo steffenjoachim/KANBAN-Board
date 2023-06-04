@@ -14,18 +14,23 @@
 
     .desktop-page{
         flex-direction: row !important;
-        justify-content: center;
+        /* justify-content: center; */
     }
 
     .content-big-contact{
         display: block !important;
-        width: 100%;
+        width: calc(100% - 315px);
         margin-top: 5px;
         box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        height: calc(100% - 80px);
+        right: 0;
+        top: 75px;
     }
 
     .contact-frame{
         flex: 1;
+        margin-top: 57px;
     }
 
     .hr-blue-small-left{

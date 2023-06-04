@@ -97,6 +97,11 @@ hr {
     max-width: 200px;
 }
 
+/*-------width grow to breakpoint-------------*/
+.letter-frame {
+    width: 100%;
+}
+
 /* ===================== Big Contact ======================= */
 
 .content-big-contact {
