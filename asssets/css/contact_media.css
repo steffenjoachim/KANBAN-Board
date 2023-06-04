@@ -8,9 +8,17 @@
     .edit-contact-frame{
         max-width: 430px;
     }
+
+    .letter-frame {
+        width: 80%;
+    }
 }
 
 @media(min-width: 768px){
+
+    .letter-frame {
+        width: 100%;
+    }
 
     .desktop-page{
         flex-direction: row !important;
