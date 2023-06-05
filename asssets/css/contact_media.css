@@ -27,7 +27,7 @@
 
     .content-big-contact{
         display: block !important;
-        width: calc(100% - 315px);
+        width: calc(100% - 325px);
         margin-top: 5px;
         box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.1);
         position: fixed;
@@ -36,8 +36,10 @@
         top: 75px;
     }
 
+
     .contact-frame{
-        flex: 1;
+        overflow-y: scroll;
+        height: 740px;
         margin-top: 57px;
     }
 
@@ -229,17 +231,27 @@
 
     .add-contact-bottom, .edit-contact-bottom{
         flex-direction: row;
-        min-width: 560px;
+        min-width: 530px;
     }
 }
 
 @media(min-width: 1024px){
 
     .content-big-contact{
-        width: calc(100% - 547px);}
+        width: calc(100% - 560px);}
 
     .new-contact-frame {
         margin-left: 232px;
         }
 
+    .edit-contact-bottom{
+        min-width: calc(100% - 353) !important;
+    }
+
+}
+
+@media(min-width: 1440px){
+
+    .add-contact-bottom, .edit-contact-bottom{
+        min-width: 730px;}
 }
