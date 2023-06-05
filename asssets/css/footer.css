@@ -23,6 +23,7 @@ footer {
     Padding: 0px, 12px, 0px, 12px;
     width: 100%;
     z-index: 99;
+    display: none;
 }
 
 .icon-container {
@@ -74,6 +75,12 @@ footer {
     padding-bottom: 6px;
     cursor: pointer;
     padding-top: 14.5px;
+}
+
+@media (max-width: 1024px) {
+    footer {
+        display: flex;
+    }
 }
 
 @media (max-width:420px) {

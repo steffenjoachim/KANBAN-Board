@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,11 +10,12 @@
   <link rel="shortcut icon" href="/asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
   <link rel="stylesheet" href="/asssets/css/footer.css">
   <script src="footer.js"></script>
+  <script src="header_include.js"></script>
   <link rel="stylesheet" href="asssets/css/add_task.css">
 </head>
 
 <body onload="init()">
-  <div w3-header-include-html="/asssets/templates/header.html"></div>
+  <div class="width" w3-header-include-html="/asssets/templates/web_header.html"></div>
   <header>
     <img class="small-logo" src="./add_task_img/small-logo.svg" alt="Logo" />
     <button id="create-button">Create &#10003;</button>
@@ -21,8 +23,8 @@
 
   <div class="wrapper">
     <p>Kanban Project Management Tool</p>
-    <h1 >Add Task</h1>
-     <div class="inner-wrap">
+    <h1>Add Task</h1>
+    <div class="inner-wrap">
       <section class="section-one">
         <form>
           <label for="title-input">Title</label>
@@ -117,10 +119,11 @@
       </div>
     </div>
   </div>
-  
+
 
   <footer w3-footer-include-html="/asssets/templates/footer.html"></footer>
   <script src="header_include.js"></script>
   <script src="./js/add_task.js"></script>
 </body>
+
 </html>
