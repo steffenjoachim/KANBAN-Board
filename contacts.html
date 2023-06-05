@@ -15,6 +15,7 @@
     <link rel="shortcut icon" href="/asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="/asssets/css/footer.css">
     <script src="footer.js"></script>
+    <script src="contacts.js"></script>
 </head>
 
 <body onload="init()">
@@ -32,13 +33,13 @@
                 <div class="letter-frame">
                     <h2>A</h2>
                     <hr class="standard-hr">
-                    <a href="./single-contact.html" class="single-contact-frame">
+                    <div class="single-contact-frame">
                         <span class="contact-logo orange">AM</span>
                         <div class="name-and-email">
                             <span class="name">Anton Mayer</span>
                             <span class="email">antonm@gmail.com</span>
                         </div>
-                    </a>
+                    </div>
                     <div class="single-contact-frame">
                         <span class="contact-logo purple">AS</span>
                         <div class="name-and-email">
@@ -110,7 +111,7 @@
                         <hr class="hr-blue-small-left">
                     </div>
                 </div>
-                <div class="desktop-hidden">
+                <div id="desktop-hidden" ">
                     <div class="name-add-task-logo">
                         <span class="contact-logo-big orange">AM</span>
                         <div class="name-add-task">
@@ -120,8 +121,8 @@
                     </div>
                     <div class="contact-information-frame">
                         <h3 class="contact-information">Contact Information</h3>
-                        <div class="edit-pen">
-                            <img class="edit-contact-logo" src="./asssets/img/edit_contact.svg" alt="edit contact logo">
+                        <div class="edit-pen" onclick="openEditContacts()">
+                            <img onmousemove="changePenColorToBlue()" onmouseleave="changePenColorToBlack()" id="edit-contact-logo" class="edit-contact-logo" src="./asssets/img/edit_contact.svg" alt="edit contact logo">
                             <span class="edit-contact-text">Edit Contact</span>
                         </div>
                     </div>
@@ -145,7 +146,7 @@
             </div>
         </div>
     </div>
-    <div class="edit-contact d-none">
+    <div id="edit-contact" class="edit-contact d-none">
         <div class="edit-contact-frame">
             <div class="edit-contact-head">
                 <div class="x-container">
@@ -159,7 +160,7 @@
             <div class="edit-contact-bottom">
                 <span class="contact-logo-bigger light-orange">TW</span>
                 <form action="">
-                    <div class="clos-x-dark-container">
+                    <div class="close-x-dark-container" onclick="closeEditContacts()">
                         <img class="close-x-dark d-none" src="./asssets/img/close-x-dark.svg" alt="close x">
                     </div>
                     <div class="input-field-top">

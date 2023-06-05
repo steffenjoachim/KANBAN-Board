@@ -111,10 +111,6 @@
         display: flex;
     }
 
-    .desktop-hidden{
-        display: none;
-    }
-
     .contact-logo-bigger, .contact-logo-template{
         position: static;
         transform: none;
@@ -155,7 +151,7 @@
         display: none;
     }
 
-    .clos-x-dark-container{
+    .close-x-dark-container{
         display: flex;
         justify-content: flex-end;
     }
@@ -231,7 +227,7 @@
 
     .add-contact-bottom, .edit-contact-bottom{
         flex-direction: row;
-        min-width: 530px;
+        min-width: 550px;
     }
 }
 
