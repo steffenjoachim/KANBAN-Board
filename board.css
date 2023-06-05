@@ -1,3 +1,6 @@
+* {
+    box-sizing: unset !important;
+}
 
 body {
     font-family: 'Inter';
@@ -6,47 +9,43 @@ body {
     scroll-behavior: smooth;
 }
 
-
-
 .orange{
     background: #FF7A00;
 }
 
-.purple {
+.purple{
     background: #9327FF;
 }
 
-.light-blue {
+.light-blue{
     background: #29ABE2;
 }
 
-.pink {
+.pink{
     background: #FC71FF;
 }
-
-.blue {
+.blue{
     background: #0038FF;
 }
 
-.green {
+.green{
     background: #02CF2F;
 }
 
-.light-green {
+.light-green{
     background: #1FD7C1;
 }
 
-.red {
-    background: #AF1616;
+.red{
+    background: #AF1616 ;
 }
-
-.dark-blue {
-    background: #2A3647;
+.dark-blue{
+    background: #2A3647 ;
 }
 
 .main-div {
     background-color: #F5F5F5;;
-    width: 428px;
+    width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -83,7 +82,7 @@ body {
     height: 40px;
 }
 
-.search-bar {
+.search-bar{
     position: relative;
     margin-left: 33px;
     width: 251px;
@@ -96,7 +95,7 @@ body {
     height: 37px;
     border: 1px solid #A8A8A8;
     border-radius: 10px;
-}
+}    
 
 .search-icon {
     position: absolute;
@@ -118,7 +117,7 @@ body {
     padding-left: 21px;
 }
 
-/*////////////////// Main Content of Cards /////////////////*/
+    /*////////////////// Main Content of Cards /////////////////*/
 
 .task-content {
     height: auto;
@@ -150,7 +149,10 @@ body {
     max-width: 363px;
 }
 
-.card-head{
+
+.card-head img {
+    width: 30px;
+    height: 30px;
     cursor: pointer;
 }
 
@@ -169,11 +171,7 @@ body {
     cursor: pointer;
 }
 
-.task-category,
-.task-title,
-.task-description,
-.task-progress,
-.task-assignedTo {
+.task-category, .task-title, .task-description, .task-progress, .task-assignedTo {
     margin-left: 21px;
 }
 
@@ -209,7 +207,6 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
 }
 
 .progress-steps {
@@ -223,20 +220,19 @@ body {
     width: 251px;
 }
 
-.task-assignedTo {
+.task-assignedTo{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.task-icons {
+.task-icons{
     display: flex;
 }
 
 .task-assignedTo img {
     margin-right: 28px;
 }
-
 .task-assignedTo span {
     display: flex;
     justify-content: center;
@@ -267,3 +263,10 @@ body {
     color: #A8A8A8;
 }
 
+
+@media (min-width: 813px) {
+    .task-card {
+        max-width: 250px;
+        height: auto;
+    }
+}
