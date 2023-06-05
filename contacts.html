@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./asssets/css/style.css">
     <link rel="stylesheet" href="./asssets/css/contacts.css">
     <link rel="stylesheet" href="./asssets/css/contact_media.css">
+    <link rel="stylesheet" href="./asssets/css/contacts_desktop.css">
     <script src="./js/storage.js"></script>
     <link rel="stylesheet" href="/asssets/css/header.css">
     <link rel="shortcut icon" href="/asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
@@ -18,6 +19,7 @@
 
 <body onload="init()">
     <div w3-header-include-html="/asssets/templates/header.html"></div>
+    <div class="width" w3-header-include-html="/asssets/templates/web_header.html"></div>
     <div class="new-contact-frame">
         <div class="new-contact-container-frame">
             <div class="new-contact-container">
@@ -81,18 +83,20 @@
     </div>
     <div class="add-contact d-none">
         <div class="edit-contact-frame">
-            <div class="edit-contact-head"> 
+            <div class="edit-contact-head">
                 <div class="x-container">
                     <img class="close-x" src="./asssets/img/close-x.svg" alt="close x-icon">
                 </div>
+                <img class="join-logo-white d-none" src="./asssets/img/join-logo-white.svg" alt="Join logo">
                 <h1 class="white">Add Contact</h1>
                 <span class="tasks-are-better white">Tasks are better with a team</span>
-                <hr class="hr-blue-small-left">
+                <hr id="hr-blue-small-left" class="hr-blue-small-left">
+
+            </div>
+            <div class="add-contact-bottom">
                 <span class="contact-logo-template gray">
                     <img class="big-head" src="./asssets/img/big-head.svg" alt="person head">
                 </span>
-            </div>
-            <div class="edit-contact-bottom">
                 <form action="">
                     <div class="input-field-top">
                         <input class="name-input" type="name" required placeholder="Name">
@@ -106,13 +110,18 @@
                         <input class="tel-input" type="tel" placeholder="Phone">
                         <img src="./asssets/img/tel.svg" alt="name icon">
                     </div>
-                </form>
-                <div class="create-contact-container">
-                    <div class="create-contact">
-                        <div class="create-contact-text white">Create contact</div>
-                        <img class="check-white" src="./asssets/img/check-white.svg" alt="check">
+                    <div class="create-contact-container">
+                        <div class="cancle d-none">
+                            <div class="cancle-text">Cancle</div>
+                            <img class="x-dark" src="./asssets/img/close-x-dark.svg" alt="Cancle">
+                        </div>
+                        <div class="create-contact">
+                            <div class="create-contact-text white">Create contact</div>
+                            <img class="check-white" src="./asssets/img/check-white.svg" alt="check">
+                        </div>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
     </div>
