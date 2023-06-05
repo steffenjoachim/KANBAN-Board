@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="summary.css">
+    <link rel="stylesheet" href="./asssets/css/summary.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans&display=swap" rel="stylesheet">
@@ -12,67 +12,77 @@
     <link rel="shortcut icon" href="/asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="/asssets/css/footer.css">
     <script src="footer.js"></script>
+    <script src="js/summary.js"></script>
     <title>Summary</title>
 </head>
+
 <body onload="init()">
     <div w3-header-include-html="/asssets/templates/header.html"></div>
     <div class="main-div">
+
+        <span class="head-span-responsive dis-none">Kanban Project Management Tool</span>
         <section class="first-section">
             <span class="head-span">Kanban Project Management Tool</span>
             <span class="title">Summary</span>
             <p class="head-span2">Everthing in a nutshell!</p>
-        </section>
-        <img src="./asssets/img/Vector2 5.png" alt="">
 
+            <div class="underHead-line"></div>
+        </section>
+        
         <section class="second-section">
             <div class="count-task">
                 <div class="summary-counter textCenter boxshadow">
-                    <div class="s-number">5</div>
-                    <div>Tasks in<br> Board</div>
+                    <span class="s-number">5</span>
+                    <span class="counter-description">Tasks in<br> Board</span>
                 </div>
                 <div class="summary-counter textCenter boxshadow">
-                    <div class="s-number">5</div>
-                    <div>Tasks in Progress</div>
+                    <span class="s-number">5</span>
+                    <span class="counter-description">Tasks in Progress</span>
                 </div>
                 <div class="summary-counter textCenter boxshadow">
-                    <div class="s-number">1</div>
-                    <div>Awaiting feedback</div>
+                    <span class="s-number">1</span>
+                    <span class="counter-description">Awaiting feedback</span>
                 </div>
             </div>
-            <div class="task-status">
-                <div class="task-status-description">
-                    <img class="positionNone" src="./asssets/img/urgent-icon.svg" alt="">
-                    <div class="summary-counter">
-                        <div class="s-number">1</div>
-                        <div>Urgent</div>
+
+            <div class="task-status-title">
+                <div class="task-status">
+                    <div class="task-status-description">
+                        <img class="positionNone" src="./asssets/img/urgent-icon.svg" alt="">
+                        <div class="summary-counter">
+                            <div class="s-number">1</div>
+                            <div>Urgent</div>
+                        </div>
+                    </div>
+                    <div class="separation-line"></div>
+                    <div>
+                        <div class="summary-date">October 16, 2023</div>
+                        <div>Upcoming Deadline</div>
                     </div>
                 </div>
-                <div class="separation-line"></div>
-                <div>
-                    <div class="summary-date">October 16, 2023</div>
-                    <div>Upcoming Deadline</div>
-                </div>
+
+                <div class="welcome-title">Good morning,<br><b class="welcome-name">Sofia Müller</b></div>
             </div>
             <div class="count-done">
-                <div class="div-count1">
-                    <img class="positionNone" src="./asssets/img/edit-icon.png" alt="">
+                <div class="div-count1" onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)">
+                    <img id="summary-pen" class="positionNone" src="./asssets/img/edit-icon.png" alt="">
                     <div class="summary-counter">
                         <div class="s-number">1</div>
-                        <div>To-do</div>
+                        <div class="counter-description">To-do</div>
                     </div>
                 </div>
-                <div class="div-count1">
-                    <img class="positionNone" src="./asssets/img/done-icon.png" alt="">
+                <div class="div-count1" onmouseover="changeDoneimage(this)" onmouseout="restoreDoneimage(this)">
+                    <img id="summary-done" class="positionNone" src="./asssets/img/done-icon.png" alt="">
                     <div class="summary-counter">
                         <div class="s-number">1</div>
-                        <div>Done</div>
+                        <div class="counter-description">Done</div>
                     </div>
                 </div>
             </div>
         </section>
+
     </div> 
     <footer w3-footer-include-html="/asssets/templates/footer.html"></footer>
     <script src="header_include.js"></script>
-    
 </body>
 </html>

@@ -1,3 +1,6 @@
+* {
+    box-sizing: unset !important;
+}
 
 body {
     font-family: 'Inter';
@@ -5,8 +8,6 @@ body {
     margin: 0;
     scroll-behavior: smooth;
 }
-
-
 
 .orange{
     background: #FF7A00;
@@ -44,12 +45,12 @@ body {
 
 .main-div {
     background-color: #F5F5F5;;
-    width: 428px;
+    width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    padding-bottom: 48px;
+    padding-bottom: 100px;
 }
 
 .head-span {
@@ -122,13 +123,18 @@ body {
     height: auto;
     margin-left: 33px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     margin-right: 29px;
+    flex-wrap: wrap;
+    gap: 26px;
 }
 
 .task-list {
     margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
 }
 
 .card-head {
@@ -140,9 +146,13 @@ body {
     height: 25px;
     padding: 2px 0;
     margin-bottom: 22px;
+    max-width: 363px;
 }
 
-.card-head{
+
+.card-head img {
+    width: 30px;
+    height: 30px;
     cursor: pointer;
 }
 
@@ -151,7 +161,7 @@ body {
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-    width: 363px;
+    max-width: 363px;
     height: auto;
     padding: 18px 0;
     background: #FFFFFF;
@@ -166,13 +176,16 @@ body {
 }
 
 .task-category {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 4px 25px;
     border-radius: 8px;
     font-weight: 400;
     font-size: 16px;
     color: #FFFFFF;
     width: fit-content;
+    height: 19px;
 }
 
 .task-title {
@@ -185,6 +198,7 @@ body {
     font-weight: 400;
     font-size: 16px;
     color: #A8A8A8;
+    padding-right: 21px;
 }
 
 .task-progress {
@@ -193,12 +207,12 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
 }
 
 .progress-steps {
     font-weight: 400;
     font-size: 12px;
+    margin-left: 20px;
 }
 
 .progress {
@@ -210,7 +224,6 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 8px;
 }
 
 .task-icons{
@@ -224,8 +237,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 35px;
-    height: 35px;
+    width: 17px;
+    height: 13px;
     padding: 10px 8px;
     border: 1px solid #FFFFFF;
     border-radius: 58px;
@@ -239,8 +252,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 363px;
-    height: 41px;
+    height: 39px;
     background: #D1D1D1;
     border: 1px dashed #A8A8A8;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
@@ -251,3 +263,10 @@ body {
     color: #A8A8A8;
 }
 
+
+@media (min-width: 813px) {
+    .task-card {
+        max-width: 250px;
+        height: auto;
+    }
+}

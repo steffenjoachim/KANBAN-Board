@@ -1,7 +1,3 @@
-* {
-    /* box-sizing: border-box; */
-}
-
 @font-face{
     font-family: Inter;
     src: url(asssets/fonts/Inter-Regular.ttf);
@@ -41,7 +37,6 @@
     background: #2A3647 ;
 }
 
-
 body {
     margin: 0;
     scroll-behavior: smooth;
@@ -53,23 +48,18 @@ body {
 }
 
 .main-content {
-    width: 90%;
+    width: 84%;
     height: auto;
     margin-left: 33px;
     margin-right: 32px;
+    margin-top: 33px;
 }
 
         /*///////////// form Section /////////////*/
 
-form {
-    height: 41px;
-    margin-top: 140px;
-    margin-left: 33px;
-    margin-right: 32px;
-}
-
 .input-field {
     width: 100%;
+    max-width: 422px;
     height: 37px;
     background: #FFFFFF;
     border: 1px solid #D1D1D1;
@@ -78,18 +68,16 @@ form {
     font-size: 16px;
     position: relative;
     text-indent: 21px;
-    margin-right: 32px;
+    margin-right: 23px;
 }
-
 
 .input-lable {
     display: block;
-    margin-top: 23px;
+    margin-top: 33px;
     margin-bottom: 5px;
     font-weight: 400;
     font-size: 16px;
     margin-right: 33px;
-    
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -120,7 +108,6 @@ input[type="date" i] {
 }
 
         /*///////////// Prio Section /////////////*/
-
 
 .edit-prio-section{
     margin-top: 23px;
@@ -163,30 +150,28 @@ input[type="date" i] {
 .select-one {
     background-color: #fff;
     height: 19px;
+    max-width: 422px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 10px;
-    font-weight: 700;
+    font-weight: 400;
     cursor: pointer;
     transition: 125ms;
     border: 1px solid #D1D1D1;
-}
-
-.select-one span {
-    margin-left: 10px;
+    text-indent: 21px;
 }
 
 .selected {
     background-color: #fff;
-    height: 41px;
+    height: 19px;
     display: flex;
     align-items: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    font-weight: 700;
+    font-weight: 400;
     cursor: pointer;
 }
 
@@ -208,7 +193,7 @@ input[type="date" i] {
 }
 
 #dropdown:not(.d-none) {
-  max-height: 200px;  
+  max-height: 200px;
 }
 
 #selected-one {
@@ -216,14 +201,17 @@ input[type="date" i] {
     border-top: none;
     border-bottom: none;
 }
+
 #selected-two {
+    width: 100%;
     border: 1px solid #D1D1D1;
     border-top: none;
     border-bottom: none;
+    
 }
 #selected-three {
     border: 1px solid #D1D1D1;
-    border-top: none;
+    border-top: none; 
 }
 
  /* ... Assigned-to ... */
@@ -262,24 +250,28 @@ input[type="date" i] {
 }
 
 #dropdown-assign:not(.d-none) {
-    max-height: 200px;  
+    max-height: 200px;
+    text-indent: 13px;  
 }
 
 #assigned-one {
     border: 1px solid #D1D1D1;
     border-top: none;
     border-bottom: none;
+    max-width: 422px;
 }
 
 #assigned-two {
     border: 1px solid #D1D1D1;
     border-top: none;
     border-bottom: none;
+    max-width: 422px;
 }
 
 #assigned-three {
     border: 1px solid #D1D1D1;
     border-top: none;
+    max-width: 422px;
 }
 
 .space-between {
@@ -296,13 +288,13 @@ input[type="date" i] {
     margin: 0;
 }
 
-
 /* <!-- Selected contacts Section --> */
 
 .selected-all {
     margin-top: 9px;
     display: flex;
 }
+
 .contact {
     display: flex;
     flex-direction: column;
@@ -311,16 +303,19 @@ input[type="date" i] {
     font-weight: 400;
     font-size: 21px;
     color: #FFFFFF;
-    width: 45px;
-    height: 45px;
+    width: 43px;
+    height: 43px;
     border: 1px solid #FFFFFF;
     border-radius: 58px;
     margin-right: 8px;
 }
 
 .edit-prio-doneBTN {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    width: 85px;
+    width: 77px;
     height: 40px;
     top: 103px;
     left: 80%;
@@ -328,3 +323,9 @@ input[type="date" i] {
     border-radius: 10px;
     color: white;
 }
+
+.edit-prio-doneBTN span {
+    font-weight: 700 !important;
+    font-size: 21px !important;
+}
+
