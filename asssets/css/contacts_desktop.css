@@ -1,0 +1,72 @@
+.desktop-page{
+    display: flex;
+    flex-direction: column;
+}
+
+.new-contact-container-2{
+    box-sizing: border-box;
+    color: white;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: 21px;
+    margin-bottom: 16px;
+    padding: 18px 10px;
+    gap: 10px;
+    width: 193px;
+    height: 53px;
+    background: #2A3647;
+    border: 1px solid #2A3647;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.contact-information-frame{
+    display: flex;
+    align-items: center;
+}
+
+.edit-pen{
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 48px;
+    flex: 1;
+    cursor: pointer;
+}
+
+.edit-pen:hover{
+    color: #007CEE;
+}
+
+.edit-contact-logo{
+    margin-top: 15px;
+}
+
+.edit-contact-text{
+    margin-top: 26px;
+    margin-left: 4px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.big-contact-frame-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.standard-hr{
+    margin-right: 24px;
+}
+
+.close-x-dark{
+    height: 21px;
+    width: 21px;
+}
+
+.create-contact{
+
+    margin-bottom: 16px;
+}

@@ -8,4 +8,227 @@
     .edit-contact-frame{
         max-width: 430px;
     }
+
+    .letter-frame {
+        width: 80%;
+    }
+}
+
+@media(min-width: 768px){
+
+    .letter-frame {
+        width: 100%;
+    }
+
+    .desktop-page{
+        flex-direction: row !important;
+        /* justify-content: center; */
+    }
+
+    .content-big-contact{
+        display: block !important;
+        width: calc(100% - 315px);
+        margin-top: 5px;
+        box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        height: calc(100% - 80px);
+        right: 0;
+        top: 75px;
+    }
+
+    .contact-frame{
+        flex: 1;
+        margin-top: 57px;
+    }
+
+    .hr-blue-small-left{
+        height: 59px;
+        width: 3px;
+        background-color: #29ABE2;
+        border: none;
+    }
+
+    .edit-pen{
+        display: flex !important;
+        flex-direction: column;
+        height: 16px;
+        width: 8px;
+    }
+
+    .bin, .pen, .kpmt, .back-arrow{
+        display: none;
+    }
+
+    .new-contact-container{
+        display: none;
+    }
+
+    .new-contact-container-2{
+        display: flex !important;
+        position: absolute;
+        bottom: 100px;
+        right: 30px;
+    } 
+
+    .big-contact-frame{
+        margin-top: 40px;
+
+    }
+
+    .big-contact-frame-header{
+        flex-direction: row !important;
+    }
+
+    .order1{
+        order: 1;
+    }
+    
+    .order2{
+        order: 2;
+    }
+    .order3{
+        margin-top: 16px;
+        order: 3;
+    }
+
+    .single-contact-frame:hover{
+        background: #2A3647;
+        color: #FFFFFF;
+        border-radius: 10px;
+    }
+
+    .edit-contact, .add-contact{
+        flex-direction: row;
+        top: -80px;
+        bottom: -80px;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .edit-contact-frame{
+        max-width: 850px;
+        display: flex;
+    }
+
+    .desktop-hidden{
+        display: none;
+    }
+
+    .contact-logo-bigger, .contact-logo-template{
+        position: static;
+        transform: none;
+        margin: 0 16px;
+        margin-top: 16px;
+        /* height: 80px;
+        width: 80px; */
+    }
+
+    .edit-contact-head{
+        min-width: 323px;
+        border-radius: 20px  0 0 20px;
+        margin-left: 16px;
+        height: 594px;
+        /* width: 44%; */
+        flex: 0.9 1 auto;
+    }
+
+    .edit-contact-bottom, .add-contact-bottom{
+        position: static;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 0 20px 20px 0;
+        height: 594px;
+        min-width: 400px;
+        flex: 1.5 1 auto;
+    }
+
+    #hr-blue-small-left{
+        height: 3px;
+        width: 90px;
+        background-color: #29ABE2;
+        border: none;
+    }
+
+    .close-x{
+        display: none;
+    }
+
+    .clos-x-dark-container{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .close-x-dark{
+        display: block !important;
+        margin-top: -96px;
+        margin-right: 16px;
+    }
+    
+    .join-logo-white{
+        display: block !important;
+        margin-top: 224px;
+        margin-left: 34px;
+    }
+
+    .input-field, .input-field-top{
+        max-width:300px;
+    }
+
+    .delete, .save {
+        margin-top: 6
+        0px;
+    }
+
+    form{
+        height: 364px;
+    }
+
+    .cancle {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    height: 39px;
+    border-radius: 10px;
+    margin-top: 56px;
+    cursor: pointer;
+    padding: 0 08px;
+    }
+
+    .create-contact-container{
+        justify-content: flex-start;
+    }
+
+    .create-contact{
+        margin-right: 16px;
+    }
+
+    h1{
+        font-size: 42px;
+    }
+}
+
+@media(min-width: 940px){
+
+    h1{
+        font-size: 47px;
+    }
+
+    .edit-contact-head{
+        width: 353px;
+    }
+
+    .contact-logo-bigger{
+        /* height: 120px;
+        width: 120px; */
+        margin: 0 32px;
+    }
+
+    .input-field, .input-field-top{
+        max-width: 322px;
+    }
+
+    .add-contact-bottom, .edit-contact-bottom{
+        flex-direction: row;
+        min-width: 560px;
+    }
 }

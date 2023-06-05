@@ -69,8 +69,8 @@ border: none;
 
 .wrapper {
   margin-top: 114px;
-  margin-left: 31px;
-  margin-right: 34px;
+  margin: 33px;
+  margin-bottom: 100px;
 }
 
 .wrapper p {
