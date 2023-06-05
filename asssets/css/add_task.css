@@ -374,6 +374,13 @@ border-top: none;
    }
 }
 
+@media(min-width:1024px) {
+  .wrapper{
+    margin-left: 232px;
+    margin-right: 0;
+  }
+}
+
 @media(min-width:1440px) {
   .section-one {
     min-width: 440px;

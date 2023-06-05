@@ -232,3 +232,14 @@
         min-width: 560px;
     }
 }
+
+@media(min-width: 1024px){
+
+    .content-big-contact{
+        width: calc(100% - 547px);}
+
+    .new-contact-frame {
+        margin-left: 232px;
+        }
+
+}

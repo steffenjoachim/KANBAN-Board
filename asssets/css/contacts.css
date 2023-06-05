@@ -413,9 +413,3 @@ form{
 .create-contact-text {
     margin-left: 8px;
 }
-
-@media(min-width:1024px) {
-    .new-contact-frame {
-        margin-left: 232px;
-    }
-}
