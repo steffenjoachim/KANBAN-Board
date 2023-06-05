@@ -109,14 +109,20 @@
         display: flex;
     }
 
+    .desktop-hidden{
+        display: none;
+    }
+
     .contact-logo-bigger, .contact-logo-template{
         position: static;
         transform: none;
-        margin: 0 32px;
+        margin: 0 16px;
+        height: 80px;
+        width: 80px;
     }
 
     .edit-contact-head{
-        min-width: 353px;
+        min-width: 323px;
         border-radius: 20px  0 0 20px;
         margin-left: 16px;
         height: 594px;
@@ -163,7 +169,7 @@
     }
 
     .input-field, .input-field-top{
-        max-width: 322px;
+        max-width:268px;
     }
 
     .delete, .save {
@@ -193,4 +199,30 @@
     .create-contact{
         margin-right: 16px;
     }
+
+    h1{
+        font-size: 42px;
+    }
+}
+
+@media(min-width: 940px){
+
+    h1{
+        font-size: 47px;
+    }
+
+    .edit-contact-head{
+        width: 353px;
+    }
+
+    .contact-logo-bigger{
+        height: 120px;
+        width: 120px;
+        margin: 0 32px;
+    }
+
+    .input-field, .input-field-top{
+        max-width: 322px;
+    }
+
 }
