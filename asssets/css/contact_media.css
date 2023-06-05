@@ -117,8 +117,9 @@
         position: static;
         transform: none;
         margin: 0 16px;
-        height: 80px;
-        width: 80px;
+        margin-top: 16px;
+        /* height: 80px;
+        width: 80px; */
     }
 
     .edit-contact-head{
@@ -133,10 +134,11 @@
     .edit-contact-bottom, .add-contact-bottom{
         position: static;
         display: flex;
+        flex-direction: column;
         align-items: center;
         border-radius: 0 20px 20px 0;
         height: 594px;
-        /* width: 90%; */
+        min-width: 400px;
         flex: 1.5 1 auto;
     }
 
@@ -169,7 +171,7 @@
     }
 
     .input-field, .input-field-top{
-        max-width:268px;
+        max-width:300px;
     }
 
     .delete, .save {
@@ -216,8 +218,8 @@
     }
 
     .contact-logo-bigger{
-        height: 120px;
-        width: 120px;
+        /* height: 120px;
+        width: 120px; */
         margin: 0 32px;
     }
 
@@ -225,4 +227,8 @@
         max-width: 322px;
     }
 
+    .add-contact-bottom, .edit-contact-bottom{
+        flex-direction: row;
+        min-width: 560px;
+    }
 }

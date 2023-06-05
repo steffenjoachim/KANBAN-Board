@@ -279,7 +279,7 @@ form{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     height: 41px;
-    margin: 64px 16px 0 0;
+    margin: 64px 16px 0 16px;
     display: flex;
     justify-content: space-between;
 }
@@ -288,7 +288,7 @@ form{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     height: 41px;
-    margin: 32px 16px 0 0;
+    margin: 32px 16px 0 16px;
     display: flex;
     justify-content: space-between;
 }
