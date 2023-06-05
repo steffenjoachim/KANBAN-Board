@@ -22,7 +22,7 @@ function closeEditContacts(){
  */
 
 function changePenColorToBlue(){
-     document.getElementById('edit-contact-logo').src = "./asssets/img/pen-blue.svg"
+     document.getElementById('edit-contact-logo').src = "./asssets/img/edit-contact-blue.svg"
 }
 
 /**
@@ -31,5 +31,14 @@ function changePenColorToBlue(){
  */
 
 function changePenColorToBlack(){
-    document.getElementById('edit-contact-logo').src = "./asssets/img/edit_contact.svg"
+    document.getElementById('edit-contact-logo').src = "./asssets/img/edit-contact.svg"
+}
+
+/**
+ * This function is used to open the contact details of the clicked on contact on the right side in the desktop version.
+ * 
+ */
+
+function openContactDetails(){
+    document.getElementById('desktop-hidden').classList.remove('d-none');
 }
