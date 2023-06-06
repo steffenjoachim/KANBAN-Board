@@ -65,7 +65,7 @@ function burgerMenu() {
  
 function loadSummary() {
     setTimeout(function() {
-      window.location.href = "summary.html";
+      window.location.href = "./summary.html";
     },2000);
 init();  
 }
