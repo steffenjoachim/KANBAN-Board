@@ -2,6 +2,10 @@
     box-sizing: unset !important;
 }
 
+html {
+    background-color: #F5F5F5;;
+}
+
 body {
     font-family: 'Inter';
     font-style: normal;
@@ -46,10 +50,10 @@ body {
 .main-div {
     background-color: #F5F5F5;;
     width: 100%;
-    min-height: 926px;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+
 }
 
 .head-span {
@@ -202,7 +206,13 @@ body {
     font-size: 16px;
     color: #A8A8A8;
     padding-right: 21px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 
 .task-progress {
     width: 87%;
@@ -277,8 +287,14 @@ body {
 @media (min-width: 813px) {
     .task-card {
         max-width: 250px;
-        height: auto;
+        max-height: 205px;
     }
+
+    .card-with-PBar{
+        max-width: 250px;
+        max-height: 239px;
+    }
+
 
     .head-title {
         margin-left: 9px;
@@ -333,7 +349,7 @@ body {
     }
 
     .main-div{
-        padding-top: 86px;
+        padding-top: 165px;
     }
 
 }

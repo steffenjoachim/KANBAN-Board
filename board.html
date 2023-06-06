@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/asssets/css/header.css">
     <link rel="stylesheet" href="/asssets/css/footer.css">
     <script src="js/footer.js"></script>
+    <script src="./js/board.js"></script>
     <title>Board</title>
 </head>
 <body onload="init()">
@@ -35,7 +36,7 @@
                     <img class="search-icon" src="./asssets/img/search-icon.svg" alt="">
                 </div>
             
-                <img class="edit-secondBtn" src="./asssets/img/responsiv-addBTN.svg" alt="">
+                <div onmouseover="changeimage(this)" onmouseout="restoreimage(this)"><img id="edit-secondBtn-hover" class="edit-secondBtn" src="./asssets/img/responsiv-addBTN.svg" alt=""></div>
             </div>
         </div>
 
@@ -53,11 +54,11 @@
 
                 <div class="card-head">
                     <div class="head-title">To do</div>
-                    <img src="./asssets/img/add card.svg" alt="">
+                    <div onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)"><img id="add-card" src="./asssets/img/add-card.svg" alt=""></div>
                 </div>
 
             
-                <div class="task-card">
+                <div class="task-card card-with-PBar">
                     <div class="task-category orange">Design</div>
                     <div class="task-title">Website redesign</div>
                     <div class="task-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A obcaecati quisquam iusto necessitatibus? 
@@ -87,14 +88,13 @@
             <div class="task-list">
                 <div class="card-head">
                     <div class="head-title">In progress</div>
-                    <img src="./asssets/img/add card.svg" alt="">
+                    <div onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)"><img id="add-card" src="./asssets/img/add-card.svg" alt=""></div>
                 </div>
                 <div class="task-card">
 
                     <div class="task-category pink">Sales</div>
                     <div class="task-title">Call potential clients</div>
-                    <div class="task-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Necessitatibus.</div>
+                    <div class="task-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
                     
                     <div class="task-assignedTo">
                         <div class="task-icons">
@@ -116,14 +116,13 @@
             <div class="task-list">
                 <div class="card-head">
                     <div class="head-title">Awaiting Feedback</div>
-                    <img src="./asssets/img/add card.svg" alt="">
+                    <div onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)"><img id="add-card" src="./asssets/img/add-card.svg" alt=""></div>
                 </div>
                 <div class="task-card">
 
                     <div class="task-category light-green">Backoffice</div>
                     <div class="task-title">Accounting invoices</div>
-                    <div class="task-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Necessitatibus.</div>
+                    <div class="task-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
                     
                     <div class="task-assignedTo">
                         <div class="task-icons">
@@ -145,9 +144,9 @@
             <div class="task-list">
                 <div class="card-head">
                     <div class="head-title">Done</div>
-                    <img src="./asssets/img/add card.svg" alt="">
+                    <div onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)"><img id="add-card" src="./asssets/img/add-card.svg" alt=""></div>
                 </div>
-                <div class="task-card">
+                <div class="task-card card-with-PBar">
 
                     <div class="task-category blue">Marketing</div>
                     <div class="task-title">Social media strategy</div>
@@ -177,7 +176,6 @@
                 <div class="empty-card">No tasks done</div>
             </div>
         </div>
-
     </div>
     <footer w3-footer-include-html="/asssets/templates/footer.html"></footer>
     <script src="js/header_include.js"></script>
