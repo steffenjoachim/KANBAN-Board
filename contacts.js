@@ -40,5 +40,8 @@ function changePenColorToBlack(){
  */
 
 function openContactDetails(){
-    document.getElementById('desktop-hidden').classList.remove('d-none');
+    const desktopHidden = document.getElementById('desktop-hidden');
+    desktopHidden.classList.add('slide-in');
+    desktopHidden.classList.remove('d-none');
+    
 }

@@ -74,3 +74,12 @@
 
     margin-bottom: 16px;
 }
+
+#desktop-hidden {
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(100%);
+  }
+  
+  .slide-in {
+    transform: translateX(0) !important;
+  }
