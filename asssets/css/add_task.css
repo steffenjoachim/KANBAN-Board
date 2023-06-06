@@ -1,5 +1,4 @@
 
-
 body {
   background-color: #F5F5F5;
   margin: 0;
@@ -7,7 +6,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: Inter, sans-serif;
+  font-family: Inter, sans-serif !important;
 }
 
 h1 {
