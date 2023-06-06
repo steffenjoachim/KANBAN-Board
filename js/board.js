@@ -16,14 +16,14 @@ function restorePenimage(element) {
 
 //  beim hovern auf dem edit-secondBtn wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
 
-function changeimage(element) {
-    let img = element.querySelector('#edit-secondBtn-hover');
-    img.src = './asssets/img/responsiv-addBTN.-hover.svg';
-}
+// function changeimage(element) {
+//     let img = element.querySelector('#edit-secondBtn-hover');
+//     img.src = './asssets/img/add-btn-hoover.png';
+// }
 // Funktion die das ursprüngliche Bild wiederherzustellt das div bekommt zudem onmouseout="restoreDoneimage(this)"
 
-function restoreimage(element) {
-    let img = element.querySelector('#edit-secondBtn-hover');
-    img.src = './asssets/img/responsiv-addBTN.svg';
-}
+// function restoreimage(element) {
+//     let img = element.querySelector('#edit-secondBtn-hover');
+//     img.src = './asssets/img/add-button.png';
+// }
 

@@ -323,6 +323,32 @@ body {
     .edit-btn {
         display: none;
     }
+    
+    .button-add-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 137px;
+        height: 55px;
+        padding: 0 10px;
+        background-color: #2A3647;
+        border-radius: 10px;
+        color: white;
+        font-family: Arial, sans-serif;
+        font-size: 21px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 125ms ease-in-out;
+      }
+
+      .button-add-div:hover {
+        background-color: #29ABE2;
+      }
+      
+      .button-add-div img {
+        margin-left: 10px;
+      }
+    
 
     .responsive-searchbar {
         display: flex;
