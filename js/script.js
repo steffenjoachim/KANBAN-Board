@@ -1,24 +1,27 @@
 function init() {
-    if (!localStorage.getItem('websiteGeladen')) {
-      var windowWidth = window.innerWidth;
-      if (windowWidth <= 1024) {
-        document.getElementById('body').innerHTML = '';
-        document.getElementById('body').innerHTML = `
-          <div id="logo-container" class="first-page-logo-container">
-            <img src="./asssets/img/Logo_white.svg" alt="">
-          </div>
-        `;
-        localStorage.setItem('websiteGeladen', 'true');
-        setTimeout(function() {
-          let logoContainer = document.getElementById('logo-container');
-          if (logoContainer) {
-            logoContainer.innerHTML = '';
-          }
-          window.location.href = "./index.html";
-        }, 1500);
-      }
+    loadUsers();
+    loadTargetPage();
+}
+
+function loadTargetPage() {
+    let windowWidth = window.innerWidth;
+    if (windowWidth <= 1024) {
+      document.getElementById('body').innerHTML = '';
+      document.getElementById('body').innerHTML = `
+        <div id="logo-container" class="first-page-logo-container">
+          <img src="./asssets/img/Logo_white.svg" alt="">
+        </div>
+      `;
+      setTimeout(function() {
+        let logoContainer = document.getElementById('logo-container');
+        if (logoContainer) {
+          logoContainer.innerHTML = '';
+        }
+        window.location.href = "./index.html?loaded";
+      }, 1500);
     }
-  }
+}
+
 /**
  * 
  * if input > s
@@ -80,13 +83,13 @@ function generateSignInHtml() {
     </div>
     <h1 class="sign-in-headline">Sign in</h1>
     <img class="line" src="./asssets/img/line.svg" alt="Trennlinie">
-    <form action="onsubmit">
+    <form onsubmit="register(); return false;">
         <div class="input-field">
-            <input class="name" type="name" name="" required placeholder="Name">
+            <input id="name" class="name" type="name" name="" required placeholder="Name">
             <img class="person-img" src="./asssets/img/person.svg" alt="e-mail icon">
         </div>
         <div class="input-field">
-            <input class="e-mail" itemid="email" type="email" name="" required placeholder="Email">
+            <input id="email" class="e-mail" itemid="email" type="email" name="" required placeholder="Email">
             <img src="./asssets/img/email-icon.svg" alt="e-mail icon">
         </div>
         <div class="input-field">
@@ -97,7 +100,7 @@ function generateSignInHtml() {
         </div>
         <div class="btn-container">
             <div class="login-btn-container">
-                <button class="login-btn sign-up-btn">Sign up</button>
+                <button id="registerBtn" class="login-btn sign-up-btn">Sign up</button>
             </div>
 
         </div>
