@@ -83,3 +83,8 @@
   .slide-in {
     transform: translateX(0) !important;
   }
+
+  /* @keyframes mymove {
+    0%   {translateX(100%);}
+    100% {translateX(0);}
+  } */
