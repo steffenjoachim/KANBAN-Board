@@ -6,53 +6,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="/asssets/css/cover_page.css">
     <link rel="icon" type="image/x-icon" href="./img/mobile-login-logo-dark.svg">
     <link rel="stylesheet" href="asssets/css/mobile-login.css">
     <link rel="shortcut icon" href="asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
+
 </head>
 
-<body>
+<body onload="init()" id="body">
     <div class="main-content">
         <header>
-            <div>
+            <div class="logo-container">
                 <img src="/asssets/img/mobile-login-logo-dark.svg" alt="">
             </div>
         </header>
 
         <div id="inside-window" class="inside-window">
             <h1>Log in</h1>
-            <img src="/asssets/img/line.svg" alt="Trennlinie">
+            <img class="login-line" src="/asssets/img/line.svg" alt="Trennlinie">
             <form action="onsubmit">
-                <div class="input-field">
-                    <input class="e-mail" type="email" name="" required placeholder="Email">
-                    <img src="/asssets/img/email-icon.svg" alt="e-mail icon">
-                </div>
-                <div class="input-field">
-                    <input id="input" class="password" type="password" required placeholder="Password">
-                    <div id="lock-icon-container">
-                        <img id="lock-icon" src="/asssets/img/lock-icon.svg" alt="lock">
+                <div class="input-field-outter-container">
+                    <div class="input-field">
+                        <input class="e-mail" type="email" name="" required placeholder="Email">
+                        <img src="/asssets/img/email-icon.svg" alt="e-mail icon">
+                    </div>
+                    <div class="input-field">
+                        <input id="input" class="password" type="password" required placeholder="Password">
+                        <div id="lock-icon-container">
+                            <img id="lock-icon" src="/asssets/img/lock-icon.svg" alt="lock">
+                        </div>
                     </div>
                 </div>
                 <div class="wrong-password">Wrong password</div>
-                <a onclick="forgotPassword()" class="forgot" href="#">Forgot my Password</a>
-                <div id="checkbox-container" class="checkbox-container">
-                    <div id="checkmark-container">
-                        <img class="checkbox-empty" onclick="checkmarkChecked()" src="/asssets/img/checkmark_container.svg"alt="">
+                <div class="remember-frogot-container">
+                    <a onclick="forgotPassword()" class="forgot" href="#">Forgot my Password</a>
+                    <div id="checkbox-container" class="checkbox-container">
+                        <div id="checkmark-container">
+                            <img class="checkbox-empty" onclick="checkmarkChecked()"
+                                src="/asssets/img/checkmark_container.svg" alt="">
+                        </div>
+                        <label>Remember me</label>
                     </div>
-                    <label>Remember me</label>
                 </div>
-
-                <div class="btn-container">
-                    <div class="login-btn-container">
-                        <button class="login-btn">Log in</button>
+                <div class="guest-login-container">
+                    <div class="btn-container">
+                        <div class="login-btn-container">
+                            <button class="login-btn">Log in</button>
+                        </div>
                     </div>
-
-                </div>
             </form>
             <div class="guest-btn-container">
-                <a href="guest_hello.html"><button onclick="guestLogin()" class="guest-btn">Guest Log in</button></a>
+                <a href="guest_hello.html"><button type="button" onclick="guestLogin()" class="guest-btn">Guest Log
+                        in</button></a>
             </div>
         </div>
+    </div>
     </div>
     <div class="outer-container">
         <div id="sign-up-container" class="sign-up-container">
@@ -62,7 +70,7 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

@@ -72,17 +72,34 @@ header,
     color: #CDCDCD;
     font-size: 16px;
     margin-left: 8px;
-    margin-top: 10px;
+    margin-top: 7px;
 }
 
 @media (max-width:1024px) {
     .mobile-header {
         display: flex;
     }
+    #burger-menu {
+        margin-top: 80px;
+    }
 }
 @media (min-width:1024px) {
     #background-container {
         max-width: 100%;
         top: 80px;
+        z-index: 99;
+    }
+    .help,
+    .privacy {
+        display: none;
+    }
+    #burger-menu {
+        height: 33px;
+        justify-content: center;
+        align-items: center;
+    }
+    #burger-menu a {
+        margin-top: 0;
+        margin-left: 0;
     }
 }

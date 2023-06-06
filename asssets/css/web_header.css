@@ -57,6 +57,7 @@ nav div div {
     display: flex;
     align-items: center;
     gap: 20px;
+    cursor: pointer;
 }
 
 .nav-link-container {
@@ -77,6 +78,7 @@ nav div div {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     min-width: 790px;
     padding-left: 232px;
+    background-color: white;
 }
 
 .web-header span {
@@ -102,6 +104,7 @@ nav div div {
 .logo {
     height: 40px;
     padding-left: 25px;
+    cursor: auto;
 }
 
 .question-icon {

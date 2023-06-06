@@ -1,3 +1,24 @@
+function init() {
+    if (!localStorage.getItem('websiteGeladen')) {
+      var windowWidth = window.innerWidth;
+      if (windowWidth <= 1024) {
+        document.getElementById('body').innerHTML = '';
+        document.getElementById('body').innerHTML = `
+          <div id="logo-container" class="first-page-logo-container">
+            <img src="/asssets/img/Logo_white.svg" alt="">
+          </div>
+        `;
+        localStorage.setItem('websiteGeladen', 'true');
+        setTimeout(function() {
+          let logoContainer = document.getElementById('logo-container');
+          if (logoContainer) {
+            logoContainer.innerHTML = '';
+          }
+          window.location.href = "index.html";
+        }, 1500);
+      }
+    }
+  }
 /**
  * 
  * if input > s
@@ -99,13 +120,15 @@ function generateForgotHtml() {
             <img src="/asssets/img/back_arrow.svg">
         </a>
     </div>
-    <h1 class="forgot-password-headline">I forgot my<br> password</h1>
-    <img src="/asssets/img/line.svg" alt="Trennlinie">
-    <p class="forgot-password-text">Don't worry! We will send you<br> an email with the instructions to<br>reset your password.
-    <form onsubmit="resetPassword()">
+    <h1 class="forgot-password-headline">I forgot my password</h1>
+    <img class="line" src="/asssets/img/line.svg" alt="Trennlinie">
+    <p class="forgot-password-text">Don't worry! We will send you an email with the instructions to reset your password.
+    <form onsubmit="showEmailSendInfo()">
+    <div class="forgot-input-outer-container">
         <div class="input-field">
             <input class="e-mail" itemid="email" type="email" name="" required placeholder="Email">
             <img src="/asssets/img/email-icon.svg" alt="e-mail icon">
+        </div>
         </div>
         <div class="btn-container">
         <div class="forgot-btn-container">
@@ -118,24 +141,32 @@ function generateForgotHtml() {
     return false
 }
 
+function showEmailSendInfo() {
+    document.getElementById('sign-up-container').innerHTML = '<img src="/asssets/img/An_e-mail_sent.svg" alt="e-mail icon">'
+    document.getElementById('sign-up-container').classList.add('fedback-popup-container');
+    setTimeout(function () {
+        resetPassword()
+    }, 1500);
+}
+
 function resetPassword() {
-    document.getElementById('sign-up-container').innerHTML = '<img src="/asssets/img/An_e-mail_sent.svg" alt="e-mail icon">'    
+    document.getElementById('sign-up-container').classList.remove('fedback-popup-container');
     let insideWindow = document.getElementById('inside-window');
     insideWindow.innerHTML = ''
     insideWindow.style.height = '455px'
     insideWindow.innerHTML = generateResetPasswordHtml();
- document.getElementById('sign-up-container').innerHTML = '';
+    document.getElementById('sign-up-container').innerHTML = '';
 }
 
 function generateResetPasswordHtml() {
-    return  `
+    return `
     <div class="arrow-container">
         <div onclick="forgotPassword()" class="arrow-img-container">
             <img src="/asssets/img/back_arrow.svg">
         </div>    
     </div>
-    <h1 class="reset-password-headline">Reset your<br> password</h1>
-    <img src="/asssets/img/line.svg" alt="Trennlinie">
+    <h1 class="reset-password-headline">Reset your password</h1>
+    <img class="line-reset-password" src="/asssets/img/line.svg" alt="Trennlinie">
     <p class="reset-password-text">Change your account password<br>here.
     <div class="input-field">
         <input id="input" class="password" type="password" required placeholder="New password">
@@ -151,13 +182,20 @@ function generateResetPasswordHtml() {
     </div>
     <div class="btn-container">
         <div class="forgot-btn-container">
-            <button class="fortgot-password-btn">Continue</button>
+            <button onclick="showResetPasswordInfo()" class="fortgot-password-btn">Continue</button>
         </div>
     </div>
  `
 }
 
 function guestLogin() {
-    let personImg  = document.getElementById('person-img');
-    personImg.innerHTML = '';
+    let personImg = document.getElementById('person-img');
+}
+
+function showResetPasswordInfo() {
+    document.getElementById('sign-up-container').innerHTML = '<img src="asssets/img/Reset_your_password.svg">'
+    document.getElementById('sign-up-container').classList.add('fedback-popup-container');
+    setTimeout(function () {
+        window.location.href = "index.html";
+    }, 1500);
 }

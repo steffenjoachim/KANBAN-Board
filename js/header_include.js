@@ -31,14 +31,41 @@ async function footerIncludeHTML() {
     }
 }
 
- function burgerMenu() {
-     document.getElementById('background-container').style.display = 'block'
-}
+let firstClick = false;
 
-function closeBurgerMenu() {
-    let div = document.getElementById(`background-container`);
-    if (event.target.id !== `background-container`) {
-      return;
+function burgerMenu() {
+    document.getElementById('background-container').style.display = 'block';
+    firstClick = true;
+  }
+  
+  function closeBurgerMenu() {
+    let div = document.getElementById('background-container');
+    
+    if (
+      event.target.id === 'web-header' ||
+      event.target.id === 'background-container' ||
+      event.target.id === 'header' ||
+      event.target.id === 'nav-bar'
+    ) {
+      div.style.display = 'none';
     }
-    div.style.display = 'none'
- }
+    firstClick = false;
+  }
+  
+  function burgerMenuWithCallback() {
+    if (!firstClick) {
+      burgerMenu(); // Aufruf der burgerMenu-Funktion beim ersten Klick
+    } else {
+      setTimeout(function() {
+        closeBurgerMenu(); // Aufruf der weiteren Funktion nach einer Verzögerung von 1,5 Sekunden beim zweiten Klick
+      }, 1500);
+    }
+  }
+
+ 
+function loadSummary() {
+    setTimeout(function() {
+      window.location.href = "summary.html";
+    },2000);
+init();  
+}
