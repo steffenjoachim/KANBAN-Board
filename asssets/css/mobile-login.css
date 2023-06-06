@@ -3,6 +3,10 @@
     src: url(./fonts/Inter-Regular.ttf);
 }
 
+html {
+    height: 100vh;
+    background-color: #F6F7F8;
+}
 
 * {
     margin: 0;
@@ -130,18 +134,19 @@ h1 {
     padding-left: 20px;
 }
 
-.checkbox-container input {
-    cursor: pointer;
-}
-
 .btn-container {
     gap: 33px;
 }
 
-.login-btn-container,
-.guest-btn-container{
+.login-btn-container {
     display: flex;
     justify-content: center;
+}
+
+.guest-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
 }
 
 .forgot-btn-container {
@@ -199,13 +204,14 @@ h1 {
     gap: 10px;
 }
 
-.forgot-password-text{
+.forgot-password-text {
     font-size: 21px;
     text-align: center;
     font-weight: 400;
+    padding: 0 24px;
 }
 
-.forgot-password-headline{
+.forgot-password-headline {
     font-size: 40px;
     padding-bottom: 29px;
     margin-top: -27px;
@@ -270,10 +276,6 @@ form {
     justify-content: center;
 }
 
-#checkmark-container {
-    cursor: pointer;
-}
-
 .arrow-container {
     max-width: 372px;
     width: 100%;
@@ -285,7 +287,9 @@ form {
     cursor: pointer;
 }
 
-.arrow-container a img {
+.arrow-container a img,
+#checkmark-container,
+.checkbox-container input {
     cursor: pointer;
 }
 
@@ -311,6 +315,7 @@ form {
     cursor: pointer;
     margin-left: 33px;
 }
+
 .reset-password-headline {
     font-size: 40px;
     padding-bottom: 29px;
@@ -321,10 +326,137 @@ form {
     font-size: 21px;
     text-align: center;
     font-weight: 400;
-    margin-top:-11px;
+    margin-top: -11px;
     margin-bottom: -60px;
 }
 
 .margin-reset-password-input {
-margin: -11px;
+    margin: -11px;
+}
+
+.input-field-outter-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width:1024px) {
+    .remember-frogot-container {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .inside-window {
+        max-width: 652px;
+        height: 513px;
+    }
+
+    .guest-btn-container {
+        margin-top: 0;
+    }
+
+    .guest-login-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .input-field-outter-container {
+        align-items: center;
+    }
+
+    .input-field {
+        width: 422px;
+        justify-content: space-between;
+    }
+
+    .wrong-password {
+        width: 422px;
+        padding-left: 95px;
+        margin-top: -16px;
+    }
+
+    .input-field img {
+        margin-right: 20px;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .outer-container {
+        justify-content: end;
+    }
+
+    .logo-container {
+        position: fixed;
+        top: 15px;
+        left: 70px;
+    }
+
+    .logo-container img {
+        width: 100px;
+        height: 122px;
+    }
+
+    .fortgot-password-btn {
+        width: 264px;
+        height: 51px;
+    }
+
+    .forgot-input-outer-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .forgot-password-headline {
+        width: 100%;
+        padding-bottom: 0;
+        margin-top: -55px;
+    }
+
+    .line {
+        margin-top: -20px;
+        width: 110px;
+    }
+
+    .line-reset-password {
+        margin-top: -40px;
+    }
+
+    .arrow-container {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    .arrow-container a img,
+    .arrow-img-container img {
+        height: 24px;
+        width: 25px;
+    }
+
+    h1 {
+        width: 100%;
+    }
+
+    .login-line {
+        width: 120px;
+        margin-top: -20px;
+    }
+
+    .sign-up-container {
+        margin-top: 60px;
+    }
+
+    .fedback-popup-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        z-index: 99;
+        background: #8b82824a;
+    }
 }

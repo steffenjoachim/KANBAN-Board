@@ -45,6 +45,10 @@
     margin-top: 15px;
 }
 
+/* .edit-contact-logo:hover{
+    img: url("./asssets/img/pen-blue.svg");
+} */
+
 .edit-contact-text{
     margin-top: 26px;
     margin-left: 4px;
@@ -70,3 +74,12 @@
 
     margin-bottom: 16px;
 }
+
+#desktop-hidden {
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(100%);
+  }
+  
+  .slide-in {
+    transform: translateX(0) !important;
+  }

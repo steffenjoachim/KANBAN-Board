@@ -1,29 +1,29 @@
 <link rel="stylesheet" href="/asssets/css/web_header.css">
-<script src="header_include.js"></script>
+<script src="js/header_include.js"></script>
 
 <body>
-    <div class="web-header">
+    <div onclick="closeBurgerMenu()" id="web-header" class="web-header">
         <span>Kanban Project Mangement Tool</span>
         <div class="img-container">
-            <img class="question-icon" src="/asssets/img/question_icon.svg" alt="">
-            <img onclick="burgerMenu()" class="person" src="/asssets/img/christina-wocintechchat-com-0Zx1bDv5BNY-unsplash 1.svg" alt="">
+            <img onclick="location.href='help.html'" class="question-icon" src="/asssets/img/question_icon.svg" alt="">
+            <img id="person-img" onclick="burgerMenuWithCallback()" class="person" src="/asssets/img/christina-wocintechchat-com-0Zx1bDv5BNY-unsplash 1.svg" alt="">
         </div>
     </div>
     <div onclick="closeBurgerMenu()" id="background-container">
         <div class="burger-menu-outer-container">
             <div id="burger-menu">
-                <a href="#">Help</a>
-                <a href="#">Leagal notice</a>
+                <a class="help" href="#">Help</a>
+                <a class="privacy" href="#">Leagal notice</a>
                 <a href="index.html">Log out</a>
             </div>
         </div>
     </div>
 
     <div class="nav-bar-container">
-        <div class="logo-container">
+        <div id="nav-bar" onclick="closeBurgerMenu()" class="logo-container">
             <img class="logo-white" src="/asssets/img/Join_logo_white.svg" alt="">
         </div>
-        <nav>
+        <nav  id="nav-bar" onclick="closeBurgerMenu()">
             <div class="nav-link-container">
                 <div onclick="location.href='summary.html'">
                     <img class="icon" src="/asssets/img/Summary_icon_grey.svg" alt="">
@@ -42,7 +42,7 @@
                     <span>Contacts</span>
                 </div>
             </div>
-            <div class="legal-container">
+            <div onclick="location.href='privacy_policy.html'" class="legal-container">
                 <img src="/asssets/img/info.svg" alt="">
                 <span>Legal notice</span>
             </div>

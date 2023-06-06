@@ -14,7 +14,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 99;
@@ -57,6 +57,7 @@ nav div div {
     display: flex;
     align-items: center;
     gap: 20px;
+    cursor: pointer;
 }
 
 .nav-link-container {
@@ -70,6 +71,9 @@ nav div div {
 }
 
 .web-header {
+    position: fixed;
+    right: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -102,6 +106,7 @@ nav div div {
 .logo {
     height: 40px;
     padding-left: 25px;
+    cursor: auto;
 }
 
 .question-icon {
