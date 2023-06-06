@@ -1,6 +1,6 @@
 function init() {
     loadUsers();
-    loadTargetPage();
+    //loadTargetPage();
 }
 
 function loadTargetPage() {
@@ -84,19 +84,21 @@ function generateSignInHtml() {
     <h1 class="sign-in-headline">Sign in</h1>
     <img class="line" src="./asssets/img/line.svg" alt="Trennlinie">
     <form onsubmit="register(); return false;">
+    <div class="sign-in-input-outter">
         <div class="input-field">
-            <input id="name" class="name" type="name" name="" required placeholder="Name">
+            <input id="userName" class="name" type="name" name="" required placeholder="Name">
             <img class="person-img" src="./asssets/img/person.svg" alt="e-mail icon">
         </div>
-        <div class="input-field">
+        <div class="input-field margin">
             <input id="email" class="e-mail" itemid="email" type="email" name="" required placeholder="Email">
             <img src="./asssets/img/email-icon.svg" alt="e-mail icon">
         </div>
-        <div class="input-field">
+        <div class="input-field margin">
             <input id="input" class="password" type="password" required placeholder="Password">
             <div id="lock-icon-container">
                 <img id="lock-icon" src="./asssets/img/lock-icon.svg" alt="lock">
             </div>
+        </div>
         </div>
         <div class="btn-container">
             <div class="login-btn-container">

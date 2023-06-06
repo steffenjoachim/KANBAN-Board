@@ -72,8 +72,8 @@ h1 {
     color: black;
     margin-right: 0;
     outline: none;
-    cursor: pointer;
-
+    cursor: auto;
+    width: 90%;
 }
 
 .e-mail::placeholder,
@@ -366,6 +366,12 @@ form {
         align-items: center;
     }
 
+    .sign-in-input-outter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .input-field {
         width: 422px;
         justify-content: space-between;
@@ -458,5 +464,9 @@ form {
         height: 100vh;
         z-index: 99;
         background: #8b82824a;
+    }
+
+    .margin{
+        margin-top: 16px;
     }
 }

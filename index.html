@@ -25,10 +25,10 @@
         <div id="inside-window" class="inside-window">
             <h1>Log in</h1>
             <img class="login-line" src="./asssets/img/line.svg" alt="Trennlinie">
-            <form action="onsubmit">
+            <form onsubmit="logIn(); return false">
                 <div class="input-field-outter-container">
                     <div class="input-field">
-                        <input class="e-mail" type="email" name="" required placeholder="Email">
+                        <input id="email" class="e-mail" type="email" name="" required placeholder="Email">
                         <img src="./asssets/img/email-icon.svg" alt="e-mail icon">
                     </div>
                     <div class="input-field">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="wrong-password">Wrong password</div>
+                <div id="wrong-password" class="wrong-password"></div>
                 <div class="remember-frogot-container">
                     <a onclick="forgotPassword()" class="forgot" href="#">Forgot my Password</a>
                     <div id="checkbox-container" class="checkbox-container">
@@ -74,6 +74,7 @@
     <script src="./js/script.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/register.js"></script>
+    <script src="./js/login.js"></script>
 </body>
 
 </html>

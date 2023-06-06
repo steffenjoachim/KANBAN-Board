@@ -14,6 +14,7 @@ async function register() {
     users.push({
         email: email.value,
         password: input.value,
+        name: userName.value,
     });
     await setItem('users', JSON.stringify(users));
     resetForm();
@@ -22,5 +23,8 @@ async function register() {
 function resetForm() {
     email.value = '';
     input.value = '';
+    userName.value = '';
     registerBtn.disabled = false;
+
+    window.location.href = "./index.html?loaded"
 }
