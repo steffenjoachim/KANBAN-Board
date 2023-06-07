@@ -7,6 +7,6 @@ function logIn() {
         console.log('match');
     } else {
 
-        document.getElementById('wrong-password').innerHTML = 'email oder password falsch'
+        document.getElementById('wrong-password').innerHTML = 'The entered email or password is incorrect.'
     }
 }
