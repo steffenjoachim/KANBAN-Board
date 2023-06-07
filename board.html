@@ -11,8 +11,10 @@
     <link rel="shortcut icon" href="/asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="/asssets/css/header.css">
     <link rel="stylesheet" href="/asssets/css/footer.css">
+    <link rel="stylesheet" href="asssets/css/add_task_popUp.css">
     <script src="js/footer.js"></script>
     <script src="./js/board.js"></script>
+    <script src="./js/add_task_popup.js"></script>
     <title>Board</title>
 </head>
 <body onload="init()">
@@ -191,6 +193,120 @@
             </div>
         </div>
     </div>
+
+    <!-------------------- Add Task popUp----------------------->
+    <div class="popup-overlay">
+        <div class="popup-content" id="popupContent">
+            <div class="wrapper">
+                <div class="site-title">
+                     <h1>Add Task</h1>
+                </div>
+                
+                <div class="inner-wrap">
+                    <section class="section-one">
+                        <form>
+                        <label for="title-input">Title</label>
+                        <input class="all-input" id="title-input" type="text" name="title" />
+                
+                        <label for="description-input">Description</label>
+                        <textarea id="description-input" name="description"></textarea>
+                
+                        <label for="Category">Category</label>
+                        <div onclick="selectTaskCategory()" id="select-one" class="select-one">
+                            <span>Select task category</span>
+                            <img src="./add_task_img/open.svg" alt="" />
+                        </div>
+                
+                        <div id="dropdown" class="d-none">
+                            <div onclick="selectOption(event)" id="selected-one" class="selected">
+                            <span>New Category</span>
+                            </div>
+                            <div onclick="selectOption(event)" id="selected-two" class="selected">
+                            <span>Sales</span>
+                            </div>
+                            <div onclick="selectOption(event)" id="selected-three" class="selected">
+                            <span>Backoffice</span>
+                            </div>
+                        </div>
+                
+                        <label for="Assigned-to">Assigned to</label>
+                        <div onclick="selectAssignedTo()" id="assign-one" class="select-one">
+                            <span>Select assigned person</span>
+                            <img src="./add_task_img/open.svg" alt="" />
+                        </div>
+                
+                        <div id="dropdown-assign" class="d-none">
+                            <div onclick="selectAssign(event)" id="assigned-one" class="selected space-between">
+                            <span>You</span>
+                            <input type="checkbox" id="checkbox-you" class="checkbox-style" />
+                            </div>
+                            <div onclick="selectAssign(event)" id="assigned-two" class="selected space-between">
+                            <span>Maximilian</span>
+                            <input type="checkbox" id="checkbox-max" class="checkbox-style" />
+                            </div>
+                            <div onclick="selectAssign(event)" id="assigned-three" class="selected">
+                            <span>Invite new contact</span>
+                            <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
+                            </div>
+                        </div>
+                        </form>
+                    </section>
+                
+                    <div class="vertical-line"></div>
+                
+                    <section class="section-two">
+                        <form>
+                        <label for="date-input">Due Date</label>
+                        <div class="date-input-container">
+                            <input class="all-input" type="date" placeholder="dd/mm/yyyy" />
+                        </div>
+                
+                        <label for="prio-buttons">Prio</label>
+                        <div id="prio-buttons">
+                            <div class="prio-button">
+                            <span>Urgent</span>
+                            <img src="./add_task_img/Prio alta.svg" alt="" />
+                            </div>
+                            <div class="prio-button">
+                            <span>Medium</span>
+                            <img src="./add_task_img/Prio media.svg" alt="" />
+                            </div>
+                            <div class="prio-button">
+                            <span>low</span>
+                            <img src="./add_task_img/Prio baja.svg" alt="" />
+                            </div>
+                        </div>
+                
+                        <label for="subTask">Subtasks</label>
+                        <input type="text" id="subTask" class="subtask-input all-input" placeholder="Add new subtask">
+                
+                        
+                
+                        <div class="subtask">
+                            <input type="checkbox" id="subtask1" name="subtask1" class="checkbox-subtask" />
+                            <label class="subtask-name" for="subtask1">Subtask 1</label>
+                        </div>
+                
+                        <div class="cancel-btn-desktop">
+                            <span>Cancel</span>
+                            <img class="cancel-img" src="./asssets/img/cancel-svg.svg" alt="">
+                        </div>
+                        
+                        <div class="create-btn-desktop">
+                            <span>Create task</span>
+                            <img class="create-correctly" src="./asssets/img/hook-correctly.png" alt="">
+                        </div>
+                
+                        </form>
+                    </section>
+                </div>
+            </div>
+            <!-- Inhalt deines Popups -->
+        
+        </div>
+
+      </div>
+
     <footer w3-footer-include-html="/asssets/templates/footer.html"></footer>
     <script src="js/header_include.js"></script>
 </body>

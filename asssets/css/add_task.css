@@ -207,6 +207,10 @@ input[type="date"]::before {
   
 }
 
+.d-none {
+  display: none;
+}
+
 #dropdown:not(.d-none) {
   max-height: 200px;  
 }

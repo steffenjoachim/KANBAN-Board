@@ -1,8 +1,3 @@
-@font-face {
-    font-family: Inter;
-    src: url(./fonts/Inter-Regular.ttf);
-}
-
 html {
     height: 100vh;
     background-color: #F6F7F8;
