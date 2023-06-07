@@ -75,3 +75,16 @@ function selectAssign(event) {
     assignOne.style.borderBottom = "";  
   }
 }
+
+const cancelBtn = document.querySelector('.cancel-btn-desktop');
+const cancelImg = cancelBtn.querySelector('.cancel-img');
+
+cancelBtn.addEventListener('mouseenter', () => {
+  cancelImg.src = './asssets/img/blue-cancel.svg';
+});
+
+cancelBtn.addEventListener('mouseleave', () => {
+  cancelImg.src = './asssets/img/cancel-svg.svg';
+});
+
+
