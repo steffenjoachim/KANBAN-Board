@@ -45,10 +45,6 @@
     margin-top: 15px;
 }
 
-/* .edit-contact-logo:hover{
-    img: url("./asssets/img/pen-blue.svg");
-} */
-
 .edit-contact-text{
     margin-top: 26px;
     margin-left: 4px;
@@ -75,16 +71,19 @@
     margin-bottom: 16px;
 }
 
-#desktop-hidden {
-    transition: transform 0.5s ease-in-out;
-    transform: translateX(100%);
+  #add-contact, #edit-contact{
+    transition: transform 0.125s ease-in-out;
+    transform: translateY(100%);
   }
   
   .slide-in {
-    transform: translateX(0) !important;
+    transform: translateY(0) !important;
   }
 
-  /* @keyframes mymove {
-    0%   {translateX(100%);}
-    100% {translateX(0);}
-  } */
+  .slide-in2 {
+    transform: translateY(-167%) !important;
+  }
+
+  .close-x-dark-container{
+    display: none;
+  }

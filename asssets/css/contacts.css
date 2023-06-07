@@ -11,6 +11,7 @@ body{
 }
 
 .new-contact-container-frame{
+    margin-top: 96px;
     display: flex;
     justify-content:flex-end;
 }
@@ -97,7 +98,6 @@ hr {
     max-width: 200px;
 }
 
-/*-------width grow to breakpoint-------------*/
 .letter-frame {
     width: 100%;
 }

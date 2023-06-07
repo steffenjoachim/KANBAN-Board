@@ -24,7 +24,7 @@
     <div class="desktop-page">
         <div class="new-contact-frame">
             <div class="new-contact-container-frame">
-                <div class="new-contact-container">
+                <div onclick="openAddContactsOverlay()" class="new-contact-container">
                     <span>New Contact</span>
                     <img src="./asssets/img/new-contact.svg" alt="New Contact">
                 </div>
@@ -94,16 +94,16 @@
                 </div>
             </div>
         </div>
-        <div class="content-big-contact d-none">
+        <div id="content-big-contact" class="content-big-contact d-none">
             <div class="big-contact-frame">
                 <div class="big-contact-frame-header">
                     <h3 class="kpmt">Kanban Project Management Tool</h3>
-                    <a href="./contacts.html" class="h1-back-arrow">
+                    <div onclick="closeContactDetails()" class="h1-back-arrow">
                         <div class="order1">
                             <h1>Contacts</h1>
                         </div>
                         <img class="back-arrow" src="./asssets/img/arrow-left-line.svg" alt="back arrow">
-                    </a>
+                    </div>
                     <div class="order3">
                         <h3 class="better-with-a-team">Better with a team</h3>
                     </div>
@@ -111,7 +111,7 @@
                         <hr class="hr-blue-small-left">
                     </div>
                 </div>
-                <div id="desktop-hidden" class="d-none">
+                <div id="desktop-hidden">
                     <div class="name-add-task-logo">
                         <span class="contact-logo-big orange">AM</span>
                         <div class="name-add-task">
@@ -122,7 +122,9 @@
                     <div class="contact-information-frame">
                         <h3 class="contact-information">Contact Information</h3>
                         <div class="edit-pen" onclick="openEditContacts()">
-                            <img onmousemove="changePenColorToBlue()" onmouseleave="changePenColorToBlack()" id="edit-contact-logo" class="edit-contact-logo" src="./asssets/img/edit-contact.svg" alt="edit contact logo">
+                            <img onmousemove="changePenColorToBlue()" onmouseleave="changePenColorToBlack()"
+                                id="edit-contact-logo" class="edit-contact-logo" src="./asssets/img/edit-contact.svg"
+                                alt="edit contact logo">
                             <span class="edit-contact-text">Edit Contact</span>
                         </div>
                     </div>
@@ -139,14 +141,14 @@
                     <img class="bin" src="./asssets/img/delete-bin.svg" alt="delete bin">
                     <img class="pen" src="./asssets/img/edit.svg" alt="edit pen">
                 </div>
-                <div class="new-contact-container-2">
+                <div onclick="openAddContactsOverlay()" class="new-contact-container-2">
                     <span>New Contact</span>
                     <img src="./asssets/img/new-contact.svg" alt="New Contact">
                 </div>
             </div>
         </div>
     </div>
-    <div id="edit-contact" class="edit-contact d-none">
+    <div id="edit-contact" class="edit-contact">
         <div class="edit-contact-frame">
             <div class="edit-contact-head">
                 <div class="x-container">
@@ -191,10 +193,10 @@
         </div>
     </div>
     </div>
-    <div class="add-contact d-none">
+    <div id="add-contact" class="add-contact">
         <div class="edit-contact-frame">
             <div class="edit-contact-head">
-                <div class="x-container">
+                <div onclick="closeAddContactsOverlay()" class="x-container">
                     <img class="close-x" src="./asssets/img/close-x.svg" alt="close x-icon">
                 </div>
                 <img class="join-logo-white d-none" src="./asssets/img/join-logo-white.svg" alt="Join logo">
@@ -204,10 +206,14 @@
 
             </div>
             <div class="add-contact-bottom">
+
                 <span class="contact-logo-template gray">
                     <img class="big-head" src="./asssets/img/big-head.svg" alt="person head">
                 </span>
                 <form action="">
+                    <div onclick="closeAddContactsOverlay()" class="close-x-dark-container">
+                        <img class="close-x-dark" src="./asssets/img/close-x-dark.svg" alt="close x-icon">
+                    </div>
                     <div class="input-field-top">
                         <input class="name-input" type="name" required placeholder="Name">
                         <img src="./asssets/img/name-head.svg" alt="name icon">
