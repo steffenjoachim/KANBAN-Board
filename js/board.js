@@ -27,3 +27,17 @@ function restorePenimage(element) {
 //     img.src = './asssets/img/add-button.png';
 // }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const openPopupBtn = document.querySelector('.open-popup');
+    const popupOverlay = document.querySelector('.popup-overlay');
+  
+    openPopupBtn.addEventListener('click', () => {
+      popupOverlay.classList.add('active');
+    });
+  
+    popupOverlay.addEventListener('click', (event) => {
+      if (event.target === popupOverlay) {
+        popupOverlay.classList.remove('active');
+      }
+    });
+  });
