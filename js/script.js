@@ -194,6 +194,7 @@ function generateResetPasswordHtml() {
 }
 
 function guestLogin() {
+    window.location.href = './summary.html'
     let personImg = document.getElementById('person-img');
 }
 
