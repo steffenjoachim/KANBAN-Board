@@ -2,7 +2,7 @@
 
 @font-face{
     font-family: Inter;
-    src: url(./asssets/fonts/Inter-Regular.ttf);
+    src: url(../../asssets/fonts/Inter-Regular.ttf);
 }
 
 
@@ -180,6 +180,11 @@ hr {
 
 .content-big-contact {
     background: #F6F7F8;
+    position: fixed !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .kpmt{

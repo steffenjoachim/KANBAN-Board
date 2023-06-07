@@ -137,7 +137,7 @@
                 </div>
                 <div class="delet-edit-frame">
                     <img class="bin" src="./asssets/img/delete-bin.svg" alt="delete bin">
-                    <img class="pen" src="./asssets/img/edit.svg" alt="edit pen">
+                    <img onclick="openEditContacts()" class="pen" src="./asssets/img/edit.svg" alt="edit pen">
                 </div>
                 <div onclick="openAddContactsOverlay()" class="new-contact-container-2">
                     <span>New Contact</span>
@@ -149,7 +149,7 @@
     <div id="edit-contact" class="edit-contact">
         <div class="edit-contact-frame">
             <div class="edit-contact-head">
-                <div class="x-container">
+                <div onclick="closeEditContacts()" class="x-container">
                     <img class="close-x" src="./asssets/img/close-x.svg" alt="close x-icon">
                 </div>
                 <img class="join-logo-white d-none" src="./asssets/img/join-logo-white.svg" alt="Join logo">
