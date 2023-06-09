@@ -29,7 +29,7 @@
             </div>
             <div class="contact-frame">
                 <div class="letter-frame">
-                    <h2>A</h2>
+                    <h2 id="letter${i}">A</h2>
                     <hr class="standard-hr">
                     <div onclick="openContactDetails()" class="single-contact-frame">
                         <span class="contact-logo orange">AM</span>
@@ -213,23 +213,23 @@
                         <img class="close-x-dark" src="./asssets/img/close-x-dark.svg" alt="close x-icon">
                     </div>
                     <div class="input-field-top">
-                        <input class="name-input" type="name" required placeholder="Name">
+                        <input required id="name-input" class="name-input" type="name" placeholder="Name">
                         <img src="./asssets/img/name-head.svg" alt="name icon">
                     </div>
                     <div class="input-field">
-                        <input class="email-input" type="email" placeholder="Email">
+                        <input required id="email-input" class="email-input" type="email" placeholder="Email">
                         <img src="./asssets/img/email-icon.svg" alt="email icon">
                     </div>
-                    <div class="input-field">
-                        <input class="tel-input" type="tel" placeholder="Phone">
+                    <div id="input-field" class="input-field">
+                        <input required id="tel-input" class="tel-input" type="tel" placeholder="Phone">
                         <img src="./asssets/img/tel.svg" alt="name icon">
                     </div>
                     <div class="create-contact-container">
-                        <div class="cancle d-none">
+                        <div onclick="deleteInputFields()" class="cancle d-none">
                             <div class="cancle-text">Cancle</div>
                             <img class="x-dark" src="./asssets/img/close-x-dark.svg" alt="Cancle">
                         </div>
-                        <div class="create-contact">
+                        <div onclick="createNewContact()" class="create-contact">
                             <div class="create-contact-text white">Create contact</div>
                             <img class="check-white" src="./asssets/img/check-white.svg" alt="check">
                         </div>

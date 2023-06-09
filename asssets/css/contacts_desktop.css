@@ -81,7 +81,7 @@
   }
 
   .slide-in2 {
-    transform: translateY(-167%) !important;
+    transform: translateY(0) !important;
   }
 
   .close-x-dark-container{

@@ -36,6 +36,11 @@ color: black;
 
 /* ======= Colors ======= */
 
+
+.yellow{
+    background: #FFFF00;
+}
+
 .orange{
     background: #FF7A00;
 }
@@ -47,6 +52,10 @@ color: black;
 
 .purple{
     background: #9327FF;
+}
+
+.blue{
+    background: #0223CF;
 }
 
 .light-blue{
@@ -181,9 +190,9 @@ hr {
 .content-big-contact {
     background: #F6F7F8;
     position: fixed !important;
-    top: 0;
-    bottom: 0;
-    left: 0;
+    top: 75px;
+    /* bottom: 0;
+    left: 0; */
     right: 0;
 }
 
