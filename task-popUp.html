@@ -5,13 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="task-popUp.css">
+    <script src="./js/task-popUp.js"></script>
     <title>Task</title>
 </head>
 <body>
     <div class="main-div">
         <div class="popUp-head">
             <div class="task-category pink">Sales</div>
-            <img src="./asssets/img/popUp-arrow.svg" alt="">
+            <img  id="close-popUp" class="close-popUp-arrow" src="./asssets/img/popUp-arrow.svg" alt="">
+            <img class="close-popUp-x dis-none" src="./asssets/img/popUp-close.svg" alt="">
         </div>
 
         <span class="popUp-title">Call potencial clients</span>
@@ -52,15 +54,27 @@
                     <div class="assignedTo-icon pink">SF</div>
                     <div class="assignedTo-name">Stefanie Farber</div>
                 </div>   
+        
             </div>
 
-            <!------------- delete and edit btns Section ------------>
-
-            <div class="popUp-btns">
-                <img class="popUp-delete" src="./asssets/img/popUp-deleteBTN.svg" alt="">
-                <img class="popUp-edit" src="./asssets/img/popUp-editBTN.svg" alt="">
+            <!------------- delete and edit btns Section (mobile) ------------>
+            <div class="btns-responsive firstTypebtns">
+                <div> </div>
+                <div class="popUp-btns">
+                    <img class="popUp-delete" src="./asssets/img/popUp-deleteBTN.svg" alt="">
+                    <img class="popUp-edit" src="./asssets/img/popUp-editBTN.svg" alt="">
+                </div>
             </div>
 
-    </div>
+            <!------------- delete and edit btns Section (Desktop) ------------>
+            <div class="btns-responsive">
+                <div> </div>
+                <div class="popUp-btns secondTypebtns">
+                    <div id="popUpDelete" class="popUp-delete-responsive"><img src="./asssets/img/popUpDelete.svg" alt=""></div>
+                    <div class="popUp-edit-responsive"><img src="./asssets/img/popUpEditPen.svg" alt=""></div>
+                </div>
+            </div>
+
+      
 </body>
-</html>
+</htm
