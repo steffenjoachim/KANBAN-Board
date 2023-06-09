@@ -135,20 +135,34 @@ function createNewContact() {
 
 
 /**
- * This funktion is used to insert the created contact in alphabetic order to the array 'contacts'
+ * This funktion is used to insert the created contact in alphabetic order to the array 'contacts' and push it to the remote server.
  * 
  * @param {object} newContact - this is the newly created contact that should be inserted.
  */
 
-function insertContact(newContact) {
+async function insertContact(newContact) {
     const insertIndex = findInsertIndex(newContact);
     if (insertIndex === -1) {
         contacts.push(newContact); // Adds at the end if the new contact is alphabetically greater than all existing ones.
     } else {
         contacts.splice(insertIndex, 0, newContact); // Inserts at the calculated index position.
     }
+    
+await setItem('contacts', JSON.stringify(contacts));
+
 }
 
+
+/**
+ * This function is used to loade the contacts onload contacts.html from the remote server
+ * 
+ */
+
+async function loadContacts(){
+    try{contacts = JSON.parse(await getItem('contacts'))} catch(e){
+        alert('Daten konten nicht geladen werden!')
+     }
+}
 
 /**
  * This function is used to determin the 'initials' that should be added to the new contact.

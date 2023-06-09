@@ -9,15 +9,16 @@
     <link rel="stylesheet" href="./asssets/css/contacts.css">
     <link rel="stylesheet" href="./asssets/css/contact_media.css">
     <link rel="stylesheet" href="./asssets/css/contacts_desktop.css">
-    <script src="./js/storage.js"></script>
     <link rel="stylesheet" href="./asssets/css/header.css">
     <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="./asssets/css/footer.css">
-    <script src="./contacts.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/contacts.js"></script>
+    <!-- <script src="./js/script.js"></script> -->
     <script src="./js/footer.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="loadContacts()">
     <div w3-header-include-html="./asssets/templates/header.html"></div>
     <div class="width" w3-header-include-html="./asssets/templates/web_header.html"></div>
     <div class="desktop-page">
@@ -51,6 +52,15 @@
                     <h2>B</h2>
                     <hr class="standard-hr">
                     <div class="single-contact-frame">
+                        <span class="contact-logo blue">BM</span>
+                        <div class="name-and-email">
+                            <span class="name">Bernd Müller</span>
+                            <span class="email">berndmueller@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="letter-frame">
+                    <div class="single-contact-frame">
                         <span class="contact-logo light-blue">BZ</span>
                         <div class="name-and-email">
                             <span class="name">Benedikt Ziegler</span>
@@ -58,39 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="letter-frame">
-                    <h2>D</h2>
-                    <hr class="standard-hr">
-                    <div class="single-contact-frame">
-                        <span class="contact-logo pink">DE</span>
-                        <div class="name-and-email">
-                            <span class="name">David Eisenberg</span>
-                            <span class="email">davidberg@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="letter-frame">
-                    <h2>E</h2>
-                    <hr class="standard-hr">
-                    <div class="single-contact-frame">
-                        <span class="contact-logo green">EF</span>
-                        <div class="name-and-email">
-                            <span class="name">Eva Fischer</span>
-                            <span class="email">eva@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="letter-frame">
-                    <h2>E</h2>
-                    <hr class="standard-hr">
-                    <div class="single-contact-frame">
-                        <span class="contact-logo green">EF</span>
-                        <div class="name-and-email">
-                            <span class="name">Eva Fischer</span>
-                            <span class="email">eva@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
         </div>
         <div id="content-big-contact" class="content-big-contact d-none">
@@ -209,7 +187,7 @@
                 <span class="contact-logo-template gray">
                     <img class="big-head" src="./asssets/img/big-head.svg" alt="person head">
                 </span>
-                <form action="">
+                <form >
                     <div onclick="closeAddContactsOverlay()" class="close-x-dark-container">
                         <img class="close-x-dark" src="./asssets/img/close-x-dark.svg" alt="close x-icon">
                     </div>
