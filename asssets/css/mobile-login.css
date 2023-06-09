@@ -92,6 +92,7 @@ h1 {
 .input-field img {
     z-index: 99;
     background-color: white;
+    margin-right: 10px;
 }
 
 .person-img {

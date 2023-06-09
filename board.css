@@ -1,3 +1,7 @@
+@font-face{
+    font-family: Inter;
+    src: url(./asssets/fonts/Inter-Regular.ttf);
+}
 * {
     box-sizing: unset !important;
 }
@@ -53,7 +57,6 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-
 }
 
 .head-span {

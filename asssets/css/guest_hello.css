@@ -1,6 +1,7 @@
 @font-face {
     font-family: Inter;
-    src: url(./asssets/fonts/Inter-Regular.ttf);
+    src: url(/asssets/fonts/Inter-Regular.ttf);
+    src: url(/asssets/fonts/Inter-Light.ttf);
 }
 
 body {
@@ -9,9 +10,10 @@ body {
 }
 
 .content {
+    font-family: Inter !important;
     width: 100%;
     max-width: 1024px;
-    height: 90vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,3 +26,12 @@ h1 {
     font-size: 36px;
     margin: 0;
 }
+
+.page {
+    opacity: 0;
+    transition: opacity 2.5s ease-in-out;
+  }
+  
+  .page.show {
+    opacity: 1;
+  }

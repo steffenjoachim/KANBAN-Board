@@ -1,5 +1,5 @@
-  //  beim hovern auf dem div-count1 wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
-  function changePenimage(element) {
+//  beim hovern auf dem div-count1 wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
+function changePenimage(element) {
     let img = element.querySelector('#summary-pen');
     img.src = './asssets/img/summary-pen.svg';
 }
@@ -9,7 +9,7 @@ function restorePenimage(element) {
     img.src = './asssets/img/edit-icon.png';
 }
 
-    // Funktionen für das andere div
+// Funktionen für das andere div
 
 function changeDoneimage(element) {
     let img = element.querySelector('#summary-done');

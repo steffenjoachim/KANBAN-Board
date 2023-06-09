@@ -193,10 +193,6 @@ function generateResetPasswordHtml() {
  `
 }
 
-function guestLogin() {
-    window.location.href = './summary.html'
-    let personImg = document.getElementById('person-img');
-}
 
 function showResetPasswordInfo() {
     document.getElementById('sign-up-container').innerHTML = '<img src="./asssets/img/Reset_your_password.svg">'

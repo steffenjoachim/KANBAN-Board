@@ -55,15 +55,22 @@ body {
     overflow-y: scroll;
 }
 
+
+
     /* Head  */
 
 .popUp-head {
     margin-top: 140px;
     display: flex;
     justify-content: space-between;
+    max-width: 569px;
     margin-right: 34px;
     margin-left: 12px;
     margin-bottom: 36px;
+}
+
+.popUp-head img {
+    cursor: pointer;
 }
 
 .task-category {
@@ -170,19 +177,107 @@ body {
 .popUp-btns {
     display: flex;
     flex-direction: column;
-    position: relative;
-    width: fit-content;
     gap: 16px;
-    bottom: 46px;
-    left: 321px;
+    max-width: 597px;
+    margin-right: 33px;
+    align-items: flex-end;
+    
+}
+
+.popUp-btns img {
+    cursor: pointer;
+}
+
+.btns-responsive {
+    display: flex;
+    justify-content: space-between;
+    max-width: 597px;
+    margin-right: 33px;
+    position: relative;
+    bottom: 42px;
+    
 }
 
 .popUp-delete {
     max-width: 40px;
     height: auto;
+    
 }
 
 .popUp-edit {
-    max-width: 50px;
-    height: auto;
+    width: 50px;
+    height: 50px;
+    
 }
+.popUp-edit-responsive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: #2A3647;
+    border-radius: 0px 10px 10px 0px;
+    cursor: pointer;
+}
+
+.popUp-delete-responsive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid #2A3647;
+    border-radius: 10px 0px 0px 10px;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+}
+
+.popUp-edit-responsive:hover {
+    background-color: #29ABE2;
+    
+}
+
+.popUp-delete-responsive:hover {
+    border: 1px solid #29ABE2;
+    width: 48px;
+    height: 48px;
+}
+
+.dis-none {
+    display: none;
+}
+
+@media (max-width: 550px) {
+
+    .secondTypebtns{
+        display: none
+    }
+
+}
+@media (min-width: 550px) {
+
+    .secondTypebtns{
+        display: flex;
+        flex-direction: row;
+        gap: 0;
+    }
+
+    .popUp-edit {
+        margin-left: -2px;
+    }
+
+    .firstTypebtns {
+        display: none;
+    }
+
+    .close-popUp-arrow {
+        display: none;
+    }
+
+    .close-popUp-x {
+        display: block;
+        position: relative;
+        bottom: 17px;
+    }
+}
+
