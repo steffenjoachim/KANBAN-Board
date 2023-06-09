@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +8,17 @@
     <link rel="stylesheet" href="./asssets/css/summary.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./asssets/css/header.css">
     <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="./asssets/css/footer.css">
-    <script src="./js/footer.js"></script>
     <script src="./js/summary.js"></script>
     <title>Summary</title>
 </head>
 
-<body onload="init()">
+<body onload="init()" id="summary" class="page">
     <div w3-header-include-html="./asssets/templates/header.html"></div>
     <div class="width" w3-header-include-html="./asssets/templates/web_header.html"></div>
     <div class="main-div">
@@ -29,7 +31,7 @@
 
             <div class="underHead-line"></div>
         </section>
-        
+
         <section class="second-section">
             <div class="count-task">
                 <div class="summary-counter textCenter boxshadow">
@@ -82,8 +84,28 @@
             </div>
         </section>
 
-    </div> 
-    <footer w3-footer-include-html="./asssets/templates/footer.html"></footer>
+    </div>
+    <footer>
+        <div id="summary-div" class="icon-container summary" style="background-color: #091931; height: 87%;">
+            <a href="./summary.html"><img class="icon" src="./asssets/img/Summary_icon_grey.svg" alt=""></a>
+             <a href="./summary.html"><span>Summary</span></a>
+         </div>
+         <div id="board-div" class="icon-container">
+             <a href="./board.html"><img class="icon" src="./asssets/img/Board_icon.svg" alt=""></a>
+             <a href="./board.html"><span>Board</span></a>
+         </div>
+         <div id="add-task-div" class="icon-container">
+             <a href="./add_task.html"><img class="add-task-icon" src="./asssets/img/Add_Task_icon.svg" alt=""></a>
+             <a href="./add_task.html"><span>Add Task</span></a>
+         </div>
+         <div id="contacts-div" class="icon-container">
+             <a href="./contacts.html"><img class="icon-contacts" src="./asssets/img/Contacts.svg" alt=""></a>
+             <a href="./contacts.html"><span>Contacts</span></a>
+         </div>
+    </footer>
+    <!-- <footer w3-footer-include-html="./asssets/templates/footer.html"></footer> -->
     <script src="./js/header_include.js"></script>
+    <script src="./js/footer.js"></script>
 </body>
+
 </html>

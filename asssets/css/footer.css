@@ -34,7 +34,9 @@ footer {
     height: 80px;
     justify-content: center;
     padding-bottom: 10px !important;
-
+}
+.clicked {
+    background-color: red;
 }
 
 .icon {
