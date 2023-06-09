@@ -148,6 +148,10 @@ body {
     max-width: 100%;
 }
 
+.list {
+    min-height: 900px;
+}
+
 .card-head {
     display: flex;
     flex-direction: row;
@@ -180,6 +184,11 @@ body {
     margin-bottom: 22px;
     cursor: pointer;
 }
+
+.highlight {
+    background-color: #e5e5e596;
+}
+
 
 .task-category, .task-title, .task-description, .task-progress, .task-assignedTo {
     margin-left: 21px;

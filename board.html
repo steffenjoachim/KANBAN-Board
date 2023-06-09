@@ -17,7 +17,7 @@
     <script src="./js/add_task_popup.js"></script>
     <title>Board</title>
 </head>
-<body onload="init()">
+<body onload="init(); render()">
     <div w3-header-include-html="/asssets/templates/header.html"></div>
     <div class="width" w3-header-include-html="/asssets/templates/web_header.html"></div>
 
@@ -50,9 +50,6 @@
                     <span>Add task</span>
                     <img class="open-popup" src="./asssets/img/plus-svg.svg" alt="plus icon">
                   </div>
-            
-                <!-- <div onmouseover="changeimage(this)" onmouseout="restoreimage(this)"><img id="edit-secondBtn-hover" class="edit-secondBtn" src="./asssets/img/add-button.png" alt=""></div> -->
-                
             </div>
         </div>
 
@@ -73,9 +70,12 @@
                     <div onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)"><img id="add-card" src="./asssets/img/add-card.svg" alt=""></div>
                 </div>
 
-            
-                <div class="task-card card-with-PBar">
-                    <div class="task-category orange">Design</div>
+                
+
+                <div class="list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event, this)" ondragleave="dragLeave(event, this)" id="task-card" >
+                    
+                <!-- <div class="task-card card-with-PBar"> -->
+                    <!-- <div class="task-category orange">Design</div>
                     <div class="task-title">Website redesign</div>
                     <div class="task-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A obcaecati quisquam iusto necessitatibus? 
                         Necessitatibus.</div>
@@ -92,12 +92,13 @@
                             <span class="green">EF</span>
                         </div>
                         <img src="./asssets/img/toDo icon.svg" alt="">
-                    </div>
+                    </div> -->
+                <!-- </div> -->
                 </div>
                 
-            
-
                 <div class="empty-card">No tasks to do</div>
+
+                
             </div>
                 <!----------- In progress Section ---------------->
 
@@ -106,6 +107,8 @@
                     <div class="head-title">In progress</div>
                     <div onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)"><img id="add-card" src="./asssets/img/add-card.svg" alt=""></div>
                 </div>
+
+                <div class="list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event, this)" ondragleave="dragLeave(event, this)">
                 <div class="task-card">
 
                     <div class="task-category pink">Sales</div>
@@ -123,6 +126,7 @@
                     </div>
 
                 </div>
+                </div>
             
 
                 <div class="empty-card">No tasks in progress</div>
@@ -134,6 +138,7 @@
                     <div class="head-title">Awaiting Feedback</div>
                     <div onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)"><img id="add-card" src="./asssets/img/add-card.svg" alt=""></div>
                 </div>
+                <div class="list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event, this)" ondragleave="dragLeave(event, this)">
                 <div class="task-card">
 
                     <div class="task-category light-green">Backoffice</div>
@@ -151,6 +156,7 @@
                     </div>
 
                 </div>
+                </div>
             
 
                 <div class="empty-card">No tasks</div>
@@ -162,6 +168,8 @@
                     <div class="head-title">Done</div>
                     <div onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)"><img id="add-card" src="./asssets/img/add-card.svg" alt=""></div>
                 </div>
+
+                <div class="list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(event, this)" ondragleave="dragLeave(event, this)">
                 <div class="task-card card-with-PBar">
 
                     <div class="task-category blue">Marketing</div>
@@ -186,6 +194,7 @@
                         <img src="./asssets/img/toDo icon.svg" alt="">
                     </div>
 
+                </div>
                 </div>
             
            
@@ -311,3 +320,4 @@
     <script src="js/header_include.js"></script>
 </body>
 </html>
+
