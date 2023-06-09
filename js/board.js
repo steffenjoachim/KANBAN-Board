@@ -109,7 +109,7 @@ function render() {
 }
 
 var draggedCard;
-        var targetList;
+        var targetElement;
 
         function allowDrop(event) {
             event.preventDefault();
@@ -119,23 +119,23 @@ var draggedCard;
             draggedCard = event.target;
         }
 
-        function dragEnter(event, list) {
-            targetList = list;
-            if (targetList.classList.contains("list")) {
-                targetList.classList.add("highlight");
+        function dragEnter(event) {
+            targetElement = event.target.closest('.list');
+            if (targetElement) {
+                targetElement.classList.add('highlight');
             }
         }
 
-        function dragLeave(event, list) {
-            if (targetList === list && targetList.classList.contains("list")) {
-                targetList.classList.remove("highlight");
+        function dragLeave(event) {
+            if (targetElement) {
+                targetElement.classList.remove('highlight');
             }
         }
 
         function drop(event) {
             event.preventDefault();
-            if (targetList.classList.contains("list")) {
-                targetList.appendChild(draggedCard);
-                targetList.classList.remove("highlight");
+            if (targetElement) {
+                targetElement.appendChild(draggedCard);
+                targetElement.classList.remove('highlight');
             }
         }
