@@ -17,6 +17,8 @@ function restorePenimage(element) {
 //  beim hovern auf dem edit-secondBtn wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
 
 
+//----------------Add-task PopUp--------------------
+
 document.addEventListener('DOMContentLoaded', () => {
     const openPopupBtn = document.querySelector('.open-popup');
     const popupOverlay = document.querySelector('.popup-overlay');
@@ -32,6 +34,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+
+  //----------------task-popup-----------------
+
+  document.addEventListener('DOMContentLoaded', () => {  // Wenn das Dokument vollständig geladen ist
+    const openTaskPopupBtn = document.querySelector('#task-card-id'); // Der Button, der das Overlay öffnet
+    const taskOverlayPopup = document.querySelector('.task-overlay-popup'); // Das Overlay selbst
+
+    openTaskPopupBtn.addEventListener('click', () => { // Wenn auf den Button geklickt wird
+      taskOverlayPopup.classList.add('active'); // Fügen Sie die "active" Klasse hinzu, um das Overlay anzuzeigen
+    });
+  
+    taskOverlayPopup.addEventListener('click', (event) => { // Wenn auf das Overlay geklickt wird
+      if (event.target === taskOverlayPopup) { // Wenn das Ziel des Klicks das Overlay selbst ist (und nicht ein Element im Overlay)
+        taskOverlayPopup.classList.remove('active'); // Entfernen Sie die "active" Klasse, um das Overlay zu verbergen
+      }
+    });
+  });
+  
 
 
 let todos = [{
@@ -139,3 +159,5 @@ var draggedCard;
                 targetElement.classList.remove('highlight');
             }
         }
+
+        

@@ -391,6 +391,43 @@
     height: 500px;  /* Höhe nach Bedarf anpassen */
     width: 0;
   }
+  @media(min-width:768px) {
+    .wrapper {
+      align-items: center;
+    }
+    .section-one {
+      min-width: 300px;
+      padding-right: 45px;
+     }
+  
+     .section-two {
+      min-width: 300px;
+      padding-left: 40px;
+     }
+     .site-title {
+      width: 680px;
+  }
+  }
+
+  @media(min-width:1024px) {
+
+    .wrapper {
+      align-items: center;
+    }
+    .section-one {
+      min-width: 340px;
+      padding-right: 50px;
+     }
+  
+     .section-two {
+      min-width: 340px;
+      padding-left: 45px;
+     }
+     .site-title {
+      width: 780px;
+  }
+     
+  }
 
   
 
