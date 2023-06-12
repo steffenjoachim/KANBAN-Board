@@ -18,7 +18,7 @@
     <script src="./js/footer.js"></script>
 </head>
 
-<body onload="loadContacts()">
+<body onload="loadContacts(); init()">
     <div w3-header-include-html="./asssets/templates/header.html"></div>
     <div class="width" w3-header-include-html="./asssets/templates/web_header.html"></div>
     <div class="desktop-page">
@@ -29,9 +29,9 @@
                     <img src="./asssets/img/new-contact.svg" alt="New Contact">
                 </div>
             </div>
-            <div class="contact-frame">
+            <div id="contact-frame" class="contact-frame">
                 <div class="letter-frame">
-                    <h2 id="letter${i}">A</h2>
+                    <h2>A</h2>
                     <hr class="standard-hr">
                     <div onclick="openContactDetails()" class="single-contact-frame">
                         <span class="contact-logo orange">AM</span>
@@ -49,22 +49,22 @@
                     </div>
                 </div>
                 <div class="letter-frame">
-                    <h2>B</h2>
+                    <h2 id="letter${i}">B</h2>
                     <hr class="standard-hr">
                     <div class="single-contact-frame">
-                        <span class="contact-logo blue">BM</span>
+                        <span id="logo${i}" class="contact-logo ${contact['icon-color']}">BM</span>
                         <div class="name-and-email">
-                            <span class="name">Bernd Müller</span>
-                            <span class="email">berndmueller@gmail.com</span>
+                            <span id="name${i}" class="name">Bernd Müller</span>
+                            <span id="email${i}" class="email">berndmueller@gmail.com</span>
                         </div>
                     </div>
                 </div>
                 <div class="letter-frame">
                     <div class="single-contact-frame">
-                        <span class="contact-logo light-blue">BZ</span>
+                        <span id="logo${i}" class="contact-logo ${contact['icon-color']}">BZ</span>
                         <div class="name-and-email">
-                            <span class="name">Benedikt Ziegler</span>
-                            <span class="email">bededikt@gmail.com</span>
+                            <span id="name${i}" class="name">Benedikt Ziegler</span>
+                            <span id="email${i}" class="email">bededikt@gmail.com</span>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
             </div>
         </div>
         <div id="content-big-contact" class="content-big-contact d-none">
-            <div class="big-contact-frame">
+            <div id="big-contact-frame" class="big-contact-frame">
                 <div class="big-contact-frame-header">
                     <h3 class="kpmt">Kanban Project Management Tool</h3>
                     <div onclick="closeContactDetails()" class="h1-back-arrow">
@@ -90,9 +90,9 @@
                 </div>
                 <div id="desktop-hidden">
                     <div class="name-add-task-logo">
-                        <span class="contact-logo-big orange">AM</span>
+                        <span class="contact-logo-big ${contact['icon-color']}">AM</span>
                         <div class="name-add-task">
-                            <span class="big-name">Anton Mayer</span>
+                            <span id="big-name${i}" class="big-name">Anton Mayer</span>
                             <span class="email">+ Add Task</span>
                         </div>
                     </div>
@@ -107,11 +107,11 @@
                     </div>
                     <div class="email-data">
                         <span class="email-head">Email</span>
-                        <span class="email-adress-blue">antom@gmail.com</span>
+                        <span id="email-adress${i}" class="email-adress-blue">antom@gmail.com</span> 
                     </div>
                     <div class="mobile-data">
                         <span class="mobile-head">Mobil</span>
-                        <span class="mobile-number-blue">+49 1111 111 11 1</span>
+                        <span id="mobile-number${i}" class="mobile-number-blue">+49 1111 111 11 1</span>
                     </div>
                 </div>
                 <div class="delet-edit-frame">
@@ -165,7 +165,6 @@
                         <div class="save">Save</div>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
@@ -183,7 +182,6 @@
 
             </div>
             <div class="add-contact-bottom">
-
                 <span class="contact-logo-template gray">
                     <img class="big-head" src="./asssets/img/big-head.svg" alt="person head">
                 </span>

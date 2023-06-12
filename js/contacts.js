@@ -1,14 +1,8 @@
 let contacts = [
-    {
-        'name': 'Anton Mayer',
-        ' email': 'antonm@gmail.com',
-        'telephone': '+49 1111 111 11 1',
-        'initials': 'AM',
-        'icon-color': 'orange'
-    }
+   
 ]
 
-let colors = [ 'yellow', 'orange', 'light-orange', 'purple', 'blue', 'light-blue', 'pink','green', 'red']
+let colors = [ 'yellow', 'orange', 'light-orange', 'purple', 'blue', 'light-blue', 'pink','dark-pink','light-green', 'green','dark-green','dark-red', 'red', 'ligh-red','brown']
 
 
 /**
@@ -36,8 +30,68 @@ function changePenColorToBlack(){
  * 
  */
 
-function openEditContacts(){
+function openEditContacts(i){
     document.getElementById('edit-contact').classList.add('slide-in');
+    renderEditContactPage(i);
+}
+
+
+function renderEditContactPage(i){
+    const contact = contacts[i];
+    let content = document.getElementById('edit-contact')
+    content.innerHTML = '';
+    content.innerHTML += createEditContactPageHtml(i, contact);
+    document.getElementById(`logo-bigger${i}`).innerHTML = contact['initials'];
+    document.getElementById(`name-displayed${i}`).innerHTML = contact['name'];
+    document.getElementById(`email-displayed${i}`).innerHTML = contact['email'];
+    document.getElementById(`phone-displayed${i}`).innerHTML = contact['telephone'];
+}
+
+
+function createEditContactPageHtml(i, contact){
+    return `
+    <div class="edit-contact-frame">
+            <div class="edit-contact-head">
+                <div onclick="closeEditContacts()" class="x-container">
+                    <img class="close-x" src="./asssets/img/close-x.svg" alt="close x-icon">
+                </div>
+                <img class="join-logo-white d-none" src="./asssets/img/join-logo-white.svg" alt="Join logo">
+                <h1 class="white">Edit Contact</h1>
+                <hr id="hr-blue-small-left" class="hr-blue-small-left">
+
+            </div>
+            <div class="edit-contact-bottom">
+                <span id="logo-bigger${i}" class="contact-logo-bigger ${contact['icon-color']}">TW</span>
+                <form action="">
+                    <div class="close-x-dark-container" onclick="closeEditContacts()">
+                        <img class="close-x-dark d-none" src="./asssets/img/close-x-dark.svg" alt="close x">
+                    </div>
+                    <div class="input-field-top">
+                        <textarea class="name-displayed" name="name" id="name-displayed${i}" cols="50"
+                            rows="10">Tatjana Wolf</textarea>
+                        <input class="name-input d-none" type="name" required placeholder="Name">
+                        <img src="./asssets/img/name-head.svg" alt="name icon">
+                    </div>
+                    <div class="input-field">
+                        <textarea class="email-displayed" name="name" id="email-displayed${i}" cols="50"
+                            rows="10">wolf@gmail.com</textarea>
+                        <input class="email-input d-none" type="email" placeholder="Email">
+                        <img src="./asssets/img/email-icon.svg" alt="email icon">
+                    </div>
+                    <div class="input-field">
+                        <textarea class="phone-displayed" name="name" id="phone-displayed${i}" cols="50"
+                            rows="10">+49 2222 222 22 2</textarea>
+                        <input class="tel-input d-none" type="tel" placeholder="Phone">
+                        <img src="./asssets/img/tel.svg" alt="name icon">
+                    </div>
+                    <div class="delete-save">
+                        <div onclick="closeEditContacts()" class="delete">Delete</div>
+                        <div class="save">Save</div>
+                    </div>
+                </form>
+            </div>
+    
+    `
 }
 
 
@@ -56,26 +110,169 @@ function closeEditContacts(){
  * 
  */
 
-function openContactDetails(){
+function openContactDetails(i){
     let windowWidth = window.innerWidth;
     if (windowWidth <= 768) {
         document.getElementById('content-big-contact').classList.remove('d-none');
         document.getElementById('content-big-contact').classList.add('slide-in2');
+        renderContactDetailsMobile(i);
     } else {
         document.getElementById('desktop-hidden').classList.add('slide-in');
+        renderContactDetailsDesktop(i);
     }   
 }
 
 
 /**
- * This function is used to close the contact details of the clicked on contact in the mobile version only.
+ * This function is used to close the contact details in the mobile version.
  * 
+ * @param {number} i - the index of the current contact.
  */
 
-function closeContactDetails(){
+function closeContactDetails(i){
     document.getElementById('content-big-contact').classList.add('d-none');
     document.getElementById('content-big-contact').classList.remove('slide-in2');
+}
 
+
+/**
+ * This function is used to render the contact details of the clicked on contact for the mobile version.
+ * 
+ * @param {number} i - the index of the current contact.
+ */
+
+function renderContactDetailsMobile(i){
+    const contact = contacts[i];
+    let content = document.getElementById('big-contact-frame');
+    content.innerHTML = '';
+    content.innerHTML += createContactDetailsMobileHtml(i, contact);
+    document.getElementById(`contact-logo-big${i}`).innerHTML = contact['initials'];
+    document.getElementById(`big-name${i}`).innerHTML = contact['name'];
+    document.getElementById(`email-adress${i}`).innerHTML = contact['email'];
+    document.getElementById(`mobile-number${i}`).innerHTML = contact['telephone'];
+
+}
+
+
+/**
+ * This function is used to create the necessary html block to display the contact details.
+ * 
+ * @param {number} i - the index of the current contact. 
+ * @param {object} contact - is the JASON with the data of the current contact.
+ * @returns @returns - the html block to be added.
+ */
+
+function createContactDetailsMobileHtml(i, contact){
+    return `
+    <div id="big-contact-frame" class="big-contact-frame">
+                <div class="big-contact-frame-header">
+                    <h3 class="kpmt">Kanban Project Management Tool</h3>
+                    <div onclick="closeContactDetails(${i})" class="h1-back-arrow">
+                        <div class="order1">
+                            <h1>Contacts</h1>
+                        </div>
+                        <img class="back-arrow" src="./asssets/img/arrow-left-line.svg" alt="back arrow">
+                    </div>
+                    <div class="order3">
+                        <h3 class="better-with-a-team">Better with a team</h3>
+                    </div>
+                    <div class="order2">
+                        <hr class="hr-blue-small-left">
+                    </div>
+                </div>
+                <div id="desktop-hidden">
+                    <div class="name-add-task-logo">
+                        <span id="contact-logo-big${i}" class="contact-logo-big ${contact['icon-color']}">AM</span>
+                        <div class="name-add-task">
+                            <span id="big-name${i}" class="big-name">Anton Mayer</span>
+                            <span class="email">+ Add Task</span>
+                        </div>
+                    </div>
+                    <div class="contact-information-frame">
+                        <h3 class="contact-information">Contact Information</h3>
+                        <div class="edit-pen" onclick="openEditContacts(${i})">
+                            <img onmousemove="changePenColorToBlue()" onmouseleave="changePenColorToBlack()"
+                                id="edit-contact-logo" class="edit-contact-logo" src="./asssets/img/edit-contact.svg"
+                                alt="edit contact logo">
+                            <span class="edit-contact-text">Edit Contact</span>
+                        </div>
+                    </div>
+                    <div class="email-data">
+                        <span class="email-head">Email</span>
+                        <span id="email-adress${i}" class="email-adress-blue">antom@gmail.com</span> 
+                    </div>
+                    <div class="mobile-data">
+                        <span class="mobile-head">Mobil</span>
+                        <span id="mobile-number${i}" class="mobile-number-blue">+49 1111 111 11 1</span>
+                    </div>
+                </div>
+                <div class="delet-edit-frame">
+                    <img onclick="deleteContact(${i})" class="bin" src="./asssets/img/delete-bin.svg" alt="delete bin">
+                    <img onclick="openEditContacts(${i})" class="pen" src="./asssets/img/edit.svg" alt="edit pen">
+                </div>
+                <div onclick="openAddContactsOverlay()" class="new-contact-container-2">
+                    <span>New Contact</span>
+                    <img src="./asssets/img/new-contact.svg" alt="New Contact">
+                </div>
+            </div>
+        </div>
+    `
+}
+
+
+/**
+ * This funktion is used to render the contact details of the clicked on contact on the right side of the contact.html in the desktop version. 
+ * 
+ * @param {number} i - the index of the current contact
+ */
+
+function renderContactDetailsDesktop(i){
+    const contact = contacts[i];
+    let content = document.getElementById('desktop-hidden');
+    content.innerHTML = '';
+    content.innerHTML += createContactDetailsDesktopHtml(i, contact);
+    document.getElementById(`contact-logo-big${i}`).innerHTML = contact['initials'];
+    document.getElementById(`big-name${i}`).innerHTML = contact['name'];
+    document.getElementById(`email-adress${i}`).innerHTML = contact['email'];
+    document.getElementById(`mobile-number${i}`).innerHTML = contact['telephone'];
+}
+
+
+/**
+ * This function is used to create the necessary html block to display the contact details. 
+ * 
+ * @param {number} i -the index of the current contact.
+ * @param {object} contact - is the JASON with the data of the current contact.
+ * @returns - the html block to be added.
+ */
+
+function createContactDetailsDesktopHtml(i, contact){
+    return `
+    <div class="name-add-task-logo">
+                        <span id="contact-logo-big${i}" class="contact-logo-big ${contact['icon-color']}"></span>
+                        <div class="name-add-task">
+                            <span id="big-name${i}" class="big-name">Anton Mayer</span>
+                            <span class="email">+ Add Task</span>
+                        </div>
+                    </div>
+                    <div class="contact-information-frame">
+                        <h3 class="contact-information">Contact Information</h3>
+                        <div class="edit-pen" onclick="openEditContacts(${i})">
+                            <img onmousemove="changePenColorToBlue()" onmouseleave="changePenColorToBlack()"
+                                id="edit-contact-logo" class="edit-contact-logo" src="./asssets/img/edit-contact.svg"
+                                alt="edit contact logo">
+                            <span class="edit-contact-text">Edit Contact</span>
+                        </div>
+                    </div>
+                    <div class="email-data">
+                        <span class="email-head">Email</span>
+                        <span id="email-adress${i}" class="email-adress-blue">antom@gmail.com</span>
+                    </div>
+                        <div class="mobile-data">
+                            <span class="mobile-head">Mobil</span>
+                            <span id="mobile-number${i}" class="mobile-number-blue">+49 1111 111 11 1</span>
+                        </div>    
+    `
 }
 
 
@@ -126,7 +323,8 @@ function createNewContact() {
         'email': email.value,
         'telephone': telephone.value,
         'initials': calculateInitials(name.value),
-        'icon-color': getRandomColor()
+        'icon-color': getRandomColor(),
+        'id': calculateId()
     };
 
     insertContact(newContact);
@@ -154,15 +352,115 @@ await setItem('contacts', JSON.stringify(contacts));
 
 
 /**
- * This function is used to loade the contacts onload contacts.html from the remote server
- * 
+ * This function is used to load the contacts onload contacts.html from the remote server. If the 
+ * data can not be loaded there is an alert.
  */
 
 async function loadContacts(){
     try{contacts = JSON.parse(await getItem('contacts'))} catch(e){
         alert('Daten konten nicht geladen werden!')
      }
+     renderFirstContacts();
 }
+
+
+/**
+ * This function is used to render the first contact and to call the function to render the following contacts. The first contact is rendered seperately, because for the next contacts a comparisson betwenn the rendered contact and the contact rendered before is needed. Since the first contact has no contact before, it would cause an error.
+ * 
+ */
+
+function renderFirstContacts(){
+    let content = document.getElementById('contact-frame');
+    content.innerHTML = '';
+
+    for (let i = 0; i < 1; i++) {
+        const contact = contacts[i];
+        const letter = contact['initials'].charAt(0).toUpperCase();
+        content.innerHTML += returnHtmlWithH2(i,contact);
+        document.getElementById(`letter${i}`).innerHTML = letter;
+        document.getElementById(`logo${i}`).innerHTML = contact['initials'];
+        document.getElementById(`name${i}`).innerHTML = contact['name'];
+        document.getElementById(`email${i}`).innerHTML = contact['email'];
+    }
+    renderFollowingContacts();
+}
+
+
+/**
+ * This function is used to render the following contacts. The if statement is used to check whether the first letter of the initials already exists or not, and the appropriate html block is added accordingly.
+ * 
+ */
+
+function renderFollowingContacts(){
+    let content = document.getElementById('contact-frame');
+
+    for (let i = 1; i < contacts.length; i++) {
+        const contact = contacts[i];
+        const letter = contact['initials'].charAt(0).toUpperCase();
+        if (letter == contacts[i-1]['initials'].charAt(0).toUpperCase()) {
+            content.innerHTML += returnHtmlWithoutH2(i, contact);
+        } else { 
+            content.innerHTML += returnHtmlWithH2(i,contact);
+            document.getElementById(`letter${i}`).innerHTML = letter;
+        }
+ 
+        document.getElementById(`logo${i}`).innerHTML = contact['initials'];
+        document.getElementById(`name${i}`).innerHTML = contact['name'];
+        document.getElementById(`email${i}`).innerHTML = contact['email'];
+    }
+   }
+
+
+/**
+ * This This function is used to insert a html block with h2 heading. This is necessary if the first letter of the initials of the previous contact does not correspond to that of the current contact.
+ * 
+ * @param {number} i - the in Index of the current contact
+ * @param {object} contact - 
+ * @returns - the html block to be added
+ */
+
+function returnHtmlWithH2(i, contact){
+
+return `
+<div class="letter-frame">
+    <h2 id="letter${i}"></h2>
+    <hr class="standard-hr">
+    <div onclick="openContactDetails(${i})" class="single-contact-frame">
+        <span id="logo${i}" class="contact-logo ${contact['icon-color']}"></span>
+        <div class="name-and-email">
+            <span id="name${i}" class="name"></span>
+            <span id="email${i}" class="email"></span>
+        </div>
+    </div>
+</div>
+`
+}
+
+
+/**
+ * This function is used to insert a html block without h2 heading. This is necessary if the first letter of the initials of the previous contact corresponds to that of the current contact.
+ * 
+ * @param {*} i - the in Index of the current contact
+ * @param {*} contact is the JASON with the data of the current contact
+ * @returns - the html block to be added
+ */
+ 
+
+function returnHtmlWithoutH2(i, contact){
+
+    return `
+    <div class="letter-frame">
+        <div onclick="openContactDetails(${i})" class="single-contact-frame">
+            <span id="logo${i}" class="contact-logo ${contact['icon-color']}"></span>
+            <div class="name-and-email">
+                <span id="name${i}" class="name"></span>
+                <span id="email${i}" class="email"></span>
+            </div>
+        </div>
+    </div>
+    `
+    }
+
 
 /**
  * This function is used to determin the 'initials' that should be added to the new contact.
@@ -247,4 +545,15 @@ function getRandomColor() {
     return colors[randomIndex];
 }
 
+/**
+ * This function is used to delete the selected contact.
+ * 
+ * @param {number} i - index of the contact to be deleted
+ */
 
+async function deleteContact(i) {
+    contacts.splice(i, 1);
+    await setItem('contacts', JSON.stringify(contacts));
+    loadContacts();
+    closeContactDetails(i);
+  }
