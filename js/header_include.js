@@ -34,6 +34,7 @@ async function footerIncludeHTML() {
 let firstClick = false;
 
 function burgerMenu() {
+  document.getElementById('burger-menu').classList.add = ('slide')
   document.getElementById('background-container').style.display = 'block';
   firstClick = true;
 }

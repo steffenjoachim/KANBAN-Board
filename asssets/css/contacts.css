@@ -36,9 +36,12 @@ color: black;
 
 /* ======= Colors ======= */
 
+.brown{
+    background: #333303;
+}
 
 .yellow{
-    background: #FFFF00;
+    background: #E1E104;
 }
 
 .orange{
@@ -66,12 +69,32 @@ color: black;
     background: #FC71FF;
 }
 
+.dark-pink{
+    background: #944796;
+}
+
+.light-green{
+    background: #02fe38;
+}
+
 .green{
     background: #02CF2F;
 }
 
+.dark-green{
+    background: #077E21;
+}
+
+.ligh-red{
+    background: #F42424;
+}
+
 .red{
     background: #AF1616;
+}
+
+.dark-red{
+    background: #901e1e;
 }
 
 .gray{
@@ -90,7 +113,9 @@ color: black;
     flex-direction: column;
     padding-top: 17px;
     gap: 10px;
+    margin-top: 16px;
     margin-bottom: 100px;
+    width: 400px;
 }
 
 .new-contact-container-frame{
@@ -178,7 +203,7 @@ hr {
     font-size: 16px;
     font-weight: 400;
     min-width: 170px;
-    max-width: 200px;
+    max-width: 175px;
 }
 
 .letter-frame {
