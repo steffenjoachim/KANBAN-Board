@@ -337,6 +337,12 @@ body {
   }
 
 
+  @media(min-width:768px) {
+    .popup-content {
+        width: 825px;
+    }
+  }
+
 @media (min-width: 813px) {
     .task-card {
         max-width: 250px;
@@ -352,6 +358,8 @@ body {
     .head-title {
         margin-left: 9px;
     }
+
+    
 }
 
 @media (min-width: 1024px) {
@@ -431,11 +439,26 @@ body {
         padding-top: 165px;
     }
 
+    .popup-content {
+        width: 920px;
+    }
+
 }
+
+@media (min-width: 1200px) {
+    
+
+    .popup-content {
+        width: 1116px
+    }
+}
+
 
 @media (min-width: 1450px) {
     .task-card {
         max-width: 370px;
         height: auto;
-}
+    }
+
+    
 }
