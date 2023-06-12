@@ -128,6 +128,15 @@ label {
   margin-left: 10px;
 }
 
+.prio-img {
+  /* Andere CSS-Regeln hier */
+  transition: transform 125ms;
+}
+
+.prio-img:hover {
+  transform: scale(1.02);
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
   /* machen Sie den Standard-Datumsauswahl-Indikator transparent */
   opacity: 0;
@@ -296,17 +305,23 @@ border-top: none;
   color: #D1D1D1;
 }
 
+#subtasks {
+  display: flex;
+  flex-direction: column;
+}
+
+.subtask-name {
+  margin: 0;
+  margin-left: 5px;
+
+}
+
 .subtask {
   display: flex;
   align-items: center;
 }
 
-.subtask-name {
-  margin: 0;
-
-}
-
-.subtask-input {
+#subtask {
   display: block;
   width: 100%;
   padding-left: 5px;
@@ -323,6 +338,29 @@ border-top: none;
 .subtask-input:focus {
   outline: none;
   border-color: #29ABE2;
+}
+
+.subtask-input-wrapper {
+  position: relative;
+}
+
+.plus-icon {
+  position: absolute;
+  right: 10px;
+  top: 45%;
+  transform: translateY(-50%);
+}
+
+.icons-wrapper {
+  position: absolute;
+  right: 10px;
+  top: 45%;
+  transform: translateY(-50%);
+  display: none;
+}
+
+.subtask-input:focus + .icons-wrapper {
+  display: block;  /* Die Icons anzeigen, wenn das Input-Feld fokussiert ist */
 }
 
 .task-added-container {
