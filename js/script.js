@@ -78,10 +78,12 @@ function generateSignInHtml() {
     return `
     <div class="arrow-container">
         <a href="index.html">
-            <img src="./asssets/img/back_arrow.svg">
-        </a>
+           <div class="back-arrow">
+           <img src="./asssets/img/back_arrow.svg">
+           </div>       
+           </a>
     </div>
-    <h1 class="sign-in-headline">Sign in</h1>
+    <h1 class="sign-in-headline">Sign up</h1>
     <img class="line" src="./asssets/img/line.svg" alt="Trennlinie">
     <form onsubmit="register(); return false;">
     <div class="sign-in-input-outter">

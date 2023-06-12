@@ -99,15 +99,37 @@
             </div>
           </div>
 
-          <label for="subTask">Subtasks</label>
-          <input type="text" id="subTask" class="subtask-input all-input" placeholder="Add new subtask">
+          <label for="prio-buttons">Prio</label>
+          <div id="prio-buttons">
+            <img id="urgent" class="prio-img" src="./asssets/img/urgent-urgent.svg" alt="">
+            <img id="medium" class="prio-img" src="./asssets/img/medium-urgent.svg" alt="">
+            <img id="low" class="prio-img" src="./asssets/img/low-urgent.svg" alt="">
+          </div>
+
+          <!-- <label for="subTask">Subtasks</label>
+          <input type="text" id="subTask" class="subtask-input all-input" placeholder="Add new subtask" > -->
 
           
-
-          <div class="subtask">
-            <input type="checkbox" id="subtask1" name="subtask1" class="checkbox-subtask" />
-            <label class="subtask-name" for="subtask1">Subtask 1</label>
+          
+          <label for="subTask">Subtasks</label>
+          <div class="subtask-input-wrapper" onmouseover="toggleIcons('block')" onmouseout="toggleIcons('none')">     
+            <input type="text" id="subTask" class="subtask-input all-input" placeholder="Add new subtask">
+            <img src="../../asssets/img/plus-black.svg" class="plus-icon">
+            <div class="icons-wrapper">
+              <img src="./asssets/img/cancel-svg.svg" id="cross-icon" onclick="clearInput()">
+              |
+              <img src="./asssets/img/checkmark.svg" id="check-icon" onclick="createSubtask()">
+            </div>
           </div>
+
+          <div id="subtasks"> <!-- Dieses Element wird als Container für die neuen Subtasks verwendet -->
+            <div class="subtask">
+              <input type="checkbox" id="subtask1" name="subtask1" class="checkbox-subtask" />
+              <label class="subtask-name" for="subtask1">Subtask 1</label>
+            </div>
+          </div>
+
+          
 
           <div class="cancel-btn-desktop">
             <span>Cancel</span>
@@ -148,8 +170,8 @@
            <a href="./board.html"><span>Board</span></a>
        </div>
        <div id="add-task-div" class="icon-container" style="background-color: #091931; height: 87%;">
-           <a href="./add_task.html"><img class="add-task-icon" src="./asssets/img/Add_Task_icon.svg" alt=""></a>
-           <a href="./add_task.html"><span>Add Task</span></a>
+           <a href="./add_task.html"><img class="add-task-icon" src="./asssets/img/add_Task_icon_white.svg" alt=""></a>
+           <a href="./add_task.html"><span style="color: white">Add Task</span></a>
        </div>
        <div id="contacts-div" class="icon-container">
            <a href="./contacts.html"><img class="icon-contacts" src="./asssets/img/Contacts.svg" alt=""></a>

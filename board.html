@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/asssets/css/header.css">
     <link rel="stylesheet" href="/asssets/css/footer.css">
     <link rel="stylesheet" href="asssets/css/add_task_popUp.css">
+    <link rel="stylesheet" href="task-popUp.css">
     <script src="js/footer.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/add_task_popup.js"></script>
@@ -195,6 +196,195 @@
             </div>
         </div>
     </div>
+
+    <!-------------------- Add Task popUp----------------------->
+    <div class="popup-overlay">
+        <div class="popup-content" id="popupContent">
+            <div class="wrapper">
+                <div class="site-title">
+                     <h1>Add Task</h1>
+                </div>
+                
+                <div class="inner-wrap">
+                    <section class="section-one">
+                        <form>
+                        <label for="title-input">Title</label>
+                        <input class="all-input" id="title-input" type="text" name="title" />
+                
+                        <label for="description-input">Description</label>
+                        <textarea id="description-input" name="description"></textarea>
+                
+                        <label for="Category">Category</label>
+                        <div onclick="selectTaskCategory()" id="select-one" class="select-one">
+                            <span>Select task category</span>
+                            <img src="./add_task_img/open.svg" alt="" />
+                        </div>
+                
+                        <div id="dropdown" class="d-none">
+                            <div onclick="selectOption(event)" id="selected-one" class="selected">
+                            <span>New Category</span>
+                            </div>
+                            <div onclick="selectOption(event)" id="selected-two" class="selected">
+                            <span>Sales</span>
+                            </div>
+                            <div onclick="selectOption(event)" id="selected-three" class="selected">
+                            <span>Backoffice</span>
+                            </div>
+                        </div>
+                
+                        <label for="Assigned-to">Assigned to</label>
+                        <div onclick="selectAssignedTo()" id="assign-one" class="select-one">
+                            <span>Select assigned person</span>
+                            <img src="./add_task_img/open.svg" alt="" />
+                        </div>
+                
+                        <div id="dropdown-assign" class="d-none">
+                            <div onclick="selectAssign(event)" id="assigned-one" class="selected space-between">
+                            <span>You</span>
+                            <input type="checkbox" id="checkbox-you" class="checkbox-style" />
+                            </div>
+                            <div onclick="selectAssign(event)" id="assigned-two" class="selected space-between">
+                            <span>Maximilian</span>
+                            <input type="checkbox" id="checkbox-max" class="checkbox-style" />
+                            </div>
+                            <div onclick="selectAssign(event)" id="assigned-three" class="selected">
+                            <span>Invite new contact</span>
+                            <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
+                            </div>
+                        </div>
+                        </form>
+                    </section>
+                
+                    <div class="vertical-line"></div>
+                
+                    <section class="section-two">
+                        <form>
+                        <label for="date-input">Due Date</label>
+                        <div class="date-input-container">
+                            <input class="all-input" type="date" placeholder="dd/mm/yyyy" />
+                        </div>
+                
+                        <label for="prio-buttons">Prio</label>
+                        <div id="prio-buttons">
+                            <div class="prio-button">
+                            <span>Urgent</span>
+                            <img src="./add_task_img/Prio alta.svg" alt="" />
+                            </div>
+                            <div class="prio-button">
+                            <span>Medium</span>
+                            <img src="./add_task_img/Prio media.svg" alt="" />
+                            </div>
+                            <div class="prio-button">
+                            <span>low</span>
+                            <img src="./add_task_img/Prio baja.svg" alt="" />
+                            </div>
+                        </div>
+                
+                        <label for="subTask">Subtasks</label>
+                        <input type="text" id="subTask" class="subtask-input all-input" placeholder="Add new subtask">
+                
+                        
+                
+                        <div class="subtask">
+                            <input type="checkbox" id="subtask1" name="subtask1" class="checkbox-subtask" />
+                            <label class="subtask-name" for="subtask1">Subtask 1</label>
+                        </div>
+                
+                        <div class="cancel-btn-desktop">
+                            <span>Cancel</span>
+                            <img class="cancel-img" src="./asssets/img/cancel-svg.svg" alt="">
+                        </div>
+                        
+                        <div class="create-btn-desktop">
+                            <span>Create task</span>
+                            <img class="create-correctly" src="./asssets/img/hook-correctly.png" alt="">
+                        </div>
+                
+                        </form>
+                    </section>
+                </div>
+            </div>
+            <!-- Inhalt deines Popups -->
+        
+        </div>
+
+      </div>
+
+
+      <!-- ----------Task overlay------------ -->
+
+      <div class="task-overlay-popup">
+        <div class="task-content-popup" id="taskContent">
+          <!-- Inhalt deines Popups -->
+          
+        <div class="popUp-head-task">
+            <div class="task-category-one pink">Sales</div>
+            <img  id="close-popUp-one" class="close-popUp-arrows" src="./asssets/img/popUp-arrow.svg" alt="">
+            <img class="close-popUp-xx display-none" src="./asssets/img/popUp-close.svg" alt="">
+        </div>
+
+        <span class="popUp-titled">Call potencial clients</span>
+
+        <p class="popUp-description">Make the product presentation to prospective buyers</p>
+
+        <div class="popUp-date">
+            <span class="bolder">Due date:</span>
+            <span>05-08-2022</span>
+        </div>
+
+        <div class="popUp-prio">
+            <span class="bolder">Priority:</span>
+            <div class="popUp-prio-btn">
+                <span>Urgent</span>
+                <img src="./asssets/img/Prio-icon-arrow.svg" alt="">
+            </div>
+        </div>
+
+            <!------------- Assigned to Section ------------>
+
+            <span class="assignedTo-titlE">Assigned To:</span>
+
+            <div class="assignedTo-listE">
+                <div class="assignedTo-divE">
+                    <div class="assignedTo-iconE purple">DE</div>
+                    <div class="assignedTo-name">David Eisenberg</div>
+                </div>
+                <div class="assignedTo-divE">
+                    <div class="assignedTo-iconE orange">BZ</div>
+                    <div class="assignedTo-name">Benedikt Ziegler</div>
+                </div>
+                <div class="assignedTo-divE">
+                    <div class="assignedTo-iconE blue">MB</div>
+                    <div class="assignedTo-name">Marcel Bauer</div>
+                </div>
+                <div class="assignedTo-divE">
+                    <div class="assignedTo-iconE pink">SF</div>
+                    <div class="assignedTo-name">Stefanie Farber</div>
+                </div>   
+        
+            </div>
+
+            <!------------- delete and edit btns Section (mobile) ------------>
+            <div class="btns-responsive firstTypebtns">
+                <div> </div>
+                <div class="popUp-btns">
+                    <img class="popUp-delete" src="./asssets/img/popUp-deleteBTN.svg" alt="">
+                    <img class="popUp-edit" src="./asssets/img/popUp-editBTN.svg" alt="">
+                </div>
+            </div>
+
+            <!------------- delete and edit btns Section (Desktop) ------------>
+            <div class="btns-responsive">
+                <div> </div>
+                <div class="popUp-btns secondTypebtns">
+                    <div id="popUpDelete" class="popUp-delete-responsive"><img src="./asssets/img/popUpDelete.svg" alt=""></div>
+                    <div class="popUp-edit-responsive"><img src="./asssets/img/popUpEditPen.svg" alt=""></div>
+                </div>
+            </div>
+      </div>
+
+      
+
     <!-- <footer w3-footer-include-html="/asssets/templates/footer.html"></footer> -->
     <footer>
         <div id="summary-div" class="icon-container summary">
@@ -202,8 +392,8 @@
              <a href="./summary.html"><span>Summary</span></a>
          </div>
          <div id="board-div" class="icon-container"  style="background-color: #091931; height: 87%;">
-             <a href="./board.html"><img class="icon" src="./asssets/img/Board_icon.svg" alt=""></a>
-             <a href="./board.html"><span>Board</span></a>
+             <a href="./board.html"><img class="icon" src="./asssets/img/board_icon_white.svg" alt=""></a>
+             <a href="./board.html"><span style="color: white">Board</span></a>
          </div>
          <div id="add-task-div" class="icon-container">
              <a href="./add_task.html"><img class="add-task-icon" src="./asssets/img/Add_Task_icon.svg" alt=""></a>

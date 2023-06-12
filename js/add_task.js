@@ -36,6 +36,8 @@ function selectOption(event) {
   selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn eine Option ausgewählt ist.
 }  
 
+
+
 /**
  * Wechselt die Sichtbarkeit eines Dropdown-Menüs und ändert den Randradius der Container-Elemente.
  * Ist das Dropdown-Menü derzeit ausgeblendet, wird es angezeigt und der Randradius der Container-Elemente angepasst, so dass nur die oberen Ecken abgerundet sind.
@@ -88,3 +90,100 @@ cancelBtn.addEventListener('mouseleave', () => {
 });
 
 
+
+
+// function removeBackgroundImage() {
+//   const subTaskInput = document.getElementById('subTask');
+//   subTaskInput.style.backgroundImage = "none";
+// }
+
+// function addBackgroundImage() {
+//   const subTaskInput = document.getElementById('subTask');
+//   subTaskInput.style.backgroundImage = "url(../../asssets/img/plus-black.svg)";
+// }   
+
+function toggleIcons(displayStatus) {
+  const iconsWrapper = document.querySelector('.icons-wrapper');
+  const plusIcon = document.querySelector('.plus-icon');
+  iconsWrapper.style.display = displayStatus;
+  plusIcon.style.display = displayStatus === 'block' ? 'none' : 'block';
+}
+
+function clearInput() {
+  const subTaskInput = document.getElementById('subTask');
+  subTaskInput.value = '';
+}
+
+function createSubtask() {
+  const subTaskInput = document.getElementById('subTask');
+  let taskValue = subTaskInput.value;
+  // Neues div für die Subtask erstellen
+  const newSubtask = document.createElement('div');
+  newSubtask.className = 'subtask';
+
+  // Neues Input-Feld für die Checkbox erstellen
+  const newInput = document.createElement('input');
+  newInput.type = 'checkbox';
+  newInput.id = taskValue;
+  newInput.name = taskValue;
+  newInput.className = 'checkbox-subtask';
+
+  // Neues Label für die Subtask erstellen
+  const newLabel = document.createElement('label');
+  newLabel.className = 'subtask-name';
+  newLabel.htmlFor = taskValue;
+  newLabel.textContent = taskValue;
+
+  // Die neuen Elemente zum div hinzufügen
+  newSubtask.appendChild(newInput);
+  newSubtask.appendChild(newLabel);
+
+  // Das neue div zum speziellen Container hinzufügen
+  const subtasksContainer = document.getElementById('subtasks');
+  
+
+  subtasksContainer.appendChild(newSubtask);
+
+  // Das Input-Feld leeren
+  clearInput();
+}
+
+// Buttons
+
+const images = {
+  "urgent": {
+    "default": "./asssets/img/urgent-urgent.svg",
+    "selected": "./asssets/img/urgent-toggle.svg"
+  },
+  "medium": {
+    "default": "./asssets/img/medium-urgent.svg",
+    "selected": "./asssets/img/medium-urgent-toggle.svg"
+  },
+  "low": {
+    "default": "./asssets/img/low-urgent.svg",
+    "selected": "./asssets/img/low-urgent-toggle.svg"
+  }
+};
+
+function resetImages() {
+  const prioImages = document.querySelectorAll('.prio-img');
+  prioImages.forEach(img => {
+    img.src = images[img.id].default;
+  });
+}
+
+function selectImage(event) {
+  event.target.src = images[event.target.id].selected;
+}
+
+function setupPriorityClick() {
+  const prioImages = document.querySelectorAll('.prio-img');
+  prioImages.forEach(img => {
+    img.addEventListener('click', function(event) {
+      resetImages();
+      selectImage(event);
+    });
+  });
+}
+
+setupPriorityClick();
