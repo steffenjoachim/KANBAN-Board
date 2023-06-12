@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-
+  
 let todos = [{
 
     'title': 'Create header and footer',
@@ -76,14 +76,17 @@ let todos = [{
 
 
 
+
+
+
 function render() {
-  let taskSection = document.getElementById('task-card');
+  let taskSection = document.getElementById('todo-card');
   taskSection.innerHTML = '';
 
   for (let i = 0; i < todos.length; i++) {
     const todo = todos[i];
 
-    taskSection.innerHTML += `<div draggable="true" ondragstart="drag(event)" id="card" class="task-card card-with-PBar">
+    taskSection.innerHTML += `<div draggable="true" id="card${i}" class="item task-card card-with-PBar">
     <div class="task-category orange">${todo['category']}</div>
     <div class="task-title">${todo['title']}</div>
     <div class="task-description">${todo['description']}</div>
@@ -104,38 +107,63 @@ function render() {
     </div>
     `;
   }
+  dragItem();
   
+};
 
+var allList = document.getElementsByClassName('list');
+let drag = null;
+
+function dragItem() {
+  let items = document.querySelectorAll('.item');
+  items.forEach(item => {
+    item.addEventListener('dragstart', function() {
+      drag = item;
+      item.style.opacity = '0.5';
+    });
+
+    item.addEventListener('dragend', function() {
+      drag = null;
+      item.style.opacity = '1';
+    });
+
+    for (var i = 0; i < allList.length; i++) {
+      allList[i].addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.style.background = '#e5e5e596';
+        this.style.borderRadius = '30px';
+      });
+
+      allList[i].addEventListener('dragleave', function() {
+        this.style.background = '#F5F5F5';
+      });
+
+      allList[i].addEventListener('drop', function() {
+        this.append(drag);
+        this.style.background = '#F5F5F5';
+      });
+    }
+  });
 }
 
-var draggedCard;
-        var targetElement;
 
-        function allowDrop(event) {
-            event.preventDefault();
-        }
+// function saveTrash() {
+//   let saveTrashTitle = JSON.stringify(trashTitles);
+//   localStorage.setItem('trashTitle', saveTrashTitle);
 
-        function drag(event) {
-            draggedCard = event.target;
-        }
+//   let saveTrashNotes = JSON.stringify(trashNotes);
+//   localStorage.setItem('trashNotes', saveTrashNotes)
+  
+// }
 
-        function dragEnter(event) {
-            targetElement = event.target.closest('.list');
-            if (targetElement) {
-                targetElement.classList.add('highlight');
-            }
-        }
 
-        function dragLeave(event) {
-            if (targetElement) {
-                targetElement.classList.remove('highlight');
-            }
-        }
+// function loadTrash() {
+//   let trashTitlesAsText = localStorage.getItem('trashTitle');
+//   let trashNotesAsText = localStorage.getItem('trashNotes');
 
-        function drop(event) {
-            event.preventDefault();
-            if (targetElement) {
-                targetElement.appendChild(draggedCard);
-                targetElement.classList.remove('highlight');
-            }
-        }
+//   if (trashTitlesAsText && trashNotesAsText) {
+//       trashTitles = JSON.parse(trashTitlesAsText)
+//       trashNotes = JSON.parse(trashNotesAsText)
+//   }
+// }
+
