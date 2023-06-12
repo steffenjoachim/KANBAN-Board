@@ -335,6 +335,10 @@ form {
     flex-direction: column;
 }
 
+.back-arrow {
+    margin-left: 23px;
+}
+
 @media (min-width:1024px) {
     .remember-frogot-container {
         display: flex;
