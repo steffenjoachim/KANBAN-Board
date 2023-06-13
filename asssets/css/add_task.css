@@ -194,6 +194,8 @@ input[type="date"]::before {
   padding-bottom: 10px;
   font-weight: 400;
   cursor: pointer;
+  border-left: 1px solid #D1D1D1;
+  border-right: 1px solid #D1D1D1;
 }
 
 .selected span{
@@ -240,6 +242,44 @@ input[type="date"]::before {
   
  }
 
+ .color-circle {
+  margin-left: 10px;
+ }
+
+ #new-category-fields {
+  position: relative; /* Dies macht das div zum Container für absolut positionierte Elemente */
+}
+
+#new-category-name {
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 10px;
+  font-weight: 400;
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  position: relative; /* Für die Positionierung der Icons */
+}
+
+.hover-dot {
+  margin-right: 20px;
+}
+
+.hover-dot:hover{
+  border-radius: 50%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.icons-wrapper-two {
+  position: absolute; /* Positioniert das div relativ zum nächstgelegenen positionierten Vorfahren (in diesem Fall #new-category-fields) */
+  right: 10px; /* Positioniert das div 10px vom rechten Rand des Containers entfernt */
+  top: 30%; /* Positioniert das div auf halber Höhe des Containers */
+  transform: translateY(-50%); /* Verschiebt das div um 50% seiner Höhe nach oben, um es vertikal zu zentrieren */
+}
+
  /* ... Assigned-to ... */
 
 /* Checkbox-Stil */
@@ -261,7 +301,7 @@ input[type="date"]::before {
 }
 
 .select-one img {
-  width: 16px;
+  
   margin-right: 10px;
 }
 

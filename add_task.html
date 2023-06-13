@@ -87,19 +87,39 @@
 
           <label for="Category">Category</label>
           <div onclick="selectTaskCategory()" id="select-one" class="select-one">
-            <span>Select task category</span>
-            <img src="./add_task_img/open.svg" alt="" />
+            <div class="select-one-div">
+              <span>Select task category</span>
+              <img src="" alt="">
+            </div>
+            <img src="./asssets/img/open.svg" alt="" />
           </div>
-
+      
           <div id="dropdown" class="d-none">
-            <div onclick="selectOption(event)" id="selected-one" class="selected">
+            <div onclick="showNewCategoryFields()" id="selected-one" class="selected">
               <span>New Category</span>
             </div>
             <div onclick="selectOption(event)" id="selected-two" class="selected">
-              <span>Sales</span>
+              <span>Sales</span><img class="color-circle" src="./asssets/img/light-blue-dot.svg" alt="">
             </div>
             <div onclick="selectOption(event)" id="selected-three" class="selected">
-              <span>Backoffice</span>
+              <span>Backoffice</span><img class="color-circle" src="./asssets/img/pink-dot.svg" alt="">
+            </div>
+          </div>
+      
+          <div id="new-category-fields" class="d-none">
+            <input id="new-category-name" type="text" placeholder="Category name">
+            <div class="icons-wrapper-two">
+              <img src="./asssets/img/cancel-svg.svg" id="cross-icon" onclick="cancelNewCategory()">
+              |
+              <img src="./asssets/img/checkmark.svg" id="check-icon" onclick="saveNewCategory()">
+            </div>
+            <div id="new-category-colors">
+              <img class="hover-dot" src="./asssets/img/dark-blue-dot.svg" alt="" onclick="selectColor(event)">
+              <img class="hover-dot" src="./asssets/img/green-dot.svg" alt="" onclick="selectColor(event)">
+              <img class="hover-dot" src="./asssets/img/light-blue-dot.svg" alt="" onclick="selectColor(event)">
+              <img class="hover-dot" src="./asssets/img/orange-dot.svg" alt="" onclick="selectColor(event)">
+              <img class="hover-dot" src="./asssets/img/pink-dot.svg" alt="" onclick="selectColor(event)">
+              <img class="hover-dot" src="./asssets/img/red-dot.svg" alt="" onclick="selectColor(event)">
             </div>
           </div>
 
@@ -135,21 +155,7 @@
             <input class="all-input" type="date" placeholder="dd/mm/yyyy" />
           </div>
 
-          <label for="prio-buttons">Prio</label>
-          <div id="prio-buttons">
-            <div class="prio-button">
-              <span>Urgent</span>
-              <img src="./add_task_img/Prio alta.svg" alt="" />
-            </div>
-            <div class="prio-button">
-              <span>Medium</span>
-              <img src="./add_task_img/Prio media.svg" alt="" />
-            </div>
-            <div class="prio-button">
-              <span>low</span>
-              <img src="./add_task_img/Prio baja.svg" alt="" />
-            </div>
-          </div>
+          
 
           <label for="prio-buttons">Prio</label>
           <div id="prio-buttons">
