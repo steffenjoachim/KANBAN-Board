@@ -1,3 +1,5 @@
+
+
 //  beim hovern auf dem div-count1 wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
 function changePenimage(element) {
     let img = element.querySelector('#summary-pen');
@@ -19,3 +21,18 @@ function restoreDoneimage(element) {
     let img = element.querySelector('#summary-done');
     img.src = './asssets/img/done-icon.png';
 }
+
+async function loadtodos() {
+    try {countTodo = JSON.parse(await getItem('counttodo'))}
+    catch(e) {
+        console.log('Error')
+    }
+}
+
+// function numberofTodo() {
+//     let todoSpan = document.getElementById('countTodo')
+
+// }
+  
+  
+  

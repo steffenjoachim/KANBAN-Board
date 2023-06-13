@@ -1,3 +1,5 @@
+
+
 //  beim hovern auf dem div-count1 wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
 
 function changePenimage(element) {
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let todos = [{
 
+    'id': '0',
     'title': 'Create header and footer',
     'description': `The header and footer on top and bottom of the 
                      page for the mobile version. On top and left side of the page 
@@ -65,125 +68,144 @@ let todos = [{
     'dueDate': '20.10.2023',
     'prio': 'Medium',
     'subtask': '2',
+    'status': 'todo',
 },
 {
 
+  'id': '1',
   'title': 'Create header and footer',
   'description': `The header and footer on top and bottom of the 
                    page for the mobile version. On top and left side of the page 
                    for desktop version`,
-  'category': 'Web development',
+  'category': 'HR',
   'assignedTo': 'MM',          
   'dueDate': '20.10.2023',
   'prio': 'Medium',
   'subtask': '2',
+  'status': 'todo',
 },
 
 {
-
+  'id': '2',
   'title': 'Create header and footer',
   'description': `The header and footer on top and bottom of the 
                    page for the mobile version. On top and left side of the page 
                    for desktop version`,
-  'category': 'Web development',
+  'category': 'Sales',
   'assignedTo': 'MM',          
   'dueDate': '20.10.2023',
   'prio': 'Medium',
   'subtask': '2',
+  'status': 'inProgress',
 },
 
 ];
 
+let currentDraggedElement;
 
+function updateHTML() {
 
+  let filterTodo = todos.filter(t => t['status'] == 'todo' );
+  document.getElementById('todo-card').innerHTML = '';
 
-
-
-function render() {
-  let taskSection = document.getElementById('todo-card');
-  taskSection.innerHTML = '';
-
-  for (let i = 0; i < todos.length; i++) {
-    const todo = todos[i];
-
-    taskSection.innerHTML += `<div draggable="true" id="card${i}" class="item task-card card-with-PBar">
-    <div class="task-category orange">${todo['category']}</div>
-    <div class="task-title">${todo['title']}</div>
-    <div class="task-description">${todo['description']}</div>
-    <div class="task-progress">
-        <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-            <div class="progress-bar bg-info" ></div>
-        </div>
-        <div class="progress-steps">0/2 Done</div>
-    </div>
-    <div class="task-assignedTo">
-        <div class="task-icons">
-            <span class="orange">SM</span>
-            <span class="purple">MN</span>
-            <span class="green">EF</span>
-        </div>
-        <img src="./asssets/img/toDo icon.svg" alt="">
-    </div>
-    </div>
-    `;
+  for (let index = 0; index < filterTodo.length; index++) {
+    const element = filterTodo[index];
+    document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
+    
   }
-  dragItem();
+
+
+  let filterInpro = todos.filter(t => t['status'] == 'inProgress' );
+  document.getElementById('progress-card').innerHTML = '';
+
+  for (let index = 0; index < filterInpro.length; index++) {
+    const element = filterInpro[index];
+    document.getElementById('progress-card').innerHTML += generateTodoHTML(element);
+    
+  }
+
+
+  let filterFeedback = todos.filter(t => t['status'] == 'feedback' );
+  document.getElementById('Feedback-card').innerHTML = '';
+
+  for (let index = 0; index < filterFeedback.length; index++) {
+    const element = filterFeedback[index];
+    document.getElementById('Feedback-card').innerHTML += generateTodoHTML(element);
+    
+  }
+
+
+  let filterDone = todos.filter(t => t['status'] == 'done' );
+  document.getElementById('done-card').innerHTML = '';
+
+  for (let index = 0; index < filterDone.length; index++) {
+    const element = filterDone[index];
+    document.getElementById('done-card').innerHTML += generateTodoHTML(element);
+    
+  }
+
+}
   
-};
 
-var allList = document.getElementsByClassName('list');
-let drag = null;
+function startDragging(id) {
+  currentDraggedElement = id;
+}
 
-function dragItem() {
-  let items = document.querySelectorAll('.item');
-  items.forEach(item => {
-    item.addEventListener('dragstart', function() {
-      drag = item;
-      item.style.opacity = '0.5';
-    });
+function generateTodoHTML(element) {
+  return `<div draggable="true" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar">
+     <div class="task-category orange">${element['category']}</div>
+     <div class="task-title">${element['title']}</div>
+     <div class="task-description">${element['description']}</div>
+     <div class="task-progress">
+         <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+             <div class="progress-bar bg-info" ></div>
+         </div>
+         <div class="progress-steps">0/2 Done</div>
+     </div>
+     <div class="task-assignedTo">
+         <div class="task-icons">
+             <span class="orange">SM</span>
+             <span class="purple">MN</span>
+             <span class="green">EF</span>
+         </div>
+         <img src="./asssets/img/toDo icon.svg" alt="">
+     </div>
+     </div>
+     `;
+}
 
-    item.addEventListener('dragend', function() {
-      drag = null;
-      item.style.opacity = '1';
-    });
+function allowDrop(ev) {
+  ev.preventDefault();
+}
 
-    for (var i = 0; i < allList.length; i++) {
-      allList[i].addEventListener('dragover', function(e) {
-        e.preventDefault();
-        this.style.background = '#e5e5e596';
-        this.style.borderRadius = '30px';
-      });
+function moveTo(status) {
+  todos[currentDraggedElement]['status'] = status;
+  updateHTML()
+}
 
-      allList[i].addEventListener('dragleave', function() {
-        this.style.background = '#F5F5F5';
-      });
+function highlight(id) {
+  document.getElementById(id).classList.add('drag-area-highlight');
+}
 
-      allList[i].addEventListener('drop', function() {
-        this.append(drag);
-        this.style.background = '#F5F5F5';
-      });
-    }
-  });
+function removeHighlight(id) {
+  document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
 
-// function saveTrash() {
-//   let saveTrashTitle = JSON.stringify(trashTitles);
-//   localStorage.setItem('trashTitle', saveTrashTitle);
 
-//   let saveTrashNotes = JSON.stringify(trashNotes);
-//   localStorage.setItem('trashNotes', saveTrashNotes)
+
+
+
+
+// async function countChildrenAndDisplay() {
   
-// }
-
-
-// function loadTrash() {
-//   let trashTitlesAsText = localStorage.getItem('trashTitle');
-//   let trashNotesAsText = localStorage.getItem('trashNotes');
-
-//   if (trashTitlesAsText && trashNotesAsText) {
-//       trashTitles = JSON.parse(trashTitlesAsText)
-//       trashNotes = JSON.parse(trashNotesAsText)
+//     var taskCard = document.getElementById("todo-card");
+//     var childrenCount = taskCard.childElementCount;
+//     countTodo.push(childrenCount);
+//     console.log(typeof(childrenCount))
+//     await setItem('counttodo', JSON.stringify(countTodo))
 //   }
-// }
 
+
+
+   
