@@ -15,12 +15,10 @@
     <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="./asssets/css/footer.css">
     <script src="./js/summary.js"></script>
-    <link rel="stylesheet" href="./asssets/css/web_header.css">
-    <script src="./js/header_include.js"></script>
     <title>Summary</title>
 </head>
 
-<body onload="init()" id="summary" class="page">
+<body onload="init();loadtodos()" id="summary" class="page">
     <div w3-header-include-html="./asssets/templates/header.html"></div>
     <!-- <div class="width" w3-header-include-html="./asssets/templates/web_header.html"></div> -->
 
@@ -89,7 +87,7 @@
         <section class="second-section">
             <div class="count-task">
                 <div class="summary-counter textCenter boxshadow">
-                    <span class="s-number">5</span>
+                    <span class="s-number" id="countTodo"></span>
                     <span class="counter-description">Tasks in<br> Board</span>
                 </div>
                 <div class="summary-counter textCenter boxshadow">
