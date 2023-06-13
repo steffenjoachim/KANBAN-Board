@@ -15,12 +15,66 @@
     <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="./asssets/css/footer.css">
     <script src="./js/summary.js"></script>
+    <link rel="stylesheet" href="./asssets/css/web_header.css">
+    <script src="./js/header_include.js"></script>
     <title>Summary</title>
 </head>
 
 <body onload="init()" id="summary" class="page">
     <div w3-header-include-html="./asssets/templates/header.html"></div>
-    <div class="width" w3-header-include-html="./asssets/templates/web_header.html"></div>
+    <!-- <div class="width" w3-header-include-html="./asssets/templates/web_header.html"></div> -->
+
+    <div onclick="closeBurgerMenu()" id="web-header" class="web-header">
+        <span>Kanban Project Mangement Tool</span>
+        <div class="img-container">
+            <img onclick="location.href='./help.html'" class="question-icon" src="./asssets/img/question_icon.svg"
+                alt="">
+            <img id="person-img" onclick="burgerMenuWithCallback()" class="person" src="./asssets/img/person.svg"
+                alt="">
+        </div>
+    </div>
+    <div onclick="closeBurgerMenu()" id="background-container">
+        <div class="burger-menu-outer-container">
+            <div id="burger-menu">
+                <a class="help" href="#">Help</a>
+                <a class="privacy" href="#">Leagal notice</a>
+                <a href="./index.html">Log out</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-bar-container">
+        <div id="nav-bar" onclick="closeBurgerMenu()" class="logo-container">
+            <img class="logo-white" src="./asssets/img/Join_logo_white.svg" alt="">
+        </div>
+        <nav id="nav-bar" onclick="closeBurgerMenu()">
+            <div class="nav-link-container">
+                <div onclick="location.href='./summary.html'" style="background-color: #091931;">
+                    <img class="icon" src="./asssets/img/Summary_icon_white.svg" alt="">
+                    <span id="nav-summary" style="color: white;">Summary</span>
+                </div>
+                <div onclick="location.href='./board.html'">
+                    <img class="icon" src="./asssets/img/Board_icon.svg" alt="">
+                    <span>Board</span>
+                </div>
+                <div onclick="location.href='./add_task.html'">
+                    <img class="icon" src="./asssets/img/Add_Task_icon.svg" alt="">
+                    <span>Add Task</span>
+                </div>
+                <div onclick="location.href='./contacts.html'">
+                    <img class="icon" src="./asssets/img/Contacts.svg" alt="">
+                    <span>Contacts</span>
+                </div>
+            </div>
+            <div onclick="location.href='./privacy_policy.html'" class="legal-container">
+                <img src="./asssets/img/info.svg" alt="">
+                <span>Legal notice</span>
+            </div>
+        </nav>
+        <div>
+        </div>
+    </div>
+
     <div class="main-div">
 
         <span class="head-span-responsive dis-none">Kanban Project Management Tool</span>
@@ -88,20 +142,20 @@
     <footer>
         <div id="summary-div" class="icon-container summary" style="background-color: #091931; height: 87%;">
             <a href="./summary.html"><img class="icon" src="./asssets/img/Summary_icon_white.svg" alt=""></a>
-             <a href="./summary.html"><span style="color: white">Summary</span></a>
-         </div>
-         <div id="board-div" class="icon-container">
-             <a href="./board.html"><img class="icon" src="./asssets/img/Board_icon.svg" alt=""></a>
-             <a href="./board.html"><span>Board</span></a>
-         </div>
-         <div id="add-task-div" class="icon-container">
-             <a href="./add_task.html"><img class="add-task-icon" src="./asssets/img/Add_Task_icon.svg" alt=""></a>
-             <a href="./add_task.html"><span>Add Task</span></a>
-         </div>
-         <div id="contacts-div" class="icon-container">
-             <a href="./contacts.html"><img class="icon-contacts" src="./asssets/img/Contacts.svg" alt=""></a>
-             <a href="./contacts.html"><span>Contacts</span></a>
-         </div>
+            <a href="./summary.html"><span style="color: white">Summary</span></a>
+        </div>
+        <div id="board-div" class="icon-container">
+            <a href="./board.html"><img class="icon" src="./asssets/img/Board_icon.svg" alt=""></a>
+            <a href="./board.html"><span>Board</span></a>
+        </div>
+        <div id="add-task-div" class="icon-container">
+            <a href="./add_task.html"><img class="add-task-icon" src="./asssets/img/Add_Task_icon.svg" alt=""></a>
+            <a href="./add_task.html"><span>Add Task</span></a>
+        </div>
+        <div id="contacts-div" class="icon-container">
+            <a href="./contacts.html"><img class="icon-contacts" src="./asssets/img/Contacts.svg" alt=""></a>
+            <a href="./contacts.html"><span>Contacts</span></a>
+        </div>
     </footer>
     <!-- <footer w3-footer-include-html="./asssets/templates/footer.html"></footer> -->
     <script src="./js/header_include.js"></script>

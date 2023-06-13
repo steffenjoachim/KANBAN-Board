@@ -1,26 +1,18 @@
 function init() {
+    loadTargetPage();
     loadUsers();
-    //loadTargetPage();
 }
 
 function loadTargetPage() {
-    let windowWidth = window.innerWidth;
-    if (windowWidth <= 1024) {
-      document.getElementById('body').innerHTML = '';
-      document.getElementById('body').innerHTML = `
-        <div id="logo-container" class="first-page-logo-container">
-          <img src="./asssets/img/Logo_white.svg" alt="">
-        </div>
-      `;
-      setTimeout(function() {
-        let logoContainer = document.getElementById('logo-container');
-        if (logoContainer) {
-          logoContainer.innerHTML = '';
-        }
-        window.location.href = "./index.html?loaded";
-      }, 1500);
-    }
+    setTimeout(function () {
+        let body = document.getElementById('body');
+        body.innerHTML = '';
+
+        body.innerHTML = indexHTML()
+    }, 55700);
 }
+
+
 
 /**
  * 
@@ -38,7 +30,7 @@ function togglePasswordVisibility() {
         passwordIcon.innerHTML = '<img id="lock-icon" src="./asssets/img/lock-icon.svg" alt="lock">';
     }
 }
-document.getElementById('input').addEventListener('input', togglePasswordVisibility);
+//document.getElementById('input').addEventListener('input', togglePasswordVisibility);
 
 function visibilPassword() {
     let visiblePasswordInput = document.getElementById('input');
