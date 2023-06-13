@@ -5,6 +5,10 @@
         width: 80px;
     }
 
+    .big-name{
+        font-size: 36px;
+    }
+
     .edit-contact-frame{
         max-width: 430px;
     }
