@@ -26,5 +26,5 @@ function resetForm() {
     userName.value = '';
     registerBtn.disabled = false;
 
-    window.location.href = "./index.html?loaded"
+   indexHTML();
 }
