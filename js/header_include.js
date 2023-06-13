@@ -74,6 +74,7 @@ function guestLogin() {
 }
 
 function loadSummary() {
+  loadUsers();
   headerIncludeHTML();
   footerIncludeHTML();
   let windowWidth = window.innerWidth;
@@ -89,7 +90,7 @@ function loadSummary() {
           parser.parseFromString(data, 'text/html'); // Parsen des HTML-Texts zu einem DOM-Dokument
           window.location.href = 'summary.html'; // Weiterleitung zur summary.html-Seite
         });
-    }, 2500); // Verzögerung von 1500 Millisekunden (1,5 Sekunden)
+    }, 1500); // Verzögerung von 1500 Millisekunden (1,5 Sekunden)
   }
 }
 

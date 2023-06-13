@@ -85,8 +85,10 @@ function createEditContactPageHtml(i, contact){
                         <img src="./asssets/img/tel.svg" alt="name icon">
                     </div>
                     <div class="delete-save">
-                        <div onclick="closeEditContacts()" class="delete">Delete</div>
-                        <div class="save">Save</div>
+                        <div onclick="deleteContact(${i})" class="delete">Delete</div>
+                        <div onclick="editContact('${contact['id']}',${i})"
+                        ;
+                        class="save">Save</div>
                     </div>
                 </form>
             </div>
@@ -326,10 +328,29 @@ function createNewContact() {
         'icon-color': getRandomColor(),
         'id': calculateId()
     };
-
     insertContact(newContact);
+    loadContacts();
     deleteInputFields();
 }
+
+
+/**
+ * This function is used to create a unique ID. It always looks for the largest existing ID and increases it by one.
+ * 
+ * @returns - calculated ID
+ */
+
+function calculateId() {
+    if (contacts.length === 0) {
+      return 1; // If there is no contact, start with ID 1
+    }
+  
+    // Find the maximum ID in the existing contacts:
+    const maxId = Math.max(...contacts.map(contact => contact.id));
+  
+    // Increase the max ID by 1 to generate a new unique ID:
+    return maxId + 1;
+  }
 
 
 /**
@@ -557,3 +578,35 @@ async function deleteContact(i) {
     loadContacts();
     closeContactDetails(i);
   }
+
+
+  /**
+   * This function  is used to edit a contact
+   * 
+   * @param {string} contactId - the unique id of the contact that should be changed
+   * @param {number} i - the index of the contact to be changed in the array 'contacts'
+   */
+
+  function editContact(contactId, i) {
+    const contact = contacts.find(contact => contact.id == contactId); // looking for the contact with the corresponding ID
+    if (contact) {
+        contact.name = document.getElementById(`name-displayed${i}`).value;
+        contact.email = document.getElementById(`email-displayed${i}`).value;
+        contact.telephone = document.getElementById(`phone-displayed${i}`).value;
+        const name = contact.name;
+        contact.initials = calculateInitials(name);
+    } else {
+       alert("Kontakt nicht gefunden.");
+    }
+    functionsToBeCalledAfterEdit()
+}
+    
+
+async function functionsToBeCalledAfterEdit(){
+    // insertContact(contact);
+    await setItem('contacts', JSON.stringify(contacts));
+    loadContacts();
+    openContactDetails(i);
+    closeEditContacts()
+}
+
