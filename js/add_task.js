@@ -1,40 +1,118 @@
-/**
- * Wechselt die Sichtbarkeit eines Dropdown-Menüs und ändert den Randradius der Container-Elemente.
- * Wenn das Dropdown-Menü derzeit ausgeblendet ist, wird es angezeigt und der Randradius der Container-Elemente wird so angepasst, dass nur die oberen Ecken abgerundet sind.
- * Wenn das Dropdown-Menü derzeit sichtbar ist, wird es ausgeblendet und der Randradius der Container-Elemente wird zurückgesetzt.
- */
-function selectTaskCategory() {
-  let dropdown = document.getElementById('dropdown');
-  let selectOne = document.getElementById('select-one');
-  let selectThree = document.getElementById('selected-three')
-  
+let categories = []; // Array zum Speichern der Kategorien
+let selectedColor = null;
 
-  if (dropdown.classList.contains('d-none')) {
-      dropdown.classList.remove('d-none');
-      selectOne.style.borderRadius = "10px 10px 0 0";
-      selectOne.style.borderBottom = "none";
-      selectThree.style.borderRadius = "0 0 10px 10px";
-  } else {
-      dropdown.classList.add('d-none');
-      selectOne.style.borderRadius = "10px";
-      selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn das Dropdown-Menü geschlossen ist.
-  }
-  
+function selectTaskCategory() {
+    let dropdown = document.getElementById('dropdown');
+    let selectOne = document.getElementById('select-one');
+    let selectThree = document.getElementById('selected-three')
+    
+    if (dropdown.classList.contains('d-none')) {
+        dropdown.classList.remove('d-none');
+        selectOne.style.borderRadius = "10px 10px 0 0";
+        selectOne.style.borderBottom = "none";
+        selectThree.style.borderRadius = "0 0 10px 10px";
+    } else {
+        dropdown.classList.add('d-none');
+        selectOne.style.borderRadius = "10px";
+        selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn das Dropdown-Menü geschlossen ist.
+    } 
 }
 
-/**
-* Aktualisiert den Textinhalt eines Auswahlfelds mit der ausgewählten Option und blendet das Dropdown-Menü aus.
-* 
-* @param {Event} event - Das Event-Objekt, das die Benutzeraktion repräsentiert, z.B. ein Klick-Event.
-*/
+function showNewCategoryFields() {
+    document.getElementById('select-one').classList.add('d-none'); // versteckt das Select task category Element
+    document.getElementById('new-category-fields').classList.remove('d-none'); // zeigt das Eingabefeld und die Farbauswahl
+    document.getElementById('dropdown').classList.add('d-none');
+}
+
 function selectOption(event) {
-  let selectOne = document.getElementById('select-one');
-  selectOne.textContent = event.target.textContent;
-  let dropdown = document.getElementById('dropdown');
-  dropdown.classList.add('d-none');
-  selectOne.style.borderRadius = "10px";
-  selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn eine Option ausgewählt ist.
-}  
+    let selectOne = document.getElementById('select-one');
+    const selectedText = event.target.querySelector('span').cloneNode(true);
+    const selectedImg = event.target.querySelector('img') ? event.target.querySelector('img').cloneNode(true) : null;
+
+    // select the div containing the span and the img
+    const textAndImgContainer = selectOne.querySelector('div');
+
+    // clear the content of the container and add the new content
+    textAndImgContainer.innerHTML = '';
+
+    textAndImgContainer.appendChild(selectedText);
+    if (selectedImg) {
+      textAndImgContainer.appendChild(selectedImg);
+    }
+  
+    let dropdown = document.getElementById('dropdown');
+    dropdown.classList.add('d-none');
+    selectOne.style.borderRadius = "10px";
+    selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn eine Option ausgewählt ist.
+}
+
+function selectColor(event) {
+    selectedColor = event.target.src;
+    // Hier können Sie eine Funktion hinzufügen, um das ausgewählte Bild hervorzuheben oder eine andere visuelle Rückmeldung zu geben
+}
+
+function cancelNewCategory() {
+    document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
+    document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
+    document.getElementById('new-category-name').value = '';
+    selectedColor = null;
+    // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
+  }
+  
+ 
+
+function saveNewCategory() {
+  const categoryName = document.getElementById('new-category-name').value;
+  
+  if (!categoryName || !selectedColor) {
+    alert('Bitte geben Sie einen Kategorienamen ein und wählen Sie eine Farbe aus.');
+    return;
+  }
+
+  const newCategoryId = document.getElementById('new-category-name').value;
+
+  let newCategory = createCategoryElement(newCategoryId, categoryName, selectedColor);
+  const dropdown = document.getElementById('dropdown');
+  const firstCategory = dropdown.querySelector('.selected');
+  dropdown.insertBefore(newCategory, firstCategory);
+
+  selectOption({ target: newCategory }); // Category auswählen
+
+  addToCategoriesArray(newCategoryId, categoryName, selectedColor);
+
+  document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
+  document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
+  document.getElementById('new-category-name').value = '';
+  selectedColor = null;
+  // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
+}
+
+function createCategoryElement(id, name, color) {
+  let newCategory = document.createElement('div');
+  newCategory.setAttribute('onclick', 'selectOption(event)');
+  newCategory.className = 'selected';
+  newCategory.id = id;
+
+  let newCategorySpan = document.createElement('span');
+  newCategorySpan.textContent = name;
+
+  let newCategoryImg = document.createElement('img');
+  newCategoryImg.src = color;
+  newCategoryImg.className = 'color-circle';
+
+  newCategory.appendChild(newCategorySpan);
+  newCategory.appendChild(newCategoryImg);
+
+  return newCategory;
+}
+
+function addToCategoriesArray(id, name, color) {
+  categories.push({
+    id: id,
+    name: name,
+    color: color
+  });
+}
 
 
 
