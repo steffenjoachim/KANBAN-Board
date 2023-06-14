@@ -27,6 +27,25 @@ async function loadtodos() {
     }
 }
 
+
+function userGreetingOnSummary() {
+    let currentTime = new Date().getHours();
+    let greetingText;
+    if (currentTime < 6) {
+        greetingText = "Good night!";
+    } else if (currentTime < 12) {
+        greetingText = "Good morning!";
+    } else if (currentTime < 18) {
+        greetingText = "Good afternoon!";
+    } else {
+        greetingText = "Good evening!";
+    }
+    document.getElementById('greeting').innerHTML = greetingText;
+    let name = JSON.parse(localStorage.getItem('name'))
+    setTimeout(function () {
+        document.getElementById('name').innerHTML = name
+    }, 5);
+}
 // function numberofTodo() {
 //     let todoSpan = document.getElementById('countTodo')
 
