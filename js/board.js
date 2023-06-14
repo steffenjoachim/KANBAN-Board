@@ -1,4 +1,11 @@
+let todos = []
 
+async function loadNewtasks() {
+  try {todos = JSON.parse(await getItem('task'))}
+  catch (e) {
+    alert('Error')
+  }
+} 
 
 //  beim hovern auf dem div-count1 wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
 
@@ -56,51 +63,51 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
 
-let todos = [
-{
+// let todos = [
+// {
 
-  'id': '0',
-  'title': 'Create landingpage',
-  'description': `The header and footer on top and bottom of the 
-                   page for the mobile version. On top and left side of the page 
-                   for desktop version`,
-  'category': 'Web development',
-  'assignedTo': 'MM',          
-  'dueDate': '20.10.2023',
-  'prio': 'Medium',
-  'subtask': '2',
-  'status': 'todo',
-},
-{
+//   'id': '0',
+//   'title': 'Create landingpage',
+//   'description': `The header and footer on top and bottom of the 
+//                    page for the mobile version. On top and left side of the page 
+//                    for desktop version`,
+//   'category': 'Web development',
+//   'assignedTo': 'MM',          
+//   'dueDate': '20.10.2023',
+//   'prio': 'Medium',
+//   'subtask': '2',
+//   'status': 'todo',
+// },
+// {
 
-  'id': '1',
-  'title': 'Create footer',
-  'description': `The header and footer on top and bottom of the 
-                   page for the mobile version. On top and left side of the page 
-                   for desktop version`,
-  'category': 'HR',
-  'assignedTo': 'MM',          
-  'dueDate': '20.10.2023',
-  'prio': 'Medium',
-  'subtask': '2',
-  'status': 'todo',
-},
+//   'id': '1',
+//   'title': 'Create footer',
+//   'description': `The header and footer on top and bottom of the 
+//                    page for the mobile version. On top and left side of the page 
+//                    for desktop version`,
+//   'category': 'HR',
+//   'assignedTo': 'MM',          
+//   'dueDate': '20.10.2023',
+//   'prio': 'Medium',
+//   'subtask': '2',
+//   'status': 'todo',
+// },
 
-{
-  'id': '2',
-  'title': 'Create header',
-  'description': `The header and footer on top and bottom of the 
-                   page for the mobile version. On top and left side of the page 
-                   for desktop version`,
-  'category': 'Sales',
-  'assignedTo': 'MM',          
-  'dueDate': '20.10.2023',
-  'prio': 'Medium',
-  'subtask': '2',
-  'status': 'inProgress',
-},
+// {
+//   'id': '2',
+//   'title': 'Create header',
+//   'description': `The header and footer on top and bottom of the 
+//                    page for the mobile version. On top and left side of the page 
+//                    for desktop version`,
+//   'category': 'Sales',
+//   'assignedTo': 'MM',          
+//   'dueDate': '20.10.2023',
+//   'prio': 'Medium',
+//   'subtask': '2',
+//   'status': 'inProgress',
+// },
 
-];
+// ];
 
 let currentDraggedElement;
 
