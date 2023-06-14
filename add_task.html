@@ -14,9 +14,11 @@
   <script src="./js/login.js"></script>
   <link rel="stylesheet" href="./asssets/css/web_header.css">
   <script src="./js/header_include.js"></script>
+  <script src="./js/storage.js"></script>
+  <script src="./js/contacts.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="init(); loadContacts()">
   <!-- <div class="width" w3-header-include-html="./asssets/templates/web_header.html"></div> -->
 
   <div onclick="closeBurgerMenu()" id="web-header" class="web-header">
@@ -80,10 +82,10 @@
       <section class="section-one">
         <form>
           <label for="title-input">Title</label>
-          <input class="all-input" id="title-input" type="text" name="title" />
+          <input class="all-input" id="title-input" type="text" name="title" required />
 
-          <label for="description-input">Description</label>
-          <textarea id="description-input" name="description"></textarea>
+          <label for="description-input" >Description</label>
+          <textarea id="description-input" name="description" required></textarea>
 
           <label for="Category">Category</label>
           <div onclick="selectTaskCategory()" id="select-one" class="select-one">
@@ -122,27 +124,30 @@
               <img class="hover-dot" src="./asssets/img/red-dot.svg" alt="" onclick="selectColor(event)">
             </div>
           </div>
-
+          
           <label for="Assigned-to">Assigned to</label>
           <div onclick="selectAssignedTo()" id="assign-one" class="select-one">
             <span>Select assigned person</span>
             <img src="./add_task_img/open.svg" alt="" />
           </div>
-
+          
           <div id="dropdown-assign" class="d-none">
-            <div onclick="selectAssign(event)" id="assigned-one" class="selected space-between">
-              <span>You</span>
-              <input type="checkbox" id="checkbox-you" class="checkbox-style" />
-            </div>
-            <div onclick="selectAssign(event)" id="assigned-two" class="selected space-between">
-              <span>Maximilian</span>
-              <input type="checkbox" id="checkbox-max" class="checkbox-style" />
-            </div>
-            <div onclick="selectAssign(event)" id="assigned-three" class="selected">
+            <div onclick="showInviteContactFields()" id="assigned-three" class="selected">
               <span>Invite new contact</span>
               <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
             </div>
           </div>
+          
+          <div id="new-contact-fields" class="d-none">
+            <input type="text" id="new-contact-email" placeholder="Enter email address">
+            <div class="icons-wrapper-three">
+              <img src="./asssets/img/cancel-svg.svg" id="cross-icon2" onclick="cancelInviteContact()">
+              |
+              <img src="./asssets/img/checkmark.svg" id="check-icon2" onclick="saveInviteContact()">
+            </div>
+          </div>
+
+
         </form>
       </section>
 
@@ -239,6 +244,7 @@
   </footer>
   <script src="./js/header_include.js"></script>
   <script src="./js/add_task.js"></script>
+  
 </body>
 
 </html>

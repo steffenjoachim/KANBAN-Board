@@ -1,6 +1,7 @@
-let contacts = [
+ let contacts = [
    
 ]
+
 
 let colors = [ 'yellow', 'orange', 'light-orange', 'purple', 'blue', 'light-blue', 'pink','dark-pink','light-green', 'green','dark-green','dark-red', 'red', 'ligh-red','brown']
 
@@ -381,7 +382,8 @@ async function loadContacts(){
     try{contacts = JSON.parse(await getItem('contacts'))} catch(e){
         alert('Daten konten nicht geladen werden!')
      }
-     renderFirstContacts();
+     populateContactList();
+    //  renderFirstContacts();
 }
 
 
