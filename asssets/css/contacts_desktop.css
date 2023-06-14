@@ -87,3 +87,7 @@
   .close-x-dark-container{
     display: none;
   }
+
+  .buttons{
+    display: flex;
+  }
