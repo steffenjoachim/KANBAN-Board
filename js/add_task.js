@@ -326,7 +326,7 @@ document.querySelector(".create-btn-desktop").addEventListener("click", createTa
 
 //---------------renderContacts-----------
 
-console.log(populateContactList())
+// console.log(populateContactList())
 // Diese Funktion geht durch das 'contacts' Array und erstellt für jeden Kontakt ein div
 function populateContactList() {
   const dropdownAssign = document.getElementById('dropdown-assign');

@@ -382,8 +382,14 @@ async function loadContacts(){
     try{contacts = JSON.parse(await getItem('contacts'))} catch(e){
         alert('Daten konten nicht geladen werden!')
      }
-     populateContactList();
-    //  renderFirstContacts();
+     
+     
+     if (window.location.pathname.includes('contacts.html')) {
+        renderFirstContacts();
+      } else {
+        populateContactList();
+      }
+     
 }
 
 
