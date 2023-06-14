@@ -15,10 +15,12 @@
     <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="./asssets/css/footer.css">
     <script src="./js/summary.js"></script>
+    <script src="./js/board.js"></script>
     <title>Summary</title>
+    
 </head>
 
-<body onload="init();loadtodos()" id="summary" class="page">
+<body onload="init(); displayTodoCount(todos)" id="summary" class="page">
     <div w3-header-include-html="./asssets/templates/header.html"></div>
     <!-- <div class="width" w3-header-include-html="./asssets/templates/web_header.html"></div> -->
 
@@ -27,7 +29,7 @@
         <div class="img-container">
             <img onclick="location.href='./help.html'" class="question-icon" src="./asssets/img/question_icon.svg"
                 alt="">
-            <img id="person-img" onclick="burgerMenuWithCallback()" class="person" src="./asssets/img/person.svg"
+            <img id="person-img" onclick="burgerMenu();" class="person" src="./asssets/img/person.svg"
                 alt="">
         </div>
     </div>
@@ -91,11 +93,11 @@
                     <span class="counter-description">Tasks in<br> Board</span>
                 </div>
                 <div class="summary-counter textCenter boxshadow">
-                    <span class="s-number">5</span>
+                    <span class="s-number" id="countInprogress"></span>
                     <span class="counter-description">Tasks in Progress</span>
                 </div>
                 <div class="summary-counter textCenter boxshadow">
-                    <span class="s-number">1</span>
+                    <span class="s-number" id="countFeedback"></span>
                     <span class="counter-description">Awaiting feedback</span>
                 </div>
             </div>
@@ -105,7 +107,7 @@
                     <div class="task-status-description">
                         <img class="positionNone" src="./asssets/img/urgent-icon.svg" alt="">
                         <div class="summary-counter">
-                            <div class="s-number">1</div>
+                            <div class="s-number" id="countPrio">1</div>
                             <div>Urgent</div>
                         </div>
                     </div>
@@ -122,14 +124,14 @@
                 <div class="div-count1" onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)">
                     <img id="summary-pen" class="positionNone" src="./asssets/img/edit-icon.png" alt="">
                     <div class="summary-counter">
-                        <div class="s-number">1</div>
+                        <div class="s-number" id="countTodos"></div>
                         <div class="counter-description">To-do</div>
                     </div>
                 </div>
                 <div class="div-count1" onmouseover="changeDoneimage(this)" onmouseout="restoreDoneimage(this)">
                     <img id="summary-done" class="positionNone" src="./asssets/img/done-icon.png" alt="">
                     <div class="summary-counter">
-                        <div class="s-number">1</div>
+                        <div class="s-number" id="countDone"></div>
                         <div class="counter-description">Done</div>
                     </div>
                 </div>
