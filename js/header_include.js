@@ -31,7 +31,7 @@ async function footerIncludeHTML() {
   }
 }
 
-let firstClick = false;
+// let firstClick = false;
 
 function burgerMenu() {
   document.getElementById('burger-menu').classList.add = ('slide')
@@ -51,16 +51,6 @@ function closeBurgerMenu() {
     div.style.display = 'none';
   }
   firstClick = false;
-}
-
-function burgerMenuWithCallback() {
-  if (!firstClick) {
-    burgerMenu(); // Aufruf der burgerMenu-Funktion beim ersten Klick
-  } else {
-    setTimeout(function () {
-      closeBurgerMenu(); // Aufruf der weiteren Funktion nach einer Verzögerung von 1,5 Sekunden beim zweiten Klick
-    }, 1500);
-  }
 }
 
 function guestLogin() {

@@ -280,6 +280,8 @@ input[type="date"]::before {
   transform: translateY(-50%); /* Verschiebt das div um 50% seiner Höhe nach oben, um es vertikal zu zentrieren */
 }
 
+
+
  /* ... Assigned-to ... */
 
 /* Checkbox-Stil */
@@ -313,10 +315,35 @@ width: 100%;
 max-height: 0;
 overflow: hidden;
 transition: max-height 125ms ease-in-out;
+overflow-y: auto;
+}
+
+/* Für WebKit-Browser wie Chrome, Safari, und neuere Opera-Versionen */
+#dropdown-assign::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Hintergrund der Scrollleiste */
+#dropdown-assign::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  margin-bottom: 15px;
+}
+
+/* Griff der Scrollleiste */
+#dropdown-assign::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px; /* Für abgerundete Ecken */
+}
+
+/* Scrollleiste beim Überfahren mit der Maus */
+#dropdown-assign::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 #dropdown-assign:not(.d-none) {
 max-height: 200px;  
+border-bottom: 0.5px solid #d1d1d1;
+border-radius: 0 0 10px 10px;
 }
 
 #assigned-one {
@@ -334,6 +361,30 @@ border-bottom: none;
 #assigned-three {
 border: 1px solid #D1D1D1;
 border-top: none;
+}
+
+#new-contact-fields {
+  position: relative;
+}
+
+#new-contact-fields input {
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 10px;
+  font-weight: 400;
+  width: 100%;
+  height: 51px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  
+}
+
+.icons-wrapper-three {
+  position: absolute; /* Positioniert das div relativ zum nächstgelegenen positionierten Vorfahren (in diesem Fall #new-category-fields) */
+  right: 10px; /* Positioniert das div 10px vom rechten Rand des Containers entfernt */
+  top: 42%; /* Positioniert das div auf halber Höhe des Containers */
+  transform: translateY(-50%); /* Verschiebt das div um 50% seiner Höhe nach oben, um es vertikal zu zentrieren */
 }
 
 .space-between {
@@ -506,6 +557,11 @@ border-top: none;
     height: 49px;
     padding-top: 0;
     padding-bottom: 0;
+  }
+
+  .select-one-div {
+    display: flex;
+    justify-content: center;
   }
 
   

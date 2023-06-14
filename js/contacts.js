@@ -1,6 +1,7 @@
-let contacts = [
+ let contacts = [
    
 ]
+
 
 let colors = [ 'yellow', 'orange', 'light-orange', 'purple', 'blue', 'light-blue', 'pink','dark-pink','light-green', 'green','dark-green','dark-red', 'red', 'ligh-red','brown']
 
@@ -62,7 +63,7 @@ function createEditContactPageHtml(i, contact){
             </div>
             <div class="edit-contact-bottom">
                 <span id="logo-bigger${i}" class="contact-logo-bigger ${contact['icon-color']}">TW</span>
-                <form action="">
+                <form onsubmit"editContact('${contact['id']}',${i})">
                     <div class="close-x-dark-container" onclick="closeEditContacts()">
                         <img class="close-x-dark d-none" src="./asssets/img/close-x-dark.svg" alt="close x">
                     </div>
@@ -365,10 +366,9 @@ async function insertContact(newContact) {
         contacts.push(newContact); // Adds at the end if the new contact is alphabetically greater than all existing ones.
     } else {
         contacts.splice(insertIndex, 0, newContact); // Inserts at the calculated index position.
-    }
-    
+    }  
 await setItem('contacts', JSON.stringify(contacts));
-
+loadContacts();
 }
 
 
@@ -381,7 +381,14 @@ async function loadContacts(){
     try{contacts = JSON.parse(await getItem('contacts'))} catch(e){
         alert('Daten konten nicht geladen werden!')
      }
-     renderFirstContacts();
+     
+     
+     if (window.location.pathname.includes('contacts.html')) {
+        renderFirstContacts();
+      } else {
+        populateContactList();
+      }
+     
 }
 
 
@@ -575,8 +582,26 @@ function getRandomColor() {
 async function deleteContact(i) {
     contacts.splice(i, 1);
     await setItem('contacts', JSON.stringify(contacts));
+    functionsToBeCalledAfterDelete(i);
+  }
+
+
+/**
+ * This function is used to determin, what should be shown after aa contact has been deleted.
+ * 
+ * @param {number} i - the index that the deleted contact had in the contacts array.
+ */
+
+  function functionsToBeCalledAfterDelete(i){
     loadContacts();
-    closeContactDetails(i);
+    let windowWidth = window.innerWidth;
+    if (windowWidth <= 768) {
+        closeContactDetails(i);
+    } else { if (i == 0) {
+            openContactDetails(i);} else {
+            openContactDetails(i-1);}
+        closeEditContacts();
+    }   
   }
 
 
@@ -584,7 +609,7 @@ async function deleteContact(i) {
    * This function  is used to edit a contact
    * 
    * @param {string} contactId - the unique id of the contact that should be changed
-   * @param {number} i - the index of the contact to be changed in the array 'contacts'
+   * @param {number} i - the index of the contact to be editted in the array 'contacts'
    */
 
   function editContact(contactId, i) {
@@ -598,15 +623,23 @@ async function deleteContact(i) {
     } else {
        alert("Kontakt nicht gefunden.");
     }
-    functionsToBeCalledAfterEdit()
+    functionsToBeCalledAfterEdit(i, contact)
 }
     
 
-async function functionsToBeCalledAfterEdit(){
-    // insertContact(contact);
-    await setItem('contacts', JSON.stringify(contacts));
+/**
+ *  This function is used to determin, what should be shown after aa contact has been editted.
+ * 
+ * @param {number} i - the index of the contact to be editted in the array 'contacts'
+ * @param {object} contact - the json of the editted contact
+ */
+
+async function functionsToBeCalledAfterEdit(i, contact){ 
+    deleteContact(i);
+    insertContact(contact);
     loadContacts();
-    openContactDetails(i);
+    openContactDetails(i+1);
+    await setItem('contacts', JSON.stringify(contacts));
     closeEditContacts()
 }
 
