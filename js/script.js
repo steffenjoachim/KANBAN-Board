@@ -52,13 +52,28 @@ function checkmarkUnChecked() {
     checkMarkContainer.innerHTML = `<img class="checkbox-empty" onclick="checkmarkChecked()" src="./asssets/img/checkmark_container.svg" alt="">`
 }
 
+function updateArrow() {
+    if (window.innerWidth > 1024) {
+        document.getElementById('arrow-a').innerHTML = `
+        <img src="asssets/img/arrow-left-blue.svg" style="width:34px; height:34px;">
+        `;
+    } else {
+        document.getElementById('arrow-a').innerHTML = `
+        <img src="./asssets/img/back_arrow.svg"style="width:16px; height:16px;">
+        `   
+    }
+}
 function signIn() {
     let insideWindow = document.getElementById('inside-window');
     insideWindow.innerHTML = '';
     insideWindow.style.height = '432px'
     document.getElementById('sign-up-container').innerHTML = ''
     insideWindow.innerHTML += generateSignInHtml();
+    updateArrow(); // Überprüfung beim Aufruf der Funktion
+    window.addEventListener('resize', updateArrow); // Überprüfung bei Änderung der Fenstergröße
 }
+
+
 
 function forgotPassword() {
     let insideWindow = document.getElementById('inside-window');
@@ -66,19 +81,10 @@ function forgotPassword() {
     insideWindow.style.height = '432px';
     document.getElementById('sign-up-container').innerHTML = '';
     insideWindow.innerHTML += generateForgotHtml();
-
-    function updateArrow() {
-        if (window.innerWidth > 1024) {
-            document.getElementById('arrow-a').innerHTML = '<img src="asssets/img/arrow-left-blue.svg">';
-        } else {
-            document.getElementById('arrow-a').innerHTML = '<img src="./asssets/img/back_arrow.svg">';
-        }
-    }
-
     updateArrow(); // Überprüfung beim Aufruf der Funktion
-
     window.addEventListener('resize', updateArrow); // Überprüfung bei Änderung der Fenstergröße
 }
+
 
 
 function showEmailSendInfo() {

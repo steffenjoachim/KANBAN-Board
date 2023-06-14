@@ -65,7 +65,7 @@ function indexHTML() {
 function generateSignInHtml() {
     return `
     <div class="arrow-container">
-        <a onclick="indexHTML()">
+    <a id="arrow-a" onclick="indexHTML()">
            <div class="back-arrow">
            <img src="./asssets/img/back_arrow.svg">
            </div>       
@@ -104,7 +104,7 @@ function generateForgotHtml() {
     return `
     <div class="arrow-container">
         <a id="arrow-a" onclick="indexHTML()">
-            <img src="./asssets/img/back_arrow.svg">
+
         </a>
     </div>
     <h1 class="forgot-password-headline">I forgot my password</h1>

@@ -1,46 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="board.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="shortcut icon"
-      href="/asssets/img/mobile-login-logo-dark.svg"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="/asssets/css/header.css" />
-    <link rel="stylesheet" href="/asssets/css/footer.css" />
-    <link rel="stylesheet" href="asssets/css/add_task_popUp.css" />
-    <link rel="stylesheet" href="task-popUp.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="board.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/asssets/css/header.css">
+    <link rel="stylesheet" href="/asssets/css/footer.css">
+    <link rel="stylesheet" href="asssets/css/add_task_popUp.css">
+    <link rel="stylesheet" href="task-popUp.css">
     <script src="js/footer.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/add_task_popup.js"></script>
     <script src="./js/storage.js"></script>
-    
+    <script src="add_task.js"></script>
     <title>Board</title>
 </head>
-<body onload="init(); updateHTML(); loadNewtasks()">
+<body onload="init(); updateHTML()">
     <div w3-header-include-html="/asssets/templates/header.html"></div>
-    <div
-      class="width"
-      w3-header-include-html="/asssets/templates/web_header.html"
-    ></div>
+    <!-- <div class="width" w3-header-include-html="/asssets/templates/web_header.html"></div> -->
+    <div class="nav-bar-container">
+        <div id="nav-bar" onclick="closeBurgerMenu()" class="logo-container">
+            <img class="logo-white" src="./asssets/img/Join_logo_white.svg" alt="">
+        </div>
+        <nav id="nav-bar" onclick="closeBurgerMenu()">
+            <div class="nav-link-container">
+                <div onclick="location.href='./summary.html'">
+                    <img class="icon" src="./asssets/img/Summary_icon_white.svg" alt="">
+                    <span id="nav-summary">Summary</span>
+                </div>
+                <div onclick="location.href='./board.html'" style="background-color: #091931;">
+                    <img class="icon" src="./asssets/img/board_icon_white.svg" alt="">
+                    <span style="color: white;">Board</span>
+                </div>
+                <div onclick="location.href='./add_task.html'">
+                    <img class="icon" src="./asssets/img/Add_Task_icon.svg" alt="">
+                    <span>Add Task</span>
+                </div>
+                <div onclick="location.href='./contacts.html'">
+                    <img class="icon" src="./asssets/img/Contacts.svg" alt="">
+                    <span>Contacts</span>
+                </div>
+            </div>
+            <div onclick="location.href='./privacy_policy.html'" class="legal-container">
+                <img src="./asssets/img/info.svg" alt="">
+                <span>Legal notice</span>
+            </div>
+        </nav>
+        <div>
+        </div>
+    </div>
 
     <div class="main-div">
+
+
         <!------------------ Head Section ----------------------->
         
         <div class="head-span">Kanban Project Management Tool</div>
@@ -123,6 +143,8 @@
                 </div>
                 
                 <div class="empty-card">No tasks to do</div>
+
+
             </div>
                 <!----------- In progress Section ---------------->
 
@@ -130,8 +152,8 @@
                 <div class="card-head">
                     <div class="head-title">In progress</div>
             <div
-              onmouseover="changeimage(this)"
-              onmouseout="restoreimage(this)"
+              onmouseover="changePenimage(this)"
+              onmouseout="restorePenimage(this)"
             >
               <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
             </div>
@@ -165,8 +187,8 @@
                 <div class="card-head">
                     <div class="head-title">Awaiting Feedback</div>
             <div
-              onmouseover="changeimage(this)"
-              onmouseout="restoreimage(this)"
+              onmouseover="changePenimage(this)"
+              onmouseout="restorePenimage(this)"
             >
               <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
                 </div>
@@ -199,8 +221,8 @@
                 <div class="card-head">
                     <div class="head-title">Done</div>
             <div
-              onmouseover="changeimage(this)"
-              onmouseout="restoreimage(this)"
+              onmouseover="changePenimage(this)"
+              onmouseout="restorePenimage(this)"
             >
               <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
             </div>
@@ -257,99 +279,50 @@
                 <div class="inner-wrap">
                     <section class="section-one">
                         <form>
-                        <label for="title-input">Title</label>
-                <input
-                  class="all-input"
-                  id="title-input"
-                  type="text"
-                  name="title"
-                />
-                
-                        <label for="description-input">Description</label>
-                        <textarea id="description-input" name="description"></textarea>
-                
-                        <label for="Category">Category</label>
-                <div
-                  onclick="selectTaskCategory()"
-                  id="select-one"
-                  class="select-one"
-                >
-                            <span>Select task category</span>
-                            <img src="./add_task_img/open.svg" alt="" />
-                        </div>
-                
-                        <div id="dropdown" class="d-none">
-                  <div
-                    onclick="selectOption(event)"
-                    id="selected-one"
-                    class="selected"
-                  >
-                            <span>New Category</span>
+                            <label for="title-input">Title</label>
+                            <input class="all-input" id="title-input" type="text" name="title" />
+
+                            <label for="description-input">Description</label>
+                            <textarea id="description-input" name="description"></textarea>
+
+                            <label for="Category">Category</label>
+                            <div onclick="selectTaskCategory()" id="select-one" class="select-one">
+                                <span>Select task category</span>
+                                <img src="./add_task_img/open.svg" alt="" />
                             </div>
-                  <div
-                    onclick="selectOption(event)"
-                    id="selected-two"
-                    class="selected"
-                  >
-                            <span>Sales</span>
+
+                            <div id="dropdown" class="d-none">
+                                <div onclick="selectOption(event)" id="selected-one" class="selected">
+                                    <span>New Category</span>
+                                </div>
+                                <div onclick="selectOption(event)" id="selected-two" class="selected">
+                                    <span>Sales</span>
+                                </div>
+                                <div onclick="selectOption(event)" id="selected-three" class="selected">
+                                    <span>Backoffice</span>
+                                </div>
                             </div>
-                  <div
-                    onclick="selectOption(event)"
-                    id="selected-three"
-                    class="selected"
-                  >
-                            <span>Backoffice</span>
+
+                            <label for="Assigned-to">Assigned to</label>
+                            <div onclick="selectAssignedTo()" id="assign-one" class="select-one">
+                                <span>Select assigned person</span>
+                                <img src="./add_task_img/open.svg" alt="" />
                             </div>
-                        </div>
-                
-                        <label for="Assigned-to">Assigned to</label>
-                <div
-                  onclick="selectAssignedTo()"
-                  id="assign-one"
-                  class="select-one"
-                >
-                            <span>Select assigned person</span>
-                            <img src="./add_task_img/open.svg" alt="" />
-                        </div>
-                
-                        <div id="dropdown-assign" class="d-none">
-                  <div
-                    onclick="selectAssign(event)"
-                    id="assigned-one"
-                    class="selected space-between"
-                  >
-                            <span>You</span>
-                    <input
-                      type="checkbox"
-                      id="checkbox-you"
-                      class="checkbox-style"
-                    />
+
+                            <div id="dropdown-assign" class="d-none">
+                                <div onclick="selectAssign(event)" id="assigned-one" class="selected space-between">
+                                    <span>You</span>
+                                    <input type="checkbox" id="checkbox-you" class="checkbox-style" />
+                                </div>
+                                <div onclick="selectAssign(event)" id="assigned-two" class="selected space-between">
+                                    <span>Maximilian</span>
+                                    <input type="checkbox" id="checkbox-max" class="checkbox-style" />
+                                </div>
+                                <div onclick="selectAssign(event)" id="assigned-three" class="selected">
+                                    <span>Invite new contact</span>
+                                    <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
+                                </div>
                             </div>
-                  <div
-                    onclick="selectAssign(event)"
-                    id="assigned-two"
-                    class="selected space-between"
-                  >
-                            <span>Maximilian</span>
-                    <input
-                      type="checkbox"
-                      id="checkbox-max"
-                      class="checkbox-style"
-                    />
-                            </div>
-                  <div
-                    onclick="selectAssign(event)"
-                    id="assigned-three"
-                    class="selected"
-                  >
-                            <span>Invite new contact</span>
-                    <img
-                      src="./add_task_img/kontakt.svg"
-                      id="contact-icon"
-                      class="icon-style"
-                    />
-                            </div>
-                        </div>
                         </form>
                     </section>
                 
