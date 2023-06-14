@@ -192,7 +192,7 @@
             </div>
             <div class="edit-contact-bottom">
                 <span class="contact-logo-bigger light-orange">TW</span>
-                <form action="">
+                <form onsubmit="">
                     <div class="close-x-dark-container" onclick="closeEditContacts()">
                         <img class="close-x-dark d-none" src="./asssets/img/close-x-dark.svg" alt="close x">
                     </div>
@@ -239,33 +239,38 @@
                 <span class="contact-logo-template gray">
                     <img class="big-head" src="./asssets/img/big-head.svg" alt="person head">
                 </span>
-                <form>
+
+
+                <div class="form-and-buttons">
                     <div onclick="closeAddContactsOverlay()" class="close-x-dark-container">
                         <img class="close-x-dark" src="./asssets/img/close-x-dark.svg" alt="close x-icon">
                     </div>
-                    <div class="input-field-top">
-                        <input required id="name-input" class="name-input" type="name" placeholder="Name">
-                        <img src="./asssets/img/name-head.svg" alt="name icon">
-                    </div>
-                    <div class="input-field">
-                        <input required id="email-input" class="email-input" type="email" placeholder="Email">
-                        <img src="./asssets/img/email-icon.svg" alt="email icon">
-                    </div>
-                    <div id="input-field" class="input-field">
-                        <input required id="tel-input" class="tel-input" type="tel" placeholder="Phone">
-                        <img src="./asssets/img/tel.svg" alt="name icon">
-                    </div>
-                    <div class="create-contact-container">
-                        <div onclick="deleteInputFields()" class="cancle d-none">
-                            <div class="cancle-text">Cancle</div>
-                            <img class="x-dark" src="./asssets/img/close-x-dark.svg" alt="Cancle">
+                    <form onsubmit="createNewContact()">
+                        <div class="input-field-top">
+                            <input required id="name-input" class="name-input" type="name" placeholder="Name">
+                            <img src="./asssets/img/name-head.svg" alt="name icon">
                         </div>
-                        <div onclick="createNewContact()" class="create-contact">
-                            <div class="create-contact-text white">Create contact</div>
-                            <img class="check-white" src="./asssets/img/check-white.svg" alt="check">
+                        <div class="input-field">
+                            <input required id="email-input" class="email-input" type="email" placeholder="Email">
+                            <img src="./asssets/img/email-icon.svg" alt="email icon">
                         </div>
-                    </div>
-                </form>
+                        <div id="input-field" class="input-field">
+                            <input required id="tel-input" class="tel-input" type="tel" placeholder="Phone">
+                            <img src="./asssets/img/tel.svg" alt="name icon">
+                        </div>
+                        <div class="buttons">
+                            <button class="create-contact">
+                                <div class="create-contact-text white">Create contact</div>
+                                <img class="check-white" src="./asssets/img/check-white.svg" alt="check">
+                            </button>
+                            <div onclick="deleteInputFields()" class="cancle d-none">
+                                <div class="cancle-text">Cancle</div>
+                                <img class="x-dark" src="./asssets/img/close-x-dark.svg" alt="Cancle">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
 
             </div>
         </div>
