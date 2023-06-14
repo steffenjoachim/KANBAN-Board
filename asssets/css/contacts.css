@@ -418,6 +418,10 @@ form{
     width: 400px;
 }
 
+/* .name-input{
+    visibility: hidden;
+} */
+
 .input-field img, .input-field-top img {
     margin-right: 10px;
     cursor: pointer;

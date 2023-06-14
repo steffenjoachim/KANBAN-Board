@@ -63,35 +63,34 @@ function createEditContactPageHtml(i, contact){
             </div>
             <div class="edit-contact-bottom">
                 <span id="logo-bigger${i}" class="contact-logo-bigger ${contact['icon-color']}">TW</span>
-                <form onsubmit"editContact('${contact['id']}',${i})">
+                <form onsubmit="editContact(${contact['id']},${i})">
                     <div class="close-x-dark-container" onclick="closeEditContacts()">
                         <img class="close-x-dark d-none" src="./asssets/img/close-x-dark.svg" alt="close x">
                     </div>
                     <div class="input-field-top">
                         <textarea class="name-displayed" name="name" id="name-displayed${i}" cols="50"
                             rows="10">Tatjana Wolf</textarea>
-                        <input class="name-input d-none" type="name" required placeholder="Name">
+                            <input class="name-input" type="text" required placeholder="Name">
                         <img src="./asssets/img/name-head.svg" alt="name icon">
                     </div>
                     <div class="input-field">
                         <textarea class="email-displayed" name="name" id="email-displayed${i}" cols="50"
-                            rows="10">wolf@gmail.com</textarea>
+                            rows="10"></textarea>
                         <input class="email-input d-none" type="email" placeholder="Email">
                         <img src="./asssets/img/email-icon.svg" alt="email icon">
                     </div>
                     <div class="input-field">
                         <textarea class="phone-displayed" name="name" id="phone-displayed${i}" cols="50"
-                            rows="10">+49 2222 222 22 2</textarea>
+                            rows="10"></textarea>
                         <input class="tel-input d-none" type="tel" placeholder="Phone">
                         <img src="./asssets/img/tel.svg" alt="name icon">
                     </div>
                     <div class="delete-save">
                         <div onclick="deleteContact(${i})" class="delete">Delete</div>
-                        <div onclick="editContact('${contact['id']}',${i})"
-                        ;
-                        class="save">Save</div>
-                    </div>
-                </form>
+                        <button class="create-contact">
+                            <div class="create-contact-text white">Save</div>
+                        </button>
+                 </form>
             </div>
     
     `
@@ -381,14 +380,11 @@ async function loadContacts(){
     try{contacts = JSON.parse(await getItem('contacts'))} catch(e){
         alert('Daten konten nicht geladen werden!')
      }
-     
-     
      if (window.location.pathname.includes('contacts.html')) {
         renderFirstContacts();
       } else {
         populateContactList();
       }
-     
 }
 
 
