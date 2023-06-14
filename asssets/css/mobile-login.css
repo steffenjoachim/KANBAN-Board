@@ -339,6 +339,15 @@ form {
     margin-left: 23px;
 }
 
+@media(max-width:1024px) {
+    header {
+        flex-direction: row;
+    }
+    header img {
+        padding-top: 0;
+    }
+}
+
 @media (min-width:1024px) {
     .remember-frogot-container {
         display: flex;
