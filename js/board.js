@@ -2,13 +2,13 @@
 
 //  beim hovern auf dem div-count1 wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
 
-function changePenimage(element) {
+function changeimage(element) {
     let img = element.querySelector('#add-card');
     img.src = './asssets/img/add-card-hover.svg';
 }
 // Funktion die das ursprüngliche Bild wiederherzustellt das div bekommt zudem onmouseout="restoreDoneimage(this)"
 
-function restorePenimage(element) {
+function restoreimage(element) {
     let img = element.querySelector('#add-card');
     img.src = './asssets/img/add-card.svg';
 }
@@ -56,24 +56,25 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
 
-let todos = [{
+let todos = [
+{
 
-    'id': '0',
-    'title': 'Create header and footer',
-    'description': `The header and footer on top and bottom of the 
-                     page for the mobile version. On top and left side of the page 
-                     for desktop version`,
-    'category': 'Web development',
-    'assignedTo': 'MM',          
-    'dueDate': '20.10.2023',
-    'prio': 'Medium',
-    'subtask': '2',
-    'status': 'todo',
+  'id': '0',
+  'title': 'Create landingpage',
+  'description': `The header and footer on top and bottom of the 
+                   page for the mobile version. On top and left side of the page 
+                   for desktop version`,
+  'category': 'Web development',
+  'assignedTo': 'MM',          
+  'dueDate': '20.10.2023',
+  'prio': 'Medium',
+  'subtask': '2',
+  'status': 'todo',
 },
 {
 
   'id': '1',
-  'title': 'Create header and footer',
+  'title': 'Create footer',
   'description': `The header and footer on top and bottom of the 
                    page for the mobile version. On top and left side of the page 
                    for desktop version`,
@@ -87,7 +88,7 @@ let todos = [{
 
 {
   'id': '2',
-  'title': 'Create header and footer',
+  'title': 'Create header',
   'description': `The header and footer on top and bottom of the 
                    page for the mobile version. On top and left side of the page 
                    for desktop version`,
@@ -103,18 +104,18 @@ let todos = [{
 
 let currentDraggedElement;
 
+
 function updateHTML() {
 
-  let filterTodo = todos.filter(t => t['status'] == 'todo' );
+  let filterTodo = todos.filter(t => t['status'] == 'todo');
   document.getElementById('todo-card').innerHTML = '';
-
+  
   for (let index = 0; index < filterTodo.length; index++) {
     const element = filterTodo[index];
     document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
-    
   }
 
-
+  
   let filterInpro = todos.filter(t => t['status'] == 'inProgress' );
   document.getElementById('progress-card').innerHTML = '';
 
@@ -143,7 +144,7 @@ function updateHTML() {
     document.getElementById('done-card').innerHTML += generateTodoHTML(element);
     
   }
-
+  
 }
   
 
@@ -194,18 +195,71 @@ function removeHighlight(id) {
 
 
 
+//////////////// Search function ///////////////
 
 
-
-// async function countChildrenAndDisplay() {
+// function filterTasks() {
   
-//     var taskCard = document.getElementById("todo-card");
-//     var childrenCount = taskCard.childElementCount;
-//     countTodo.push(childrenCount);
-//     console.log(typeof(childrenCount))
-//     await setItem('counttodo', JSON.stringify(countTodo))
+//   let search = document.getElementById('searchTask-input').value; // den Wert des Input Feldes holen
+//   search = search.toLowerCase(); // in KleinBuchstaben umwandeln 
+
+
+//   let container = document.getElementsByClassName('list'); 
+  
+//   for (let index = 0; index < container.length; index++) {
+//     const element = container[index];
+//     element.innerHTML = '';
+    
+//     // for (let j = 0; j < todos.length; j++) {
+//     //   const todo = todos[j];
+//     //   if (todos[j]['title'].toLowerCase().includes(search)) { // hier muss nur eine Abfrage stattfinden ob im JSON der gesuchte Name Ist wenn ja dann führt er die Funtion weiter 
+//     //     element.innerHTML += `<div draggable="true" ondragstart="startDragging(${todos[j]['id']})" id="card" class="item task-card card-with-PBar">
+//     //     <div class="task-category orange">${todos[j]['category']}</div>
+//     //     <div class="task-title">${todos[j]['title']}</div>
+//     //     <div class="task-description">${todos[j]['description']}</div>
+//     //     <div class="task-progress">
+//     //         <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+//     //             <div class="progress-bar bg-info" ></div>
+//     //         </div>
+//     //         <div class="progress-steps">0/2 Done</div>
+//     //     </div>
+//     //     <div class="task-assignedTo">
+//     //         <div class="task-icons">
+//     //             <span class="orange">SM</span>
+//     //             <span class="purple">MN</span>
+//     //             <span class="green">EF</span>
+//     //         </div>
+//     //         <img src="./asssets/img/toDo icon.svg" alt="">
+//     //     </div>
+//     //     </div>`
+    
+//     // }
+//     // }
+
 //   }
+  
+// }
 
+  
+// function addNewtodo() {
+//   let addTitle = document.getElementById('').value;
+//   let addDescription = document.getElementById('').value;
 
+//   const newTodo = {
 
-   
+//     'id': '',
+//     'title': (addTitle),
+//     'description': ``,
+//     'category': 'Web development',
+//     'assignedTo': 'MM',          
+//     'dueDate': '20.10.2023',
+//     'prio': 'Medium',
+//     'subtask': '2',
+//     'status': 'todo',
+//   };
+//   todos.push(newTodo);
+//   document.getElementById('').value = '';
+//   document.getElementById('').value = '';
+//   updateHTML()
+
+// }
