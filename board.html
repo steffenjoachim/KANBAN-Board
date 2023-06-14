@@ -51,7 +51,7 @@
 
             <div class="responsive-searchbar dis-none">
                 <div class="secondSearch-bar">
-            <input class="search-input" type="text" placeholder="Find Task" />
+            <input id="searchTask-input" onkeydown="filterTasks()" class="search-input" type="text" placeholder="Find Task" />
             <img
               class="search-bar-line"
               src="./asssets/img/searchBar line.svg"
@@ -92,8 +92,8 @@
                 <div class="card-head">
                     <div class="head-title">To do</div>
             <div
-              onmouseover="changePenimage(this)"
-              onmouseout="restorePenimage(this)"
+              onmouseover="changeimage(this)"
+              onmouseout="restoreimage(this)"
             >
               <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
             </div>
@@ -130,8 +130,8 @@
                 <div class="card-head">
                     <div class="head-title">In progress</div>
             <div
-              onmouseover="changePenimage(this)"
-              onmouseout="restorePenimage(this)"
+              onmouseover="changeimage(this)"
+              onmouseout="restoreimage(this)"
             >
               <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
             </div>
@@ -165,8 +165,8 @@
                 <div class="card-head">
                     <div class="head-title">Awaiting Feedback</div>
             <div
-              onmouseover="changePenimage(this)"
-              onmouseout="restorePenimage(this)"
+              onmouseover="changeimage(this)"
+              onmouseout="restoreimage(this)"
             >
               <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
                 </div>
@@ -199,8 +199,8 @@
                 <div class="card-head">
                     <div class="head-title">Done</div>
             <div
-              onmouseover="changePenimage(this)"
-              onmouseout="restorePenimage(this)"
+              onmouseover="changeimage(this)"
+              onmouseout="restoreimage(this)"
             >
               <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
             </div>
