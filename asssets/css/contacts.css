@@ -380,7 +380,6 @@ hr {
     font-size: 27px;
     font-weight: 400;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    border: 3px solid #FFFFFF;
     z-index: 999;
 }
 
@@ -393,7 +392,7 @@ form{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     height: 41px;
-    margin: 64px 16px 0 16px;
+    margin: 0 16px 0 16px;
     display: flex;
     justify-content: space-between;
 }
@@ -435,10 +434,11 @@ form{
 }
 
 .delete-save{
-    margin-top: 64px;
+    margin-top: 32px;
     margin-bottom: 16px;
+    margin-left: 18px;
     display: flex;
-    justify-content: center;
+    align-items: center;
 }
 
 .delete, .cancle {
@@ -450,13 +450,16 @@ form{
 }
 
 .save{
-    border: none;
-    color: #FFFFFF;
-    padding: 10px 13px;
-    margin-left: 8px;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 41px;
     background: #2A3647;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
     cursor: pointer;
+    margin-left: 146px;
 }
 
 /* ======= Add Contact ======= */
@@ -532,4 +535,5 @@ form{
 
 .create-contact-text {
     margin-left: 8px;
+    margin-right: 8px;
 }

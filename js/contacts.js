@@ -43,9 +43,9 @@ function renderEditContactPage(i){
     content.innerHTML = '';
     content.innerHTML += createEditContactPageHtml(i, contact);
     document.getElementById(`logo-bigger${i}`).innerHTML = contact['initials'];
-    document.getElementById(`name-displayed${i}`).innerHTML = contact['name'];
-    document.getElementById(`email-displayed${i}`).innerHTML = contact['email'];
-    document.getElementById(`phone-displayed${i}`).innerHTML = contact['telephone'];
+    document.getElementById(`name-displayed${i}`).value = contact['name'];
+    document.getElementById(`email-displayed${i}`).value = contact['email'];
+    document.getElementById(`phone-displayed${i}`).value = contact['telephone'];
 }
 
 
@@ -63,40 +63,32 @@ function createEditContactPageHtml(i, contact){
             </div>
             <div class="edit-contact-bottom">
                 <span id="logo-bigger${i}" class="contact-logo-bigger ${contact['icon-color']}">TW</span>
-                <form onsubmit"editContact('${contact['id']}',${i})">
+                <form onsubmit="editContact(${contact['id']},${i})">
                     <div class="close-x-dark-container" onclick="closeEditContacts()">
                         <img class="close-x-dark d-none" src="./asssets/img/close-x-dark.svg" alt="close x">
                     </div>
-                    <div class="input-field-top">
-                        <textarea class="name-displayed" name="name" id="name-displayed${i}" cols="50"
-                            rows="10">Tatjana Wolf</textarea>
-                        <input class="name-input d-none" type="name" required placeholder="Name">
+                    <div class="input-field-top input-top-edit">
+                            <input required id="name-displayed${i}" class="name-input" type="text"  placeholder="Name">
                         <img src="./asssets/img/name-head.svg" alt="name icon">
                     </div>
                     <div class="input-field">
-                        <textarea class="email-displayed" name="name" id="email-displayed${i}" cols="50"
-                            rows="10">wolf@gmail.com</textarea>
-                        <input class="email-input d-none" type="email" placeholder="Email">
+                        <input required class="email-input" id="email-displayed${i}" type="email" placeholder="Email">
                         <img src="./asssets/img/email-icon.svg" alt="email icon">
                     </div>
                     <div class="input-field">
-                        <textarea class="phone-displayed" name="name" id="phone-displayed${i}" cols="50"
-                            rows="10">+49 2222 222 22 2</textarea>
-                        <input class="tel-input d-none" type="tel" placeholder="Phone">
+                        <input required id="phone-displayed${i}" class="tel-input" type="tel" placeholder="Phone">
                         <img src="./asssets/img/tel.svg" alt="name icon">
                     </div>
                     <div class="delete-save">
                         <div onclick="deleteContact(${i})" class="delete">Delete</div>
-                        <div onclick="editContact('${contact['id']}',${i})"
-                        ;
-                        class="save">Save</div>
-                    </div>
-                </form>
+                        <button class="save">
+                            <div class="create-contact-text white">Save</div>
+                        </button>
+                 </form>
             </div>
     
     `
 }
-
 
 /**
  *  This function is used to close the 'Edit Contact' page. The contact displayed before will be shown again.
@@ -317,7 +309,7 @@ function closeAddContactsOverlay(){
  * 
  */
 
-function createNewContact() {
+async function createNewContact() {
     const name = document.getElementById('name-input');
     const email = document.getElementById('email-input');
     const telephone = document.getElementById('tel-input');
@@ -329,8 +321,8 @@ function createNewContact() {
         'icon-color': getRandomColor(),
         'id': calculateId()
     };
-    insertContact(newContact);
-    loadContacts();
+    await insertContact(newContact);
+    await loadContacts();
     deleteInputFields();
 }
 
@@ -381,14 +373,11 @@ async function loadContacts(){
     try{contacts = JSON.parse(await getItem('contacts'))} catch(e){
         alert('Daten konten nicht geladen werden!')
      }
-     
-     
      if (window.location.pathname.includes('contacts.html')) {
         renderFirstContacts();
       } else {
         populateContactList();
       }
-     
 }
 
 
@@ -636,9 +625,9 @@ async function deleteContact(i) {
 
 async function functionsToBeCalledAfterEdit(i, contact){ 
     deleteContact(i);
-    insertContact(contact);
-    loadContacts();
-    openContactDetails(i+1);
+    await insertContact(contact);
+    await loadContacts();
+    openContactDetails(i);
     await setItem('contacts', JSON.stringify(contacts));
     closeEditContacts()
 }
