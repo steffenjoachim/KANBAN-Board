@@ -20,56 +20,36 @@ function restoreDoneimage(element) {
     img.src = './asssets/img/done-icon.png';
 }
 
-
-
-
-
-function displayTodoCount(todos) {
-    let countTodos = 0;
-    let countInProgress = 0;
-    let countFeedback = 0;
-    let countDone = 0;
-    let countPrio = 0;
-
-    for (let i = 0; i < todos.length; i++) {
-      if (todos[i].status === 'todo') {
-        countTodos++;
-      }
+async function loadtodos() {
+    try {countTodo = JSON.parse(await getItem('counttodo'))}
+    catch(e) {
+        console.log('Error')
     }
+}
 
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].status === 'inProgress') {
-          countInProgress++;
-        }
-      }
 
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].status === 'feedback') {
-          countFeedback++;
-        }
-      }
+function userGreetingOnSummary() {
+    let currentTime = new Date().getHours();
+    let greetingText;
+    if (currentTime < 6) {
+        greetingText = "Good night!";
+    } else if (currentTime < 12) {
+        greetingText = "Good morning!";
+    } else if (currentTime < 18) {
+        greetingText = "Good afternoon!";
+    } else {
+        greetingText = "Good evening!";
+    }
+    document.getElementById('greeting').innerHTML = greetingText;
+    let name = JSON.parse(localStorage.getItem('name'))
+    setTimeout(function () {
+        document.getElementById('name').innerHTML = name
+    }, 5);
+}
+// function numberofTodo() {
+//     let todoSpan = document.getElementById('countTodo')
 
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].status === 'done') {
-            countDone++;
-        }
-      }
-
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].prio === 'urgent') {
-            countPrio++;
-        }
-      }
-   
-    document.getElementById('countTodo').textContent = todos.length.toString();
-    document.getElementById('countInprogress').textContent = countInProgress.toString();
-    document.getElementById('countFeedback').textContent = countFeedback.toString();
-    document.getElementById('countTodos').textContent = countTodos.toString();
-    document.getElementById('countDone').textContent = countDone.toString();
-    document.getElementById('countPrio').textContent = countPrio.toString();
-  }
+// }
   
-
-
-
+  
   

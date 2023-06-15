@@ -16,7 +16,6 @@
     <script src="./js/contacts.js"></script>
     <link rel="stylesheet" href="./asssets/css/web_header.css">
     <script src="./js/header_include.js"></script>
-    <!-- <script src="./js/script.js"></script> -->
     <script src="./js/footer.js"></script>
 </head>
 
@@ -192,7 +191,7 @@
             </div>
             <div class="edit-contact-bottom">
                 <span class="contact-logo-bigger light-orange">TW</span>
-                <form onsubmit="">
+                <form>
                     <div class="close-x-dark-container" onclick="closeEditContacts()">
                         <img class="close-x-dark d-none" src="./asssets/img/close-x-dark.svg" alt="close x">
                     </div>
@@ -216,7 +215,9 @@
                     </div>
                     <div class="delete-save">
                         <div class="delete">Delete</div>
-                        <div class="save">Save</div>
+                        <button class="create-contact">
+                            <div class="create-contact-text white">Save</div>
+                        </button>
                     </div>
                 </form>
             </div>
