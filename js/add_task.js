@@ -4,14 +4,15 @@ let tasksArray = [];
 const subtasks = [];
 
 
-function createTask() {
+async function createTask() {
   // Hier holen wir die Werte aus den verschiedenen Eingabefeldern
   let title = document.getElementById("title-input").value;
   let description = document.getElementById("description-input").value;
   let category = document.getElementById("select-one").innerText;  // Sie müssen den richtigen Weg finden, um den ausgewählten Wert zu erhalten
   let assignedTo = getAssignedTo(); // Neue Funktion, um die zugewiesene Person zu erhalten
   let dueDate = document.querySelector(".date-input-container input").value;
-  let prio = getSelectedPrio();  
+  let prio = getSelectedPrio(); 
+  let taskId = calculateId(); 
 
   // Hier holen wir die Subtasks aus dem Subtask-Array
   let subtasks = [];
@@ -36,6 +37,8 @@ function createTask() {
 
   // Nun erstellen wir ein neues Task-Objekt mit diesen Werten
   let newTask = {
+    id: taskId,
+    'status': 'todo',
     title: title,
     description: description,
     category: category,
@@ -49,9 +52,12 @@ function createTask() {
   // Jetzt können wir das Task-Objekt zu unserem Array hinzufügen
   tasksArray.push(newTask);
 
+  await setItem('task', JSON.stringify(tasksArray));
+
   // Und schließlich können wir die Eingabefelder zurücksetzen, damit sie bereit für die Eingabe einer neuen Aufgabe sind
   resetInputFields();
 }
+
 
 function resetInputFields() {
   document.getElementById("title-input").value = "";
@@ -76,6 +82,18 @@ function resetInputFields() {
 
   // Zurücksetzen des "assignedTo"-Feldes
   resetAssignedTo();
+}
+
+function calculateId() {
+  if (tasksArray.length === 0) {
+    return 1; // Wenn keine Tasks vorhanden sind, starte mit der ID 1
+  }
+
+  // Finde die maximale ID unter den vorhandenen Tasks:
+  const maxId = Math.max(...tasksArray.map(task => task.id));
+
+  // Erhöhe die maximale ID um 1, um eine neue eindeutige ID zu generieren:
+  return maxId + 1;
 }
 
 
@@ -330,16 +348,16 @@ function saveInviteContact() {
   cancelInviteContact();
 }
 
-const cancelBtn = document.querySelector('.cancel-btn-desktop');
-const cancelImg = cancelBtn.querySelector('.cancel-img');
+// const cancelBtn = document.querySelector('.cancel-btn-desktop');
+// // const cancelImg = cancelBtn.querySelector('.cancel-img');
 
-cancelBtn.addEventListener('mouseenter', () => {
-  cancelImg.src = './asssets/img/blue-cancel.svg';
-});
+// cancelBtn.addEventListener('mouseenter', () => {
+//   cancelImg.src = './asssets/img/blue-cancel.svg';
+// });
 
-cancelBtn.addEventListener('mouseleave', () => {
-  cancelImg.src = './asssets/img/cancel-svg.svg';
-});
+// cancelBtn.addEventListener('mouseleave', () => {
+//   cancelImg.src = './asssets/img/cancel-svg.svg';
+// });
 
 function getAssignedTo() {
   const checkboxes = document.querySelectorAll('#dropdown-assign input[type="checkbox"]');
