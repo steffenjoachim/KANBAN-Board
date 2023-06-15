@@ -13,6 +13,13 @@ async function loadContactsForAssign(){
     
 }
 
+async function loadNewtasks() {
+  try {tasksArray = JSON.parse(await getItem('task'))}
+  catch (e) {
+    alert('Error')
+  }
+} 
+
 
 async function createTask() {
   // Hier holen wir die Werte aus den verschiedenen Eingabefeldern
