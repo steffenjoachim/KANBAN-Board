@@ -4,6 +4,16 @@ let tasksArray = [];
 const subtasks = [];
 
 
+async function loadContactsForAssign(){
+  try{contacts = JSON.parse(await getItem('contacts'))} catch(e){
+      alert('Daten konten nicht geladen werden!')
+   }
+   
+      populateContactList();
+    
+}
+
+
 async function createTask() {
   // Hier holen wir die Werte aus den verschiedenen Eingabefeldern
   let title = document.getElementById("title-input").value;

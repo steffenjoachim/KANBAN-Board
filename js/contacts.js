@@ -378,7 +378,7 @@ async function loadContacts(){
      if (window.location.pathname.includes('contacts.html')) {
         renderFirstContacts();
       } else {
-        populateContactList();
+        // populateContactList();
       }
 }
 

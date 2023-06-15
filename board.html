@@ -20,13 +20,12 @@
     <script src="js/footer.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/add_task_popup.js"></script>
-    <script src="./js/add_task.js"></script>
     <link rel="stylesheet" href="asssets/css/web_header.css">
     <script src="./js/storage.js"></script>
     
     <title>Board</title>
 </head>
-<body onload="init(); updateHTML()">
+<body onload="init(); updateHTML(); loadContactsForAssign()">
     <div w3-header-include-html="/asssets/templates/header.html"></div>
     <!-- <div class="width" w3-header-include-html="/asssets/templates/web_header.html"></div> -->
     <div class="nav-bar-container">
@@ -546,6 +545,7 @@
          </div>
     </footer>
     <script src="js/header_include.js"></script>
+    <script src="./js/add_task.js"></script>
     
     
 </body>
