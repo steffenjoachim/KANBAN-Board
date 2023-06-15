@@ -1,4 +1,11 @@
+// let todos = []
 
+// async function loadNewtasks() {
+//   try {todos = JSON.parse(await getItem('task'))}
+//   catch (e) {
+//     alert('Error')
+//   }
+// } 
 
 //  beim hovern auf dem div-count1 wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
 
@@ -198,47 +205,35 @@ function removeHighlight(id) {
 //////////////// Search function ///////////////
 
 
-// function filterTasks() {
-  
-//   let search = document.getElementById('searchTask-input').value; // den Wert des Input Feldes holen
-//   search = search.toLowerCase(); // in KleinBuchstaben umwandeln 
+function filterTasks() {
+  let search = document.getElementById('searchTask-input').value.toLowerCase();
 
+  let todoCard = document.getElementById('todo-card');
+  let progressCard = document.getElementById('progress-card');
+  let feedbackCard = document.getElementById('Feedback-card');
+  let doneCard = document.getElementById('done-card');
 
-//   let container = document.getElementsByClassName('list'); 
-  
-//   for (let index = 0; index < container.length; index++) {
-//     const element = container[index];
-//     element.innerHTML = '';
-    
-//     // for (let j = 0; j < todos.length; j++) {
-//     //   const todo = todos[j];
-//     //   if (todos[j]['title'].toLowerCase().includes(search)) { // hier muss nur eine Abfrage stattfinden ob im JSON der gesuchte Name Ist wenn ja dann führt er die Funtion weiter 
-//     //     element.innerHTML += `<div draggable="true" ondragstart="startDragging(${todos[j]['id']})" id="card" class="item task-card card-with-PBar">
-//     //     <div class="task-category orange">${todos[j]['category']}</div>
-//     //     <div class="task-title">${todos[j]['title']}</div>
-//     //     <div class="task-description">${todos[j]['description']}</div>
-//     //     <div class="task-progress">
-//     //         <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-//     //             <div class="progress-bar bg-info" ></div>
-//     //         </div>
-//     //         <div class="progress-steps">0/2 Done</div>
-//     //     </div>
-//     //     <div class="task-assignedTo">
-//     //         <div class="task-icons">
-//     //             <span class="orange">SM</span>
-//     //             <span class="purple">MN</span>
-//     //             <span class="green">EF</span>
-//     //         </div>
-//     //         <img src="./asssets/img/toDo icon.svg" alt="">
-//     //     </div>
-//     //     </div>`
-    
-//     // }
-//     // }
+  todoCard.innerHTML = '';
+  progressCard.innerHTML = '';
+  feedbackCard.innerHTML = '';
+  doneCard.innerHTML = '';
 
-//   }
-  
-// }
+  for (let index = 0; index < todos.length; index++) {
+    const element = todos[index];
+
+    if (element.title.toLowerCase().includes(search)) {
+      if (element.status === 'todo') {
+        todoCard.innerHTML += generateTodoHTML(element);
+      } else if (element.status === 'inProgress') {
+        progressCard.innerHTML += generateTodoHTML(element);
+      } else if (element.status === 'feedback') {
+        feedbackCard.innerHTML += generateTodoHTML(element);
+      } else if (element.status === 'done') {
+        doneCard.innerHTML += generateTodoHTML(element);
+      }
+    }
+  }
+}
 
   
 // function addNewtodo() {
