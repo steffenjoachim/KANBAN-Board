@@ -32,21 +32,19 @@ async function footerIncludeHTML() {
 }
 
 function burgerMenu() {
-  document.getElementById('burger-menu').classList.add = ('slide')
+  let burgerMenu = document.getElementById('burger-menu');
   document.getElementById('background-container').style.display = 'block';
   firstClick = true;
 }
 
 function closeBurgerMenu() {
-  let div = document.getElementById('background-container');
-
   if (
     event.target.id === 'web-header' ||
     event.target.id === 'background-container' ||
     event.target.id === 'header' ||
     event.target.id === 'nav-bar'
   ) {
-    div.style.display = 'none';
+    document.getElementById('background-container').style.display = 'none';
   }
 }
 
@@ -54,18 +52,18 @@ function userGreetingMobile() {
   let currentTime = new Date().getHours();
   let greetingText;
   if (currentTime < 6) {
-      greetingText = "Good night!";
+    greetingText = "Good night!";
   } else if (currentTime < 12) {
-      greetingText = "Good morning!";
+    greetingText = "Good morning!";
   } else if (currentTime < 18) {
-      greetingText = "Good afternoon!";
+    greetingText = "Good afternoon!";
   } else {
-      greetingText = "Good evening!";
+    greetingText = "Good evening!";
   }
   document.getElementById('greeting').innerHTML = greetingText;
   let name = JSON.parse(localStorage.getItem('name'))
   setTimeout(function () {
-      document.getElementById('user-name').innerHTML = name
+    document.getElementById('user-name').innerHTML = name
   }, 5);
 }
 
@@ -75,7 +73,7 @@ function guestLogin(user) {
 
     document.getElementById('body').innerHTML = '';
     document.getElementById('body').innerHTML =
-`
+      `
     <link rel="stylesheet" href="./asssets/css/header.css">
     <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="./asssets/css/footer.css">
@@ -100,9 +98,9 @@ function guestLogin(user) {
   } else {
     loadSummary(user);
   }
-  setTimeout(function(){
+  setTimeout(function () {
     loadSummary(user);
-  },1500)
+  }, 1500)
 }
 
 function loadSummary(user) {
