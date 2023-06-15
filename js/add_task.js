@@ -46,7 +46,7 @@ async function createTask() {
     dueDate: dueDate,
     prio: prio,
     subtasks: subtasks,
-    selectedImage: selectedImage // Hier fügen wir das ausgewählte Bild zum Task-Objekt hinzu
+    selectedImage: selectedImage, // Hier fügen wir das ausgewählte Bild zum Task-Objekt hinzu
   };
 
   // Jetzt können wir das Task-Objekt zu unserem Array hinzufügen

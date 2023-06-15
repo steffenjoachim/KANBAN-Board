@@ -46,10 +46,51 @@ function userGreetingOnSummary() {
         document.getElementById('name').innerHTML = name
     }, 5);
 }
-// function numberofTodo() {
-//     let todoSpan = document.getElementById('countTodo')
 
-// }
+
+function displayTodoCount(todos) {
+    let countTodos = 0;
+    let countInProgress = 0;
+    let countFeedback = 0;
+    let countDone = 0;
+    let countPrio = 0;
+
+    for (let i = 0; i < todos.length; i++) {
+      if (todos[i].status === 'todo') {
+        countTodos++;
+      }
+    }
+
+    for (let i = 0; i < todos.length; i++) {
+        if (todos[i].status === 'inProgress') {
+          countInProgress++;
+        }
+      }
+
+    for (let i = 0; i < todos.length; i++) {
+        if (todos[i].status === 'feedback') {
+          countFeedback++;
+        }
+      }
+
+    for (let i = 0; i < todos.length; i++) {
+        if (todos[i].status === 'done') {
+            countDone++;
+        }
+      }
+
+    for (let i = 0; i < todos.length; i++) {
+        if (todos[i].prio === 'urgent') {
+            countPrio++;
+        }
+      }
+   
+    document.getElementById('countTodo').textContent = todos.length.toString();
+    document.getElementById('countInprogress').textContent = countInProgress.toString();
+    document.getElementById('countFeedback').textContent = countFeedback.toString();
+    document.getElementById('countTodos').textContent = countTodos.toString();
+    document.getElementById('countDone').textContent = countDone.toString();
+    document.getElementById('countPrio').textContent = countPrio.toString();
+  }
   
-  
-  
+

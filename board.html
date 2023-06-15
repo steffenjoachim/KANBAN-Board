@@ -21,10 +21,11 @@
     <script src="./js/add_task_popup.js"></script>
     <script src="./js/add_task.js"></script>
     <link rel="stylesheet" href="asssets/css/web_header.css">
+    <script src="./js/storage.js"></script>
+    
     <title>Board</title>
 </head>
-
-<body onload="init(); render()">
+<body onload="init(); updateHTML()">
     <div w3-header-include-html="/asssets/templates/header.html"></div>
     <!-- <div class="width" w3-header-include-html="/asssets/templates/web_header.html"></div> -->
     <div class="nav-bar-container">
@@ -144,37 +145,42 @@
                 </div>
                 
                 <div class="empty-card">No tasks to do</div>
+
+
             </div>
                 <!----------- In progress Section ---------------->
 
             <div class="task-list">
                 <div class="card-head">
                     <div class="head-title">In progress</div>
-                    <div onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)"><img id="add-card"
-                            src="./asssets/img/add-card.svg" alt=""></div>
+            <div
+              onmouseover="changePenimage(this)"
+              onmouseout="restorePenimage(this)"
+            >
+              <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
+            </div>
                 </div>
 
-                <div class="list" id="progress-card">
-                    <div class="task-card">
-
-                        <div class="task-category pink">Sales</div>
-                        <div class="task-title">Call potential clients</div>
-                        <div class="task-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-
-                        <div class="task-assignedTo">
-                            <div class="task-icons">
-                                <span class="orange">SM</span>
-                                <span class="purple">MN</span>
-                                <span class="dark-blue">+2</span>
-                            </div>
-
-                            <img src="./asssets/img/inProgress-icon.svg" alt="">
+          <div class="list" id="progress-card" ondrop="moveTo('inProgress'); removeHighlight('progress-card')" ondragleave="removeHighlight('progress-card')" ondragover="allowDrop(event); highlight('progress-card')">
+                <div class="task-card">
+                    <div class="task-category pink">Sales</div>
+                    <div class="task-title">Call potential clients</div>
+              <div class="task-description">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </div>
+                    
+                    <div class="task-assignedTo">
+                        <div class="task-icons">
+                            <span class="orange">SM</span>
+                            <span class="purple">MN</span>
+                            <span class="dark-blue">+2</span>
                         </div>
 
+                <img src="./asssets/img/inProgress-icon.svg" alt="" />
                     </div>
                 </div>
-
-
+                </div>
+            
                 <div class="empty-card">No tasks in progress</div>
             </div>
                 <!----------- Awaiting Feedback Section ---------------->
