@@ -60,6 +60,7 @@
   #prio-buttons {
     display: flex;
     margin-bottom: 10px;
+    
   }
   
   .prio-button {
@@ -80,9 +81,13 @@
     font-weight: 400;
   }
   
-  .prio-button img {
-    width: 16px;
-    margin-left: 10px;
+  .prio-img {
+    /* Andere CSS-Regeln hier */
+    transition: transform 125ms;
+  }
+  
+  .prio-img:hover {
+    transform: scale(1.02);
   }
   
   input[type="date"]::-webkit-calendar-picker-indicator {
@@ -111,7 +116,24 @@
     background: url('../../add_task_img/calender-icon.svg'); /* ersetzen Sie 'path/to/your/image.png' durch den Pfad zu Ihrem Bild */
     background-size: contain;
   }
-
+  
+  
+  
+  .select-one {
+    background-color: #fff;
+    height: 19px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: 125ms;
+    border: 1px solid #D1D1D1;
+  }
+  
   .select-one span {
     margin-left: 10px;
   }
@@ -125,6 +147,8 @@
     padding-bottom: 10px;
     font-weight: 400;
     cursor: pointer;
+    border-left: 1px solid #D1D1D1;
+    border-right: 1px solid #D1D1D1;
   }
   
   .selected span{
@@ -147,6 +171,10 @@
     
   }
   
+  .d-none {
+    display: none;
+  }
+  
   #dropdown:not(.d-none) {
     max-height: 200px;  
   }
@@ -166,6 +194,46 @@
     border-top: none;
     
    }
+  
+   .color-circle {
+    margin-left: 10px;
+   }
+  
+   #new-category-fields {
+    position: relative; /* Dies macht das div zum Container für absolut positionierte Elemente */
+  }
+  
+  #new-category-name {
+    background-color: #fff;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    font-weight: 400;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    position: relative; /* Für die Positionierung der Icons */
+  }
+  
+  .hover-dot {
+    margin-right: 20px;
+  }
+  
+  .hover-dot:hover{
+    border-radius: 50%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
+  
+  .icons-wrapper-two {
+    position: absolute; /* Positioniert das div relativ zum nächstgelegenen positionierten Vorfahren (in diesem Fall #new-category-fields) */
+    right: 10px; /* Positioniert das div 10px vom rechten Rand des Containers entfernt */
+    top: 30%; /* Positioniert das div auf halber Höhe des Containers */
+    transform: translateY(-50%); /* Verschiebt das div um 50% seiner Höhe nach oben, um es vertikal zu zentrieren */
+  }
+  
+  
   
    /* ... Assigned-to ... */
   
@@ -188,7 +256,7 @@
   }
   
   .select-one img {
-    width: 16px;
+    
     margin-right: 10px;
   }
   
@@ -200,10 +268,35 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height 125ms ease-in-out;
+  overflow-y: auto;
+  }
+  
+  /* Für WebKit-Browser wie Chrome, Safari, und neuere Opera-Versionen */
+  #dropdown-assign::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  /* Hintergrund der Scrollleiste */
+  #dropdown-assign::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    margin-bottom: 15px;
+  }
+  
+  /* Griff der Scrollleiste */
+  #dropdown-assign::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px; /* Für abgerundete Ecken */
+  }
+  
+  /* Scrollleiste beim Überfahren mit der Maus */
+  #dropdown-assign::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
   
   #dropdown-assign:not(.d-none) {
   max-height: 200px;  
+  border-bottom: 0.5px solid #d1d1d1;
+  border-radius: 0 0 10px 10px;
   }
   
   #assigned-one {
@@ -223,6 +316,30 @@
   border-top: none;
   }
   
+  #new-contact-fields {
+    position: relative;
+  }
+  
+  #new-contact-fields input {
+    background-color: #fff;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    font-weight: 400;
+    width: 100%;
+    height: 51px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    
+  }
+  
+  .icons-wrapper-three {
+    position: absolute; /* Positioniert das div relativ zum nächstgelegenen positionierten Vorfahren (in diesem Fall #new-category-fields) */
+    right: 10px; /* Positioniert das div 10px vom rechten Rand des Containers entfernt */
+    top: 42%; /* Positioniert das div auf halber Höhe des Containers */
+    transform: translateY(-50%); /* Verschiebt das div um 50% seiner Höhe nach oben, um es vertikal zu zentrieren */
+  }
+  
   .space-between {
     display: flex;
     justify-content: space-between;
@@ -232,17 +349,23 @@
     color: #D1D1D1;
   }
   
+  #subtasks {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .subtask-name {
+    margin: 0;
+    margin-left: 5px;
+  
+  }
+  
   .subtask {
     display: flex;
     align-items: center;
   }
   
-  .subtask-name {
-    margin: 0;
-  
-  }
-  
-  .subtask-input {
+  #subtask {
     display: block;
     width: 100%;
     padding-left: 5px;
@@ -259,6 +382,29 @@
   .subtask-input:focus {
     outline: none;
     border-color: #29ABE2;
+  }
+  
+  .subtask-input-wrapper {
+    position: relative;
+  }
+  
+  .plus-icon {
+    position: absolute;
+    right: 10px;
+    top: 45%;
+    transform: translateY(-50%);
+  }
+  
+  .icons-wrapper {
+    position: absolute;
+    right: 10px;
+    top: 45%;
+    transform: translateY(-50%);
+    display: none;
+  }
+  
+  .subtask-input:focus + .icons-wrapper {
+    display: block;  /* Die Icons anzeigen, wenn das Input-Feld fokussiert ist */
   }
   
   .task-added-container {
@@ -291,35 +437,6 @@
   }
   
   .cancel-btn-desktop {
-    display: none;
-  }
-  .create-btn-desktop {
-    display: none;
-  }
-
-  .wrapper{
-    align-items: flex-start;;
-    margin-right: 0;
-  }
-  #task-added {
-    top: 86%;
-    left: 42%;
-  }
-
-  input {
-    height: 47px;
-    width: 100%;
-  }
-
-  .select-one {
-    height: 49px;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  
-
-  .cancel-btn-desktop {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -335,8 +452,8 @@
     height: 55px;
     width: 136px;
     position: absolute;
-    right: 270px;
-    top: 735px;
+    left: 0;
+    top: 500px;
     transition: 125ms ease-in-out;
   }
 
@@ -353,7 +470,6 @@
   .cancel-img-hover {
     display: none;
   }
-
   .create-btn-desktop {
     display: flex;
     align-items: center;
@@ -371,8 +487,8 @@
     height: 55px;
     width: 187px;
     position: absolute;
-    right: 70px;
-    top: 735px;
+    right: 0;
+    top: 500px;
     transition: 125ms ease-in-out;
   }
 
@@ -386,11 +502,6 @@
     margin-left: 16px
   }
 
-  .vertical-line {
-    border-left: 1px solid #D1D1D1;  /* Die Dicke und Farbe der Linie anpassen */
-    height: 500px;  /* Höhe nach Bedarf anpassen */
-    width: 0;
-  }
   @media(min-width:768px) {
     .wrapper {
       align-items: center;
@@ -403,6 +514,7 @@
      .section-two {
       min-width: 300px;
       padding-left: 40px;
+      position: relative;
      }
      .site-title {
       width: 680px;

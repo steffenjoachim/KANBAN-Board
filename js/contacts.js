@@ -43,9 +43,10 @@ function renderEditContactPage(i){
     content.innerHTML = '';
     content.innerHTML += createEditContactPageHtml(i, contact);
     document.getElementById(`logo-bigger${i}`).innerHTML = contact['initials'];
-    document.getElementById(`name-displayed${i}`).innerHTML = contact['name'];
-    document.getElementById(`email-displayed${i}`).innerHTML = contact['email'];
-    document.getElementById(`phone-displayed${i}`).innerHTML = contact['telephone'];
+    document.getElementById(`name-displayed${i}`).value = contact['name'];
+    document.getElementById(`email-displayed${i}`).value = contact['email'];
+    document.getElementById(`phone-displayed${i}`).value
+     = contact['telephone'];
 }
 
 
@@ -67,27 +68,21 @@ function createEditContactPageHtml(i, contact){
                     <div class="close-x-dark-container" onclick="closeEditContacts()">
                         <img class="close-x-dark d-none" src="./asssets/img/close-x-dark.svg" alt="close x">
                     </div>
-                    <div class="input-field-top">
-                        <textarea class="name-displayed" name="name" id="name-displayed${i}" cols="50"
-                            rows="10">Tatjana Wolf</textarea>
-                            <input class="name-input" type="text" required placeholder="Name">
+                    <div class="input-field-top input-top-edit">
+                            <input required id="name-displayed${i}" class="name-input" type="text"  placeholder="Name">
                         <img src="./asssets/img/name-head.svg" alt="name icon">
                     </div>
                     <div class="input-field">
-                        <textarea class="email-displayed" name="name" id="email-displayed${i}" cols="50"
-                            rows="10"></textarea>
-                        <input class="email-input d-none" type="email" placeholder="Email">
+                        <input required class="email-input" id="email-displayed${i}" type="email" placeholder="Email">
                         <img src="./asssets/img/email-icon.svg" alt="email icon">
                     </div>
                     <div class="input-field">
-                        <textarea class="phone-displayed" name="name" id="phone-displayed${i}" cols="50"
-                            rows="10"></textarea>
-                        <input class="tel-input d-none" type="tel" placeholder="Phone">
+                        <input required id="phone-displayed${i}" class="tel-input" type="tel" placeholder="Phone">
                         <img src="./asssets/img/tel.svg" alt="name icon">
                     </div>
                     <div class="delete-save">
                         <div onclick="deleteContact(${i})" class="delete">Delete</div>
-                        <button class="create-contact">
+                        <button class="save">
                             <div class="create-contact-text white">Save</div>
                         </button>
                  </form>
