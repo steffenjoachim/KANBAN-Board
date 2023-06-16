@@ -242,6 +242,10 @@ input[type="date"]::before {
   
  }
 
+ #selected-contact {
+  display: flex;
+ }
+
  .color-circle {
   margin-left: 10px;
  }
@@ -668,3 +672,4 @@ border-top: none;
     left: 133px;
 }
 }
+

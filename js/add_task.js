@@ -310,15 +310,40 @@ function selectAssignedTo() {
 function selectAssign(event) {
   const assignOne = document.getElementById('assign-one');
   const dropdownAssign = document.getElementById('dropdown-assign');
-  
+  const selectedContactDiv = document.getElementById('selected-contact');
+
   if (event.target.type === 'checkbox') {
     // Überprüfen, ob die Checkbox ausgewählt ist
     if (event.target.checked) {
       const selectedPerson = event.target.parentElement.textContent.trim();
-      // Hier können Sie die ausgewählte Person weiterverarbeiten, z.B. in einem Array speichern
-      console.log('Ausgewählte Person:', selectedPerson);
+
+      // Suche nach dem ausgewählten Kontakt in Ihrem Array
+      let selectedContact = contacts.find(contact => contact.name === selectedPerson);
+      
+      if (selectedContact) {
+        // Erstellung des divs für den ausgewählten Kontakt
+        let contactDiv = document.createElement('div');
+        contactDiv.style.backgroundColor = selectedContact['icon-color'];
+        contactDiv.style.borderRadius = '50%';
+        contactDiv.style.width = '50px';
+        contactDiv.style.height = '50px';
+        contactDiv.style.display = 'flex';
+        contactDiv.style.justifyContent = 'center';
+        contactDiv.style.alignItems = 'center';
+        contactDiv.style.color = 'white';
+        contactDiv.textContent = selectedContact.initials;
+
+        // Hinzufügen des erstellten divs in die 'selected-contact'-div
+        selectedContactDiv.appendChild(contactDiv);
+      }
+
+    } else { // Wenn die Checkbox deaktiviert wird
+      // Hier können Sie den Kontakt aus der 'selected-contact'-Div entfernen
+      while (selectedContactDiv.firstChild) {
+        selectedContactDiv.firstChild.remove();
+      }
     }
-    
+
     // Dropdown-Verhalten aktualisieren
     if (!event.target.checked) {
       dropdownAssign.classList.remove('d-none');
