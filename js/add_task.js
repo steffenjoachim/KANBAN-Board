@@ -69,6 +69,8 @@ async function createTask() {
   // Jetzt können wir das Task-Objekt zu unserem Array hinzufügen
   tasksArray.push(newTask);
 
+  
+
   await setItem('task', JSON.stringify(tasksArray));
 
   // Und schließlich können wir die Eingabefelder zurücksetzen, damit sie bereit für die Eingabe einer neuen Aufgabe sind
@@ -94,6 +96,7 @@ function resetInputFields() {
     selectedImageContainer.innerHTML = "";
   }
 
+
   // Zurücksetzen der ausgewählten Priorität
   resetImages();
 
@@ -101,9 +104,11 @@ function resetInputFields() {
   resetAssignedTo();
 }
 
+
+
 function calculateId() {
   if (tasksArray.length === 0) {
-    return 1; // Wenn keine Tasks vorhanden sind, starte mit der ID 1
+    return 0; // Wenn keine Tasks vorhanden sind, starte mit der ID 1
   }
 
   // Finde die maximale ID unter den vorhandenen Tasks:
