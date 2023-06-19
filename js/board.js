@@ -188,7 +188,8 @@ function updateHTML() {
   
   for (let index = 0; index < filterTodo.length; index++) {
     const element = filterTodo[index];
-    document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
+    document.getElementById('todo-card').innerHTML += generateTodoHTML(element, index);
+    document.getElementById(`task-category${index}`).style.backgroundColor = element['selectedImage']
   }
   checkEmptyList()
 
@@ -199,7 +200,7 @@ function updateHTML() {
   for (let index = 0; index < filterInpro.length; index++) {
     const element = filterInpro[index];
     document.getElementById('progress-card').innerHTML += generateTodoHTML(element);
-    
+    document.getElementById(`task-category${index}`).style.backgroundColor = element['selectedImage']
   }
   checkEmptyListProgress();
 
@@ -210,7 +211,7 @@ function updateHTML() {
   for (let index = 0; index < filterFeedback.length; index++) {
     const element = filterFeedback[index];
     document.getElementById('Feedback-card').innerHTML += generateTodoHTML(element);
-    
+    document.getElementById(`task-category${index}`).style.backgroundColor = element['selectedImage']
   }
   checkEmptyListFeedback();
   
@@ -221,7 +222,7 @@ function updateHTML() {
   for (let index = 0; index < filterDone.length; index++) {
     const element = filterDone[index];
     document.getElementById('done-card').innerHTML += generateTodoHTML(element);
-    
+    document.getElementById(`task-category${index}`).style.backgroundColor = element['selectedImage']
   }
   checkEmptyListDone();
   
@@ -232,9 +233,9 @@ function startDragging(id) {
   currentDraggedElement = id;
  }
 
-function generateTodoHTML(element) {
+function generateTodoHTML(element, index) {
   return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar">
-  <div class="task-category orange">${element['category']}</div>
+  <div id="task-category${index}" class="task-category">${element['category']}</div>
   <div class="task-title">${element['title']}</div>
   <div class="task-description">${element['description']}</div>
   <div class="task-progress">
@@ -252,6 +253,9 @@ function generateTodoHTML(element) {
       <img src="./asssets/img/toDo icon.svg" alt="">
   </div>
   </div>`;
+  
+
+  
 }
 
 function allowDrop(ev) {
