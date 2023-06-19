@@ -309,17 +309,15 @@ function countProgressSteps(id) {
   // debugger
   let totalSubTask = todos[id]['subtasks'].length;
   
-
+  let totalSubTaskChecked = 0;
   for (let j = 0; j < totalSubTask; j++) {
-    let totalSubTaskChecked = 0;
+    
     if (todos[id]['subtasks'][j]['checked'] === true) {
-
       totalSubTaskChecked++
     }
-    return `${totalSubTaskChecked} / ${totalSubTask} Done`
+   
   }
-
-  
+  return `${totalSubTaskChecked} / ${totalSubTask} Done`
 } 
 
 
