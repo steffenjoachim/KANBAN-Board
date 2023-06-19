@@ -252,7 +252,7 @@ function generateTodoHTML(element) {
       <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
           <div class="progress-bar bg-info"></div>
       </div>
-      <div class="progress-steps">0/2 Done</div>
+      <div id="progress-steps${element['id']}" class="progress-steps"></div>
   </div>
   <div class="task-assignedTo">
       <div class="task-icons">
@@ -289,12 +289,32 @@ function removeHighlight(id) {
 
 
 function showProgressBar(id, element){
-  console.log('called');
   if (todos[id]['subtasks'].length > 0){
-    console.log(id);
       document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
+    document.getElementById(`progress-steps${element['id']}`).innerHTML = countProgressSteps(id);
   }
 }
+
+
+
+
+
+function countProgressSteps(id) {
+  // debugger
+  let totalSubTask = todos[id]['subtasks'].length;
+  
+
+  for (let j = 0; j < totalSubTask; j++) {
+    let totalSubTaskChecked = 0;
+    if (todos[id]['subtasks'][j]['checked'] === true) {
+
+      totalSubTaskChecked++
+    }
+    return `${totalSubTaskChecked} / ${totalSubTask} Done`
+  }
+
+  
+} 
 
 
 //////////// funktionen die die Anzeige (NO TASKS ...) je Liste eine Funktion //////////////
