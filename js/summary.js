@@ -36,9 +36,7 @@ function userGreetingOnSummary() {
     }
     document.getElementById('greeting').innerHTML = greetingText;
     let name = JSON.parse(localStorage.getItem('name'))
-    setTimeout(function () {
-        document.getElementById('name').innerHTML = name
-    }, 5);
+    document.getElementById('name').innerHTML = name
 }
 
 let boardTodos = [];

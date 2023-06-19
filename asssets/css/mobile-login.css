@@ -241,7 +241,6 @@ form {
     justify-content: center;
     gap: 35px;
     align-items: baseline;
-
 }
 
 .sign-up-container span {
@@ -293,9 +292,11 @@ form {
     margin-top: -48px
 }
 
-.sign-in-container {
-    height: 501px;
-}
+/* .sign-up-container {
+    position: absolute;
+    top: 50vh;
+    z-index: 99;
+} */
 
 .sign-up-btn {
     margin-top: 20px;
@@ -343,8 +344,14 @@ form {
     header {
         flex-direction: row;
     }
+
     header img {
         padding-top: 0;
+    }
+    .fedback-popup-container {
+        position: absolute;
+        top: 50vh;
+        z-index: 99;
     }
 }
 
@@ -463,6 +470,19 @@ form {
     .sign-up-container {
         margin-top: 60px;
     }
+    .sign-up-container img {
+        transition: transform 0.125s ease-in-out;
+        animation: slide-in 0.3s ;
+    }
+
+    @keyframes slide-in {
+        0% {
+            transform: translateY(50vh);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
 
     .fedback-popup-container {
         width: 100%;
@@ -472,9 +492,11 @@ form {
         height: 100vh;
         z-index: 99;
         background: #8b82824a;
+        position: absolute;
+        top: -60px;
     }
 
-    .margin{
+    .margin {
         margin-top: 16px;
     }
 }

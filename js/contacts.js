@@ -3,7 +3,7 @@
 ]
 
 
-let colors = [ 'yellow', 'orange', 'light-orange', 'purple', 'blue', 'light-blue', 'pink','dark-pink','light-green', 'green','dark-green','dark-red', 'red', 'ligh-red','brown']
+let colors = [ 'yellow', 'orange', 'light-orange', 'purple', 'blue', 'light-blue', 'pink','dark-pink','light-green', 'green','dark-green','dark-red', 'red', 'light-red','brown']
 
 
 /**
@@ -45,50 +45,7 @@ function renderEditContactPage(i){
     document.getElementById(`logo-bigger${i}`).innerHTML = contact['initials'];
     document.getElementById(`name-displayed${i}`).value = contact['name'];
     document.getElementById(`email-displayed${i}`).value = contact['email'];
-    document.getElementById(`phone-displayed${i}`).value
-     = contact['telephone'];
-}
-
-
-function createEditContactPageHtml(i, contact){
-    return `
-    <div class="edit-contact-frame">
-            <div class="edit-contact-head">
-                <div onclick="closeEditContacts()" class="x-container">
-                    <img class="close-x" src="./asssets/img/close-x.svg" alt="close x-icon">
-                </div>
-                <img class="join-logo-white d-none" src="./asssets/img/join-logo-white.svg" alt="Join logo">
-                <h1 class="white">Edit Contact</h1>
-                <hr id="hr-blue-small-left" class="hr-blue-small-left">
-
-            </div>
-            <div class="edit-contact-bottom">
-                <span id="logo-bigger${i}" class="contact-logo-bigger ${contact['icon-color']}">TW</span>
-                <form onsubmit="editContact(${contact['id']},${i})">
-                    <div class="close-x-dark-container" onclick="closeEditContacts()">
-                        <img class="close-x-dark d-none" src="./asssets/img/close-x-dark.svg" alt="close x">
-                    </div>
-                    <div class="input-field-top input-top-edit">
-                            <input required id="name-displayed${i}" class="name-input" type="text"  placeholder="Name">
-                        <img src="./asssets/img/name-head.svg" alt="name icon">
-                    </div>
-                    <div class="input-field">
-                        <input required class="email-input" id="email-displayed${i}" type="email" placeholder="Email">
-                        <img src="./asssets/img/email-icon.svg" alt="email icon">
-                    </div>
-                    <div class="input-field">
-                        <input required id="phone-displayed${i}" class="tel-input" type="tel" placeholder="Phone">
-                        <img src="./asssets/img/tel.svg" alt="name icon">
-                    </div>
-                    <div class="delete-save">
-                        <div onclick="deleteContact(${i})" class="delete">Delete</div>
-                        <button class="save">
-                            <div class="create-contact-text white">Save</div>
-                        </button>
-                 </form>
-            </div>
-    
-    `
+    document.getElementById(`phone-displayed${i}`).value = contact['telephone'];
 }
 
 
@@ -152,72 +109,6 @@ function renderContactDetailsMobile(i){
 
 
 /**
- * This function is used to create the necessary html block to display the contact details.
- * 
- * @param {number} i - the index of the current contact. 
- * @param {object} contact - is the JASON with the data of the current contact.
- * @returns @returns - the html block to be added.
- */
-
-function createContactDetailsMobileHtml(i, contact){
-    return `
-    <div id="big-contact-frame" class="big-contact-frame">
-                <div class="big-contact-frame-header">
-                    <h3 class="kpmt">Kanban Project Management Tool</h3>
-                    <div onclick="closeContactDetails(${i})" class="h1-back-arrow">
-                        <div class="order1">
-                            <h1>Contacts</h1>
-                        </div>
-                        <img class="back-arrow" src="./asssets/img/arrow-left-line.svg" alt="back arrow">
-                    </div>
-                    <div class="order3">
-                        <h3 class="better-with-a-team">Better with a team</h3>
-                    </div>
-                    <div class="order2">
-                        <hr class="hr-blue-small-left">
-                    </div>
-                </div>
-                <div id="desktop-hidden">
-                    <div class="name-add-task-logo">
-                        <span id="contact-logo-big${i}" class="contact-logo-big ${contact['icon-color']}">AM</span>
-                        <div class="name-add-task">
-                            <span id="big-name${i}" class="big-name">Anton Mayer</span>
-                            <span class="email">+ Add Task</span>
-                        </div>
-                    </div>
-                    <div class="contact-information-frame">
-                        <h3 class="contact-information">Contact Information</h3>
-                        <div class="edit-pen" onclick="openEditContacts(${i})">
-                            <img onmousemove="changePenColorToBlue()" onmouseleave="changePenColorToBlack()"
-                                id="edit-contact-logo" class="edit-contact-logo" src="./asssets/img/edit-contact.svg"
-                                alt="edit contact logo">
-                            <span class="edit-contact-text">Edit Contact</span>
-                        </div>
-                    </div>
-                    <div class="email-data">
-                        <span class="email-head">Email</span>
-                        <span id="email-adress${i}" class="email-adress-blue">antom@gmail.com</span> 
-                    </div>
-                    <div class="mobile-data">
-                        <span class="mobile-head">Mobil</span>
-                        <span id="mobile-number${i}" class="mobile-number-blue">+49 1111 111 11 1</span>
-                    </div>
-                </div>
-                <div class="delet-edit-frame">
-                    <img onclick="deleteContact(${i})" class="bin" src="./asssets/img/delete-bin.svg" alt="delete bin">
-                    <img onclick="openEditContacts(${i})" class="pen" src="./asssets/img/edit.svg" alt="edit pen">
-                </div>
-                <div onclick="openAddContactsOverlay()" class="new-contact-container-2">
-                    <span>New Contact</span>
-                    <img src="./asssets/img/new-contact.svg" alt="New Contact">
-                </div>
-            </div>
-        </div>
-    `
-}
-
-
-/**
  * This funktion is used to render the contact details of the clicked on contact on the right side of the contact.html in the desktop version. 
  * 
  * @param {number} i - the index of the current contact
@@ -232,44 +123,6 @@ function renderContactDetailsDesktop(i){
     document.getElementById(`big-name${i}`).innerHTML = contact['name'];
     document.getElementById(`email-adress${i}`).innerHTML = contact['email'];
     document.getElementById(`mobile-number${i}`).innerHTML = contact['telephone'];
-}
-
-
-/**
- * This function is used to create the necessary html block to display the contact details. 
- * 
- * @param {number} i -the index of the current contact.
- * @param {object} contact - is the JASON with the data of the current contact.
- * @returns - the html block to be added.
- */
-
-function createContactDetailsDesktopHtml(i, contact){
-    return `
-    <div class="name-add-task-logo">
-                        <span id="contact-logo-big${i}" class="contact-logo-big ${contact['icon-color']}"></span>
-                        <div class="name-add-task">
-                            <span id="big-name${i}" class="big-name">Anton Mayer</span>
-                            <span class="email">+ Add Task</span>
-                        </div>
-                    </div>
-                    <div class="contact-information-frame">
-                        <h3 class="contact-information">Contact Information</h3>
-                        <div class="edit-pen" onclick="openEditContacts(${i})">
-                            <img onmousemove="changePenColorToBlue()" onmouseleave="changePenColorToBlack()"
-                                id="edit-contact-logo" class="edit-contact-logo" src="./asssets/img/edit-contact.svg"
-                                alt="edit contact logo">
-                            <span class="edit-contact-text">Edit Contact</span>
-                        </div>
-                    </div>
-                    <div class="email-data">
-                        <span class="email-head">Email</span>
-                        <span id="email-adress${i}" class="email-adress-blue">antom@gmail.com</span>
-                    </div>
-                        <div class="mobile-data">
-                            <span class="mobile-head">Mobil</span>
-                            <span id="mobile-number${i}" class="mobile-number-blue">+49 1111 111 11 1</span>
-                        </div>    
-    `
 }
 
 
@@ -311,7 +164,7 @@ function closeAddContactsOverlay(){
  * 
  */
 
-function createNewContact() {
+async function createNewContact() {
     const name = document.getElementById('name-input');
     const email = document.getElementById('email-input');
     const telephone = document.getElementById('tel-input');
@@ -323,11 +176,28 @@ function createNewContact() {
         'icon-color': getRandomColor(),
         'id': calculateId()
     };
-    insertContact(newContact);
-    loadContacts();
+    await insertContact(newContact);
+    await loadContacts();
     deleteInputFields();
+    showContactSuccessfullyCreatedPopup();
 }
 
+/**
+ * This function is used to slide in and out a popup 'Contact succesfully created' after it was created. It is called in the function above.
+ * 
+ */
+
+function showContactSuccessfullyCreatedPopup() {
+    const popup = document.querySelector('.contac-succesfully-created-frame');
+
+    popup.style.transform = 'translateY(0)';
+    setTimeout(function() {
+      
+      popup.style.transform = 'translateY(360%)';
+    }, 750);
+  }
+  
+  
 
 /**
  * This function is used to create a unique ID. It always looks for the largest existing ID and increases it by one.
@@ -428,57 +298,6 @@ function renderFollowingContacts(){
         document.getElementById(`email${i}`).innerHTML = contact['email'];
     }
    }
-
-
-/**
- * This This function is used to insert a html block with h2 heading. This is necessary if the first letter of the initials of the previous contact does not correspond to that of the current contact.
- * 
- * @param {number} i - the in Index of the current contact
- * @param {object} contact - 
- * @returns - the html block to be added
- */
-
-function returnHtmlWithH2(i, contact){
-
-return `
-<div class="letter-frame">
-    <h2 id="letter${i}"></h2>
-    <hr class="standard-hr">
-    <div onclick="openContactDetails(${i})" class="single-contact-frame">
-        <span id="logo${i}" class="contact-logo ${contact['icon-color']}"></span>
-        <div class="name-and-email">
-            <span id="name${i}" class="name"></span>
-            <span id="email${i}" class="email"></span>
-        </div>
-    </div>
-</div>
-`
-}
-
-
-/**
- * This function is used to insert a html block without h2 heading. This is necessary if the first letter of the initials of the previous contact corresponds to that of the current contact.
- * 
- * @param {*} i - the in Index of the current contact
- * @param {*} contact is the JASON with the data of the current contact
- * @returns - the html block to be added
- */
- 
-
-function returnHtmlWithoutH2(i, contact){
-
-    return `
-    <div class="letter-frame">
-        <div onclick="openContactDetails(${i})" class="single-contact-frame">
-            <span id="logo${i}" class="contact-logo ${contact['icon-color']}"></span>
-            <div class="name-and-email">
-                <span id="name${i}" class="name"></span>
-                <span id="email${i}" class="email"></span>
-            </div>
-        </div>
-    </div>
-    `
-    }
 
 
 /**
@@ -627,9 +446,9 @@ async function deleteContact(i) {
 
 async function functionsToBeCalledAfterEdit(i, contact){ 
     deleteContact(i);
-    insertContact(contact);
-    loadContacts();
-    openContactDetails(i+1);
+    await insertContact(contact);
+    await loadContacts();
+    openContactDetails(i);
     await setItem('contacts', JSON.stringify(contacts));
     closeEditContacts()
 }
