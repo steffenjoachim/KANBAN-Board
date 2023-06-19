@@ -292,9 +292,7 @@ body {
     max-width: 363px;
 }
 
-.dis-none {
-    display: none;
-}
+
 
 .drag-area-highlight {
     background-color: #e0e0e06d;
@@ -367,6 +365,10 @@ body {
 .popup-content.scrolling {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+.dis-none {
+    display: none;
 }
 
   /*---------------*/
