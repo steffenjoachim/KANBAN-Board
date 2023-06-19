@@ -131,7 +131,7 @@ function generateForgotHtml() {
 function generateResetPasswordHtml() {
     return `
     <div class="arrow-container">
-        <div onclick="forgotPassword()" class="arrow-img-container">
+        <div id="forgot-pass-img-container" onclick="forgotPassword()" class="arrow-img-container">
             <img src="./asssets/img/back_arrow.svg">
         </div>    
     </div>
@@ -139,13 +139,13 @@ function generateResetPasswordHtml() {
     <img class="line-reset-password" src="./asssets/img/line.svg" alt="Trennlinie">
     <p class="reset-password-text">Change your account password<br>here.
     <div class="input-field">
-        <input id="input" class="password" type="password" required placeholder="New password">
+        <input onkeyup="togglePasswordVisibility()" id="input" class="password" type="password" required placeholder="New password">
         <div id="lock-icon-container">
             <img id="lock-icon" src="./asssets/img/lock-icon.svg" alt="lock">
         </div>
     </div>
     <div class="input-field margin-reset-password-input">
-        <input id="input" class="password" type="password" required placeholder="Confirm password">
+        <input id="input-confirm" class="password" type="password" required placeholder="Confirm password">
         <div id="lock-icon-container">
             <img id="lock-icon" src="./asssets/img/lock-icon.svg" alt="lock">
         </div>
