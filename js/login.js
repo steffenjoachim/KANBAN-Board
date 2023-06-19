@@ -20,3 +20,23 @@ function usersGreeting(user) {
         document.getElementById('user-name').innerHTML = name;
     }
 }
+
+function userGreetingMobile(user) {
+    let currentTime = new Date().getHours();
+    let greetingText;
+    if (currentTime < 6) {
+        greetingText = "Good night!";
+    } else if (currentTime < 12) {
+        greetingText = "Good morning!";
+    } else if (currentTime < 18) {
+        greetingText = "Good afternoon!";
+    } else {
+        greetingText = "Good evening!";
+    }
+    document.getElementById('greeting').innerHTML = greetingText;
+    if (user) {
+        document.getElementById('user-name').innerHTML = user['name']
+    } else {
+        document.getElementById('user-name').innerHTML = 'Guest'
+    }
+}
