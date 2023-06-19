@@ -72,12 +72,25 @@ header,
     width: 110px;
     height: 99px;
     z-index: 4;
-    transition: 0.225ms ease-in-out;
-    transform: translateX(0);
+    animation: slide 200ms ease-in-out;
 }
 
-.slide {
-    transform: translateX(125%);
+@keyframes slide {
+    from {
+        transform: translateX(125%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(125%);
+    }
 }
 
 #burger-menu a {

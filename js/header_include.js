@@ -31,42 +31,86 @@ async function footerIncludeHTML() {
   }
 }
 
-// let firstClick = false;
-
 function burgerMenu() {
-  document.getElementById('burger-menu').classList.add = ('slide')
+  let burgerMenu = document.getElementById('burger-menu');
   document.getElementById('background-container').style.display = 'block';
   firstClick = true;
 }
 
 function closeBurgerMenu() {
-  let div = document.getElementById('background-container');
-
   if (
     event.target.id === 'web-header' ||
     event.target.id === 'background-container' ||
     event.target.id === 'header' ||
     event.target.id === 'nav-bar'
   ) {
-    div.style.display = 'none';
+    document.getElementById('background-container').style.display = 'none';
   }
-  firstClick = false;
 }
 
-function guestLogin() {
+function userGreetingMobile() {
+  let currentTime = new Date().getHours();
+  let greetingText;
+  if (currentTime < 6) {
+    greetingText = "Good night!";
+  } else if (currentTime < 12) {
+    greetingText = "Good morning!";
+  } else if (currentTime < 18) {
+    greetingText = "Good afternoon!";
+  } else {
+    greetingText = "Good evening!";
+  }
+  document.getElementById('greeting').innerHTML = greetingText;
+  let name = JSON.parse(localStorage.getItem('name'))
+  setTimeout(function () {
+    document.getElementById('user-name').innerHTML = name
+  }, 5);
+}
+
+function guestLogin(user) {
   let windowWidth = window.innerWidth;
   if (windowWidth <= 1024) {
-    window.location.href = './guest_hello.html';
 
+    document.getElementById('body').innerHTML = '';
+    document.getElementById('body').innerHTML =
+      `
+    <link rel="stylesheet" href="./asssets/css/header.css">
+    <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./asssets/css/footer.css">
+    <link rel="stylesheet" href="./asssets/css/guest_hello.css">
+    <script src="./js/header_include.js"></script>
+    <script src="/js/register.js"></script>
+    <script src="/js/storage.js"></script>
+    <script src="/js/login.js"></script>
+</head>
+<body onload="loadSummary()">
+    <div w3-header-include-html="./asssets/templates/header.html"></div>
+    <div id="guest-hello" class="page show content">
+        <h1 id="greeting"></h1>
+        <span id="user-name"></span>
+    </div>
+    <footer w3-footer-include-html="./asssets/templates/footer.html"></footer>
+</body>
+    `;
+    userGreetingMobile();
+    headerIncludeHTML();
+    footerIncludeHTML();
   } else {
-    loadSummary();
+    loadSummary(user);
   }
+  setTimeout(function () {
+    loadSummary(user);
+  }, 1500)
 }
 
-function loadSummary() {
+function loadSummary(user) {
   loadUsers();
-  headerIncludeHTML();
-  footerIncludeHTML();
+  localStorage.removeItem('name');
+  localStorage.setItem('name', JSON.stringify('Guest'));
+  if (user) {
+    usersGreeting(user);
+  }
+
   let windowWidth = window.innerWidth;
   if (windowWidth >= 1024) {
     window.location.href = './summary.html';

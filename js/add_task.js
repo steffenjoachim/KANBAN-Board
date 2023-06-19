@@ -4,14 +4,32 @@ let tasksArray = [];
 const subtasks = [];
 
 
-function createTask() {
+async function loadContactsForAssign(){
+  try{contacts = JSON.parse(await getItem('contacts'))} catch(e){
+      alert('Daten konten nicht geladen werden!')
+   }
+   
+      populateContactList();
+    
+}
+
+async function loadNewtasks() {
+  try {tasksArray = JSON.parse(await getItem('task'))}
+  catch (e) {
+    alert('Error')
+  }
+} 
+
+
+async function createTask() {
   // Hier holen wir die Werte aus den verschiedenen Eingabefeldern
   let title = document.getElementById("title-input").value;
   let description = document.getElementById("description-input").value;
   let category = document.getElementById("select-one").innerText;  // Sie müssen den richtigen Weg finden, um den ausgewählten Wert zu erhalten
   let assignedTo = getAssignedTo(); // Neue Funktion, um die zugewiesene Person zu erhalten
   let dueDate = document.querySelector(".date-input-container input").value;
-  let prio = getSelectedPrio();  
+  let prio = getSelectedPrio(); 
+  let taskId = calculateId(); 
 
   // Hier holen wir die Subtasks aus dem Subtask-Array
   let subtasks = [];
@@ -27,28 +45,41 @@ function createTask() {
     subtasks.push(subtaskObj);
   });
 
+  // Hier holen wir das ausgewählte Bild
+  let selectedImage = null;
+  const selectedImageElement = document.querySelector("#selected-image img");
+  if (selectedImageElement) {
+    selectedImage = selectedImageElement.src;
+  }
+
   // Nun erstellen wir ein neues Task-Objekt mit diesen Werten
   let newTask = {
+    id: taskId,
+    'status': 'todo',
     title: title,
     description: description,
     category: category,
     assignedTo: assignedTo,
     dueDate: dueDate,
     prio: prio,
-    subtasks: subtasks  // Hier fügen wir die Subtasks zum Task-Objekt hinzu
+    subtasks: subtasks,
+    selectedImage: selectedImage, // Hier fügen wir das ausgewählte Bild zum Task-Objekt hinzu
   };
 
   // Jetzt können wir das Task-Objekt zu unserem Array hinzufügen
   tasksArray.push(newTask);
 
+  await setItem('task', JSON.stringify(tasksArray));
+
   // Und schließlich können wir die Eingabefelder zurücksetzen, damit sie bereit für die Eingabe einer neuen Aufgabe sind
   resetInputFields();
 }
 
+
 function resetInputFields() {
   document.getElementById("title-input").value = "";
   document.getElementById("description-input").value = "";
-  document.getElementById("select-one").innerText = "Select task category";  
+  document.getElementById("select-one").innerText = "Select task category";
   document.getElementById("assign-one").innerText = "Select assigned person";
   document.querySelector(".date-input-container input").value = "";
   document.getElementById("subTask").value = "";
@@ -56,6 +87,30 @@ function resetInputFields() {
   // Subtasks zurücksetzen
   const subtasksContainer = document.getElementById("subtasks");
   subtasksContainer.innerHTML = "";
+
+  // Zurücksetzen des ausgewählten Bilds
+  const selectedImageContainer = document.getElementById("selected-image");
+  if (selectedImageContainer) {
+    selectedImageContainer.innerHTML = "";
+  }
+
+  // Zurücksetzen der ausgewählten Priorität
+  resetImages();
+
+  // Zurücksetzen des "assignedTo"-Feldes
+  resetAssignedTo();
+}
+
+function calculateId() {
+  if (tasksArray.length === 0) {
+    return 1; // Wenn keine Tasks vorhanden sind, starte mit der ID 1
+  }
+
+  // Finde die maximale ID unter den vorhandenen Tasks:
+  const maxId = Math.max(...tasksArray.map(task => task.id));
+
+  // Erhöhe die maximale ID um 1, um eine neue eindeutige ID zu generieren:
+  return maxId + 1;
 }
 
 
@@ -92,25 +147,33 @@ function showNewCategoryFields() {
 }
 
 function selectOption(event) {
-    let selectOne = document.getElementById('select-one');
-    const selectedText = event.target.querySelector('span').cloneNode(true);
-    const selectedImg = event.target.querySelector('img') ? event.target.querySelector('img').cloneNode(true) : null;
+  let selectOne = document.getElementById('select-one');
+  const selectedText = event.target.querySelector('span').cloneNode(true);
+  const selectedImg = event.target.querySelector('img') ? event.target.querySelector('img').cloneNode(true) : null;
 
-    // select the div containing the span and the img
-    const textAndImgContainer = selectOne.querySelector('div');
+  // select the div containing the span and the img
+  const textAndImgContainer = selectOne.querySelector('div');
 
-    // clear the content of the container and add the new content
-    textAndImgContainer.innerHTML = '';
+  // clear the content of the container and add the new content
+  textAndImgContainer.innerHTML = '';
 
-    textAndImgContainer.appendChild(selectedText);
-    if (selectedImg) {
-      textAndImgContainer.appendChild(selectedImg);
-    }
-  
-    let dropdown = document.getElementById('dropdown');
-    dropdown.classList.add('d-none');
-    selectOne.style.borderRadius = "10px";
-    selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn eine Option ausgewählt ist.
+  textAndImgContainer.appendChild(selectedText);
+  if (selectedImg) {
+    textAndImgContainer.appendChild(selectedImg);
+  }
+
+  let dropdown = document.getElementById('dropdown');
+  dropdown.classList.add('d-none');
+  selectOne.style.borderRadius = "10px";
+  selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn eine Option ausgewählt ist.
+
+  // Anzeigen des ausgewählten Bildes
+  const selectedImageContainer = document.getElementById('selected-image');
+  selectedImageContainer.innerHTML = '';
+  if (selectedImg) {
+    const clonedImage = selectedImg.cloneNode(true);
+    selectedImageContainer.appendChild(clonedImage);
+  }
 }
 
 function selectColor(event) {
@@ -302,16 +365,16 @@ function saveInviteContact() {
   cancelInviteContact();
 }
 
-const cancelBtn = document.querySelector('.cancel-btn-desktop');
-const cancelImg = cancelBtn.querySelector('.cancel-img');
+// const cancelBtn = document.querySelector('.cancel-btn-desktop');
+// // const cancelImg = cancelBtn.querySelector('.cancel-img');
 
-cancelBtn.addEventListener('mouseenter', () => {
-  cancelImg.src = './asssets/img/blue-cancel.svg';
-});
+// cancelBtn.addEventListener('mouseenter', () => {
+//   cancelImg.src = './asssets/img/blue-cancel.svg';
+// });
 
-cancelBtn.addEventListener('mouseleave', () => {
-  cancelImg.src = './asssets/img/cancel-svg.svg';
-});
+// cancelBtn.addEventListener('mouseleave', () => {
+//   cancelImg.src = './asssets/img/cancel-svg.svg';
+// });
 
 function getAssignedTo() {
   const checkboxes = document.querySelectorAll('#dropdown-assign input[type="checkbox"]');
@@ -322,7 +385,19 @@ function getAssignedTo() {
 
 document.querySelector(".create-btn-desktop").addEventListener("click", createTask);
 
+function resetAssignedTo() {
+  const checkboxes = document.querySelectorAll('#dropdown-assign input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+    checkbox.checked = false;
+  });
 
+  // Schließen des "assignedTo"-Dropdowns
+  const dropdownAssign = document.getElementById('dropdown-assign');
+  const assignOne = document.getElementById('assign-one');
+  dropdownAssign.classList.add('d-none');
+  assignOne.style.borderRadius = '10px';
+  assignOne.style.borderBottom = '';
+}
 
 //---------------renderContacts-----------
 
