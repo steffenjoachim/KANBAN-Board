@@ -48,26 +48,9 @@ function closeBurgerMenu() {
   }
 }
 
-function userGreetingMobile() {
-  let currentTime = new Date().getHours();
-  let greetingText;
-  if (currentTime < 6) {
-    greetingText = "Good night!";
-  } else if (currentTime < 12) {
-    greetingText = "Good morning!";
-  } else if (currentTime < 18) {
-    greetingText = "Good afternoon!";
-  } else {
-    greetingText = "Good evening!";
-  }
-  document.getElementById('greeting').innerHTML = greetingText;
-  let name = JSON.parse(localStorage.getItem('name'))
-  setTimeout(function () {
-    document.getElementById('user-name').innerHTML = name
-  }, 5);
-}
 
 function guestLogin(user) {
+
   let windowWidth = window.innerWidth;
   if (windowWidth <= 1024) {
 
@@ -92,7 +75,7 @@ function guestLogin(user) {
     <footer w3-footer-include-html="./asssets/templates/footer.html"></footer>
 </body>
     `;
-    userGreetingMobile();
+    userGreetingMobile(user);
     headerIncludeHTML();
     footerIncludeHTML();
   } else {
@@ -105,8 +88,6 @@ function guestLogin(user) {
 
 function loadSummary(user) {
   loadUsers();
-  localStorage.removeItem('name');
-  localStorage.setItem('name', JSON.stringify('Guest'));
   if (user) {
     usersGreeting(user);
   }

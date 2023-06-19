@@ -1,10 +1,10 @@
-let todos = []
 
-async function loadNewtasks() {
+async function loadNewtasksboard() {
   try {todos = JSON.parse(await getItem('task'))}
   catch (e) {
     alert('Error')
   }
+  updateHTML()
 } 
 
 //  beim hovern auf dem div-count1 wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
@@ -173,11 +173,16 @@ function checkScrollbar() {
 
 // ];
 
+
+let todos = [];
+
 let currentDraggedElement;
 
 
 function updateHTML() {
-
+  
+  
+ 
   let filterTodo = todos.filter(t => t['status'] == 'todo');
   document.getElementById('todo-card').innerHTML = '';
   
@@ -225,29 +230,28 @@ function updateHTML() {
 
 function startDragging(id) {
   currentDraggedElement = id;
-}
+ }
 
 function generateTodoHTML(element) {
-  return `<div draggable="true" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar">
-     <div class="task-category orange">${element['category']}</div>
-     <div class="task-title">${element['title']}</div>
-     <div class="task-description">${element['description']}</div>
-     <div class="task-progress">
-         <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-             <div class="progress-bar bg-info" ></div>
-         </div>
-         <div class="progress-steps">0/2 Done</div>
-     </div>
-     <div class="task-assignedTo">
-         <div class="task-icons">
-             <span class="orange">SM</span>
-             <span class="purple">MN</span>
-             <span class="green">EF</span>
-         </div>
-         <img src="./asssets/img/toDo icon.svg" alt="">
-     </div>
-     </div>
-     `;
+  return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar">
+  <div class="task-category orange">${element['category']}</div>
+  <div class="task-title">${element['title']}</div>
+  <div class="task-description">${element['description']}</div>
+  <div class="task-progress">
+      <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar bg-info"></div>
+      </div>
+      <div class="progress-steps">0/2 Done</div>
+  </div>
+  <div class="task-assignedTo">
+      <div class="task-icons">
+          <span class="orange">SM</span>
+          <span class="purple">MN</span>
+          <span class="green">EF</span>
+      </div>
+      <img src="./asssets/img/toDo icon.svg" alt="">
+  </div>
+  </div>`;
 }
 
 function allowDrop(ev) {
@@ -255,6 +259,7 @@ function allowDrop(ev) {
 }
 
 function moveTo(status) {
+  
   todos[currentDraggedElement]['status'] = status;
   updateHTML()
 }
@@ -322,31 +327,39 @@ function checkEmptyListDone() {
 function filterTasks() {
   let search = document.getElementById('searchTask-input').value.toLowerCase();
 
-  let todoCard = document.getElementById('todo-card');
-  let progressCard = document.getElementById('progress-card');
-  let feedbackCard = document.getElementById('Feedback-card');
-  let doneCard = document.getElementById('done-card');
+  if (search == '') {
+    updateHTML()
+  }else {
 
-  todoCard.innerHTML = '';
-  progressCard.innerHTML = '';
-  feedbackCard.innerHTML = '';
-  doneCard.innerHTML = '';
-
-  for (let index = 0; index < todos.length; index++) {
-    const element = todos[index];
-
-    if (element.title.toLowerCase().includes(search) || element.description.toLowerCase().includes(search)) {
-      if (element.status === 'todo') {
-        todoCard.innerHTML += generateTodoHTML(element);
-      } else if (element.status === 'inProgress') {
-        progressCard.innerHTML += generateTodoHTML(element);
-      } else if (element.status === 'feedback') {
-        feedbackCard.innerHTML += generateTodoHTML(element);
-      } else if (element.status === 'done') {
-        doneCard.innerHTML += generateTodoHTML(element);
+      let todoCard = document.getElementById('todo-card');
+      let progressCard = document.getElementById('progress-card');
+      let feedbackCard = document.getElementById('Feedback-card');
+      let doneCard = document.getElementById('done-card');
+      
+      checkEmptyList()
+      todoCard.innerHTML = '';
+      checkEmptyListProgress()
+      progressCard.innerHTML = '';
+      checkEmptyListFeedback()
+      feedbackCard.innerHTML = '';
+      checkEmptyListDone()
+      doneCard.innerHTML = '';
+      
+      for (let index = 0; index < todos.length; index++) {
+        const element = todos[index];
+      
+        if (element.title.toLowerCase().includes(search) || element.description.toLowerCase().includes(search)) {
+          if (element.status === 'todo') {
+            todoCard.innerHTML += generateTodoHTML(element);
+          } else if (element.status === 'inProgress') {
+            progressCard.innerHTML += generateTodoHTML(element);
+          } else if (element.status === 'feedback') {
+            feedbackCard.innerHTML += generateTodoHTML(element);
+          } else if (element.status === 'done') {
+            doneCard.innerHTML += generateTodoHTML(element);
+          }
+        }
       }
-    }
-  }
+}   
+
 }
-
-

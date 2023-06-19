@@ -20,12 +20,6 @@ function restoreDoneimage(element) {
     img.src = './asssets/img/done-icon.png';
 }
 
-async function loadtodos() {
-    try {countTodo = JSON.parse(await getItem('counttodo'))}
-    catch(e) {
-        console.log('Error')
-    }
-}
 
 
 function userGreetingOnSummary() {
@@ -42,50 +36,59 @@ function userGreetingOnSummary() {
     }
     document.getElementById('greeting').innerHTML = greetingText;
     let name = JSON.parse(localStorage.getItem('name'))
-    setTimeout(function () {
-        document.getElementById('name').innerHTML = name
-    }, 5);
+    document.getElementById('name').innerHTML = name
 }
 
+let boardTodos = [];
 
-function displayTodoCount(todos) {
+async function loadNewtasksboardd() {
+  try {boardTodos = JSON.parse(await getItem('task'))}
+  catch (e) {
+    alert('Error')
+  }
+  displayTodoCount(boardTodos)
+} 
+
+
+
+function displayTodoCount(boardTodos) {
     let countTodos = 0;
     let countInProgress = 0;
     let countFeedback = 0;
     let countDone = 0;
     let countPrio = 0;
 
-    for (let i = 0; i < todos.length; i++) {
-      if (todos[i].status === 'todo') {
+    for (let i = 0; i < boardTodos.length; i++) {
+      if (boardTodos[i].status === 'todo') {
         countTodos++;
       }
     }
 
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].status === 'inProgress') {
+    for (let i = 0; i < boardTodos.length; i++) {
+        if (boardTodos[i].status === 'inProgress') {
           countInProgress++;
         }
       }
 
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].status === 'feedback') {
+    for (let i = 0; i < boardTodos.length; i++) {
+        if (boardTodos[i].status === 'feedback') {
           countFeedback++;
         }
       }
 
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].status === 'done') {
+    for (let i = 0; i < boardTodos.length; i++) {
+        if (boardTodos[i].status === 'done') {
             countDone++;
         }
       }
 
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].prio === 'urgent') {
+    for (let i = 0; i < boardTodos.length; i++) {
+        if (boardTodos[i].prio === 'urgent') {
             countPrio++;
         }
       }
    
-    document.getElementById('countTodo').textContent = todos.length.toString();
+    document.getElementById('countTodo').textContent = boardTodos.length.toString();
     document.getElementById('countInprogress').textContent = countInProgress.toString();
     document.getElementById('countFeedback').textContent = countFeedback.toString();
     document.getElementById('countTodos').textContent = countTodos.toString();

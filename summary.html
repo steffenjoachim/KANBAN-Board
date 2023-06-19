@@ -15,13 +15,14 @@
     <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="./asssets/css/footer.css">
     <link rel="stylesheet" href="/asssets/css/web_header.css">
+    <script src="./js/storage.js"></script>
     <script src="./js/summary.js"></script>
     <script src="./js/board.js"></script>
     <title>Summary</title>
     
 </head>
 
-<body onload="init();loadtodos();userGreetingOnSummary();displayTodoCount(todos)"" id="summary" class="page">
+<body onload="init();userGreetingOnSummary(); loadNewtasksboardd()" id="summary" class="page">
     <div w3-header-include-html="./asssets/templates/header.html"></div>
     <!-- <div class="width" w3-header-include-html="./asssets/templates/web_header.html"></div> -->
 
@@ -162,13 +163,7 @@
     <!-- <footer w3-footer-include-html="./asssets/templates/footer.html"></footer> -->
     <script src="./js/header_include.js"></script>
     <script src="./js/footer.js"></script>
-    <script>
-
-document.addEventListener('DOMContentLoaded', function() {
-  updateHTML();
-});
-
-    </script>
+   
 </body>
 
 </html>

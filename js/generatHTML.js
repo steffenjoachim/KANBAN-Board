@@ -5,7 +5,7 @@ function indexHTML() {
     <div class="main-content">
             <header>
                 <div class="logo-container">
-                    <img src="/asssets/img/mobile-login-logo-dark.svg" alt="">
+                    <img src="/asssets/img/mobile-login-logo-dark.svg" alt="" style="padding-top:37px">
                 </div>
             </header>
     

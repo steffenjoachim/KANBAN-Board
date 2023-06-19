@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./asssets/css/footer.css">
     <script src="./js/storage.js"></script>
     <script src="./js/contacts.js"></script>
+    <script src="./js/contacs_create_html.js"></script>
     <link rel="stylesheet" href="./asssets/css/web_header.css">
     <script src="./js/header_include.js"></script>
     <script src="./js/footer.js"></script>
@@ -28,8 +29,7 @@
         <div class="img-container">
             <img onclick="location.href='./help.html'" class="question-icon" src="./asssets/img/question_icon.svg"
                 alt="">
-            <img id="person-img" onclick="burgerMenu()" class="person" src="./asssets/img/person.svg"
-                alt="">
+            <img id="person-img" onclick="burgerMenu()" class="person" src="./asssets/img/person.svg" alt="">
         </div>
     </div>
     <div onclick="closeBurgerMenu()" id="background-container">
@@ -246,7 +246,7 @@
                     <div onclick="closeAddContactsOverlay()" class="close-x-dark-container">
                         <img class="close-x-dark" src="./asssets/img/close-x-dark.svg" alt="close x-icon">
                     </div>
-                    <form onsubmit="createNewContact()">
+                    <form onsubmit="createNewContact(); return false">
                         <div class="input-field-top">
                             <input required id="name-input" class="name-input" type="name" placeholder="Name">
                             <img src="./asssets/img/name-head.svg" alt="name icon">
@@ -276,6 +276,12 @@
             </div>
         </div>
     </div>
+    <div class="contac-succesfully-created-frame" id="popup">
+        <div class="contac-succesfully-created-popup">
+          <span>Contact successfully created</span>
+        </div>
+     </div>
+      
     <!-- <footer w3-footer-include-html="./asssets/templates/footer.html"></footer> -->
     <footer>
         <div id="summary-div" class="icon-container summary">
