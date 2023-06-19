@@ -245,7 +245,7 @@ function generateTodoHTML(element) {
   <div id="task-category${element['id']}" class="task-category ">${element['category']}</div>
   <div class="task-title">${element['title']}</div>
   <div class="task-description">${element['description']}</div>
-  <div class="task-progress">
+  <div id="task-progress${element['id']}" class="task-progress dis-none">
       <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
           <div class="progress-bar bg-info"></div>
       </div>
@@ -261,8 +261,14 @@ function generateTodoHTML(element) {
   </div>
   </div>`;
   
+}
 
-  
+function showProgressBar(id){
+  console.log('called');
+  if (todos[id]['subtasks'].length > 0){
+    console.log(id);
+    document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
+  }
 }
 
 function allowDrop(ev) {
