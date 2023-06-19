@@ -172,12 +172,15 @@ function checkScrollbar() {
 // },
 
 // ];
-
+2834
 
 let todos = [];
 
 let currentDraggedElement;
 
+let low = './asssets/img/toDo icon.svg';
+let medium = './asssets/img/Feedback-icon.svg';
+let urgent = './asssets/img/inProgress-icon.svg';
 
 function updateHTML() {
   
@@ -188,8 +191,9 @@ function updateHTML() {
   
   for (let index = 0; index < filterTodo.length; index++) {
     const element = filterTodo[index];
-    document.getElementById('todo-card').innerHTML += generateTodoHTML(element, index);
-    document.getElementById(`task-category${index}`).style.backgroundColor = element['selectedImage']
+    document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['selectedImage']
+    document.getElementById(`task-icon${element['id']}`).src = element['prio']
   }
   checkEmptyList()
 
@@ -200,7 +204,8 @@ function updateHTML() {
   for (let index = 0; index < filterInpro.length; index++) {
     const element = filterInpro[index];
     document.getElementById('progress-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${index}`).style.backgroundColor = element['selectedImage']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['selectedImage']
+    document.getElementById(`task-icon${element['id']}`).src = element['prio']
   }
   checkEmptyListProgress();
 
@@ -211,7 +216,8 @@ function updateHTML() {
   for (let index = 0; index < filterFeedback.length; index++) {
     const element = filterFeedback[index];
     document.getElementById('Feedback-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${index}`).style.backgroundColor = element['selectedImage']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['selectedImage']
+    document.getElementById(`task-icon${element['id']}`).src = element['prio']
   }
   checkEmptyListFeedback();
   
@@ -222,7 +228,8 @@ function updateHTML() {
   for (let index = 0; index < filterDone.length; index++) {
     const element = filterDone[index];
     document.getElementById('done-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${index}`).style.backgroundColor = element['selectedImage']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['selectedImage']
+    document.getElementById(`task-icon${element['id']}`).src = element['prio']
   }
   checkEmptyListDone();
   
@@ -233,9 +240,9 @@ function startDragging(id) {
   currentDraggedElement = id;
  }
 
-function generateTodoHTML(element, index) {
+function generateTodoHTML(element) {
   return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar">
-  <div id="task-category${index}" class="task-category">${element['category']}</div>
+  <div id="task-category${element['id']}" class="task-category ">${element['category']}</div>
   <div class="task-title">${element['title']}</div>
   <div class="task-description">${element['description']}</div>
   <div class="task-progress">
@@ -250,7 +257,7 @@ function generateTodoHTML(element, index) {
           <span class="purple">MN</span>
           <span class="green">EF</span>
       </div>
-      <img src="./asssets/img/toDo icon.svg" alt="">
+      <img id="task-icon${element['id']}" src="./asssets/img/toDo icon.svg" alt="">
   </div>
   </div>`;
   
