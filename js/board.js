@@ -190,7 +190,8 @@ function updateHTML() {
   for (let index = 0; index < filterTodo.length; index++) {
     const element = filterTodo[index];
     document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
+    document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     // document.getElementById(`task-icon${element['id']}`).src = element['prio']
     showProgressBar(index, element)
   }
@@ -204,7 +205,8 @@ function updateHTML() {
   for (let index = 0; index < filterInpro.length; index++) {
     const element = filterInpro[index];
     document.getElementById('progress-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
+    document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     // document.getElementById(`task-icon${element['id']}`).src = element['prio']
     showProgressBar(index, element)
   }
@@ -217,7 +219,9 @@ function updateHTML() {
   for (let index = 0; index < filterFeedback.length; index++) {
     const element = filterFeedback[index];
     document.getElementById('Feedback-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
+    document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
+    
     // document.getElementById(`task-icon${element['id']}`).src = element['prio']
     showProgressBar(index, element)
   }
@@ -230,7 +234,8 @@ function updateHTML() {
   for (let index = 0; index < filterDone.length; index++) {
     const element = filterDone[index];
     document.getElementById('done-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
+    document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     // document.getElementById(`task-icon${element['id']}`).src = element['prio']
     showProgressBar(index, element)
   }
@@ -246,7 +251,7 @@ function startDragging(id) {
 function generateTodoHTML(element) {
   return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar">
   <div id="task-category${element['id']}" class="task-category ">${element['category']}</div>
-  <div class="task-title">${element['title']}</div>
+  <div class="task-title"></div>
   <div class="task-description">${element['description']}</div>
   <div id="task-progress${element['id']}" class="task-progress dis-none">
       <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
