@@ -27,6 +27,12 @@ h1 {
     border: 1px solid #D1D1D1;
   }
 
+  .select-one-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .inner-wrap {
     display: flex;
     justify-content: center;
@@ -201,6 +207,49 @@ h1 {
    .color-circle {
     margin-left: 10px;
    }
+
+   .circle {
+    width: 20px;
+    height: 20px;
+    border: 3px solid white;
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  .orange{
+    background: #FF7A00;
+}
+
+.purple{
+    background: #9327FF;
+}
+
+.light-blue{
+    background: #29ABE2;
+}
+
+.pink{
+    background: #FC71FF;
+}
+.blue{
+    background: #0038FF;
+}
+
+.green{
+    background: #02CF2F;
+}
+
+.light-green{
+    background: #1FD7C1;
+}
+
+.red{
+    background: #AF1616 ;
+}
+.dark-blue{
+    background: #2A3647 ;
+}
   
    #new-category-fields {
     position: relative; /* Dies macht das div zum Container für absolut positionierte Elemente */
@@ -217,6 +266,9 @@ h1 {
     margin-bottom: 10px;
     box-sizing: border-box;
     position: relative; /* Für die Positionierung der Icons */
+  }
+  #new-category-colors {
+    display: flex;
   }
   
   .hover-dot {
