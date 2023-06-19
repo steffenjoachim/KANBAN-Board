@@ -173,11 +173,14 @@ function showNewCategoryFields() {
 
 function selectOption(event, color) {
   let selectOne = document.getElementById('select-one');
+  
+  // Definieren von selectedColorDiv außerhalb der if-Anweisungen
   let selectedColorDiv = null;
-
+  
   // Überprüfen, ob selectOne existiert
   if (selectOne) {
     const selectedText = event.target.querySelector('span').cloneNode(true);
+    // Hier wird selectedColorDiv neu zugewiesen, falls das div-Element existiert
     selectedColorDiv = event.target.querySelector('.circle') ? event.target.querySelector('.circle').cloneNode(true) : null;
 
     // select the div containing the span and the color div
@@ -193,9 +196,6 @@ function selectOption(event, color) {
         textAndColorContainer.appendChild(selectedColorDiv);
       }
     }
-
-    // Setzen der ausgewählten Farbe
-    selectColor(color);
   }
 
   let dropdown = document.getElementById('dropdown');
@@ -218,6 +218,9 @@ function selectOption(event, color) {
   if (window.location.pathname.includes('board.html')) {
     checkScrollbar();
   }
+
+  // Aufrufen der selectColor-Funktion mit dem übergebenen Farbwert
+  selectColor(color);
 }
 
 function selectColor(color) {
@@ -240,29 +243,29 @@ function cancelNewCategory() {
   
  
 
-function saveNewCategory() {
-  const categoryName = document.getElementById('new-category-name').value;
+  function saveNewCategory() {
+    const categoryName = document.getElementById('new-category-name').value;
   
-  if (!categoryName || !selectedColor) {
-    alert('Bitte geben Sie einen Kategorienamen ein und wählen Sie eine Farbe aus.');
-    return;
+    if (!categoryName || !selectedColor) {
+      alert('Bitte geben Sie einen Kategorienamen ein und wählen Sie eine Farbe aus.');
+      return;
+    }
+  
+    const newCategoryId = document.getElementById('new-category-name').value;
+  
+    let newCategory = createCategoryElement(newCategoryId, categoryName, selectedColor);
+    const dropdown = document.getElementById('dropdown');
+    const firstCategory = dropdown.querySelector('.selected');
+    dropdown.insertBefore(newCategory, firstCategory);
+  
+    selectOption({ target: newCategory }, selectedColor); // Hier wird der Farbwert an die selectOption-Funktion übergeben
+  
+    document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
+    document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
+    document.getElementById('new-category-name').value = '';
+    
+    // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
   }
-
-  const newCategoryId = document.getElementById('new-category-name').value;
-
-  let newCategory = createCategoryElement(newCategoryId, categoryName, selectedColor);
-  const dropdown = document.getElementById('dropdown');
-  const firstCategory = dropdown.querySelector('.selected');
-  dropdown.insertBefore(newCategory, firstCategory);
-
-  selectOption({ target: newCategory }); // Category auswählen
-
-  document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
-  document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
-  document.getElementById('new-category-name').value = '';
-  
-  // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
-}
 
 function createCategoryElement(id, name, color) {
   let newCategory = document.createElement('div');
