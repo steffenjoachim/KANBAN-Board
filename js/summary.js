@@ -92,3 +92,8 @@ function displayTodoCount(todos) {
   }
   
 
+/////   Funktion die bei einem Klick auf ein div-Element zur "board.html"-Seite weiterleitet /////
+
+  function redirectToBoard() {
+    window.location.href = 'board.html';
+  }

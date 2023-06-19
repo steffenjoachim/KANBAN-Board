@@ -17,16 +17,16 @@
     <link rel="stylesheet" href="asssets/css/add_task_popUp.css">
     <link rel="stylesheet" href="task-popUp.css">
     <link rel="stylesheet" href="asssets/css/web_header.css">
+    <script src="./js/storage.js"></script>
     <script src="js/footer.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/add_task_popup.js"></script>
-    <script src="./js/add_task.js"></script>
     <link rel="stylesheet" href="asssets/css/web_header.css">
-    <script src="./js/storage.js"></script>
+    
     
     <title>Board</title>
 </head>
-<body onload="init(); updateHTML()">
+<body onload="init(); updateHTML(); loadContactsForAssign(); loadNewtasks()">
     <div w3-header-include-html="/asssets/templates/header.html"></div>
     <!-- <div class="width" w3-header-include-html="/asssets/templates/web_header.html"></div> -->
     <div class="nav-bar-container">
@@ -121,7 +121,7 @@
               <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
             </div>
                 </div>
-
+                <div class="empty-card">No tasks to do</div>
           <div class="list" id="todo-card" ondrop="moveTo('todo'); removeHighlight('todo-card')" ondragleave="removeHighlight('todo-card')"  ondragover="allowDrop(event); highlight('todo-card')">
                 <!-- <div class="task-card card-with-PBar"> -->
                     <!-- <div class="task-category orange">Design</div>
@@ -145,7 +145,7 @@
                 <!-- </div> -->
                 </div>
                 
-                <div class="empty-card">No tasks to do</div>
+                
 
 
             </div>
@@ -161,7 +161,7 @@
               <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
             </div>
                 </div>
-
+                <div id="empty-card-progress" class="empty-card">No tasks in progress</div>
           <div class="list" id="progress-card" ondrop="moveTo('inProgress'); removeHighlight('progress-card')" ondragleave="removeHighlight('progress-card')" ondragover="allowDrop(event); highlight('progress-card')">
                 <div class="task-card">
                     <div class="task-category pink">Sales</div>
@@ -182,7 +182,7 @@
                 </div>
                 </div>
             
-                <div class="empty-card">No tasks in progress</div>
+                
             </div>
                 <!----------- Awaiting Feedback Section ---------------->
 
@@ -196,6 +196,7 @@
               <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
                 </div>
           </div>
+          <div id="empty-card-feedback" class="empty-card">No tasks</div>
           <div class="list" id="Feedback-card" ondrop="moveTo('feedback'); removeHighlight('Feedback-card')" ondragleave="removeHighlight('Feedback-card')" ondragover="allowDrop(event); highlight('Feedback-card')">
                 <div class="task-card">
                     <div class="task-category light-green">Backoffice</div>
@@ -216,7 +217,7 @@
                 </div>
                 </div>
             
-                <div class="empty-card">No tasks</div>
+                
             </div>
                 <!----------- Done Section ---------------->
 
@@ -230,7 +231,7 @@
               <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
             </div>
                 </div>
-
+                <div id="empty-card-done" class="empty-card">No tasks done</div>
           <div class="list" id="done-card" ondrop="moveTo('done'); removeHighlight('done-card')" ondragleave="removeHighlight('done-card')" ondragover="allowDrop(event); highlight('done-card')">
                 <div class="task-card card-with-PBar">
                     <div class="task-category blue">Marketing</div>
@@ -266,7 +267,7 @@
                 </div>
                 </div>
             
-                <div class="empty-card">No tasks done</div>
+                
             </div>
         </div>
     </div>
@@ -546,6 +547,7 @@
          </div>
     </footer>
     <script src="js/header_include.js"></script>
+    <script src="./js/add_task.js"></script>
     
     
 </body>

@@ -234,6 +234,7 @@
 
     .create-contact{
         margin-left: 18px;
+        margin-right: 16px;
     }
 
     h1{
@@ -258,6 +259,11 @@
         display: flex !important;
         
       }
+
+      .contac-succesfully-created-frame {
+        justify-content: flex-start;
+        left: 202px;
+    }
 }
 
 @media(min-width: 980px){
@@ -268,10 +274,6 @@
 
     .edit-contact-head{
         width: 353px;
-    }
-
-    .create-contact{
-        margin-right: 18px;
     }
 
     .contact-logo-bigger{
@@ -289,6 +291,11 @@
 
     .close-x-dark{
         margin-top: -96px;
+    }
+
+    .contac-succesfully-created-frame {
+        justify-content: flex-start;
+        left: 218px;
     }
 }
 

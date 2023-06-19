@@ -89,22 +89,22 @@
 
         <section class="second-section">
             <div class="count-task">
-                <div class="summary-counter textCenter boxshadow">
+                <div onclick="redirectToBoard()" class="summary-counter textCenter boxshadow">
                     <span class="s-number" id="countTodo"></span>
                     <span class="counter-description">Tasks in<br> Board</span>
                 </div>
-                <div class="summary-counter textCenter boxshadow">
+                <div onclick="redirectToBoard()" class="summary-counter textCenter boxshadow">
                     <span class="s-number" id="countInprogress"></span>
                     <span class="counter-description">Tasks in Progress</span>
                 </div>
-                <div class="summary-counter textCenter boxshadow">
+                <div onclick="redirectToBoard()" class="summary-counter textCenter boxshadow">
                     <span class="s-number" id="countFeedback"></span>
                     <span class="counter-description">Awaiting feedback</span>
                 </div>
             </div>
 
             <div class="task-status-title">
-                <div class="task-status">
+                <div onclick="redirectToBoard()" class="task-status">
                     <div class="task-status-description">
                         <img class="positionNone" src="./asssets/img/urgent-icon.svg" alt="">
                         <div class="summary-counter">
@@ -123,14 +123,14 @@
                     <span id="greeting"></span><br><b id="name" class="welcome-name"></b></div>
             </div>
             <div class="count-done">
-                <div class="div-count1" onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)">
+                <div onclick="redirectToBoard()" class="div-count1" onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)">
                     <img id="summary-pen" class="positionNone" src="./asssets/img/edit-icon.png" alt="">
                     <div class="summary-counter">
                         <div class="s-number" id="countTodos"></div>
                         <div class="counter-description">To-do</div>
                     </div>
                 </div>
-                <div class="div-count1" onmouseover="changeDoneimage(this)" onmouseout="restoreDoneimage(this)">
+                <div onclick="redirectToBoard()" class="div-count1" onmouseover="changeDoneimage(this)" onmouseout="restoreDoneimage(this)">
                     <img id="summary-done" class="positionNone" src="./asssets/img/done-icon.png" alt="">
                     <div class="summary-counter">
                         <div class="s-number" id="countDone"></div>
@@ -162,6 +162,13 @@
     <!-- <footer w3-footer-include-html="./asssets/templates/footer.html"></footer> -->
     <script src="./js/header_include.js"></script>
     <script src="./js/footer.js"></script>
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateHTML();
+});
+
+    </script>
 </body>
 
 </html>

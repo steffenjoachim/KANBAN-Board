@@ -18,7 +18,7 @@
   <script src="./js/contacts.js"></script>
 </head>
 
-<body onload="init(); loadContacts()">
+<body onload="init(); loadContactsForAssign(); loadNewtasks() ">
   <!-- <div class="width" w3-header-include-html="./asssets/templates/web_header.html"></div> -->
 
   <div onclick="closeBurgerMenu()" id="web-header" class="web-header">
@@ -133,6 +133,8 @@
             <span>Select assigned person</span>
             <img src="./add_task_img/open.svg" alt="" />
           </div>
+
+          
           
           <div id="dropdown-assign" class="d-none">
             <div onclick="showInviteContactFields()" id="assigned-three" class="selected">
@@ -140,6 +142,8 @@
               <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
             </div>
           </div>
+
+          <div id="selected-contact"></div>
           
           <div id="new-contact-fields" class="d-none">
             <input type="text" id="new-contact-email" placeholder="Enter email address">

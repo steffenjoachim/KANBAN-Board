@@ -121,6 +121,7 @@ function updateHTML() {
     const element = filterTodo[index];
     document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
   }
+  checkEmptyList()
 
   
   let filterInpro = todos.filter(t => t['status'] == 'inProgress' );
@@ -131,6 +132,7 @@ function updateHTML() {
     document.getElementById('progress-card').innerHTML += generateTodoHTML(element);
     
   }
+  checkEmptyListProgress();
 
 
   let filterFeedback = todos.filter(t => t['status'] == 'feedback' );
@@ -141,7 +143,8 @@ function updateHTML() {
     document.getElementById('Feedback-card').innerHTML += generateTodoHTML(element);
     
   }
-
+  checkEmptyListFeedback();
+  
 
   let filterDone = todos.filter(t => t['status'] == 'done' );
   document.getElementById('done-card').innerHTML = '';
@@ -151,9 +154,10 @@ function updateHTML() {
     document.getElementById('done-card').innerHTML += generateTodoHTML(element);
     
   }
+  checkEmptyListDone();
   
 }
-  
+
 
 function startDragging(id) {
   currentDraggedElement = id;
@@ -200,6 +204,52 @@ function removeHighlight(id) {
 }
 
 
+//////////// funktionen die die Anzeige (NO TASKS ...) je Liste eine Funktion //////////////
+ 
+function checkEmptyList() {
+  var todoCard = document.getElementById("todo-card");
+  var emptyCard = document.getElementsByClassName("empty-card")[0];
+
+  if (todoCard.children.length === 0) {
+    emptyCard.style.display = "flex";
+  } else {
+    emptyCard.style.display = "none";
+  }
+}
+
+function checkEmptyListProgress() {
+  var progressCard = document.getElementById("progress-card");
+  var emptyCard = document.getElementById("empty-card-progress");
+
+  if (progressCard.children.length === 0) {
+    emptyCard.style.display = "flex";
+  } else {
+    emptyCard.style.display = "none";
+  }
+}
+
+function checkEmptyListFeedback() {
+  var feedbackCard = document.getElementById("Feedback-card");
+  var emptyCard = document.getElementById("empty-card-feedback");
+
+  if (feedbackCard.children.length === 0) {
+    emptyCard.style.display = "flex";
+  } else {
+    emptyCard.style.display = "none";
+  }
+}
+
+function checkEmptyListDone() {
+  var doneCard = document.getElementById("done-card");
+  var emptyCard = document.getElementById("empty-card-done");
+
+  if (doneCard.children.length === 0) {
+    emptyCard.style.display = "flex";
+  } else {
+    emptyCard.style.display = "none";
+  }
+}
+
 
 
 //////////////// Search function ///////////////
@@ -221,7 +271,7 @@ function filterTasks() {
   for (let index = 0; index < todos.length; index++) {
     const element = todos[index];
 
-    if (element.title.toLowerCase().includes(search)) {
+    if (element.title.toLowerCase().includes(search) || element.description.toLowerCase().includes(search)) {
       if (element.status === 'todo') {
         todoCard.innerHTML += generateTodoHTML(element);
       } else if (element.status === 'inProgress') {
@@ -235,26 +285,4 @@ function filterTasks() {
   }
 }
 
-  
-// function addNewtodo() {
-//   let addTitle = document.getElementById('').value;
-//   let addDescription = document.getElementById('').value;
 
-//   const newTodo = {
-
-//     'id': '',
-//     'title': (addTitle),
-//     'description': ``,
-//     'category': 'Web development',
-//     'assignedTo': 'MM',          
-//     'dueDate': '20.10.2023',
-//     'prio': 'Medium',
-//     'subtask': '2',
-//     'status': 'todo',
-//   };
-//   todos.push(newTodo);
-//   document.getElementById('').value = '';
-//   document.getElementById('').value = '';
-//   updateHTML()
-
-// }

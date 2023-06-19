@@ -91,3 +91,29 @@
   .buttons{
     display: flex;
   }
+
+  .contac-succesfully-created-frame {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    bottom: 200px;
+    transform: translateY(360%);
+    transition: transform 0.125s ease-in-out;
+  }
+
+  .contac-succesfully-created-popup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2A3647;
+    border: none;
+    border-radius: 10px;
+    width: 326px;
+    height: 74px;
+    color: #FFFFFF;
+    font-size: 21px;
+    font-weight: 400;
+  }
+
+
