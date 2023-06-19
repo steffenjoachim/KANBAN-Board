@@ -34,11 +34,11 @@ async function createTask() {
   // Hier holen wir die Subtasks aus dem Subtask-Array
   let subtasks = [];
   const subtaskElements = document.querySelectorAll(".subtask");
-  subtaskElements.forEach((subtaskElement) => {
+  subtaskElements.forEach((subtaskElement, index) => { // Hinzufügen des Index-Parameters in der forEach-Schleife
     const checkbox = subtaskElement.querySelector(".checkbox-subtask");
     const label = subtaskElement.querySelector(".subtask-name");
     const subtaskObj = {
-      id: checkbox.id,
+      id: index, // Verwenden Sie den Index als Subtask-ID
       name: label.textContent,
       checked: checkbox.checked
     };
@@ -47,10 +47,12 @@ async function createTask() {
 
   // Hier holen wir das ausgewählte Bild
   let selectedImage = null;
-  const selectedImageElement = document.querySelector("#selected-image img");
-  if (selectedImageElement) {
-    selectedImage = selectedImageElement.src;
-  }
+const selectedImageElement = document.querySelector("#selected-image img");
+if (selectedImageElement) {
+  const imagePath = selectedImageElement.getAttribute("src"); // Pfad des ausgewählten Bildes
+  const imageFileName = imagePath.substring(imagePath.lastIndexOf("/") + 1); // Dateiname des Bildes extrahieren
+  selectedImage = imageFileName; // Nur den Dateinamen des Bildes zuweisen
+}
 
   // Nun erstellen wir ein neues Task-Objekt mit diesen Werten
   let newTask = {
@@ -69,22 +71,39 @@ async function createTask() {
   // Jetzt können wir das Task-Objekt zu unserem Array hinzufügen
   tasksArray.push(newTask);
 
-  
+  // tasksArray.splice(0, tasksArray.length);
 
   await setItem('task', JSON.stringify(tasksArray));
 
   // Und schließlich können wir die Eingabefelder zurücksetzen, damit sie bereit für die Eingabe einer neuen Aufgabe sind
   resetInputFields();
+  showTaskAddedNotification()
+}
+
+function showTaskAddedNotification() {
+  const taskAddedContainer = document.querySelector('.task-added-container');
+  const taskAdded = document.getElementById('task-added');
+
+  // Animation hinzufügen
+  taskAdded.style.animation = 'slideInFromBottom 1s forwards';
+
+  // Benachrichtigung anzeigen
+  taskAddedContainer.style.display = 'flex';
+
+  setTimeout(() => {
+    window.location.href = 'board.html';
+  }, 1500);
 }
 
 
 function resetInputFields() {
   document.getElementById("title-input").value = "";
   document.getElementById("description-input").value = "";
-  document.getElementById("select-one").innerText = "Select task category";
+  // Zeile zur Rücksetzung von "select-one" entfernt.
   document.getElementById("assign-one").innerText = "Select assigned person";
   document.querySelector(".date-input-container input").value = "";
   document.getElementById("subTask").value = "";
+  document.getElementById('selected-contact').innerHTML = "";
 
   // Subtasks zurücksetzen
   const subtasksContainer = document.getElementById("subtasks");
@@ -96,12 +115,13 @@ function resetInputFields() {
     selectedImageContainer.innerHTML = "";
   }
 
-
   // Zurücksetzen der ausgewählten Priorität
   resetImages();
 
   // Zurücksetzen des "assignedTo"-Feldes
   resetAssignedTo();
+  resetTaskCategoryDropdown();
+  resetSelectedCategory();
 }
 
 
@@ -143,41 +163,66 @@ function selectTaskCategory() {
         selectOne.style.borderRadius = "10px";
         selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn das Dropdown-Menü geschlossen ist.
     } 
+    if (window.location.pathname.includes('board.html')) {
+      checkScrollbar();
+    }
 }
 
 function showNewCategoryFields() {
     document.getElementById('select-one').classList.add('d-none'); // versteckt das Select task category Element
     document.getElementById('new-category-fields').classList.remove('d-none'); // zeigt das Eingabefeld und die Farbauswahl
     document.getElementById('dropdown').classList.add('d-none');
+    if (window.location.pathname.includes('board.html')) {
+      checkScrollbar();
+    }
 }
 
 function selectOption(event) {
   let selectOne = document.getElementById('select-one');
-  const selectedText = event.target.querySelector('span').cloneNode(true);
-  const selectedImg = event.target.querySelector('img') ? event.target.querySelector('img').cloneNode(true) : null;
+  
+  // Definieren von selectedImg außerhalb der if-Anweisungen
+  let selectedImg = null;
+  
+  // Überprüfen, ob selectOne existiert
+  if (selectOne) {
+    const selectedText = event.target.querySelector('span').cloneNode(true);
+    // Hier wird selectedImg neu zugewiesen, falls das img-Element existiert
+    selectedImg = event.target.querySelector('img') ? event.target.querySelector('img').cloneNode(true) : null;
 
-  // select the div containing the span and the img
-  const textAndImgContainer = selectOne.querySelector('div');
+    // select the div containing the span and the img
+    const textAndImgContainer = selectOne.querySelector('div');
+  
+    // Überprüfen, ob textAndImgContainer existiert
+    if (textAndImgContainer) {
+      // clear the content of the container and add the new content
+      textAndImgContainer.innerHTML = '';
 
-  // clear the content of the container and add the new content
-  textAndImgContainer.innerHTML = '';
-
-  textAndImgContainer.appendChild(selectedText);
-  if (selectedImg) {
-    textAndImgContainer.appendChild(selectedImg);
+      textAndImgContainer.appendChild(selectedText);
+      if (selectedImg) {
+        textAndImgContainer.appendChild(selectedImg);
+      }
+    }
   }
 
   let dropdown = document.getElementById('dropdown');
   dropdown.classList.add('d-none');
-  selectOne.style.borderRadius = "10px";
-  selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn eine Option ausgewählt ist.
+  if (selectOne) {
+    selectOne.style.borderRadius = "10px";
+    selectOne.style.borderBottom = "";
+  }
 
   // Anzeigen des ausgewählten Bildes
   const selectedImageContainer = document.getElementById('selected-image');
-  selectedImageContainer.innerHTML = '';
-  if (selectedImg) {
-    const clonedImage = selectedImg.cloneNode(true);
-    selectedImageContainer.appendChild(clonedImage);
+  if (selectedImageContainer) {
+    selectedImageContainer.innerHTML = '';
+    if (selectedImg) {
+      const clonedImage = selectedImg.cloneNode(true);
+      selectedImageContainer.appendChild(clonedImage);
+    }
+  }
+
+  if (window.location.pathname.includes('board.html')) {
+    checkScrollbar();
   }
 }
 
@@ -238,6 +283,42 @@ function createCategoryElement(id, name, color) {
 
   return newCategory;
 }
+
+
+//------------------------reste-categorie
+
+function resetSelectedCategory() {
+  const selectOne = document.getElementById('select-one');
+  const textAndImgContainer = selectOne.querySelector('div');
+  
+  // Set default text
+  const defaultText = document.createElement('span');
+  defaultText.textContent = 'Select task category';
+
+  // Reset content
+  textAndImgContainer.innerHTML = '';
+  textAndImgContainer.appendChild(defaultText);
+
+  // Check if image exists before trying to reset it
+  const imgElement = textAndImgContainer.querySelector('img');
+  if (imgElement) {
+    imgElement.src = 'the path to the default img';
+  }
+}
+
+function resetTaskCategoryDropdown() {
+  let dropdown = document.getElementById('dropdown');
+  let selectOne = document.getElementById('select-one');
+
+  if (!dropdown.classList.contains('d-none')) {
+      dropdown.classList.add('d-none');
+      selectOne.style.borderRadius = "10px";
+      selectOne.style.borderBottom = "";
+  }
+}
+
+//Add-task-popup-close
+
 
 
 
@@ -310,7 +391,12 @@ function selectAssignedTo() {
     assignOne.style.borderRadius = "10px";
     assignOne.style.borderBottom = "";
   }
+
+  if (window.location.pathname.includes('board.html')) {
+    checkScrollbar();
+  }
 }
+
 
 function selectAssign(event) {
   const assignOne = document.getElementById('assign-one');
@@ -355,6 +441,10 @@ function selectAssign(event) {
       assignOne.style.borderRadius = '10px 10px 0 0';
       assignOne.style.borderBottom = 'none';
     }
+  }
+
+  if (window.location.pathname.includes('board.html')) {
+    checkScrollbar();
   }
 }
 
@@ -415,6 +505,7 @@ function getAssignedTo() {
 
 document.querySelector(".create-btn-desktop").addEventListener("click", createTask);
 
+
 function resetAssignedTo() {
   const checkboxes = document.querySelectorAll('#dropdown-assign input[type="checkbox"]');
   checkboxes.forEach(checkbox => {
@@ -424,6 +515,10 @@ function resetAssignedTo() {
   // Schließen des "assignedTo"-Dropdowns
   const dropdownAssign = document.getElementById('dropdown-assign');
   const assignOne = document.getElementById('assign-one');
+
+  // Rücksetzen des "assignOne"-Elements auf den ursprünglichen Zustand
+  assignOne.innerHTML = '<span>Select assigned person</span><img src="./add_task_img/open.svg" alt="" />';
+
   dropdownAssign.classList.add('d-none');
   assignOne.style.borderRadius = '10px';
   assignOne.style.borderBottom = '';
@@ -525,9 +620,21 @@ function createSubtask() {
   newLabel.htmlFor = taskValue;
   newLabel.textContent = taskValue;
 
+  // Neues Bild für die Löschen-Funktion erstellen
+  const deleteImage = document.createElement('img');
+  deleteImage.id = 'delete-subtask';
+  deleteImage.src = './asssets/img/cancel-svg.svg';
+  deleteImage.alt = 'Delete Subtask';
+  // onclick-Funktion hinzufügen
+  deleteImage.onclick = function() {
+    newSubtask.remove();
+    // Sie können hier auch Code hinzufügen, um das Subtask-Objekt aus dem subtasks-Array zu entfernen.
+  }
+
   // Die neuen Elemente zum div hinzufügen
   newSubtask.appendChild(newInput);
   newSubtask.appendChild(newLabel);
+  newSubtask.appendChild(deleteImage); // das Bild hinzufügen
 
   // Das neue div zum speziellen Container hinzufügen
   const subtasksContainer = document.getElementById('subtasks');

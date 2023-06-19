@@ -275,9 +275,14 @@
     <!-------------------- Add Task popUp----------------------->
     <div class="popup-overlay">
         <div class="popup-content" id="popupContent">
+          <header class="header-popup">
+            <img class="small-logo" src="./add_task_img/small-logo.svg" alt="Logo" />
+            <button onclick="createTask()" id="create-button">Create &#10003;</button>
+          </header>
             <div class="wrapper">
                 <div class="site-title">
                      <h1>Add Task</h1>
+                     <img class="close-task" src="./asssets/img/close-x-dark.svg" alt="" onclick="closePopup()">
                 </div>
                 
                 <div class="inner-wrap">
@@ -342,6 +347,8 @@
                           <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
                         </div>
                       </div>
+
+                      <div id="selected-contact"></div>
                       
                       <div id="new-contact-fields" class="d-none">
                         <input type="text" id="new-contact-email" placeholder="Enter email address">
@@ -398,15 +405,16 @@
                       </div>
             
             
-            
-                      <div class="cancel-btn-desktop">
-                        <span>Cancel</span>
-                        <img class="cancel-img" src="./asssets/img/cancel-svg.svg" alt="">
-                      </div>
-            
-                      <div class="create-btn-desktop">
-                        <span>Create task</span>
-                        <img class="create-correctly" src="./asssets/img/hook-correctly.png" alt="">
+                      <div class="btn-div">
+                        <div class="cancel-btn-desktop">
+                          <span>Cancel</span>
+                          <img class="cancel-img" src="./asssets/img/cancel-svg.svg" alt="">
+                        </div>
+              
+                        <div class="create-btn-desktop">
+                          <span>Create task</span>
+                          <img class="create-correctly" src="./asssets/img/hook-correctly.png" alt="">
+                        </div>
                       </div>
             
                     </form>
@@ -415,7 +423,9 @@
             </div>
             <!-- Inhalt deines Popups -->
         </div>
+        
       </div>
+      
 
     <!-- ----------Task overlay------------ -->
 
@@ -512,6 +522,8 @@
       </div>
     </div>
 
+    
+
     <!-- <footer w3-footer-include-html="/asssets/templates/footer.html"></footer> -->
     <footer>
         <div id="summary-div" class="icon-container summary">
@@ -546,6 +558,14 @@
              <a href="./contacts.html"><span>Contacts</span></a>
          </div>
     </footer>
+    <!-- createTask-animation -->
+    <div class="task-added-container">
+      <div id="task-added">
+        <span>Task added to board</span>
+        <img src="./add_task_img/gitter.svg" alt="">
+      </div>
+    </div>
+    
     <script src="js/header_include.js"></script>
     <script src="./js/add_task.js"></script>
     

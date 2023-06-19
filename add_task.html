@@ -72,7 +72,7 @@
 
   <header>
     <img class="small-logo" src="./add_task_img/small-logo.svg" alt="Logo" />
-    <button id="create-button">Create &#10003;</button>
+    <button onclick="createTask()" id="create-button">Create &#10003;</button>
   </header>
 
   <div class="wrapper">
@@ -97,7 +97,7 @@
           </div>
 
           <!-- Hinzufügen des neuen Elements für das ausgewählte Bild -->
-          <div id="selected-image"></div>
+          <div id="selected-image" class="d-none"></div>
       
           <div id="dropdown" class="d-none">
             <div onclick="showNewCategoryFields()" id="selected-one" class="selected">
@@ -193,10 +193,10 @@
           </div>
 
           <div id="subtasks"> <!-- Dieses Element wird als Container für die neuen Subtasks verwendet -->
-            <div class="subtask">
+            <!-- <div class="subtask">
               <input type="checkbox" id="subtask1" name="subtask1" class="checkbox-subtask" />
-              <label class="subtask-name" for="subtask1">Subtask 1</label>
-            </div>
+              <label class="subtask-name" for="subtask1">Subtask 1</label><img id="delete-subtask" src="./asssets/img/cancel-svg.svg" alt="">
+            </div> -->
           </div>
 
 
