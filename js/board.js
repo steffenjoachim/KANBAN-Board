@@ -178,9 +178,7 @@ let todos = [];
 
 let currentDraggedElement;
 
-let low = './asssets/img/toDo icon.svg';
-let medium = './asssets/img/Feedback-icon.svg';
-let urgent = './asssets/img/inProgress-icon.svg';
+
 
 function updateHTML() {
   
@@ -192,10 +190,12 @@ function updateHTML() {
   for (let index = 0; index < filterTodo.length; index++) {
     const element = filterTodo[index];
     document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['selectedImage']
-    document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color']
+    // document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    showProgressBar(index, element)
   }
-  checkEmptyList()
+  checkEmptyList();
+  
 
   
   let filterInpro = todos.filter(t => t['status'] == 'inProgress' );
@@ -204,8 +204,9 @@ function updateHTML() {
   for (let index = 0; index < filterInpro.length; index++) {
     const element = filterInpro[index];
     document.getElementById('progress-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['selectedImage']
-    document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color']
+    // document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    showProgressBar(index, element)
   }
   checkEmptyListProgress();
 
@@ -216,8 +217,9 @@ function updateHTML() {
   for (let index = 0; index < filterFeedback.length; index++) {
     const element = filterFeedback[index];
     document.getElementById('Feedback-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['selectedImage']
-    document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color']
+    // document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    showProgressBar(index, element)
   }
   checkEmptyListFeedback();
   
@@ -228,8 +230,9 @@ function updateHTML() {
   for (let index = 0; index < filterDone.length; index++) {
     const element = filterDone[index];
     document.getElementById('done-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['selectedImage']
-    document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color']
+    // document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    showProgressBar(index, element)
   }
   checkEmptyListDone();
   
@@ -249,7 +252,7 @@ function generateTodoHTML(element) {
       <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
           <div class="progress-bar bg-info"></div>
       </div>
-      <div class="progress-steps">0/2 Done</div>
+      <div id="progress-steps${element['id']}" class="progress-steps"></div>
   </div>
   <div class="task-assignedTo">
       <div class="task-icons">
@@ -288,6 +291,36 @@ function highlight(id) {
 function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
+
+
+
+function showProgressBar(id, element){
+  if (todos[id]['subtasks'].length > 0){
+      document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
+    document.getElementById(`progress-steps${element['id']}`).innerHTML = countProgressSteps(id);
+  }
+}
+
+
+
+
+
+function countProgressSteps(id) {
+  // debugger
+  let totalSubTask = todos[id]['subtasks'].length;
+  
+
+  for (let j = 0; j < totalSubTask; j++) {
+    let totalSubTaskChecked = 0;
+    if (todos[id]['subtasks'][j]['checked'] === true) {
+
+      totalSubTaskChecked++
+    }
+    return `${totalSubTaskChecked} / ${totalSubTask} Done`
+  }
+
+  
+} 
 
 
 //////////// funktionen die die Anzeige (NO TASKS ...) je Liste eine Funktion //////////////

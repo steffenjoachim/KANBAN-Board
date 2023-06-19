@@ -23,6 +23,7 @@ async function loadNewtasks() {
 
 async function createTask() {
   // Hier holen wir die Werte aus den verschiedenen Eingabefeldern
+  console.log("At the start of createTask, selectedColor is: " + selectedColor);
   let title = document.getElementById("title-input").value;
   let description = document.getElementById("description-input").value;
   let category = document.getElementById("select-one").innerText;  // Sie müssen den richtigen Weg finden, um den ausgewählten Wert zu erhalten
@@ -45,14 +46,10 @@ async function createTask() {
     subtasks.push(subtaskObj);
   });
 
-  // Hier holen wir das ausgewählte Bild
-  let selectedImage = null;
-  const selectedImageElement = document.querySelector("#selected-image img");
-  if (selectedImageElement) {
-    selectedImage = selectedImageElement.getAttribute("src"); // Pfad des ausgewählten Bildes
-  }
+ 
 
   // Nun erstellen wir ein neues Task-Objekt mit diesen Werten
+  console.log("Current color: " + selectedColor); // Hinzufügen dieser Zeile
   let newTask = {
     id: taskId,
     status: "todo",
@@ -63,17 +60,20 @@ async function createTask() {
     dueDate: dueDate,
     prio: prio,
     subtasks: subtasks,
-    selectedImage: selectedImage, // Hier fügen wir das ausgewählte Bild zum Task-Objekt hinzu
+    color: selectedColor, 
   };
 
   // Jetzt können wir das Task-Objekt zu unserem Array hinzufügen
   tasksArray.push(newTask);
+
+  // tasksArray.splice(0, tasksArray.length);
 
   await setItem("task", JSON.stringify(tasksArray));
 
   // Und schließlich können wir die Eingabefelder zurücksetzen, damit sie bereit für die Eingabe einer neuen Aufgabe sind
   resetInputFields();
   showTaskAddedNotification();
+  // selectedColor = null; // Diese Zeile wurde hierher verschoben
 }
 
 function showTaskAddedNotification() {
@@ -105,11 +105,7 @@ function resetInputFields() {
   const subtasksContainer = document.getElementById("subtasks");
   subtasksContainer.innerHTML = "";
 
-  // Zurücksetzen des ausgewählten Bilds
-  const selectedImageContainer = document.getElementById("selected-image");
-  if (selectedImageContainer) {
-    selectedImageContainer.innerHTML = "";
-  }
+  
 
   // Zurücksetzen der ausgewählten Priorität
   resetImages();
@@ -118,6 +114,8 @@ function resetInputFields() {
   resetAssignedTo();
   resetTaskCategoryDropdown();
   resetSelectedCategory();
+  
+  
 }
 
 
@@ -173,29 +171,29 @@ function showNewCategoryFields() {
     }
 }
 
-function selectOption(event) {
+function selectOption(event, color) {
   let selectOne = document.getElementById('select-one');
   
-  // Definieren von selectedImg außerhalb der if-Anweisungen
-  let selectedImg = null;
+  // Definieren von selectedColorDiv außerhalb der if-Anweisungen
+  let selectedColorDiv = null;
   
   // Überprüfen, ob selectOne existiert
   if (selectOne) {
     const selectedText = event.target.querySelector('span').cloneNode(true);
-    // Hier wird selectedImg neu zugewiesen, falls das img-Element existiert
-    selectedImg = event.target.querySelector('img') ? event.target.querySelector('img').cloneNode(true) : null;
+    // Hier wird selectedColorDiv neu zugewiesen, falls das div-Element existiert
+    selectedColorDiv = event.target.querySelector('.circle') ? event.target.querySelector('.circle').cloneNode(true) : null;
 
-    // select the div containing the span and the img
-    const textAndImgContainer = selectOne.querySelector('div');
+    // select the div containing the span and the color div
+    const textAndColorContainer = selectOne.querySelector('div');
   
-    // Überprüfen, ob textAndImgContainer existiert
-    if (textAndImgContainer) {
+    // Überprüfen, ob textAndColorContainer existiert
+    if (textAndColorContainer) {
       // clear the content of the container and add the new content
-      textAndImgContainer.innerHTML = '';
+      textAndColorContainer.innerHTML = '';
 
-      textAndImgContainer.appendChild(selectedText);
-      if (selectedImg) {
-        textAndImgContainer.appendChild(selectedImg);
+      textAndColorContainer.appendChild(selectedText);
+      if (selectedColorDiv) {
+        textAndColorContainer.appendChild(selectedColorDiv);
       }
     }
   }
@@ -207,59 +205,67 @@ function selectOption(event) {
     selectOne.style.borderBottom = "";
   }
 
-  // Anzeigen des ausgewählten Bildes
-  const selectedImageContainer = document.getElementById('selected-image');
-  if (selectedImageContainer) {
-    selectedImageContainer.innerHTML = '';
-    if (selectedImg) {
-      const clonedImage = selectedImg.cloneNode(true);
-      selectedImageContainer.appendChild(clonedImage);
+  // Anzeigen der ausgewählten Farbe
+  const selectedColorContainer = document.getElementById('selected-color');
+  if (selectedColorContainer) {
+    selectedColorContainer.innerHTML = '';
+    if (selectedColorDiv) {
+      const clonedColorDiv = selectedColorDiv.cloneNode(true);
+      selectedColorContainer.appendChild(clonedColorDiv);
     }
   }
 
   if (window.location.pathname.includes('board.html')) {
     checkScrollbar();
   }
+
+  // Aufrufen der selectColor-Funktion mit dem übergebenen Farbwert
+  selectColor(color);
 }
 
-function selectColor(event) {
-  selectedColor = event.target.getAttribute("data-color"); // Farbcode aus dem data-Attribut extrahieren
-  // Hier können Sie eine Funktion hinzufügen, um das ausgewählte Bild hervorzuheben oder eine andere visuelle Rückmeldung zu geben
+function selectColor(color) {
+  console.log("selectColor function called with color: " + color);
+  selectedColor = color;
+}
+
+function resetColors() {
+  selectedColor = null;
+  console.log("Color selection reset");
 }
 
 function cancelNewCategory() {
     document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
     document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
     document.getElementById('new-category-name').value = '';
-    selectedColor = null;
+    
     // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
   }
   
  
 
-function saveNewCategory() {
-  const categoryName = document.getElementById('new-category-name').value;
+  function saveNewCategory() {
+    const categoryName = document.getElementById('new-category-name').value;
   
-  if (!categoryName || !selectedColor) {
-    alert('Bitte geben Sie einen Kategorienamen ein und wählen Sie eine Farbe aus.');
-    return;
+    if (!categoryName || !selectedColor) {
+      alert('Bitte geben Sie einen Kategorienamen ein und wählen Sie eine Farbe aus.');
+      return;
+    }
+  
+    const newCategoryId = document.getElementById('new-category-name').value;
+  
+    let newCategory = createCategoryElement(newCategoryId, categoryName, selectedColor);
+    const dropdown = document.getElementById('dropdown');
+    const firstCategory = dropdown.querySelector('.selected');
+    dropdown.insertBefore(newCategory, firstCategory);
+  
+    selectOption({ target: newCategory }, selectedColor); // Hier wird der Farbwert an die selectOption-Funktion übergeben
+  
+    document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
+    document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
+    document.getElementById('new-category-name').value = '';
+    
+    // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
   }
-
-  const newCategoryId = document.getElementById('new-category-name').value;
-
-  let newCategory = createCategoryElement(newCategoryId, categoryName, selectedColor);
-  const dropdown = document.getElementById('dropdown');
-  const firstCategory = dropdown.querySelector('.selected');
-  dropdown.insertBefore(newCategory, firstCategory);
-
-  selectOption({ target: newCategory }); // Category auswählen
-
-  document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
-  document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
-  document.getElementById('new-category-name').value = '';
-  selectedColor = null;
-  // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
-}
 
 function createCategoryElement(id, name, color) {
   let newCategory = document.createElement('div');
@@ -270,12 +276,12 @@ function createCategoryElement(id, name, color) {
   let newCategorySpan = document.createElement('span');
   newCategorySpan.textContent = name;
 
-  let newCategoryImg = document.createElement('img');
-  newCategoryImg.src = color;
-  newCategoryImg.className = 'color-circle';
+  let newCategoryColorDiv = document.createElement('div');
+  newCategoryColorDiv.style.backgroundColor = color; // setzt die Hintergrundfarbe auf die ausgewählte Farbe
+  newCategoryColorDiv.className = 'circle'; // diese Klasse sollte in Ihrem CSS definiert sein, um die Form und Größe des Farbkreises zu bestimmen
 
   newCategory.appendChild(newCategorySpan);
-  newCategory.appendChild(newCategoryImg);
+  newCategory.appendChild(newCategoryColorDiv);
 
   return newCategory;
 }
