@@ -28,8 +28,7 @@ async function createTask() {
   let description = document.getElementById("description-input").value;
   let category = document.getElementById("select-one").innerText;  // Sie müssen den richtigen Weg finden, um den ausgewählten Wert zu erhalten
   let assignedTo = getAssignedTo(); // Neue Funktion, um die zugewiesene Person zu erhalten
-  let dueDate = document.querySelector(".date-input-container input").value;
-  let prio = getSelectedPrio(); 
+  let dueDate = document.querySelector(".date-input-container input").value; 
   let taskId = calculateId(); 
 
   // Hier holen wir die Subtasks aus dem Subtask-Array
@@ -46,6 +45,10 @@ async function createTask() {
     subtasks.push(subtaskObj);
   });
 
+  let selectedPriorityImagePath = getSelectedPrioImagePath();
+  
+  
+
  
 
   // Nun erstellen wir ein neues Task-Objekt mit diesen Werten
@@ -58,7 +61,7 @@ async function createTask() {
     category: category,
     assignedTo: assignedTo,
     dueDate: dueDate,
-    prio: prio,
+    selectedPriorityImagePath: selectedPriorityImagePath,
     subtasks: subtasks,
     color: selectedColor, 
   };
@@ -694,13 +697,13 @@ function setupPriorityClick() {
 
 setupPriorityClick();
 
-function getSelectedPrio() {
+function getSelectedPrioImagePath() {
   const prioImages = document.querySelectorAll('.prio-img');
-  let selectedPriority = "";
+  let selectedImagePath = '';
   prioImages.forEach(img => {
-      if (img.src.includes("toggle")) {
-          selectedPriority = img.id; // "urgent", "medium" oder "low"
-      }
+    if (img.src.includes('toggle')) {
+      selectedImagePath = images[img.id].selected;
+    }
   });
-  return selectedPriority;
+  return selectedImagePath;
 }
