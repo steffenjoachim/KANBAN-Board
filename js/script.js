@@ -23,7 +23,7 @@ function setLocalStorage() {
 function togglePasswordVisibility() {
     document.getElementById('input').type = 'password'
     let passwordIcon = document.getElementById('lock-icon-container');
-    let input = document.getElementById('input').value;
+    let input = document.getElementById('input').value || document.getElementById('input-confirm').value;
     if (input.length >= 1) {
         passwordIcon.innerHTML = '<img onclick="visibilPassword()" class="password-icon" src="./asssets/img/show.svg" alt="">';
     } else {
@@ -75,7 +75,7 @@ function signIn() {
     document.getElementById('sign-up-container').innerHTML = ''
     insideWindow.innerHTML += generateSignInHtml();
     updateArrow(); // Überprüfung beim Aufruf der Funktion
-    window.addEventListener('resize', updateArrow); // Überprüfung bei Änderung der Fenstergröße
+    //window.addEventListener('resize', updateArrow); // Überprüfung bei Änderung der Fenstergröße
 }
 
 
@@ -87,7 +87,7 @@ function forgotPassword() {
     document.getElementById('sign-up-container').innerHTML = '';
     insideWindow.innerHTML += generateForgotHtml();
     updateArrow(); // Überprüfung beim Aufruf der Funktion
-    window.addEventListener('resize', updateArrow); // Überprüfung bei Änderung der Fenstergröße
+    //window.addEventListener('resize', updateArrow); // Überprüfung bei Änderung der Fenstergröße
 }
 
 
@@ -106,6 +106,11 @@ function resetPassword() {
     insideWindow.innerHTML = ''
     insideWindow.style.height = '455px'
     insideWindow.innerHTML = generateResetPasswordHtml();
+    if (window.innerWidth > 1024) {
+        document.getElementById('forgot-pass-img-container').innerHTML = `
+        <img src="asssets/img/arrow-left-blue.svg" style="width:34px; height:34px;">
+        `
+    }
     document.getElementById('sign-up-container').innerHTML = '';
 }
 

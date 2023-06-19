@@ -47,17 +47,15 @@ async function createTask() {
 
   // Hier holen wir das ausgewählte Bild
   let selectedImage = null;
-const selectedImageElement = document.querySelector("#selected-image img");
-if (selectedImageElement) {
-  const imagePath = selectedImageElement.getAttribute("src"); // Pfad des ausgewählten Bildes
-  const imageFileName = imagePath.substring(imagePath.lastIndexOf("/") + 1); // Dateiname des Bildes extrahieren
-  selectedImage = imageFileName; // Nur den Dateinamen des Bildes zuweisen
-}
+  const selectedImageElement = document.querySelector("#selected-image img");
+  if (selectedImageElement) {
+    selectedImage = selectedImageElement.getAttribute("src"); // Pfad des ausgewählten Bildes
+  }
 
   // Nun erstellen wir ein neues Task-Objekt mit diesen Werten
   let newTask = {
     id: taskId,
-    'status': 'todo',
+    status: "todo",
     title: title,
     description: description,
     category: category,
@@ -71,13 +69,11 @@ if (selectedImageElement) {
   // Jetzt können wir das Task-Objekt zu unserem Array hinzufügen
   tasksArray.push(newTask);
 
-  // tasksArray.splice(0, tasksArray.length);
-
-  await setItem('task', JSON.stringify(tasksArray));
+  await setItem("task", JSON.stringify(tasksArray));
 
   // Und schließlich können wir die Eingabefelder zurücksetzen, damit sie bereit für die Eingabe einer neuen Aufgabe sind
   resetInputFields();
-  showTaskAddedNotification()
+  showTaskAddedNotification();
 }
 
 function showTaskAddedNotification() {
@@ -227,8 +223,8 @@ function selectOption(event) {
 }
 
 function selectColor(event) {
-    selectedColor = event.target.src;
-    // Hier können Sie eine Funktion hinzufügen, um das ausgewählte Bild hervorzuheben oder eine andere visuelle Rückmeldung zu geben
+  selectedColor = event.target.getAttribute("data-color"); // Farbcode aus dem data-Attribut extrahieren
+  // Hier können Sie eine Funktion hinzufügen, um das ausgewählte Bild hervorzuheben oder eine andere visuelle Rückmeldung zu geben
 }
 
 function cancelNewCategory() {
