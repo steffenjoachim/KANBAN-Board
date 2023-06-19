@@ -1,6 +1,6 @@
 let categories = []; // Array zum Speichern der Kategorien
 let selectedColor = null;
-let tasksArray = [];
+'let todos = [];'
 const subtasks = [];
 
 
@@ -14,7 +14,7 @@ async function loadContactsForAssign(){
 }
 
 async function loadNewtasks() {
-  try {tasksArray = JSON.parse(await getItem('task'))}
+  try {todos = JSON.parse(await getItem('task'))}
   catch (e) {
     alert('Error')
   }
@@ -67,11 +67,11 @@ async function createTask() {
   };
 
   // Jetzt können wir das Task-Objekt zu unserem Array hinzufügen
-  tasksArray.push(newTask);
+  todos.push(newTask);
 
-  // tasksArray.splice(0, tasksArray.length);
+  // todos.splice(0, todos.length);
 
-  await setItem("task", JSON.stringify(tasksArray));
+  await setItem("task", JSON.stringify(todos));
 
   // Und schließlich können wir die Eingabefelder zurücksetzen, damit sie bereit für die Eingabe einer neuen Aufgabe sind
   resetInputFields();
@@ -124,12 +124,12 @@ function resetInputFields() {
 
 
 function calculateId() {
-  if (tasksArray.length === 0) {
+  if (todos.length === 0) {
     return 0; // Wenn keine Tasks vorhanden sind, starte mit der ID 1
   }
 
   // Finde die maximale ID unter den vorhandenen Tasks:
-  const maxId = Math.max(...tasksArray.map(task => task.id));
+  const maxId = Math.max(...todos.map(task => task.id));
 
   // Erhöhe die maximale ID um 1, um eine neue eindeutige ID zu generieren:
   return maxId + 1;
@@ -490,21 +490,24 @@ function saveInviteContact() {
   cancelInviteContact();
 }
 
-// const cancelBtn = document.querySelector('.cancel-btn-desktop');
-// // const cancelImg = cancelBtn.querySelector('.cancel-img');
 
-// cancelBtn.addEventListener('mouseenter', () => {
-//   cancelImg.src = './asssets/img/blue-cancel.svg';
-// });
-
-// cancelBtn.addEventListener('mouseleave', () => {
-//   cancelImg.src = './asssets/img/cancel-svg.svg';
-// });
 
 function getAssignedTo() {
   const checkboxes = document.querySelectorAll('#dropdown-assign input[type="checkbox"]');
   const selectedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
-  const assignedTo = selectedCheckboxes.map(checkbox => checkbox.parentElement.textContent.trim());
+  const assignedTo = selectedCheckboxes.map(checkbox => {
+    const selectedPerson = checkbox.parentElement.textContent.trim();
+    const matchedContact = contacts.find(contact => contact.name === selectedPerson);
+
+    if (matchedContact) {
+      return {
+        name: matchedContact.name,
+        initials: matchedContact.initials,
+        iconColor: matchedContact["icon-color"]
+      };
+    }
+  });
+
   return assignedTo;
 }
 
@@ -571,22 +574,9 @@ function populateContactList() {
 //----------------------------------// 
 
 
-function validateFormSubmission() {
-  const form = document.querySelector('form');
 
-  form.addEventListener('submit', (e) => {
-      // Sie können hier den Selector anpassen, um die ausgewählten Personen zu selektieren
-      const assignedPersons = document.querySelectorAll('#dropdown-assign .selected');
-      
-      if (assignedPersons.length === 0) {
-          alert('Bitte wählen Sie mindestens eine Person aus.');
-          e.preventDefault();
-      }
-  });
-}
 
-// Rufen Sie die Funktion auf, sobald das Dokument geladen ist
-window.addEventListener('DOMContentLoaded', validateFormSubmission);
+
 
 
 //-----------------------------------//
@@ -699,11 +689,21 @@ setupPriorityClick();
 
 function getSelectedPrioImagePath() {
   const prioImages = document.querySelectorAll('.prio-img');
-  let selectedImagePath = '';
+  let selectedPriority = '';
   prioImages.forEach(img => {
     if (img.src.includes('toggle')) {
-      selectedImagePath = images[img.id].selected;
+      selectedPriority = img.id;
     }
   });
+
+  let selectedImagePath = '';
+  if (selectedPriority === 'urgent') {
+    selectedImagePath = './asssets/img/inProgress-icon.svg';
+  } else if (selectedPriority === 'medium') {
+    selectedImagePath = './asssets/img/Feedback-icon.svg';
+  } else if (selectedPriority === 'low') {
+    selectedImagePath = './asssets/img/toDo-icon.svg';
+  }
+
   return selectedImagePath;
 }
