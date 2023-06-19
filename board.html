@@ -327,10 +327,10 @@
                           <span>New Category</span>
                         </div>
                         <div onclick="selectOption(event)" id="selected-two" class="selected">
-                          <span>Sales</span><img class="color-circle" src="./asssets/img/light-blue-dot.svg" alt="">
+                          <span>Sales</span><div class="circle green"></div>
                         </div>
                         <div onclick="selectOption(event)" id="selected-three" class="selected">
-                          <span>Backoffice</span><img class="color-circle" src="./asssets/img/pink-dot.svg" alt="">
+                          <span>Backoffice</span><div class="circle dark-blue"></div>
                         </div>
                       </div>
                   
@@ -341,13 +341,21 @@
                           |
                           <img src="./asssets/img/checkmark.svg" id="check-icon" onclick="saveNewCategory()">
                         </div>
-                        <div id="new-category-colors">
+                        <!-- <div id="new-category-colors">
                           <img class="hover-dot"  src="./asssets/img/dark-blue-dot.svg" alt="" onclick="selectColor(event)">
                           <img class="hover-dot"  src="./asssets/img/green-dot.svg" alt="" onclick="selectColor(event)">
                           <img class="hover-dot"  src="./asssets/img/light-blue-dot.svg" alt="" onclick="selectColor(event)">
                           <img class="hover-dot"  src="./asssets/img/orange-dot.svg" alt="" onclick="selectColor(event)">
                           <img class="hover-dot"  src="./asssets/img/pink-dot.svg" alt="" onclick="selectColor(event)">
                           <img class="hover-dot"  src="./asssets/img/red-dot.svg" alt="" onclick="selectColor(event)">
+                        </div> -->
+                        <div id="new-category-colors">
+                          <div class="circle dark-blue" onclick="selectColor('#2A3647')"></div>
+                          <div class="circle green" onclick="selectColor('#00FF00')"></div>
+                          <div class="circle light-blue" onclick="selectColor('#ADD8E6')"></div>
+                          <div class="circle orange" onclick="selectColor('#FFA500')"></div>
+                          <div class="circle pink" onclick="selectColor('#FFC0CB')"></div>
+                          <div class="circle red" onclick="selectColor('#FF0000')"></div>
                         </div>
                       </div>
                       
