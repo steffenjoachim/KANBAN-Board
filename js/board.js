@@ -254,6 +254,19 @@ function renderAssignedContacts(index, element) {
     const contact = `<span class="${assignedContact['iconColor']}">${assignedContact['initials']}</span>`;
     renderedContacts += contact;
   }
+  for (let j = 2; j < 3 && j < todos[index]['assignedTo'].length; j++) {
+    if ( todos[index]['assignedTo'].length == 3) {
+      const assignedContact = todos[index]['assignedTo'][j];
+    const contact = `<span class="${assignedContact['iconColor']}">${assignedContact['initials']}</span>`;
+    renderedContacts += contact;
+    } else {
+      const assignedContact = todos[index]['assignedTo'][j];
+    const contact = `<span class="join-color">+${todos[index]['assignedTo'].length - 2}</span>`;
+    renderedContacts += contact;
+    }
+    
+  }
+
 
   return renderedContacts;
 }
@@ -264,7 +277,7 @@ function startDragging(id) {
  }
 
 function generateTodoHTML(element) {
-  return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar">
+  return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card${element['id']}" class="item task-card card-with-PBar">
   <div id="task-category${element['id']}" class="task-category ">${element['category']}</div>
   <div class="task-title"></div>
   <div class="task-description">${element['description']}</div>
