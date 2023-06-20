@@ -583,7 +583,7 @@ form{
 
   .popup-content::-webkit-scrollbar {
     width: 12px;
-    background-color: #F5F5F5; /* Hintergrund des Scrollbars */
+    background-color: #F5F5F5; /* Hintergrund des Scrollbars
 }
 
 .popup-content::-webkit-scrollbar-thumb {
@@ -604,7 +604,7 @@ form{
 .popup-content.scrolling {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-}
+} */
 
 .dis-none {
     display: none;

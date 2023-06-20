@@ -533,3 +533,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOMContentLoaded event triggered');
+    populateContactList();
+  });
+
+  
+

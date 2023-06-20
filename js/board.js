@@ -28,83 +28,81 @@ function restoreimage(element) {
 
 //----------------Add-task PopUp--------------------
 
-document.addEventListener('DOMContentLoaded', () => {
-  const openPopupBtn = document.querySelector('.open-popup');
-  const openPopupBtnResponiv = document.querySelector('.edit-btn');
-  const popupOverlay = document.querySelector('.popup-overlay');
-
-  openPopupBtn.addEventListener('click', openPopup);
-  openPopupBtnResponiv.addEventListener('click', openPopup);
-
-  popupOverlay.addEventListener('click', (event) => {
-    if (event.target === popupOverlay) {
-      closePopup();
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  function adjustPopupContent() {
+if (window.location.pathname.includes('board.html')) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const openPopupBtn = document.querySelector('.open-popup');
+    const openPopupBtnResponiv = document.querySelector('.edit-btn');
     const popupOverlay = document.querySelector('.popup-overlay');
-    const popupContent = document.getElementById('popupContent');
-    const body = document.body;
 
-    // Überprüfen, ob das Popup aktiv ist
-    if (popupOverlay && popupOverlay.classList.contains('active')) {
-      if (window.innerWidth <= 900 && window.innerWidth >= 280) {
-        if (popupContent) {
-          body.appendChild(popupContent);
-        }
-      } else {
-        if (popupContent) {
-          popupOverlay.appendChild(popupContent);
+    openPopupBtn.addEventListener('click', openPopup);
+    openPopupBtnResponiv.addEventListener('click', openPopup);
+
+    popupOverlay.addEventListener('click', (event) => {
+      if (event.target === popupOverlay) {
+        closePopup();
+      }
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    function adjustPopupContent() {
+      const popupOverlay = document.querySelector('.popup-overlay');
+      const popupContent = document.getElementById('popupContent');
+      const body = document.body;
+
+      // Überprüfen, ob das Popup aktiv ist
+      if (popupOverlay && popupOverlay.classList.contains('active')) {
+        if (window.innerWidth <= 900 && window.innerWidth >= 280) {
+          if (popupContent) {
+            body.appendChild(popupContent);
+          }
+        } else {
+          if (popupContent) {
+            popupOverlay.appendChild(popupContent);
+          }
         }
       }
     }
-  }
 
-  // Resize-Event-Listener hinzufügen
-  window.addEventListener('resize', adjustPopupContent);
+    // Resize-Event-Listener hinzufügen
+    window.addEventListener('resize', adjustPopupContent);
 
-  // Call the function initially to account for the current window size
-  adjustPopupContent();
-});
+    // Call the function initially to account for the current window size
+    adjustPopupContent();
+  });
 
-function openPopup() {
-  const popupOverlay = document.querySelector('.popup-overlay');
-  popupOverlay.classList.add('active');
-  disableBackgroundScroll();
-  if (window.location.pathname.includes('board.html')) {
+  function openPopup() {
+    const popupOverlay = document.querySelector('.popup-overlay');
+    popupOverlay.classList.add('active');
+    disableBackgroundScroll();
     checkScrollbar();
   }
-}
 
-function closePopup() {
-  const popupOverlay = document.querySelector('.popup-overlay');
-  popupOverlay.classList.remove('active');
-  enableBackgroundScroll();
-  resetInputFields();
-  resetTaskCategoryDropdown();
-  resetSelectedCategory();
-  if (window.location.pathname.includes('board.html')) {
+  function closePopup() {
+    const popupOverlay = document.querySelector('.popup-overlay');
+    popupOverlay.classList.remove('active');
+    enableBackgroundScroll();
+    resetInputFields();
+    resetTaskCategoryDropdown();
+    resetSelectedCategory();
     checkScrollbar();
   }
-}
 
-function disableBackgroundScroll() {
-  document.body.style.overflow = 'hidden';
-}
+  function disableBackgroundScroll() {
+    document.body.style.overflow = 'hidden';
+  }
 
-function enableBackgroundScroll() {
-  document.body.style.overflow = '';
-}
+  function enableBackgroundScroll() {
+    document.body.style.overflow = '';
+  }
 
-function checkScrollbar() {
-  const popupContent = document.querySelector('.popup-content');
-  if (popupContent.scrollHeight > popupContent.clientHeight) {
+  function checkScrollbar() {
+    const popupContent = document.querySelector('.popup-content');
+    if (popupContent.scrollHeight > popupContent.clientHeight) {
       popupContent.classList.add('scrolling');
-  } else {
+    } else {
       popupContent.classList.remove('scrolling');
+    }
   }
 }
 
@@ -251,6 +249,27 @@ function updateHTML() {
   
 }
 
+function renderAssignedContacts(index, element) {
+  let renderedContacts = '';
+
+  for (let j = 0; j < 2 && j < todos[index]['assignedTo'].length; j++) {
+    const assignedContact = todos[index]['assignedTo'][j];
+    const contact = `<span class="${assignedContact['iconColor']}">${assignedContact['initials']}</span>`;
+    renderedContacts += contact;
+  }
+  for (let j = 2; j < 3 && j < todos[index]['assignedTo'].length; j++) {
+    if ( todos[index]['assignedTo'].length == 3) {
+      const assignedContact = todos[index]['assignedTo'][j];
+    const contact = `<span class="${assignedContact['iconColor']}">${assignedContact['initials']}</span>`;
+    renderedContacts += contact;
+    } else {
+      const assignedContact = todos[index]['assignedTo'][j];
+    const contact = `<span class="join-color">+${todos[index]['assignedTo'].length - 2}</span>`;
+    renderedContacts += contact;
+    }
+    
+  }
+
 
 
 
@@ -262,7 +281,7 @@ function generateTodoHTML(element) {
   return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar">
   <img onclick="moveTaskup(${element['id']})" class="arrow-up" id="arrowUp" src="./asssets/img/arrowUp.svg" alt="">
   <div id="task-category${element['id']}" class="task-category ">${element['category']}</div>
-  <div class="task-title"></div>
+  <div class="task-title">${element['title']}</div>
   <div class="task-description">${element['description']}</div>
   <div id="task-progress${element['id']}" class="task-progress dis-none">
       <div class="progress" role="progressbar" aria-label="Example with label">
@@ -304,15 +323,6 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
-
-function showProgressBar(element, id){
-  if (todos[id]['subtasks'].length > 0){
-    document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
-    document.getElementById(`progress-steps${element['id']}`).innerHTML = countProgressSteps(id);
-  }
-}
-
-
 function countProgressSteps(id) {
   let totalSubTask = todos[id]['subtasks'].length;
   let totalSubTaskChecked = 0;
@@ -327,8 +337,16 @@ function countProgressSteps(id) {
   return `${totalSubTaskChecked} / ${totalSubTask} Done`
 } 
 
+function showProgressBar(element, id){
+  if (todos[id]['subtasks'].length > 0){
+    document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
+    document.getElementById(`progress-steps${element['id']}`).innerHTML = countProgressSteps(id);
+  }
+}
+
 
 function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
+  // debugger;
   let percent = totalSubTaskChecked / totalSubTask;
   percent = Math.round(percent * 100)
   document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`
@@ -440,4 +458,132 @@ function filterTasks() {
       }
 }   
 
+}
+
+
+
+
+
+
+
+
+
+
+
+// -------------Edit Task popup---------------
+
+// function openEditPopup(taskId) {
+//   let task = todos.find(t => t.id == taskId);
+  
+//   if (!task) {
+//     console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
+//     return;
+//   }
+
+//   document.getElementById('popup-title').innerText = task.title;
+//   document.getElementById('popup-description').innerText = task.description;
+//   // und so weiter für alle Felder, die du in deinem Popup hast...
+
+//   // Füge die "active" Klasse zum Popup hinzu, um es anzuzeigen
+//   document.getElementById('task-overlay-popup').classList.add('active');
+// }
+
+// function closeEditPopup() {
+//   // Entferne die "active" Klasse vom Popup, um es zu verbergen
+//   document.getElementById('task-overlay-popup').classList.remove('active');
+// }
+
+function openEditPopup(taskId) {
+  let task = todos.find(t => t.id == taskId);
+
+  if (!task) {
+    console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
+    return;
+  }
+
+  function getImagePath(priorityImagePath) {
+    switch (priorityImagePath) {
+      case "./asssets/img/inProgress-icon.svg":
+        return "./asssets/img/urgent-toggle.svg";
+      case "./asssets/img/Feedback-icon.svg":
+        return "./asssets/img/medium-urgent-toggle.svg";
+      case "./asssets/img/toDo-icon.svg":
+        return "./asssets/img/low-urgent-toggle.svg";
+      default:
+        return priorityImagePath;
+    }
+  }
+
+  // Generiere den HTML-Inhalt
+  let popupContentHtml = `
+    <div class="popUp-head-task">
+      <div class="task-category-one" style="background-color:${task.color};">${task.category}</div>
+      <img id="close-popUp-one" class="close-popUp-arrows" src="./asssets/img/popUp-arrow.svg" alt="" />
+      <img class="close-popUp-xx display-none" src="./asssets/img/popUp-close.svg" alt="" />
+    </div>
+
+    <span class="popUp-titled">${task.title}</span>
+
+    <p class="popUp-description">${task.description}</p>
+
+    <div class="popUp-date">
+      <span class="bolder">Due date:</span>
+      <span>${task.dueDate}</span>
+    </div>
+
+    <div class="popUp-prio">
+      <span class="bolder">Priority:</span>
+      <div class="popUp-prio-btn">
+        <img src="${getImagePath(task.selectedPriorityImagePath)}" alt="" />
+      </div>
+    </div>
+  `;
+
+  // Generiere HTML für "Assigned To" Abschnitt
+  task.assignedTo.forEach(assignedPerson => {
+    popupContentHtml += `
+      <div class="assignedTo-divE">
+        <div class="assignedTo-iconE" style="background-color:${assignedPerson.iconColor};">${assignedPerson.initials}</div>
+        <div class="assignedTo-name">${assignedPerson.name}</div>
+      </div>
+    `;
+  });
+
+  
+
+  // Generiere HTML für die Schließen und Bearbeiten Buttons
+  popupContentHtml += `
+    <div class="btns-responsive firstTypebtns">
+      <div></div>
+      <div class="popUp-btns">
+        <img class="popUp-delete" src="./asssets/img/popUp-deleteBTN.svg" alt="" />
+        <img class="popUp-edit" src="./asssets/img/popUp-editBTN.svg" alt="" />
+      </div>
+    </div>
+
+    <div class="btns-responsive">
+      <div></div>
+      <div class="popUp-btns secondTypebtns">
+        <div id="popUpDelete" class="popUp-delete-responsive">
+          <img src="./asssets/img/popUpDelete.svg" alt="" />
+        </div>
+        <div class="popUp-edit-responsive">
+          <img src="./asssets/img/popUpEditPen.svg" alt="" />
+        </div>
+      </div>
+    </div>
+    <button onclick="closeEditPopup()">Schließen</button>
+  `;
+
+  // Zeige das Popup
+  document.querySelector('.task-overlay-popup').classList.add('active');
+  // Füge den Inhalt zum Popup hinzu
+  document.getElementById('taskContent').innerHTML = popupContentHtml;
+}
+}
+function closeEditPopup() {
+  // Verstecke das Popup
+  document.querySelector('.task-overlay-popup').classList.remove('active');
+  // Leere den Inhalt des Popups
+  document.getElementById('taskContent').innerHTML = '';
 }
