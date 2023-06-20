@@ -194,7 +194,7 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(index, element);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(index)
+    showProgressBar(element,index)
   }
   checkEmptyList();
   
@@ -210,7 +210,7 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(id);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(index)
+    showProgressBar(element, index)
   }
   checkEmptyListProgress();
 
@@ -225,7 +225,7 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(id);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(index)
+    showProgressBar(element, index)
   }
   checkEmptyListFeedback();
   
@@ -240,7 +240,7 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(id);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(index)
+    showProgressBar(element, index)
   }
   checkEmptyListDone();
   
@@ -264,7 +264,7 @@ function renderAssignedContacts(id) {
       // debugger
       const additionalContacts = todos[id]['assignedTo'].length - 2;
       const contact = `<span id="additional-contacts${id}" class="join-color">+2</span>`;
-      document.getElementById(`additional-contacts${id}`).innerHTML = additionalContacts;
+      // document.getElementById(`additional-contacts${id}`).innerHTML = additionalContacts;
     renderedContacts += contact;  
     }
     return renderedContacts;
@@ -317,7 +317,7 @@ function removeHighlight(id) {
 }
 
 
-function showProgressBar(id, element){
+function showProgressBar(element, id){
   if (todos[id]['subtasks'].length > 0){
       document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
     document.getElementById(`progress-steps${element['id']}`).innerHTML = countProgressSteps(id);
