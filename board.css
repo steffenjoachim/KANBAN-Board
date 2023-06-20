@@ -17,6 +17,11 @@ body {
     scroll-behavior: smooth;
 }
 
+.join-color{
+    background: #2A3647;
+  }
+  
+
 .orange{
     background: #FF7A00;
 }
@@ -192,6 +197,7 @@ body {
     margin-bottom: 22px;
     cursor: pointer;
     overflow: auto;
+    position: relative;
 }
 
 .highlight {
@@ -306,6 +312,22 @@ body {
     background-color: #e0e0e06d;
     border-radius: 30px;
 }
+
+.arrow-up, .arrow-down {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 56%;
+}
+
+.arrow-up {
+    top: 134px
+}
+
+.arrow-down {
+    bottom: 0;
+}
+
 
 
 /*----add-tast-popUp---------*/
