@@ -477,6 +477,19 @@ function openEditPopup(taskId) {
     return;
   }
 
+  function getImagePath(priorityImagePath) {
+    switch (priorityImagePath) {
+      case "./asssets/img/inProgress-icon.svg":
+        return "./asssets/img/urgent-toggle.svg";
+      case "./asssets/img/Feedback-icon.svg":
+        return "./asssets/img/medium-urgent-toggle.svg";
+      case "./asssets/img/toDo-icon.svg":
+        return "./asssets/img/low-urgent-toggle.svg";
+      default:
+        return priorityImagePath;
+    }
+  }
+
   // Generiere den HTML-Inhalt
   let popupContentHtml = `
     <div class="popUp-head-task">
@@ -497,7 +510,7 @@ function openEditPopup(taskId) {
     <div class="popUp-prio">
       <span class="bolder">Priority:</span>
       <div class="popUp-prio-btn">
-        <img src="${task.selectedPriorityImagePath}" alt="" />
+        <img src="${getImagePath(task.selectedPriorityImagePath)}" alt="" />
       </div>
     </div>
   `;
