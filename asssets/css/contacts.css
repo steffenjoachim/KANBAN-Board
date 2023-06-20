@@ -610,6 +610,14 @@ form{
     display: none;
 }
 
+.add-task-form {
+    height: 100%;
+}
+
+#addTaskOpen {
+    cursor: pointer;
+}
+
   /*---------------*/
 
   @media (max-width: 900px) {
@@ -662,13 +670,21 @@ form{
     }
     
   }
+
+  @media (min-width: 1200px) {
+    
+
+    .popup-content {
+        width: 1116px
+    }
+}
   
 
   /*----------------*/
 
 
-  @media(min-width:768px) {
+  /* @media(min-width:768px) {
     .popup-content {
         width: 100%;
     }
-  }
+  } */

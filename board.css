@@ -51,6 +51,14 @@ body {
     background: #2A3647 ;
 }
 
+.brown {
+    background: brown;
+}
+
+.light-orange {
+    background: orange;
+}
+
 .main-div {
     background-color: #F5F5F5;;
     width: 100%;

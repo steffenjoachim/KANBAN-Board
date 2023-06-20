@@ -1,6 +1,5 @@
 let categories = []; // Array zum Speichern der Kategorien
 let selectedColor = null;
-'let todos = [];'
 const subtasks = [];
 
 
@@ -160,7 +159,7 @@ function selectTaskCategory() {
         selectOne.style.borderRadius = "10px";
         selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn das Dropdown-Menü geschlossen ist.
     } 
-    if (window.location.pathname.includes('board.html')) {
+    if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
       checkScrollbar();
     }
 }
@@ -169,7 +168,7 @@ function showNewCategoryFields() {
     document.getElementById('select-one').classList.add('d-none'); // versteckt das Select task category Element
     document.getElementById('new-category-fields').classList.remove('d-none'); // zeigt das Eingabefeld und die Farbauswahl
     document.getElementById('dropdown').classList.add('d-none');
-    if (window.location.pathname.includes('board.html')) {
+    if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
       checkScrollbar();
     }
 }
@@ -218,7 +217,7 @@ function selectOption(event, color) {
     }
   }
 
-  if (window.location.pathname.includes('board.html')) {
+  if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
     checkScrollbar();
   }
 
@@ -386,6 +385,11 @@ function selectAssignedTo() {
   let assignOne = document.getElementById('assign-one');
   let assignThree = document.getElementById('assigned-three')
 
+  if (!contacts) {
+    // Das 'contacts'-Array ist noch nicht geladen, daher keine Aktion ausführen
+    return;
+  }
+
   if (dropdownAssign.classList.contains('d-none')) {
     dropdownAssign.classList.remove('d-none');
     assignOne.style.borderRadius = "10px 10px 0 0";
@@ -397,7 +401,7 @@ function selectAssignedTo() {
     assignOne.style.borderBottom = "";
   }
 
-  if (window.location.pathname.includes('board.html')) {
+  if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
     checkScrollbar();
   }
 }
@@ -448,7 +452,7 @@ function selectAssign(event) {
     }
   }
 
-  if (window.location.pathname.includes('board.html')) {
+  if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
     checkScrollbar();
   }
 }
