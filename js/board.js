@@ -192,7 +192,7 @@ function updateHTML() {
     document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
-    // document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
     showProgressBar(index, element)
   }
   checkEmptyList();
@@ -254,8 +254,8 @@ function generateTodoHTML(element) {
   <div class="task-title"></div>
   <div class="task-description">${element['description']}</div>
   <div id="task-progress${element['id']}" class="task-progress dis-none">
-      <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-          <div class="progress-bar bg-info"></div>
+      <div class="progress" role="progressbar" aria-label="Example with label">
+          <div id="progress-bar${element['id']}" class="progress-bar" style="width: 25%"></div>
       </div>
       <div id="progress-steps${element['id']}" class="progress-steps"></div>
   </div>
@@ -271,13 +271,6 @@ function generateTodoHTML(element) {
   
 }
 
-function showProgressBar(id){
-  console.log('called');
-  if (todos[id]['subtasks'].length > 0){
-    console.log(id);
-    document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
-  }
-}
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -298,7 +291,6 @@ function removeHighlight(id) {
 }
 
 
-
 function showProgressBar(id, element){
   if (todos[id]['subtasks'].length > 0){
       document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
@@ -307,23 +299,25 @@ function showProgressBar(id, element){
 }
 
 
-
-
-
 function countProgressSteps(id) {
-  // debugger
   let totalSubTask = todos[id]['subtasks'].length;
-  
   let totalSubTaskChecked = 0;
+
   for (let j = 0; j < totalSubTask; j++) {
-    
     if (todos[id]['subtasks'][j]['checked'] === true) {
       totalSubTaskChecked++
     }
-   
   }
+  progressAnimation(totalSubTask, totalSubTaskChecked, id)
   return `${totalSubTaskChecked} / ${totalSubTask} Done`
 } 
+
+
+function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
+  let percent = totalSubTaskChecked / totalSubTask;
+  percent = Math.round(percent * 100)
+  document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`
+}
 
 
 //////////// funktionen die die Anzeige (NO TASKS ...) je Liste eine Funktion //////////////
