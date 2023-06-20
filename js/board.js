@@ -194,7 +194,7 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(index, element);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(index, element)
+    showProgressBar(index)
   }
   checkEmptyList();
   
@@ -210,7 +210,7 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(id);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(index, element)
+    showProgressBar(index)
   }
   checkEmptyListProgress();
 
@@ -225,7 +225,7 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(id);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(index, element)
+    showProgressBar(index)
   }
   checkEmptyListFeedback();
   
@@ -240,13 +240,13 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(id);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(index, element)
+    showProgressBar(index)
   }
   checkEmptyListDone();
   
 }
 
-function renderAssignedContacts(id, element) {
+function renderAssignedContacts(id) {
   let renderedContacts = '';
 
   for (let j = 0; j < 2 && j < todos[id]['assignedTo'].length; j++) {
@@ -255,8 +255,23 @@ function renderAssignedContacts(id, element) {
     renderedContacts += contact;
   }
 
-  return renderedContacts;
+  for (let j = 2; j < 3 && j < todos[id]['assignedTo'].length; j++) {
+    if (todos[id]['assignedTo'].length == 3) {
+      const assignedContact = todos[id]['assignedTo'][j];
+      const contact = `<span class="${assignedContact['iconColor']}">${assignedContact['initials']}</span>`;
+    renderedContacts += contact;  
+    } else {
+      // debugger
+      const additionalContacts = todos[id]['assignedTo'].length - 2;
+      const contact = `<span id="additional-contacts${id}" class="join-color">+2</span>`;
+      document.getElementById(`additional-contacts${id}`).innerHTML = additionalContacts;
+    renderedContacts += contact;  
+    }
+    return renderedContacts;
+  }
+
 }
+
 
 function startDragging(id) {
   currentDraggedElement = id;
