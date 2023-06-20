@@ -455,12 +455,12 @@
 
     <!-- ----------Task overlay------------ -->
 
-    <div class="task-overlay-popup">
-        <div class="task-content-popup" id="taskContent">
-          <!-- Inhalt deines Popups -->
-          
+    <div id="task-overlay-popup" class="task-overlay-popup">
+      <div class="task-content-popup" id="taskContent">
+        <!-- Inhalt deines Popups -->
+        
         <div class="popUp-head-task">
-            <div class="task-category-one pink">Sales</div>
+          <div class="task-category-one pink">Sales</div>
           <img
             id="close-popUp-one"
             class="close-popUp-arrows"
@@ -473,24 +473,24 @@
             alt=""
           />
         </div>
-
-            <span class="popUp-titled">Call potencial clients</span>
-
-        <p class="popUp-description">
+    
+        <span class="popUp-titled" id="popup-title">Call potencial clients</span>
+    
+        <p class="popUp-description" id="popup-description">
           Make the product presentation to prospective buyers
         </p>
-
+    
         <div class="popUp-date">
-            <span class="bolder">Due date:</span>
-            <span>05-08-2022</span>
+          <span class="bolder">Due date:</span>
+          <span id="popup-due-date">05-08-2022</span>
         </div>
-
+    
         <div class="popUp-prio">
-            <span class="bolder">Priority:</span>
-            <div class="popUp-prio-btn">
-                <span>Urgent</span>
+          <span class="bolder">Priority:</span>
+          <div class="popUp-prio-btn" id="popup-priority">
+            <span>Urgent</span>
             <img src="./asssets/img/Prio-icon-arrow.svg" alt="" />
-            </div>
+          </div>
         </div>
 
         <!------------- Assigned to Section ------------>
@@ -545,6 +545,22 @@
             </div>
       </div>
         </div>
+        <button onclick="closeEditPopup()">Schließen</button>
+      </div>
+    </div>
+
+    <div id="task-overlay-popup" class="task-overlay-popup">
+      <div id="task-content-popup" class="task-content-popup">
+        <h2>Edit Task</h2>
+        <form>
+          <label for="popup-title">Title:</label><br>
+          <input type="text" id="popup-title" name="popup-title"><br>
+          <label for="popup-description">Description:</label><br>
+          <input type="text" id="popup-description" name="popup-description"><br>
+          <!-- und so weiter für alle Felder, die du bearbeiten möchtest -->
+          <input type="submit" value="Submit">
+        </form>
+        <button onclick="closePopup()">Schließen</button>
       </div>
     </div>
 
