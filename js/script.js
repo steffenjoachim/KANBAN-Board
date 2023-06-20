@@ -1,14 +1,9 @@
 function init() {
-    loadTargetPage();
     loadUsers();
     setLocalStorage();
 }
 
-function loadTargetPage() {
-    setTimeout(function () {
-        indexHTML()
-    }, 880);
-}
+
 function setLocalStorage() {
     localStorage.removeItem('name');
     localStorage.setItem('name', JSON.stringify('Guest'));

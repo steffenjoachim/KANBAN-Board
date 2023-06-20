@@ -52,6 +52,7 @@ h1 {
     line-height: 120%;
     text-align: center;
     color: #000000;
+    font-weight: 700 !important;
 }
 
 .e-mail,
@@ -90,7 +91,6 @@ h1 {
 }
 
 .input-field img {
-    z-index: 99;
     background-color: white;
     margin-right: 10px;
 }
@@ -357,6 +357,85 @@ form {
         top: 50vh;
         z-index: 99;
     }
+
+
+    .logo-container {
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2A3647;
+        animation: animation-mobile-container 2s 1s forwards;
+        z-index: 1;
+    }
+
+    .logo-container img {
+        animation: animation-mobile-logo 2s 1s forwards;
+        visibility: hidden;
+    }
+
+    .logo-white-container {
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: animation-mobile-white-container 2s 1s forwards;
+        z-index: 1;
+    }
+
+    .logo-white-container img {
+        z-index: 99;
+        animation: animation-mobile-white-logo 2s 1s forwards;
+    }
+
+    @keyframes animation-mobile-white-logo {
+        to {
+            transform: translate(-230%, -315%);
+            visibility: hidden;
+            z-index: 0;
+        }
+    }
+
+    @keyframes animation-mobile-white-container {
+        from {
+            background-color: #2A3647;
+            z-index: 1;
+        }
+
+        to {
+            background-color: #F6F7F8;
+            opacity: 0;
+            z-index: 0;
+        }
+    }
+
+    @keyframes animation-mobile-logo {
+        from {
+            visibility: hidden;
+        }
+
+        to {
+            transform: translate(-230%, -315%);
+            visibility: inherit;
+            z-index: 99;
+        }
+    }
+
+    @keyframes animation-mobile-container {
+        from {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        to {
+            background-color: #F6F7F8;
+            z-index: 0;
+        }
+    }
 }
 
 @media (min-width:1024px) {
@@ -365,6 +444,10 @@ form {
         flex-direction: row-reverse;
         align-items: center;
         justify-content: space-evenly;
+    }
+
+    .logo-white-container {
+        display: none;
     }
 
     .inside-window {
@@ -437,13 +520,41 @@ form {
 
     .logo-container {
         position: fixed;
-        top: 15px;
-        left: 70px;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: flex-start;
+        z-index: 1;
+        background-color: #F6F7F8;
+        animation: animation-container 1s 1s forwards;
+    }
+
+    @keyframes animation-web-logo {
+        to {
+            transform: translate(0);
+        }
+
+    }
+
+    @keyframes animation-container {
+        0% {
+
+            z-index: 99;
+        }
+
+        100% {
+            z-index: 0;
+            background-color: rgba(255, 255, 255, 0);
+        }
     }
 
     .logo-container img {
         width: 100px;
         height: 122px;
+        transform: translate(500%, 40vh);
+        animation: animation-web-logo 1s 1s forwards;
+        z-index: 99;
     }
 
     .fortgot-password-btn {
@@ -484,6 +595,7 @@ form {
 
     h1 {
         width: 100%;
+        font-weight: 700 !important;
     }
 
     .login-line {
