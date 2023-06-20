@@ -307,7 +307,7 @@ function allowDrop(ev) {
 function moveTo(status) {
   
   todos[currentDraggedElement]['status'] = status;
-  updateHTML()
+  //updateHTML()
 }
 
 function highlight(id) {
@@ -317,7 +317,11 @@ function highlight(id) {
 function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
-
+function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
+  let percent = totalSubTaskChecked / totalSubTask;
+  percent = Math.round(percent * 100)
+  document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`
+}
 function countProgressSteps(id) {
   let totalSubTask = todos[id]['subtasks'].length;
   let totalSubTaskChecked = 0;
@@ -338,13 +342,6 @@ function showProgressBar(element, id){
   }
 }
 
-
-function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
-  debugger;
-  let percent = totalSubTaskChecked / totalSubTask;
-  percent = Math.round(percent * 100)
-  document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`
-}
 
 
 //////////// funktionen die die Anzeige (NO TASKS ...) je Liste eine Funktion //////////////
