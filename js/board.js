@@ -265,7 +265,7 @@ function generateTodoHTML(element) {
           <span class="purple">MN</span>
           <span class="green">EF</span>
       </div>
-      <img id="task-icon${element['id']}" src="./asssets/img/toDo icon.svg" alt="">
+      <img id="task-icon${element['id']}" src="./asssets/img/toDo-icon.svg" alt="">
   </div>
   </div>`;
   

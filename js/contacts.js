@@ -453,3 +453,87 @@ async function functionsToBeCalledAfterEdit(i, contact){
     closeEditContacts()
 }
 
+// add-task-popup
+
+//----------------Add-task PopUp--------------------
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const openPopupBtn = document.querySelector('.email');
+// const openPopupBtnResponiv = document.querySelector('.email');
+//     const popupOverlay = document.querySelector('.popup-overlay');
+  
+//     openPopupBtn.addEventListener('click', openPopup);
+//     openPopupBtnResponiv.addEventListener('click', openPopup);
+  
+//     popupOverlay.addEventListener('click', (event) => {
+//       if (event.target === popupOverlay) {
+//         closePopup();
+//       }
+//     });
+//   });
+  
+//   document.addEventListener('DOMContentLoaded', function() {
+//     function adjustPopupContent() {
+//       const popupOverlay = document.querySelector('.popup-overlay');
+//       const popupContent = document.getElementById('popupContent');
+//       const body = document.body;
+  
+//       // Überprüfen, ob das Popup aktiv ist
+//       if (popupOverlay && popupOverlay.classList.contains('active')) {
+//         if (window.innerWidth <= 900 && window.innerWidth >= 280) {
+//           if (popupContent) {
+//             body.appendChild(popupContent);
+//           }
+//         } else {
+//           if (popupContent) {
+//             popupOverlay.appendChild(popupContent);
+//           }
+//         }
+//       }
+//     }
+  
+//     // Resize-Event-Listener hinzufügen
+//     window.addEventListener('resize', adjustPopupContent);
+  
+//     // Call the function initially to account for the current window size
+//     adjustPopupContent();
+//   });
+  
+//   function openPopup() {
+//     const popupOverlay = document.querySelector('.popup-overlay');
+//     popupOverlay.classList.add('active');
+//     disableBackgroundScroll();
+//     if (window.location.pathname.includes('board.html')) {
+//       checkScrollbar();
+//     }
+//   }
+  
+//   function closePopup() {
+//     const popupOverlay = document.querySelector('.popup-overlay');
+//     popupOverlay.classList.remove('active');
+//     enableBackgroundScroll();
+//     resetInputFields();
+//     resetTaskCategoryDropdown();
+//     resetSelectedCategory();
+//     if (window.location.pathname.includes('board.html')) {
+//       checkScrollbar();
+//     }
+//   }
+  
+//   function disableBackgroundScroll() {
+//     document.body.style.overflow = 'hidden';
+//   }
+  
+//   function enableBackgroundScroll() {
+//     document.body.style.overflow = '';
+//   }
+  
+//   function checkScrollbar() {
+//     const popupContent = document.querySelector('.popup-content');
+//     if (popupContent.scrollHeight > popupContent.clientHeight) {
+//         popupContent.classList.add('scrolling');
+//     } else {
+//         popupContent.classList.remove('scrolling');
+//     }
+//   }
+
