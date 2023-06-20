@@ -17,6 +17,11 @@ body {
     scroll-behavior: smooth;
 }
 
+.join-color{
+    background: #2A3647;
+  }
+  
+
 .orange{
     background: #FF7A00;
 }
