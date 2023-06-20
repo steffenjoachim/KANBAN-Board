@@ -189,7 +189,7 @@ function updateHTML() {
     const element = filterTodo[index];
     document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
-    document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
+    document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
     showProgressBar(element,element['id'])
@@ -207,7 +207,7 @@ function updateHTML() {
     const element = filterInpro[index];
     document.getElementById('progress-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
-    document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
+    document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
     showProgressBar(element,element['id'])
@@ -223,7 +223,7 @@ function updateHTML() {
     const element = filterFeedback[index];
     document.getElementById('Feedback-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
-    document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
+    document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
     showProgressBar(element,element['id'])
@@ -239,7 +239,7 @@ function updateHTML() {
     const element = filterDone[index];
     document.getElementById('done-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
-    document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
+    document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
     showProgressBar(element,element['id'])
@@ -269,6 +269,7 @@ function renderAssignedContacts(index, element) {
     }
     
   }
+}
 
 
 
@@ -580,7 +581,7 @@ function openEditPopup(taskId) {
   // Füge den Inhalt zum Popup hinzu
   document.getElementById('taskContent').innerHTML = popupContentHtml;
 }
-}
+
 function closeEditPopup() {
   // Verstecke das Popup
   document.querySelector('.task-overlay-popup').classList.remove('active');
