@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="asssets/css/add_task_popUp.css">
     <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="./asssets/css/footer.css">
+    <script src="js/board.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/contacts.js"></script>
     <script src="./js/contacs_create_html.js"></script>
@@ -21,7 +22,7 @@
     <script src="./js/footer.js"></script>
 </head>
 
-<body onload="loadContacts(); init()">
+<body onload="loadContacts(); init(); loadNewtasks()">
     <div w3-header-include-html="./asssets/templates/header.html"></div>
     <!-- <div class="width" w3-header-include-html="./asssets/templates/web_header.html"></div> -->
 
@@ -466,6 +467,15 @@
             <a href="./contacts.html"><span style="color: white">Contacts</span></a>
         </div>
     </footer>
+
+    <!-- createTask-animation -->
+    <div class="task-added-container">
+        <div id="task-added">
+          <span>Task added to board</span>
+          <img src="./add_task_img/gitter.svg" alt="">
+        </div>
+      </div>
+
     <script src="./js/header_include.js"></script>
     <script src="./js/add_task.js"></script>
 </body>

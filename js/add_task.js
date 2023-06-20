@@ -572,6 +572,7 @@ function populateContactList() {
   }
 }
 
+
 // Rufe die Funktion auf, wenn das Dokument geladen wird in der contacts.js (function loadContacts)
 
 
@@ -711,3 +712,14 @@ function getSelectedPrioImagePath() {
 
   return selectedImagePath;
 }
+
+loadContactsForAssign().then(() => {
+  
+  populateContactList();
+});
+
+// Event-Listener für das DOMContentLoaded-Event
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // Hier können Sie weitere Funktionen oder Logik hinzufügen, die nach dem Laden des DOM ausgeführt werden sollen.
+});

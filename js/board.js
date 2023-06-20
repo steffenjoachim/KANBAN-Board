@@ -28,83 +28,81 @@ function restoreimage(element) {
 
 //----------------Add-task PopUp--------------------
 
-document.addEventListener('DOMContentLoaded', () => {
-  const openPopupBtn = document.querySelector('.open-popup');
-  const openPopupBtnResponiv = document.querySelector('.edit-btn');
-  const popupOverlay = document.querySelector('.popup-overlay');
-
-  openPopupBtn.addEventListener('click', openPopup);
-  openPopupBtnResponiv.addEventListener('click', openPopup);
-
-  popupOverlay.addEventListener('click', (event) => {
-    if (event.target === popupOverlay) {
-      closePopup();
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  function adjustPopupContent() {
+if (window.location.pathname.includes('board.html')) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const openPopupBtn = document.querySelector('.open-popup');
+    const openPopupBtnResponiv = document.querySelector('.edit-btn');
     const popupOverlay = document.querySelector('.popup-overlay');
-    const popupContent = document.getElementById('popupContent');
-    const body = document.body;
 
-    // Überprüfen, ob das Popup aktiv ist
-    if (popupOverlay && popupOverlay.classList.contains('active')) {
-      if (window.innerWidth <= 900 && window.innerWidth >= 280) {
-        if (popupContent) {
-          body.appendChild(popupContent);
-        }
-      } else {
-        if (popupContent) {
-          popupOverlay.appendChild(popupContent);
+    openPopupBtn.addEventListener('click', openPopup);
+    openPopupBtnResponiv.addEventListener('click', openPopup);
+
+    popupOverlay.addEventListener('click', (event) => {
+      if (event.target === popupOverlay) {
+        closePopup();
+      }
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    function adjustPopupContent() {
+      const popupOverlay = document.querySelector('.popup-overlay');
+      const popupContent = document.getElementById('popupContent');
+      const body = document.body;
+
+      // Überprüfen, ob das Popup aktiv ist
+      if (popupOverlay && popupOverlay.classList.contains('active')) {
+        if (window.innerWidth <= 900 && window.innerWidth >= 280) {
+          if (popupContent) {
+            body.appendChild(popupContent);
+          }
+        } else {
+          if (popupContent) {
+            popupOverlay.appendChild(popupContent);
+          }
         }
       }
     }
-  }
 
-  // Resize-Event-Listener hinzufügen
-  window.addEventListener('resize', adjustPopupContent);
+    // Resize-Event-Listener hinzufügen
+    window.addEventListener('resize', adjustPopupContent);
 
-  // Call the function initially to account for the current window size
-  adjustPopupContent();
-});
+    // Call the function initially to account for the current window size
+    adjustPopupContent();
+  });
 
-function openPopup() {
-  const popupOverlay = document.querySelector('.popup-overlay');
-  popupOverlay.classList.add('active');
-  disableBackgroundScroll();
-  if (window.location.pathname.includes('board.html')) {
+  function openPopup() {
+    const popupOverlay = document.querySelector('.popup-overlay');
+    popupOverlay.classList.add('active');
+    disableBackgroundScroll();
     checkScrollbar();
   }
-}
 
-function closePopup() {
-  const popupOverlay = document.querySelector('.popup-overlay');
-  popupOverlay.classList.remove('active');
-  enableBackgroundScroll();
-  resetInputFields();
-  resetTaskCategoryDropdown();
-  resetSelectedCategory();
-  if (window.location.pathname.includes('board.html')) {
+  function closePopup() {
+    const popupOverlay = document.querySelector('.popup-overlay');
+    popupOverlay.classList.remove('active');
+    enableBackgroundScroll();
+    resetInputFields();
+    resetTaskCategoryDropdown();
+    resetSelectedCategory();
     checkScrollbar();
   }
-}
 
-function disableBackgroundScroll() {
-  document.body.style.overflow = 'hidden';
-}
+  function disableBackgroundScroll() {
+    document.body.style.overflow = 'hidden';
+  }
 
-function enableBackgroundScroll() {
-  document.body.style.overflow = '';
-}
+  function enableBackgroundScroll() {
+    document.body.style.overflow = '';
+  }
 
-function checkScrollbar() {
-  const popupContent = document.querySelector('.popup-content');
-  if (popupContent.scrollHeight > popupContent.clientHeight) {
+  function checkScrollbar() {
+    const popupContent = document.querySelector('.popup-content');
+    if (popupContent.scrollHeight > popupContent.clientHeight) {
       popupContent.classList.add('scrolling');
-  } else {
+    } else {
       popupContent.classList.remove('scrolling');
+    }
   }
 }
 
@@ -263,7 +261,7 @@ function startDragging(id) {
  }
 
 function generateTodoHTML(element) {
-  return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar">
+  return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar" onclick="openEditPopup(${element['id']})">
   <div id="task-category${element['id']}" class="task-category ">${element['category']}</div>
   <div class="task-title"></div>
   <div class="task-description">${element['description']}</div>
@@ -420,4 +418,119 @@ function filterTasks() {
       }
 }   
 
+}
+
+
+
+
+
+
+
+
+
+
+
+// -------------Edit Task popup---------------
+
+// function openEditPopup(taskId) {
+//   let task = todos.find(t => t.id == taskId);
+  
+//   if (!task) {
+//     console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
+//     return;
+//   }
+
+//   document.getElementById('popup-title').innerText = task.title;
+//   document.getElementById('popup-description').innerText = task.description;
+//   // und so weiter für alle Felder, die du in deinem Popup hast...
+
+//   // Füge die "active" Klasse zum Popup hinzu, um es anzuzeigen
+//   document.getElementById('task-overlay-popup').classList.add('active');
+// }
+
+// function closeEditPopup() {
+//   // Entferne die "active" Klasse vom Popup, um es zu verbergen
+//   document.getElementById('task-overlay-popup').classList.remove('active');
+// }
+
+function openEditPopup(taskId) {
+  let task = todos.find(t => t.id == taskId);
+
+  if (!task) {
+    console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
+    return;
+  }
+
+  // Generiere den HTML-Inhalt
+  let popupContentHtml = `
+    <div class="popUp-head-task">
+      <div class="task-category-one" style="background-color:${task.color};">${task.category}</div>
+      <img id="close-popUp-one" class="close-popUp-arrows" src="./asssets/img/popUp-arrow.svg" alt="" />
+      <img class="close-popUp-xx display-none" src="./asssets/img/popUp-close.svg" alt="" />
+    </div>
+
+    <span class="popUp-titled">${task.title}</span>
+
+    <p class="popUp-description">${task.description}</p>
+
+    <div class="popUp-date">
+      <span class="bolder">Due date:</span>
+      <span>${task.dueDate}</span>
+    </div>
+
+    <div class="popUp-prio">
+      <span class="bolder">Priority:</span>
+      <div class="popUp-prio-btn">
+        <img src="${task.selectedPriorityImagePath}" alt="" />
+      </div>
+    </div>
+  `;
+
+  // Generiere HTML für "Assigned To" Abschnitt
+  task.assignedTo.forEach(assignedPerson => {
+    popupContentHtml += `
+      <div class="assignedTo-divE">
+        <div class="assignedTo-iconE" style="background-color:${assignedPerson.iconColor};">${assignedPerson.initials}</div>
+        <div class="assignedTo-name">${assignedPerson.name}</div>
+      </div>
+    `;
+  });
+
+  
+
+  // Generiere HTML für die Schließen und Bearbeiten Buttons
+  popupContentHtml += `
+    <div class="btns-responsive firstTypebtns">
+      <div></div>
+      <div class="popUp-btns">
+        <img class="popUp-delete" src="./asssets/img/popUp-deleteBTN.svg" alt="" />
+        <img class="popUp-edit" src="./asssets/img/popUp-editBTN.svg" alt="" />
+      </div>
+    </div>
+
+    <div class="btns-responsive">
+      <div></div>
+      <div class="popUp-btns secondTypebtns">
+        <div id="popUpDelete" class="popUp-delete-responsive">
+          <img src="./asssets/img/popUpDelete.svg" alt="" />
+        </div>
+        <div class="popUp-edit-responsive">
+          <img src="./asssets/img/popUpEditPen.svg" alt="" />
+        </div>
+      </div>
+    </div>
+    <button onclick="closeEditPopup()">Schließen</button>
+  `;
+
+  // Zeige das Popup
+  document.querySelector('.task-overlay-popup').classList.add('active');
+  // Füge den Inhalt zum Popup hinzu
+  document.getElementById('taskContent').innerHTML = popupContentHtml;
+}
+
+function closeEditPopup() {
+  // Verstecke das Popup
+  document.querySelector('.task-overlay-popup').classList.remove('active');
+  // Leere den Inhalt des Popups
+  document.getElementById('taskContent').innerHTML = '';
 }
