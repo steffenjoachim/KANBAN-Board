@@ -246,20 +246,17 @@ function updateHTML() {
   
 }
 
- function renderAssignedContacts(id, element){
-  // debugger
-  content = document.getElementById(`assigned-contacts${element['id']}`).innerHTML;
-  content = '';
-  for (let j = 0; j < 1; j++) {
-    const asiggnedcontact = todos[0]['assignedTo'][j];
-    content += `
-    <span class="${asiggnedcontact['iconColor']}">${asiggnedcontact['initials']}</span>
-  `
+function renderAssignedContacts(id, element) {
+  let renderedContacts = '';
+
+  for (let j = 0; j < 2 && j < todos[id]['assignedTo'].length; j++) {
+    const assignedContact = todos[id]['assignedTo'][j];
+    const contact = `<span class="${assignedContact['iconColor']}">${assignedContact['initials']}</span>`;
+    renderedContacts += contact;
   }
-  
 
- }
-
+  return renderedContacts;
+}
 
 function startDragging(id) {
   currentDraggedElement = id;
