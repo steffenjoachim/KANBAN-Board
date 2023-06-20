@@ -318,15 +318,6 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
-
-function showProgressBar(element, id){
-  if (todos[id]['subtasks'].length > 0){
-    document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
-    document.getElementById(`progress-steps${element['id']}`).innerHTML = countProgressSteps(id);
-  }
-}
-
-
 function countProgressSteps(id) {
   let totalSubTask = todos[id]['subtasks'].length;
   let totalSubTaskChecked = 0;
@@ -340,8 +331,16 @@ function countProgressSteps(id) {
   return `${totalSubTaskChecked} / ${totalSubTask} Done`
 } 
 
+function showProgressBar(element, id){
+  if (todos[id]['subtasks'].length > 0){
+    document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
+    document.getElementById(`progress-steps${element['id']}`).innerHTML = countProgressSteps(id);
+  }
+}
+
 
 function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
+  debugger;
   let percent = totalSubTaskChecked / totalSubTask;
   percent = Math.round(percent * 100)
   document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`

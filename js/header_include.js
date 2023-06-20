@@ -26,11 +26,9 @@ async function headerIncludeHTML() {
     }
   }
 }
-
 /**
  * Is the same function for footer.
  */
-
 async function footerIncludeHTML() {
   let includeElements = document.querySelectorAll('[w3-footer-include-html]');
   for (let i = 0; i < includeElements.length; i++) {
@@ -53,8 +51,6 @@ function burgerMenu() {
   document.getElementById('background-container').style.display = 'block';
   firstClick = true;
 }
-
-
 /**
  * This function is used to close the dropdown menu. 
  * It checks if the event target's ID is either `'web-header'`, `'background-container'`, `'header'`, or `'nav-bar'`, and if so, it sets the CSS `display` property of the element with the ID `'background-container'` to `'none'`, effectively hiding the dropdown menu.
@@ -69,7 +65,6 @@ function closeBurgerMenu() {
     document.getElementById('background-container').style.display = 'none';
   }
 }
-
 /**
  * 
  * @param {registered user} user 
@@ -84,7 +79,6 @@ function guestLogin(user) {
 
     document.getElementById('body').innerHTML = '';
     document.getElementById('body').innerHTML = generateGuestLoginHTML();
-;
     userGreetingMobile(user);
     headerIncludeHTML();
     footerIncludeHTML();
@@ -95,7 +89,14 @@ function guestLogin(user) {
     loadSummary(user);
   }, 1500)
 }
-
+/**
+ * 
+ * @param {registered user} user 
+ * This function handles the login process for guest users. 
+ * It checks the window width and if it's less than or equal to 1024 pixels, it generates the HTML for the guest login page and displays it. 
+ * It also includes the necessary headers and footers. If the window width is greater than 1024 pixels, it loads the summary page directly. 
+ * After a delay of 1.5 seconds, it also loads the summary page. 
+ */
 function loadSummary(user) {
   loadUsers();
   if (user) {
@@ -105,18 +106,22 @@ function loadSummary(user) {
   if (windowWidth >= 1024) {
     window.location.href = './summary.html';
   } else {
-    changePage(); // Animation ausführen
+    changePage();
     setTimeout(function () {
-      fetch('./summary.html') // Laden der summary.html-Seite
-        .then(response => response.text()) // Konvertieren der Serverantwort in Text
+      fetch('./summary.html')
+        .then(response => response.text())
         .then(data => {
-          let parser = new DOMParser(); // Erstellen eines DOM-Parsers
-          parser.parseFromString(data, 'text/html'); // Parsen des HTML-Texts zu einem DOM-Dokument
-          window.location.href = 'summary.html'; // Weiterleitung zur summary.html-Seite
+          let parser = new DOMParser();
+          parser.parseFromString(data, 'text/html');
+          window.location.href = 'summary.html';
         });
-    }, 1500); // Verzögerung von 1500 Millisekunden (1,5 Sekunden)
+    }, 1500);
   }
 }
+/**
+ * This function changes the currently displayed page on a website. 
+ * It selects the current page based on its CSS class, removes the 'show' class from it, and adds the 'show' class to the next page in the HTML structure.
+ */
 
 function changePage() {
   let currentPage = document.querySelector('.page.show'); // Auswählen der aktuellen Seite mit der CSS-Klasse 'show'
