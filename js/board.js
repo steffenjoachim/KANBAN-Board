@@ -264,6 +264,7 @@ function startDragging(id) {
 
 function generateTodoHTML(element) {
   return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar">
+  <img class="arrow-up" id="arrowUp" src="./asssets/img/arrowUp.svg" alt="">
   <div id="task-category${element['id']}" class="task-category ">${element['category']}</div>
   <div class="task-title"></div>
   <div class="task-description">${element['description']}</div>
@@ -278,6 +279,7 @@ function generateTodoHTML(element) {
       </div>
       <img id="task-icon${element['id']}" src="./asssets/img/toDo-icon.svg" alt="">
   </div>
+  <img class="arrow-down" id="arrowDown" src="./asssets/img/arrowDown.svg" alt="">
   </div>`;
   
 }
