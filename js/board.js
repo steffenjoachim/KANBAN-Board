@@ -1,23 +1,23 @@
 
 async function loadNewtasksboard() {
-  try {todos = JSON.parse(await getItem('task'))}
+  try { todos = JSON.parse(await getItem('task')) }
   catch (e) {
     alert('Error')
   }
   updateHTML()
-} 
+}
 
 //  beim hovern auf dem div-count1 wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
 
 function changeimage(element) {
-    let img = element.querySelector('#add-card');
-    img.src = './asssets/img/add-card-hover.svg';
+  let img = element.querySelector('#add-card');
+  img.src = './asssets/img/add-card-hover.svg';
 }
 // Funktion die das ursprüngliche Bild wiederherzustellt das div bekommt zudem onmouseout="restoreDoneimage(this)"
 
 function restoreimage(element) {
-    let img = element.querySelector('#add-card');
-    img.src = './asssets/img/add-card.svg';
+  let img = element.querySelector('#add-card');
+  img.src = './asssets/img/add-card.svg';
 }
 
 
@@ -44,7 +44,7 @@ if (window.location.pathname.includes('board.html')) {
     });
   });
 
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     function adjustPopupContent() {
       const popupOverlay = document.querySelector('.popup-overlay');
       const popupContent = document.getElementById('popupContent');
@@ -106,23 +106,23 @@ if (window.location.pathname.includes('board.html')) {
   }
 }
 
-  //----------------task-popup-----------------
+//----------------task-popup-----------------
 
-  // document.addEventListener('DOMContentLoaded', () => {  // Wenn das Dokument vollständig geladen ist
-  //   const openTaskPopupBtn = document.querySelector('#task-card-id'); // Der Button, der das Overlay öffnet
-  //   const taskOverlayPopup = document.querySelector('.task-overlay-popup'); // Das Overlay selbst
+// document.addEventListener('DOMContentLoaded', () => {  // Wenn das Dokument vollständig geladen ist
+//   const openTaskPopupBtn = document.querySelector('#task-card-id'); // Der Button, der das Overlay öffnet
+//   const taskOverlayPopup = document.querySelector('.task-overlay-popup'); // Das Overlay selbst
 
-  //   openTaskPopupBtn.addEventListener('click', () => { // Wenn auf den Button geklickt wird
-  //     taskOverlayPopup.classList.add('active'); // Fügen Sie die "active" Klasse hinzu, um das Overlay anzuzeigen
-  //   });
-  
-  //   taskOverlayPopup.addEventListener('click', (event) => { // Wenn auf das Overlay geklickt wird
-  //     if (event.target === taskOverlayPopup) { // Wenn das Ziel des Klicks das Overlay selbst ist (und nicht ein Element im Overlay)
-  //       taskOverlayPopup.classList.remove('active'); // Entfernen Sie die "active" Klasse, um das Overlay zu verbergen
-  //     }
-  //   });
-  // });
-  
+//   openTaskPopupBtn.addEventListener('click', () => { // Wenn auf den Button geklickt wird
+//     taskOverlayPopup.classList.add('active'); // Fügen Sie die "active" Klasse hinzu, um das Overlay anzuzeigen
+//   });
+
+//   taskOverlayPopup.addEventListener('click', (event) => { // Wenn auf das Overlay geklickt wird
+//     if (event.target === taskOverlayPopup) { // Wenn das Ziel des Klicks das Overlay selbst ist (und nicht ein Element im Overlay)
+//       taskOverlayPopup.classList.remove('active'); // Entfernen Sie die "active" Klasse, um das Overlay zu verbergen
+//     }
+//   });
+// });
+
 
 
 // let todos = [
@@ -179,12 +179,12 @@ let currentDraggedElement;
 
 
 function updateHTML() {
-  
-  
- 
+
+
+
   let filterTodo = todos.filter(t => t['status'] == 'todo');
   document.getElementById('todo-card').innerHTML = '';
-  
+
   for (let index = 0; index < filterTodo.length; index++) {
     const element = filterTodo[index];
     document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
@@ -192,31 +192,31 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(element,element['id'])
+    showProgressBar(element, element['id'])
   }
-  
-  checkEmptyList();
-  
 
-  
-  let filterInpro = todos.filter(t => t['status'] == 'inProgress' );
+  checkEmptyList();
+
+
+
+  let filterInpro = todos.filter(t => t['status'] == 'inProgress');
   document.getElementById('progress-card').innerHTML = '';
 
   for (let index = 0; index < filterInpro.length; index++) {
-  
+
     const element = filterInpro[index];
     document.getElementById('progress-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
     document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(element,element['id'])
+    showProgressBar(element, element['id'])
   }
-  
+
   checkEmptyListProgress();
 
 
-  let filterFeedback = todos.filter(t => t['status'] == 'feedback' );
+  let filterFeedback = todos.filter(t => t['status'] == 'feedback');
   document.getElementById('Feedback-card').innerHTML = '';
 
   for (let index = 0; index < filterFeedback.length; index++) {
@@ -226,13 +226,13 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(element,element['id'])
+    showProgressBar(element, element['id'])
   }
-  
-  checkEmptyListFeedback();
-  
 
-  let filterDone = todos.filter(t => t['status'] == 'done' );
+  checkEmptyListFeedback();
+
+
+  let filterDone = todos.filter(t => t['status'] == 'done');
   document.getElementById('done-card').innerHTML = '';
 
   for (let index = 0; index < filterDone.length; index++) {
@@ -242,11 +242,11 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(element,element['id'])
+    showProgressBar(element, element['id'])
   }
-  
+
   checkEmptyListDone();
-  
+
 }
 
 function renderAssignedContacts(index, element) {
@@ -258,28 +258,58 @@ function renderAssignedContacts(index, element) {
     renderedContacts += contact;
   }
   for (let j = 2; j < 3 && j < todos[index]['assignedTo'].length; j++) {
-    if ( todos[index]['assignedTo'].length == 3) {
+    if (todos[index]['assignedTo'].length == 3) {
       const assignedContact = todos[index]['assignedTo'][j];
-    const contact = `<span class="${assignedContact['iconColor']}">${assignedContact['initials']}</span>`;
-    renderedContacts += contact;
+      const contact = `<span class="${assignedContact['iconColor']}">${assignedContact['initials']}</span>`;
+      renderedContacts += contact;
     } else {
       const assignedContact = todos[index]['assignedTo'][j];
-    const contact = `<span class="join-color">+${todos[index]['assignedTo'].length - 2}</span>`;
-    renderedContacts += contact;
+      const contact = `<span class="join-color">+${todos[index]['assignedTo'].length - 2}</span>`;
+      renderedContacts += contact;
     }
-    
+
   }
 }
 
-
-
+async function chageStatusToToDo(id) {
+  todos[id]['status'] = 'todo';
+  await setItem('task', JSON.stringify(todos))
+  updateHTML()
+}
+async function chageStatusToInProgress(id) {
+  todos[id]['status'] = 'inProgress';
+  await setItem('task', JSON.stringify(todos))
+  updateHTML()
+}
+async function chageStatusToFeedback(id) {
+  todos[id]['status'] = 'feedback';
+  await setItem('task', JSON.stringify(todos))
+  updateHTML()
+}
+async function chageStatusToDone(id) {
+  todos[id]['status'] = 'done';
+  await setItem('task', JSON.stringify(todos))
+  updateHTML()
+}
+function moveTaskup(id) {
+  let card = document.getElementById(`card${id}`);
+  card.innerHTML = '';
+  card.innerHTML = `
+<div class="card-change-status">
+<span onclick="chageStatusToToDo(${id})">To do</span>
+<span onclick="chageStatusToInProgress(${id})">In Progress</span>
+<span onclick="chageStatusToFeedback(${id})">Awaiting Feedback</span>
+<span onclick="chageStatusToDone(${id})">Done</span>
+</div>
+`
+}
 
 function startDragging(id) {
   currentDraggedElement = id;
- }
+}
 
 function generateTodoHTML(element) {
-  return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar" onclick="openEditPopup(${element['id']})">
+  return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card${element['id']}" class="item task-card card-with-PBar" onclick="openEditPopup(${element['id']})">
   <img onclick="moveTaskup(${element['id']})" class="arrow-up" id="arrowUp" src="./asssets/img/arrowUp.svg" alt="">
   <div id="task-category${element['id']}" class="task-category ">${element['category']}</div>
   <div class="task-title">${element['title']}</div>
@@ -295,9 +325,8 @@ function generateTodoHTML(element) {
       </div>
       <img id="task-icon${element['id']}" src="./asssets/img/toDo-icon.svg" alt="">
   </div>
-  <img onclick="moveTaskdown(${element['id']})" class="arrow-down" id="arrowDown" src="./asssets/img/arrowDown.svg" alt="">
   </div>`;
-  
+
 }
 
 
@@ -308,12 +337,12 @@ function allowDrop(ev) {
 }
 
 async function moveTo(status) {
-  
+
   todos[currentDraggedElement]['status'] = status;
-  
+
   await setItem('task', JSON.stringify(todos))
   updateHTML()
-  
+
 }
 
 function highlight(id) {
@@ -337,13 +366,13 @@ function countProgressSteps(id) {
       totalSubTaskChecked++
     }
   }
-  
+
   progressAnimation(totalSubTask, totalSubTaskChecked, id)
   return `${totalSubTaskChecked} / ${totalSubTask} Done`
-} 
+}
 
-function showProgressBar(element, id){
-  if (todos[id]['subtasks'].length > 0){
+function showProgressBar(element, id) {
+  if (todos[id]['subtasks'].length > 0) {
     document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
     document.getElementById(`progress-steps${element['id']}`).innerHTML = countProgressSteps(id);
   }
@@ -375,7 +404,7 @@ function renderAssignedContacts(id) {
 
 
 //////////// funktionen die die Anzeige (NO TASKS ...) je Liste eine Funktion //////////////
- 
+
 function checkEmptyList() {
   var todoCard = document.getElementById("todo-card");
   var emptyCard = document.getElementsByClassName("empty-card")[0];
@@ -430,38 +459,38 @@ function filterTasks() {
 
   if (search == '') {
     updateHTML()
-  }else {
+  } else {
 
-      let todoCard = document.getElementById('todo-card');
-      let progressCard = document.getElementById('progress-card');
-      let feedbackCard = document.getElementById('Feedback-card');
-      let doneCard = document.getElementById('done-card');
-      
-      checkEmptyList()
-      todoCard.innerHTML = '';
-      checkEmptyListProgress()
-      progressCard.innerHTML = '';
-      checkEmptyListFeedback()
-      feedbackCard.innerHTML = '';
-      checkEmptyListDone()
-      doneCard.innerHTML = '';
-      
-      for (let index = 0; index < todos.length; index++) {
-        const element = todos[index];
-      
-        if (element.title.toLowerCase().includes(search) || element.description.toLowerCase().includes(search)) {
-          if (element.status === 'todo') {
-            todoCard.innerHTML += generateTodoHTML(element);
-          } else if (element.status === 'inProgress') {
-            progressCard.innerHTML += generateTodoHTML(element);
-          } else if (element.status === 'feedback') {
-            feedbackCard.innerHTML += generateTodoHTML(element);
-          } else if (element.status === 'done') {
-            doneCard.innerHTML += generateTodoHTML(element);
-          }
+    let todoCard = document.getElementById('todo-card');
+    let progressCard = document.getElementById('progress-card');
+    let feedbackCard = document.getElementById('Feedback-card');
+    let doneCard = document.getElementById('done-card');
+
+    checkEmptyList()
+    todoCard.innerHTML = '';
+    checkEmptyListProgress()
+    progressCard.innerHTML = '';
+    checkEmptyListFeedback()
+    feedbackCard.innerHTML = '';
+    checkEmptyListDone()
+    doneCard.innerHTML = '';
+
+    for (let index = 0; index < todos.length; index++) {
+      const element = todos[index];
+
+      if (element.title.toLowerCase().includes(search) || element.description.toLowerCase().includes(search)) {
+        if (element.status === 'todo') {
+          todoCard.innerHTML += generateTodoHTML(element);
+        } else if (element.status === 'inProgress') {
+          progressCard.innerHTML += generateTodoHTML(element);
+        } else if (element.status === 'feedback') {
+          feedbackCard.innerHTML += generateTodoHTML(element);
+        } else if (element.status === 'done') {
+          doneCard.innerHTML += generateTodoHTML(element);
         }
       }
-}   
+    }
+  }
 
 }
 
@@ -479,7 +508,7 @@ function filterTasks() {
 
 // function openEditPopup(taskId) {
 //   let task = todos.find(t => t.id == taskId);
-  
+
 //   if (!task) {
 //     console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
 //     return;
@@ -554,7 +583,7 @@ function openEditPopup(taskId) {
     `;
   });
 
-  
+
 
   // Generiere HTML für die Schließen und Bearbeiten Buttons
   popupContentHtml += `
