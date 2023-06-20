@@ -351,7 +351,7 @@ function showProgressBar(element, id){
 
 
 function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
-  debugger;
+
   let percent = totalSubTaskChecked / totalSubTask;
   percent = Math.round(percent * 100)
   document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`
