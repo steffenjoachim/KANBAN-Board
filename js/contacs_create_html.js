@@ -79,7 +79,7 @@ function createContactDetailsMobileHtml(i, contact){
                         <span id="contact-logo-big${i}" class="contact-logo-big ${contact['icon-color']}">AM</span>
                         <div class="name-add-task">
                             <span id="big-name${i}" class="big-name">Anton Mayer</span>
-                            <span class="email">+ Add Task</span>
+                            <span id="addTaskOpen" class="email">+ Add Task</span>
                         </div>
                     </div>
                     <div class="contact-information-frame">
@@ -128,7 +128,7 @@ function createContactDetailsDesktopHtml(i, contact){
                         <span id="contact-logo-big${i}" class="contact-logo-big ${contact['icon-color']}"></span>
                         <div class="name-add-task">
                             <span id="big-name${i}" class="big-name">Anton Mayer</span>
-                            <span class="email">+ Add Task</span>
+                            <span id="addTaskOpen" class="email">+ Add Task</span>
                         </div>
                     </div>
                     <div class="contact-information-frame">
