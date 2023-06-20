@@ -207,7 +207,6 @@ function updateHTML() {
     document.getElementById('progress-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
-    // document.getElementById(`task-icon${element['id']}`).src = element['prio']
     showProgressBar(index, element)
   }
   checkEmptyListProgress();
@@ -221,8 +220,6 @@ function updateHTML() {
     document.getElementById('Feedback-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
-    
-    // document.getElementById(`task-icon${element['id']}`).src = element['prio']
     showProgressBar(index, element)
   }
   checkEmptyListFeedback();
@@ -236,7 +233,6 @@ function updateHTML() {
     document.getElementById('done-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
-    // document.getElementById(`task-icon${element['id']}`).src = element['prio']
     showProgressBar(index, element)
   }
   checkEmptyListDone();
