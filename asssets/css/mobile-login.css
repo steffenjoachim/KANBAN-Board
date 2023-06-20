@@ -342,11 +342,12 @@ form {
 .back-arrow {
     margin-left: 23px;
 }
+
 @media (max-width:400px) {
     .inside-window {
         max-width: 300px;
     }
-    
+
 }
 
 @media(max-width:1024px) {
@@ -528,13 +529,13 @@ form {
         }
     }
 
-@keyframes animate-web-logo-container {
-    to {
-        z-index: 0;
-        background-color: rgba(0, 0, 0, 0);
+    @keyframes animate-web-logo-container {
+        to {
+            z-index: 0;
+            background-color: rgba(0, 0, 0, 0);
+        }
+
     }
-    
-}
 
     .white-logo {
         display: none;
@@ -590,6 +591,11 @@ form {
     .sign-up-container {
         margin-top: 60px;
     }
+
+    .sign-up-container div {
+        z-index: 99;
+    }
+    
 
     .sign-up-container img {
         transition: transform 0.125s ease-in-out;
