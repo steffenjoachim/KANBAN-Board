@@ -192,6 +192,7 @@ function updateHTML() {
     document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
+    document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(index, element);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
     showProgressBar(index, element)
   }
@@ -207,7 +208,8 @@ function updateHTML() {
     document.getElementById('progress-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
-    // document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(id);
+    document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
     showProgressBar(index, element)
   }
   checkEmptyListProgress();
@@ -221,8 +223,8 @@ function updateHTML() {
     document.getElementById('Feedback-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
-    
-    // document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(id);
+    document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
     showProgressBar(index, element)
   }
   checkEmptyListFeedback();
@@ -236,12 +238,27 @@ function updateHTML() {
     document.getElementById('done-card').innerHTML += generateTodoHTML(element);
     document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
-    // document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(id);
+    document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
     showProgressBar(index, element)
   }
   checkEmptyListDone();
   
 }
+
+ function renderAssignedContacts(id, element){
+  // debugger
+  content = document.getElementById(`assigned-contacts${element['id']}`).innerHTML;
+  content = '';
+  for (let j = 0; j < 1; j++) {
+    const asiggnedcontact = todos[0]['assignedTo'][j];
+    content += `
+    <span class="${asiggnedcontact['iconColor']}">${asiggnedcontact['initials']}</span>
+  `
+  }
+  
+
+ }
 
 
 function startDragging(id) {
@@ -260,10 +277,7 @@ function generateTodoHTML(element) {
       <div id="progress-steps${element['id']}" class="progress-steps"></div>
   </div>
   <div class="task-assignedTo">
-      <div class="task-icons">
-          <span class="orange">SM</span>
-          <span class="purple">MN</span>
-          <span class="green">EF</span>
+      <div id="assigned-contacts${element['id']}" class="task-icons">
       </div>
       <img id="task-icon${element['id']}" src="./asssets/img/toDo-icon.svg" alt="">
   </div>
