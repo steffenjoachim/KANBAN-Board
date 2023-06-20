@@ -84,12 +84,14 @@ border: none;
 input {
   height: 41px;
   width: 100%;
+  font-family: Inter, sans-serif;
 }
 
 textarea {
   height: 93px;
   padding-top:  18px;
   width: 100%;
+  font-family: Inter, sans-serif;
 }
 
 label {

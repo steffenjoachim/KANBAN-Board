@@ -190,8 +190,9 @@ function updateHTML() {
   for (let index = 0; index < filterTodo.length; index++) {
     const element = filterTodo[index];
     document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color']
-    // document.getElementById(`task-icon${element['id']}`).src = element['prio']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
+    document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
+    document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
     showProgressBar(index, element)
   }
   checkEmptyList();
@@ -204,7 +205,8 @@ function updateHTML() {
   for (let index = 0; index < filterInpro.length; index++) {
     const element = filterInpro[index];
     document.getElementById('progress-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
+    document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     // document.getElementById(`task-icon${element['id']}`).src = element['prio']
     showProgressBar(index, element)
   }
@@ -217,7 +219,9 @@ function updateHTML() {
   for (let index = 0; index < filterFeedback.length; index++) {
     const element = filterFeedback[index];
     document.getElementById('Feedback-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
+    document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
+    
     // document.getElementById(`task-icon${element['id']}`).src = element['prio']
     showProgressBar(index, element)
   }
@@ -230,7 +234,8 @@ function updateHTML() {
   for (let index = 0; index < filterDone.length; index++) {
     const element = filterDone[index];
     document.getElementById('done-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color']
+    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
+    document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     // document.getElementById(`task-icon${element['id']}`).src = element['prio']
     showProgressBar(index, element)
   }
@@ -246,13 +251,13 @@ function startDragging(id) {
 function generateTodoHTML(element) {
   return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card" class="item task-card card-with-PBar">
   <div id="task-category${element['id']}" class="task-category ">${element['category']}</div>
-  <div class="task-title">${element['title']}</div>
+  <div class="task-title"></div>
   <div class="task-description">${element['description']}</div>
   <div id="task-progress${element['id']}" class="task-progress dis-none">
-      <div class="progress" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-          <div class="progress-bar bg-info"></div>
+      <div class="progress" role="progressbar" aria-label="Example with label">
+          <div id="progress-bar${element['id']}" class="progress-bar" style="width: 25%"></div>
       </div>
-      <div class="progress-steps">0/2 Done</div>
+      <div id="progress-steps${element['id']}" class="progress-steps"></div>
   </div>
   <div class="task-assignedTo">
       <div class="task-icons">
@@ -260,13 +265,12 @@ function generateTodoHTML(element) {
           <span class="purple">MN</span>
           <span class="green">EF</span>
       </div>
-      <img id="task-icon${element['id']}" src="./asssets/img/toDo icon.svg" alt="">
+      <img id="task-icon${element['id']}" src="./asssets/img/toDo-icon.svg" alt="">
   </div>
   </div>`;
   
-
-  
 }
+
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -287,13 +291,32 @@ function removeHighlight(id) {
 }
 
 
-
 function showProgressBar(id, element){
-  console.log('called');
   if (todos[id]['subtasks'].length > 0){
-    console.log(id);
       document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
+    document.getElementById(`progress-steps${element['id']}`).innerHTML = countProgressSteps(id);
   }
+}
+
+
+function countProgressSteps(id) {
+  let totalSubTask = todos[id]['subtasks'].length;
+  let totalSubTaskChecked = 0;
+
+  for (let j = 0; j < totalSubTask; j++) {
+    if (todos[id]['subtasks'][j]['checked'] === true) {
+      totalSubTaskChecked++
+    }
+  }
+  progressAnimation(totalSubTask, totalSubTaskChecked, id)
+  return `${totalSubTaskChecked} / ${totalSubTask} Done`
+} 
+
+
+function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
+  let percent = totalSubTaskChecked / totalSubTask;
+  percent = Math.round(percent * 100)
+  document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`
 }
 
 

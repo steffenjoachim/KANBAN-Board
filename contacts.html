@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./asssets/css/contact_media.css">
     <link rel="stylesheet" href="./asssets/css/contacts_desktop.css">
     <link rel="stylesheet" href="./asssets/css/header.css">
+    <link rel="stylesheet" href="asssets/css/add_task_popUp.css">
     <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="./asssets/css/footer.css">
     <script src="./js/storage.js"></script>
@@ -146,7 +147,7 @@
                         <span class="contact-logo-big ${contact['icon-color']}">AM</span>
                         <div class="name-add-task">
                             <span id="big-name${i}" class="big-name">Anton Mayer</span>
-                            <span class="email">+ Add Task</span>
+                            <span  class="email ">+ Add Task</span>
                         </div>
                     </div>
                     <div class="contact-information-frame">
@@ -281,6 +282,170 @@
           <span>Contact successfully created</span>
         </div>
      </div>
+
+    
+
+     <!-------------------- Add Task popUp----------------------->
+    <div class="popup-overlay">
+        <div class="popup-content" id="popupContent">
+          <header class="header-popup">
+            <img class="small-logo" src="./add_task_img/small-logo.svg" alt="Logo" />
+            <button onclick="createTask()" id="create-button">Create &#10003;</button>
+          </header>
+            <div class="wrapper">
+                <div class="site-title">
+                     <h1>Add Task</h1>
+                     <img class="close-task" src="./asssets/img/close-x-dark.svg" alt="" onclick="closePopup()">
+                </div>
+                
+                <div class="inner-wrap">
+                  <section class="section-one">
+                    <form>
+                      <label for="title-input">Title</label>
+                      <input class="all-input" id="title-input" type="text" name="title" required />
+            
+                      <label for="description-input" >Description</label>
+                      <textarea id="description-input" name="description" required></textarea>
+            
+                      <label for="Category">Category</label>
+                      <div onclick="selectTaskCategory()" id="select-one" class="select-one">
+                        <div class="select-one-div">
+                          <span>Select task category</span>
+                          <img src="" alt="">
+                        </div>
+                        <img src="./asssets/img/open.svg" alt="" />
+                      </div>
+            
+                      <!-- Hinzufügen des neuen Elements für das ausgewählte Bild -->
+                      <div id="selected-image"></div>
+                  
+                      <div id="dropdown" class="d-none">
+                        <div onclick="showNewCategoryFields()" id="selected-one" class="selected">
+                          <span>New Category</span>
+                        </div>
+                        <div onclick="selectOption(event)" id="selected-two" class="selected">
+                          <span>Sales</span><div class="circle green"></div>
+                        </div>
+                        <div onclick="selectOption(event)" id="selected-three" class="selected">
+                          <span>Backoffice</span><div class="circle dark-blue"></div>
+                        </div>
+                      </div>
+                  
+                      <div id="new-category-fields" class="d-none">
+                        <input id="new-category-name" type="text" placeholder="Category name">
+                        <div class="icons-wrapper-two">
+                          <img src="./asssets/img/cancel-svg.svg" id="cross-icon" onclick="cancelNewCategory()">
+                          |
+                          <img src="./asssets/img/checkmark.svg" id="check-icon" onclick="saveNewCategory()">
+                        </div>
+                        <!-- <div id="new-category-colors">
+                          <img class="hover-dot"  src="./asssets/img/dark-blue-dot.svg" alt="" onclick="selectColor(event)">
+                          <img class="hover-dot"  src="./asssets/img/green-dot.svg" alt="" onclick="selectColor(event)">
+                          <img class="hover-dot"  src="./asssets/img/light-blue-dot.svg" alt="" onclick="selectColor(event)">
+                          <img class="hover-dot"  src="./asssets/img/orange-dot.svg" alt="" onclick="selectColor(event)">
+                          <img class="hover-dot"  src="./asssets/img/pink-dot.svg" alt="" onclick="selectColor(event)">
+                          <img class="hover-dot"  src="./asssets/img/red-dot.svg" alt="" onclick="selectColor(event)">
+                        </div> -->
+                        <div id="new-category-colors">
+                          <div class="circle dark-blue" onclick="selectColor('#2A3647')"></div>
+                          <div class="circle green" onclick="selectColor('#00FF00')"></div>
+                          <div class="circle light-blue" onclick="selectColor('#ADD8E6')"></div>
+                          <div class="circle orange" onclick="selectColor('#FFA500')"></div>
+                          <div class="circle pink" onclick="selectColor('#FFC0CB')"></div>
+                          <div class="circle red" onclick="selectColor('#FF0000')"></div>
+                        </div>
+                      </div>
+                      
+                      <label for="Assigned-to">Assigned to</label>
+                      <div onclick="selectAssignedTo()" id="assign-one" class="select-one">
+                        <span>Select assigned person</span>
+                        <img src="./add_task_img/open.svg" alt="" />
+                      </div>
+                      
+                      <div id="dropdown-assign" class="d-none">
+                        <div onclick="showInviteContactFields()" id="assigned-three" class="selected">
+                          <span>Invite new contact</span>
+                          <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
+                        </div>
+                      </div>
+
+                      <div id="selected-contact"></div>
+                      
+                      <div id="new-contact-fields" class="d-none">
+                        <input type="text" id="new-contact-email" placeholder="Enter email address">
+                        <div class="icons-wrapper-three">
+                          <img src="./asssets/img/cancel-svg.svg" id="cross-icon2" onclick="cancelInviteContact()">
+                          |
+                          <img src="./asssets/img/checkmark.svg" id="check-icon2" onclick="saveInviteContact()">
+                        </div>
+                      </div>
+            
+            
+                    </form>
+                  </section>
+            
+                  <div class="vertical-line"></div>
+            
+                  <section class="section-two">
+                    <form>
+                      <label for="date-input">Due Date</label>
+                      <div class="date-input-container">
+                        <input class="all-input" type="date" placeholder="dd/mm/yyyy" />
+                      </div>
+            
+                     
+            
+                      <label for="prio-buttons">Prio</label>
+                      <div id="prio-buttons">
+                        <img id="urgent" class="prio-img" src="./asssets/img/urgent-urgent.svg" alt="">
+                        <img id="medium" class="prio-img" src="./asssets/img/medium-urgent.svg" alt="">
+                        <img id="low" class="prio-img" src="./asssets/img/low-urgent.svg" alt="">
+                      </div>
+            
+                      <!-- <label for="subTask">Subtasks</label>
+                      <input type="text" id="subTask" class="subtask-input all-input" placeholder="Add new subtask" > -->
+            
+            
+            
+                      <label for="subTask">Subtasks</label>
+                      <div class="subtask-input-wrapper" onmouseover="toggleIcons('block')" onmouseout="toggleIcons('none')">
+                        <input type="text" id="subTask" class="subtask-input all-input" placeholder="Add new subtask">
+                        <img src="../../asssets/img/plus-black.svg" class="plus-icon">
+                        <div class="icons-wrapper">
+                          <img src="./asssets/img/cancel-svg.svg" id="cross-icon" onclick="clearInput()">
+                          |
+                          <img src="./asssets/img/checkmark.svg" id="check-icon" onclick="createSubtask()">
+                        </div>
+                      </div>
+            
+                      <div id="subtasks"> <!-- Dieses Element wird als Container für die neuen Subtasks verwendet -->
+                        <div class="subtask">
+                          <input type="checkbox" id="subtask1" name="subtask1" class="checkbox-subtask" />
+                          <label class="subtask-name" for="subtask1">Subtask 1</label>
+                        </div>
+                      </div>
+            
+            
+                      <div class="btn-div">
+                        <div class="cancel-btn-desktop">
+                          <span>Cancel</span>
+                          <img class="cancel-img" src="./asssets/img/cancel-svg.svg" alt="">
+                        </div>
+              
+                        <div class="create-btn-desktop">
+                          <span>Create task</span>
+                          <img class="create-correctly" src="./asssets/img/hook-correctly.png" alt="">
+                        </div>
+                      </div>
+            
+                    </form>
+                  </section>
+                </div>
+            </div>
+            <!-- Inhalt deines Popups -->
+        </div>
+        
+      </div>
       
     <!-- <footer w3-footer-include-html="./asssets/templates/footer.html"></footer> -->
     <footer>
@@ -302,6 +467,7 @@
         </div>
     </footer>
     <script src="./js/header_include.js"></script>
+    <script src="./js/add_task.js"></script>
 </body>
 
 </html>
