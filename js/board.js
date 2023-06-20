@@ -194,7 +194,7 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(index, element);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(index, element)
+    showProgressBar(element,index)
   }
   checkEmptyList();
   
@@ -210,7 +210,7 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(index);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(index, element)
+    showProgressBar(element, index)
   }
   checkEmptyListProgress();
 
@@ -225,7 +225,7 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(index);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(index, element)
+    showProgressBar(element, index)
   }
   checkEmptyListFeedback();
   
@@ -240,7 +240,7 @@ function updateHTML() {
     document.getElementById(`task-category${element['id']}`).innerHTML = element['title'];
     document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(index);
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(index ,element)
+    showProgressBar(element, index)
   }
   checkEmptyListDone();
   
@@ -306,7 +306,7 @@ function removeHighlight(id) {
 }
 
 
-function showProgressBar(id, element){
+function showProgressBar(element, id){
   if (todos[id]['subtasks'].length > 0){
     document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
     document.getElementById(`progress-steps${element['id']}`).innerHTML = countProgressSteps(id);
