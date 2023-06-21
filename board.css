@@ -1,13 +1,15 @@
-@font-face{
+@font-face {
     font-family: Inter;
     src: url(./asssets/fonts/Inter-Regular.ttf);
 }
+
 * {
     box-sizing: unset !important;
 }
 
 html {
-    background-color: #F5F5F5;;
+    background-color: #F5F5F5;
+    ;
 }
 
 body {
@@ -17,43 +19,45 @@ body {
     scroll-behavior: smooth;
 }
 
-.join-color{
+.join-color {
     background: #2A3647;
-  }
-  
+}
 
-.orange{
+
+.orange {
     background: #FF7A00;
 }
 
-.purple{
+.purple {
     background: #9327FF;
 }
 
-.light-blue{
+.light-blue {
     background: #29ABE2;
 }
 
-.pink{
+.pink {
     background: #FC71FF;
 }
-.blue{
+
+.blue {
     background: #0038FF;
 }
 
-.green{
+.green {
     background: #02CF2F;
 }
 
-.light-green{
+.light-green {
     background: #1FD7C1;
 }
 
-.red{
-    background: #AF1616 ;
+.red {
+    background: #AF1616;
 }
-.dark-blue{
-    background: #2A3647 ;
+
+.dark-blue {
+    background: #2A3647;
 }
 
 .brown {
@@ -65,7 +69,8 @@ body {
 }
 
 .main-div {
-    background-color: #F5F5F5;;
+    background-color: #F5F5F5;
+    ;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -96,9 +101,9 @@ body {
     flex-shrink: 1;
 }
 
- /*////////////////// Searchbar on Screen 0 - 1024px /////////////////*/
+/*////////////////// Searchbar on Screen 0 - 1024px /////////////////*/
 
-.search-bar{
+.search-bar {
     position: relative;
     margin-left: 33px;
     width: 251px;
@@ -110,7 +115,7 @@ body {
     height: 37px;
     border: 1px solid #A8A8A8;
     border-radius: 10px;
-}    
+}
 
 .search-icon {
     position: absolute;
@@ -132,16 +137,16 @@ body {
     padding-left: 21px;
 }
 
-     /*////////////////// Searchbar on Screen 1024px /////////////////*/
+/*////////////////// Searchbar on Screen 1024px /////////////////*/
 
-.secondSearch-bar{
+.secondSearch-bar {
     position: relative;
     margin-right: 45px;
     width: 251px;
     height: 51px;
 }
 
-    /*////////////////// main content Cards /////////////////*/
+/*////////////////// main content Cards /////////////////*/
 
 .task-content {
     height: auto;
@@ -205,7 +210,11 @@ body {
 }
 
 
-.task-category, .task-title, .task-description, .task-progress, .task-assignedTo {
+.task-category,
+.task-title,
+.task-description,
+.task-progress,
+.task-assignedTo {
     margin-left: 21px;
 }
 
@@ -260,19 +269,20 @@ body {
     width: 251px;
 }
 
-.task-assignedTo{
+.task-assignedTo {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.task-icons{
+.task-icons {
     display: flex;
 }
 
 .task-assignedTo img {
     margin-right: 28px;
 }
+
 .task-assignedTo span {
     display: flex;
     justify-content: center;
@@ -289,7 +299,7 @@ body {
 }
 
 .empty-card {
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -313,11 +323,16 @@ body {
     border-radius: 30px;
 }
 
-.arrow-up, .arrow-down {
+.menu-points {
     width: 35px;
-    height: 35px;
-    position: absolute;
-    left: 56%;
+        margin-right: 20px;
+}
+
+.menu-container {
+    display: flex;
+    margin-top: -15px;
+    width: 100%;
+    justify-content: end;
 }
 
 .arrow-up {
@@ -330,7 +345,7 @@ body {
 
 .remaining-contacts {
     background: blue;
-  }
+}
 
 
 /*----add-tast-popUp---------*/
@@ -340,14 +355,15 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Abdunkelung des Hintergrunds */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Abdunkelung des Hintergrunds */
     z-index: 9999;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0s linear 0.3s;
-  }
-  
-  .popup-content {
+}
+
+.popup-content {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -361,37 +377,41 @@ body {
     display: flex;
     justify-content: center;
     overflow-y: auto;
-    
 
-  }
-  
-  .popup-overlay.active {
+
+}
+
+.popup-overlay.active {
     opacity: 1;
     visibility: visible;
     transition-delay: 0s;
-  }
-  
-  .popup-content.active {
-    opacity: 1;
-  }
+}
 
-  .popup-content::-webkit-scrollbar {
+.popup-content.active {
+    opacity: 1;
+}
+
+.popup-content::-webkit-scrollbar {
     width: 12px;
-    background-color: #F5F5F5; /* Hintergrund des Scrollbars */
+    background-color: #F5F5F5;
+    /* Hintergrund des Scrollbars */
 }
 
 .popup-content::-webkit-scrollbar-thumb {
-    background-color: #888; /* Farbe des Scroll-Handles */
+    background-color: #888;
+    /* Farbe des Scroll-Handles */
     border-radius: 10px;
-    border: 3px solid #F5F5F5; /* Farbe des Scrollbar-Hintergrunds */
+    border: 3px solid #F5F5F5;
+    /* Farbe des Scrollbar-Hintergrunds */
 }
 
 .popup-content::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Farbe des Scroll-Handles beim Überfahren mit der Maus */
+    background: #555;
+    /* Farbe des Scroll-Handles beim Überfahren mit der Maus */
 }
 
 .popup-content::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
 }
 
@@ -404,77 +424,92 @@ body {
     display: none;
 }
 
-.card-change-status{
+.card-change-status {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 5px;
 }
-.card-change-status span:hover{
+
+.card-change-status span,
+.card-change-status div {
+    background-color: rgba(211, 211, 211, 0.466);
+    border-radius: 5px;
+    width: 120px;
+    text-align: center;
+}
+
+.card-change-status span:hover,
+.card-change-status div:hover {
     font-weight: 800;
 }
 
-  /*---------------*/
+/*---------------*/
 
-  @media (max-width: 900px) {
+@media (max-width: 900px) {
     .popup-overlay.active {
-      background-color: transparent;
+        background-color: transparent;
     }
+
     .popup-content {
         background-color: #F5F5F5;
         overflow-y: unset;
     }
-  }
-  
-  @media (min-width: 321px) {
+}
+
+@media (min-width: 321px) {
     .popup-overlay {
-      background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.5);
     }
-  }
+}
 
-  /*------------------*/
+/*------------------*/
 
-  @media (max-width: 900px) and (min-width: 280px) {
-    
+@media (max-width: 900px) and (min-width: 280px) {
 
-    
+
+
     .popup-content {
-      position: fixed;
-      top: 80px; /* Höhe des Headers */
-      left: 0;
-      width: 100%;
-      height: calc(100% - 80px); /* Höhe des Fensters minus die Höhe des Headers */
-      transform: none; /* Keine Verschiebung */
-      z-index: 98;
-      border-radius: 0;
-      align-items: flex-start;
-      overflow-y: auto;
+        position: fixed;
+        top: 80px;
+        /* Höhe des Headers */
+        left: 0;
+        width: 100%;
+        height: calc(100% - 80px);
+        /* Höhe des Fensters minus die Höhe des Headers */
+        transform: none;
+        /* Keine Verschiebung */
+        z-index: 98;
+        border-radius: 0;
+        align-items: flex-start;
+        overflow-y: auto;
     }
 
     .popup-overlay.active {
         top: 80px;
     }
-    
-    
+
+
 
     #burger-menu {
         z-index: 9999999;
     }
 
     footer {
-        z-index: 0!important;
+        z-index: 0 !important;
     }
-    
-  }
-  
 
-  /*----------------*/
+}
 
 
-  @media(min-width:768px) {
+/*----------------*/
+
+
+@media(min-width:768px) {
     .popup-content {
         width: 100%;
     }
-  }
+}
 
 @media (min-width: 813px) {
     .task-card {
@@ -482,7 +517,7 @@ body {
         max-height: 205px;
     }
 
-    .card-with-PBar{
+    .card-with-PBar {
         max-width: 250px;
         max-height: 239px;
     }
@@ -492,7 +527,7 @@ body {
         margin-left: 9px;
     }
 
-    
+
 }
 
 @media (min-width: 1024px) {
@@ -517,7 +552,7 @@ body {
     .edit-btn {
         display: none;
     }
-    
+
     .button-add-div {
         display: flex;
         justify-content: center;
@@ -533,16 +568,16 @@ body {
         font-weight: bold;
         cursor: pointer;
         transition: 125ms ease-in-out;
-      }
+    }
 
-      .button-add-div:hover {
+    .button-add-div:hover {
         background-color: #29ABE2;
-      }
-      
-      .button-add-div img {
+    }
+
+    .button-add-div img {
         margin-left: 10px;
-      }
-    
+    }
+
 
     .responsive-searchbar {
         display: flex;
@@ -554,9 +589,9 @@ body {
         margin-top: 6px;
     }
 
-    .search-input{
+    .search-input {
         height: 51px;
-        
+
     }
 
     .search-bar-line {
@@ -568,7 +603,7 @@ body {
         transform: translateY(86%);
     }
 
-    .main-div{
+    .main-div {
         padding-top: 165px;
     }
 
@@ -579,7 +614,7 @@ body {
 }
 
 @media (min-width: 1200px) {
-    
+
 
     .popup-content {
         width: 1116px
@@ -593,5 +628,5 @@ body {
         height: auto;
     }
 
-    
+
 }
