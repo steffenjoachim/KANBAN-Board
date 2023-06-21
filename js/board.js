@@ -342,8 +342,10 @@ function checkEmptyList() {
 
   if (todoCard.children.length === 0) {
     emptyCard.style.display = "flex";
+    todoCard.style.height = "239px";
   } else {
     emptyCard.style.display = "none";
+    todoCard.style.height = "500px";
   }
 }
 
@@ -353,8 +355,10 @@ function checkEmptyListProgress() {
 
   if (progressCard.children.length === 0) {
     emptyCard.style.display = "flex";
+    progressCard.style.height = "239px";
   } else {
     emptyCard.style.display = "none";
+    progressCard.style.height = "500px";
   }
 }
 
@@ -364,8 +368,10 @@ function checkEmptyListFeedback() {
 
   if (feedbackCard.children.length === 0) {
     emptyCard.style.display = "flex";
+    feedbackCard.style.height = "239px";
   } else {
     emptyCard.style.display = "none";
+    feedbackCard.style.height = "500px";
   }
 }
 
@@ -375,8 +381,10 @@ function checkEmptyListDone() {
 
   if (doneCard.children.length === 0) {
     emptyCard.style.display = "flex";
+    doneCard.style.height = "239px";
   } else {
     emptyCard.style.display = "none";
+    doneCard.style.height = "500px";
   }
 }
 
