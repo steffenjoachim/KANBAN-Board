@@ -676,14 +676,14 @@ function editingTask(taskId) {
       </div>
       
       <label for="title-input">Title</label>
-          <input class="all-input" id="title-input" type="text" name="title" value="${task.title}" required />
+          <input class="all-input" id="title-input${taskId}" type="text" name="title" value="${task.title}" required />
 
           <label for="description-input" >Description</label>
-          <textarea id="description-input" name="description" value="${task.description}" required></textarea>
+          <textarea id="description-input${taskId}" name="description" value="${task.description}" required>${todos[taskId]['description']}</textarea>
 
           <label for="date-input">Due Date</label>
           <div class="date-input-container">
-            <input class="all-input" type="date" placeholder="dd/mm/yyyy" value="${task.dueDate}" />
+            <input id="date${taskId}" class="all-input" type="date" placeholder="dd/mm/yyyy" value="${task.dueDate}" />
           </div>
 
       
@@ -698,8 +698,9 @@ function editingTask(taskId) {
       </div>
 
       <label for="Assigned-to">Assigned to</label>
-              <div onclick="selectAssignedTo()" id="assign-one" class="select-one">
+              <div onclick="selectAssignedTo()" id="assign-one${taskId}" class="select-one">
                 <span>Select assigned person</span>
+                <div>${todos[taskId]['assignedTo']['0']['name']}
                 <img src="./add_task_img/open.svg" alt="" />
               </div>
 
@@ -724,7 +725,7 @@ function editingTask(taskId) {
 
       
       </div>
-      <button onclick="saveEditedTask(${taskId})">OK</button>
+      <button onclick="saveTask(${taskId})">OK</button>
     </div>
   `;
 
@@ -734,3 +735,14 @@ function editingTask(taskId) {
   document.getElementById('taskContent').innerHTML = editFormHtml;
 }
 
+function saveTask(id) {
+ let tittle =  document.getElementById(`title-input${id}`).value;
+ let description =  document.getElementById(`description-input${id}`).value;
+ let date = document.getElementById(`date${id}`).value
+ todos[id]['description'] = description;
+ todos[id]['title'] = tittle;
+ updateHTML();
+
+  console.log(tittle)
+  console.log(id)
+}

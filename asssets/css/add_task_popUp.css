@@ -12,7 +12,7 @@ h1 {
   font-weight: 700;
 }
 
-.select-one {
+/* .select-one {
     background-color: #fff;
     height: 19px;
     border-radius: 10px;
@@ -25,7 +25,7 @@ h1 {
     cursor: pointer;
     transition: 125ms;
     border: 1px solid #D1D1D1;
-  }
+  } */
 
   .select-one-div {
     display: flex;
@@ -130,7 +130,7 @@ h1 {
   
   .select-one {
     background-color: #fff;
-    height: 19px;
+    height: 89px;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -141,6 +141,7 @@ h1 {
     cursor: pointer;
     transition: 125ms;
     border: 1px solid #D1D1D1;
+    flex-direction: column;
   }
   
   .select-one span {
