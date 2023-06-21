@@ -325,7 +325,7 @@ body {
 
 .menu-points {
     width: 35px;
-        margin-right: 20px;
+    margin-right: 20px;
 }
 
 .menu-container {
@@ -333,6 +333,8 @@ body {
     margin-top: -15px;
     width: 100%;
     justify-content: end;
+    max-width: 250px;
+
 }
 
 .arrow-up {
