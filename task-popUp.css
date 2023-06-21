@@ -42,14 +42,21 @@
 .popUp-head-task {
     display: flex;
     justify-content: space-between;
-    max-width: 569px;
-    margin-right: 34px;
-    margin-left: 12px;
-    margin-bottom: 36px;
+    
+    margin-right: 31px;
+    
+    margin-bottom: 29px;
+    margin-top: 54px;
 }
 
 .popUp-head-task img {
     cursor: pointer;
+}
+
+.edit-wrap {
+    margin-left: 50px;
+    margin-right: 50px;
+    
 }
 
 .task-category-one {
@@ -59,8 +66,8 @@
     font-weight: 400;
     font-size: 21px;
     color: #FFFFFF;
-    width: fit-content;
-    margin-left: 21px;
+    
+    
 }
 
     /* Title  */
@@ -69,9 +76,7 @@
     font-weight: 700;
     font-size: 61px;
     color: #2A3647;
-    margin-left: 33px;
-    line-height: 120%;
-    margin-right: 114px;
+    
 }
 
     /* Description */
@@ -80,7 +85,8 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
-    margin: 25px 33px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .bolder {
@@ -90,28 +96,30 @@
 }
 
 .popUp-date {
-    margin-left: 33px;
+    
     font-weight: 400;
     font-size: 21px;
-    ;
+    margin-top: 14px;
+    margin-bottom: 14px;
 }
 
 .popUp-prio {
     display: flex ;
     align-items: center;
-    margin-left: 33px;
+    
     font-weight: 400;
     font-size: 21px;
-    margin-top: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.popUp-prio-btn {
+/* .popUp-prio-btn {
     width: fit-content;
     padding: 4px 18px;
     background: #FF3D00;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-}
+} */
 
 .popUp-prio-btn span {
     color: #FFFFFF;
@@ -124,7 +132,7 @@
     font-weight: 700;
     font-size: 16px;
     margin-top: 29px;
-    margin-left: 33px;
+    margin-left: 50px;
     margin-bottom: 31px;
 }
 
@@ -132,7 +140,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-left: 33px;
+    margin-left: 50px;
     font-weight: 400;
     font-size: 16px;
     gap: 13px;
@@ -142,8 +150,9 @@
     display: flex;
     align-items: center;
     gap: 25px;
-    margin-left: 31px;
-    margin-bottom: 28px;
+    margin-left: 50px;
+    margin-bottom: 14px;
+    margin-top: 14px;
 }
 
 .assignedTo-iconE {
@@ -289,7 +298,6 @@
     border-radius: 30px;
     transform: translate(-50%, -50%);
     width: 623px;
-    height: 824px;
     background-color: #ffffff;
     z-index: 10000;
     transition: opacity 0.3s ease;
@@ -307,5 +315,24 @@
   
   .task-content-popup.active {
     opacity: 1;
+  }
+
+  /* -----editPopup--- */
+
+ #editTitle {
+
+ }
+
+ .edit-wrap button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit-wrap button:hover {
+    background-color: #0056b3;
   }
 

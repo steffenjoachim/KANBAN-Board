@@ -266,12 +266,31 @@ input[type="date"]::before {
   background: #2A3647;
 }
 
+/* ======= Colors ======= */
+
+.brown{
+  background: #333303;
+}
+
+.yellow{
+  background: #E1E104;
+}
+
 .orange{
   background: #FF7A00;
 }
 
+.light-orange{
+  background: #FFC700;
+}
+
+
 .purple{
   background: #9327FF;
+}
+
+.dark-blue{
+  background: #0223CF;
 }
 
 .light-blue{
@@ -281,23 +300,41 @@ input[type="date"]::before {
 .pink{
   background: #FC71FF;
 }
-.blue{
-  background: #0038FF;
+
+.dark-pink{
+  background: #944796;
+}
+
+.light-green{
+  background: #02fe38;
 }
 
 .green{
   background: #02CF2F;
 }
 
-.light-green{
-  background: #1FD7C1;
+.dark-green{
+  background: #077E21;
+}
+
+.light-red{
+  background: #F42424;
 }
 
 .red{
-  background: #AF1616 ;
+  background: #AF1616;
 }
-.dark-blue{
-  background: #2A3647 ;
+
+.dark-red{
+  background: #901e1e;
+}
+
+.gray{
+  background: #D1D1D1;
+}
+
+.white{
+  color: #FFFFFF;
 }
 
  #new-category-fields {
