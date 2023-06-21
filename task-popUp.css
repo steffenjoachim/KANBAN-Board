@@ -320,6 +320,10 @@
   /* -----editPopup--- */
 
  
+  .edit-wrap {
+    height: 824px;
+  }
+
 
  .edit-wrap button {
     background-color: #007bff;

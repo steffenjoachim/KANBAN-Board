@@ -548,7 +548,7 @@ function openEditPopup(taskId) {
   task.assignedTo.forEach(assignedPerson => {
     popupContentHtml += `
       <div class="assignedTo-divE">
-        <div class="assignedTo-iconE" style="background-color:${assignedPerson.iconColor};">${assignedPerson.initials}</div>
+        <div class="assignedTo-iconE ${assignedPerson.iconColor}" ;">${assignedPerson.initials}</div>
         <div class="assignedTo-name">${assignedPerson.name}</div>
       </div>
     `;
@@ -666,25 +666,55 @@ function editingTask(taskId) {
         <img id="close-popUp-one" class="close-popUp-arrows" src="./asssets/img/popUp-arrow.svg" alt="" />
         <img onclick="closeEditPopup()" class="close-popUp-xx display-none" src="./asssets/img/popUp-close.svg" alt="" />
       </div>
-      <input id="editTitle" type="text" value="${task.title}">
-      <input id="editDescription" type="text" value="${task.description}">
-      <div class="popUp-date">
-        <span class="bolder">Due date:</span>
-        <input id="editDueDate" type="date" value="${task.dueDate}">
-      </div>
+      
+      <label for="title-input">Title</label>
+          <input class="all-input" id="title-input" type="text" name="title" value="${task.title}" required />
+
+          <label for="description-input" >Description</label>
+          <textarea id="description-input" name="description" value="${task.description}" required></textarea>
+
+          <label for="date-input">Due Date</label>
+          <div class="date-input-container">
+            <input class="all-input" type="date" placeholder="dd/mm/yyyy" value="${task.dueDate}" />
+          </div>
+
+      
       <div class="popUp-prio">
         <span class="bolder">Priority:</span>
-        <select id="editPriority">
-          <option value="urgent" ${task.priority === 'urgent' ? 'selected' : ''}>Urgent</option>
-          <option value="medium" ${task.priority === 'medium' ? 'selected' : ''}>Medium</option>
-          <option value="low" ${task.priority === 'low' ? 'selected' : ''}>Low</option>
-        </select>
+        <label for="prio-buttons"></label>
+              <div id="prio-buttons">
+                <img id="urgent" class="prio-img" src="./asssets/img/urgent-urgent.svg" alt="">
+                <img id="medium" class="prio-img" src="./asssets/img/medium-urgent.svg" alt="">
+                <img id="low" class="prio-img" src="./asssets/img/low-urgent.svg" alt="">
+              </div>
       </div>
-      <div class="popUp-assigned-to">
-        <span class="bolder">Assigned to:</span>
-        <div class="assignedTo-list">
-          ${generateAssignedToList(task.assignedTo)}
-        </div>
+
+      <label for="Assigned-to">Assigned to</label>
+              <div onclick="selectAssignedTo()" id="assign-one" class="select-one">
+                <span>Select assigned person</span>
+                <img src="./add_task_img/open.svg" alt="" />
+              </div>
+
+              <div id="dropdown-assign" class="d-none">
+                <div onclick="showInviteContactFields()" id="assigned-three" class="selected">
+                  <span>Invite new contact</span>
+                  <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
+                </div>
+              </div>
+
+              <div id="selected-contact"></div>
+
+              <div id="new-contact-fields" class="d-none">
+                <input type="text" id="new-contact-email" placeholder="Enter email address">
+                <div class="icons-wrapper-three">
+                  <img src="./asssets/img/cancel-svg.svg" id="cross-icon2" onclick="cancelInviteContact()">
+                  |
+                  <img src="./asssets/img/checkmark.svg" id="check-icon2" onclick="saveInviteContact()">
+                </div>
+              </div>
+
+
+      
       </div>
       <button onclick="saveEditedTask(${taskId})">OK</button>
     </div>
