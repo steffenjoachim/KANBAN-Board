@@ -125,62 +125,12 @@ if (window.location.pathname.includes('board.html')) {
 
 
 
-// let todos = [
-// {
 
-//   'id': '0',
-//   'title': 'Create landingpage',
-//   'description': `The header and footer on top and bottom of the 
-//                    page for the mobile version. On top and left side of the page 
-//                    for desktop version`,
-//   'category': 'Web development',
-//   'assignedTo': 'MM',          
-//   'dueDate': '20.10.2023',
-//   'prio': 'Medium',
-//   'subtask': '2',
-//   'status': 'todo',
-// },
-// {
-
-//   'id': '1',
-//   'title': 'Create footer',
-//   'description': `The header and footer on top and bottom of the 
-//                    page for the mobile version. On top and left side of the page 
-//                    for desktop version`,
-//   'category': 'HR',
-//   'assignedTo': 'MM',          
-//   'dueDate': '20.10.2023',
-//   'prio': 'Medium',
-//   'subtask': '2',
-//   'status': 'todo',
-// },
-
-// {
-//   'id': '2',
-//   'title': 'Create header',
-//   'description': `The header and footer on top and bottom of the 
-//                    page for the mobile version. On top and left side of the page 
-//                    for desktop version`,
-//   'category': 'Sales',
-//   'assignedTo': 'MM',          
-//   'dueDate': '20.10.2023',
-//   'prio': 'Medium',
-//   'subtask': '2',
-//   'status': 'inProgress',
-// },
-
-// ];
-2834
 
 let todos = [];
-
 let currentDraggedElement;
 
-
-
 function updateHTML() {
-
-
 
   let filterTodo = todos.filter(t => t['status'] == 'todo');
   document.getElementById('todo-card').innerHTML = '';
@@ -194,10 +144,7 @@ function updateHTML() {
     document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
     showProgressBar(element, element['id'])
   }
-
   checkEmptyList();
-
-
 
   let filterInpro = todos.filter(t => t['status'] == 'inProgress');
   document.getElementById('progress-card').innerHTML = '';
@@ -356,11 +303,7 @@ function highlight(id) {
 function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
-function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
-  let percent = totalSubTaskChecked / totalSubTask;
-  percent = Math.round(percent * 100)
-  document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`
-}
+
 function countProgressSteps(id) {
   let totalSubTask = todos[id]['subtasks'].length;
   let totalSubTaskChecked = 0;
@@ -390,25 +333,9 @@ function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
   document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`
 }
 
-// function renderAssignedContacts(id) {
-//   let renderedContacts = '';
-
-//   if (todos[id] && todos[id].assignedTo) {
-//     for (let j = 0; j < 2 && j < todos[id].assignedTo.length; j++) {
-//       const assignedContact = todos[id].assignedTo[j];
-//       const contact = `<span class="${assignedContact.iconColor}">${assignedContact.initials}</span>`;
-//       renderedContacts += contact;
-//     }
-//   }
-
-//   return renderedContacts;
-// }
 
 
-
-
-
-//////////// funktionen die die Anzeige (NO TASKS ...) je Liste eine Funktion //////////////
+////////////// Check if the lists are empty //////////////
 
 function checkEmptyList() {
   var todoCard = document.getElementById("todo-card");
@@ -471,32 +398,44 @@ function filterTasks() {
     let feedbackCard = document.getElementById('Feedback-card');
     let doneCard = document.getElementById('done-card');
 
-    checkEmptyList()
+    // Clear the HTML content of the cards
     todoCard.innerHTML = '';
-    checkEmptyListProgress()
     progressCard.innerHTML = '';
-    checkEmptyListFeedback()
     feedbackCard.innerHTML = '';
-    checkEmptyListDone()
     doneCard.innerHTML = '';
 
     for (let index = 0; index < todos.length; index++) {
       const element = todos[index];
-
       if (element.title.toLowerCase().includes(search) || element.description.toLowerCase().includes(search)) {
         if (element.status === 'todo') {
           todoCard.innerHTML += generateTodoHTML(element);
+          listdesigne(element)
         } else if (element.status === 'inProgress') {
           progressCard.innerHTML += generateTodoHTML(element);
+          listdesigne(element)
         } else if (element.status === 'feedback') {
           feedbackCard.innerHTML += generateTodoHTML(element);
+          listdesigne(element)
         } else if (element.status === 'done') {
           doneCard.innerHTML += generateTodoHTML(element);
+          listdesigne(element)
         }
       }
     }
+    // Check if the filtered lists are empty
+    checkEmptyList();
+    checkEmptyListProgress();
+    checkEmptyListFeedback();
+    checkEmptyListDone();
   }
+}
 
+function listdesigne(element) {
+  document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
+  document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
+  document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
+  document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
+  showProgressBar(element, element['id'])
 }
 
 

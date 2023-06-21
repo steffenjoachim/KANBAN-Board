@@ -164,10 +164,6 @@ body {
 .list {
     min-height: 400px;
 }
-.list:empty::before {
-    content: "";
-    flex-grow: 1;
-}
 
 .card-head {
     display: flex;
@@ -332,6 +328,9 @@ body {
     bottom: 0;
 }
 
+.remaining-contacts {
+    background: blue;
+  }
 
 
 /*----add-tast-popUp---------*/
