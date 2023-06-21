@@ -423,7 +423,7 @@ function selectAssign(event) {
       if (selectedContact) {
         // Erstellung des divs für den ausgewählten Kontakt
         let contactDiv = document.createElement('div');
-        contactDiv.style.backgroundColor = selectedContact['icon-color'];
+        contactDiv.classList.add(selectedContact['icon-color']);
         contactDiv.style.borderRadius = '50%';
         contactDiv.style.width = '50px';
         contactDiv.style.height = '50px';

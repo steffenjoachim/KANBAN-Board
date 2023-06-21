@@ -293,6 +293,10 @@ input[type="date"]::before {
   background: #0223CF;
 }
 
+.blue {
+  background: #0223CF;
+}
+
 .light-blue{
   background: #29ABE2;
 }
