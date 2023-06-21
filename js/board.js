@@ -261,7 +261,7 @@ function startDragging(id) {
 
 function generateTodoHTML(element) {
   return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card${element['id']}" class="item task-card card-with-PBar" onclick="openEditPopup(${element['id']})">
-  <img onclick="moveTaskup(${element['id']})" class="arrow-up" id="arrowUp" src="./asssets/img/arrowUp.svg" alt="">
+  <img onclick="moveTaskup(${element['id']}); event.stopPropagation()" class="arrow-up" id="arrowUp" src="./asssets/img/arrowUp.svg" alt="">
   <div id="task-category${element['id']}" class="task-category ">${element['category']}</div>
   <div class="task-title">${element['title']}</div>
   <div class="task-description">${element['description']}</div>
