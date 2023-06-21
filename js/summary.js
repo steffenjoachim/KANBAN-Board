@@ -46,8 +46,31 @@ async function loadNewtasksboardd() {
   catch (e) {
     alert('Error')
   }
-  displayTodoCount(boardTodos)
+  displayTodoCount(boardTodos);
+  getNextDueDate(boardTodos);
 } 
+
+/**
+ * This function is used to filter the next upcomming 'due date' out of the array boardTodos that has the priority "urgent" (which has the following img-path: ./asssets/img/inProgress-icon.svg)
+ * 
+ * @param {object} boardTodos - array including all tasks displayed in board.html
+ */
+
+function getNextDueDate(boardTodos) {
+  const filteredArray = boardTodos.filter(todo => todo.selectedPriorityImagePath === './asssets/img/inProgress-icon.svg');
+
+  const sortedArray = filteredArray.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+
+  const nextDueDate = new Date(sortedArray[0].dueDate).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+  });
+
+  document.getElementById('summary-date').innerHTML = nextDueDate
+}
+
+
 
 
 
@@ -83,7 +106,7 @@ function displayTodoCount(boardTodos) {
       }
 
     for (let i = 0; i < boardTodos.length; i++) {
-        if (boardTodos[i].prio === 'urgent') {
+        if (boardTodos[i]['selectedPriorityImagePath'] == './asssets/img/inProgress-icon.svg') {
             countPrio++;
         }
       }
