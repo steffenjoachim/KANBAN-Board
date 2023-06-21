@@ -235,6 +235,7 @@ hr {
 
 .back-arrow{
     margin-right: 34px;
+    cursor: pointer;
 }
 
 .better-with-a-team, .contact-information {
@@ -391,7 +392,6 @@ form{
 .input-field-top{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
-    height: 41px;
     margin: 64px 16px 0 16px;
     display: flex;
     justify-content: space-between;
@@ -400,7 +400,6 @@ form{
 .input-field{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
-    height: 41px;
     margin: 32px 16px 0 16px;
     display: flex;
     justify-content: space-between;

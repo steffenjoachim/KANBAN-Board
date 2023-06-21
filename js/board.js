@@ -249,9 +249,9 @@ function updateHTML() {
 
 }
 
-function renderAssignedContacts(index, element) {
+function renderAssignedContacts(index) {
   let renderedContacts = '';
-
+  debugger
   for (let j = 0; j < 2 && j < todos[index]['assignedTo'].length; j++) {
     const assignedContact = todos[index]['assignedTo'][j];
     const contact = `<span class="${assignedContact['iconColor']}">${assignedContact['initials']}</span>`;
@@ -386,19 +386,19 @@ function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
   document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`
 }
 
-function renderAssignedContacts(id) {
-  let renderedContacts = '';
+// function renderAssignedContacts(id) {
+//   let renderedContacts = '';
 
-  if (todos[id] && todos[id].assignedTo) {
-    for (let j = 0; j < 2 && j < todos[id].assignedTo.length; j++) {
-      const assignedContact = todos[id].assignedTo[j];
-      const contact = `<span class="${assignedContact.iconColor}">${assignedContact.initials}</span>`;
-      renderedContacts += contact;
-    }
-  }
+//   if (todos[id] && todos[id].assignedTo) {
+//     for (let j = 0; j < 2 && j < todos[id].assignedTo.length; j++) {
+//       const assignedContact = todos[id].assignedTo[j];
+//       const contact = `<span class="${assignedContact.iconColor}">${assignedContact.initials}</span>`;
+//       renderedContacts += contact;
+//     }
+//   }
 
-  return renderedContacts;
-}
+//   return renderedContacts;
+// }
 
 
 

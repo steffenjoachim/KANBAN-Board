@@ -64,6 +64,7 @@
 .close-x-dark{
     height: 21px;
     width: 21px;
+    cursor: pointer;
 }
 
 .create-contact{
