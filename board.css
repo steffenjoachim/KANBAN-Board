@@ -323,12 +323,16 @@ body {
     border-radius: 30px;
 }
 
-.arrow-up,
-.arrow-down {
+.menu-points {
     width: 35px;
-    height: 35px;
-    position: absolute;
-    left: 56%;
+        margin-right: 20px;
+}
+
+.menu-container {
+    display: flex;
+    margin-top: -15px;
+    width: 100%;
+    justify-content: end;
 }
 
 .arrow-up {

@@ -245,12 +245,12 @@ function moveTaskup(id) {
   card.innerHTML = '';
   card.innerHTML = `
 <div class="card-change-status">
-<div onclick="updateHTML(); event.stopPropagation()">Close X</div>
-<h3>Move to Task:</h3>
+<h3>Move to:</h3>
 <span onclick="chageStatusToToDo(${id}); event.stopPropagation()">To do</span>
 <span onclick="chageStatusToInProgress(${id}); event.stopPropagation()">In Progress</span>
 <span onclick="chageStatusToFeedback(${id}); event.stopPropagation()">Awaiting Feedback</span>
 <span onclick="chageStatusToDone(${id}); event.stopPropagation()">Done</span>
+<div onclick="updateHTML(); event.stopPropagation()">X</div>
 </div>
 `
 }
@@ -261,7 +261,7 @@ function startDragging(id) {
 
 function generateTodoHTML(element) {
   return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card${element['id']}" class="item task-card card-with-PBar" onclick="openEditPopup(${element['id']})">
-  <img onclick="moveTaskup(${element['id']}); event.stopPropagation()" class="arrow-up" id="arrowUp" src="./asssets/img/arrowUp.svg" alt="">
+  <div class="menu-container"><img onclick="moveTaskup(${element['id']}); event.stopPropagation()" class="menu-points" id="arrowUp" src="./asssets/img/list.png" alt=""></div>
   <div id="task-category${element['id']}" class="task-category ">${element['category']}</div>
   <div class="task-title">${element['title']}</div>
   <div class="task-description">${element['description']}</div>
