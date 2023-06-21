@@ -162,7 +162,11 @@ body {
 }
 
 .list {
-    min-height: auto;
+    min-height: 400px;
+}
+.list:empty::before {
+    content: "";
+    flex-grow: 1;
 }
 
 .card-head {

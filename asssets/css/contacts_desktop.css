@@ -98,7 +98,7 @@
     width: 100%;
     position: fixed;
     bottom: 200px;
-    transform: translateY(360%);
+    transform: translateY(400%);
     transition: transform 0.125s ease-in-out;
   }
 
