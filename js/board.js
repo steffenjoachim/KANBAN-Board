@@ -197,6 +197,7 @@ function updateHTML() {
 }
 
 
+
 async function chageStatusToToDo(id) {
   todos[id]['status'] = 'todo';
   await setItem('task', JSON.stringify(todos))
@@ -317,12 +318,12 @@ function renderAssignedContacts(id) {
 
     for (let j = 0; j < 2 && j < assignedContacts.length; j++) {
       const assignedContact = assignedContacts[j];
-      const contact = <span class="${assignedContact.iconColor}">${assignedContact.initials}</span>;
+      const contact = `<span class="${assignedContact.iconColor}">${assignedContact.initials}</span>`;
       renderedContacts += contact;
     }
 
     if (remainingContacts > 0) {
-      renderedContacts += <span class="remaining-contacts">+${remainingContacts}</span>;
+      renderedContacts += `<span class="remaining-contacts">+${remainingContacts}</span>`;
     }
   }
 
