@@ -372,9 +372,9 @@ function countProgressSteps(id) {
 }
 
 function showProgressBar(element, id) {
-  if (todos[id]['subtasks'].length > 0) {
-    document.getElementById(`task-progress${element['id']}`).classList.remove('dis-none');
-    document.getElementById(`progress-steps${element['id']}`).innerHTML = countProgressSteps(id);
+  if (todos[id] && todos[id].subtasks && todos[id].subtasks.length > 0) {
+    document.getElementById(`task-progress${element.id}`).classList.remove('dis-none');
+    document.getElementById(`progress-steps${element.id}`).innerHTML = countProgressSteps(id);
   }
 }
 
@@ -386,14 +386,15 @@ function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
   document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`
 }
 
-
 function renderAssignedContacts(id) {
   let renderedContacts = '';
 
-  for (let j = 0; j < 2 && j < todos[id]['assignedTo'].length; j++) {
-    const assignedContact = todos[id]['assignedTo'][j];
-    const contact = `<span class="${assignedContact['iconColor']}">${assignedContact['initials']}</span>`;
-    renderedContacts += contact;
+  if (todos[id] && todos[id].assignedTo) {
+    for (let j = 0; j < 2 && j < todos[id].assignedTo.length; j++) {
+      const assignedContact = todos[id].assignedTo[j];
+      const contact = `<span class="${assignedContact.iconColor}">${assignedContact.initials}</span>`;
+      renderedContacts += contact;
+    }
   }
 
   return renderedContacts;
@@ -528,7 +529,7 @@ function filterTasks() {
 // }
 
 function openEditPopup(taskId) {
-  let task = todos.find(t => t.id == taskId);
+  let task = todos.find(t => t.id === Number(taskId));
 
   if (!task) {
     console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
@@ -538,11 +539,11 @@ function openEditPopup(taskId) {
   function getImagePath(priorityImagePath) {
     switch (priorityImagePath) {
       case "./asssets/img/inProgress-icon.svg":
-        return "./asssets/img/urgent-toggle.svg";
+        return "./asssets/img/urgent-edit-task.svg";
       case "./asssets/img/Feedback-icon.svg":
-        return "./asssets/img/medium-urgent-toggle.svg";
+        return "./asssets/img/medium-edit-task.svg";
       case "./asssets/img/toDo-icon.svg":
-        return "./asssets/img/low-urgent-toggle.svg";
+        return "./asssets/img/low-edit-task.svg";
       default:
         return priorityImagePath;
     }
@@ -550,10 +551,11 @@ function openEditPopup(taskId) {
 
   // Generiere den HTML-Inhalt
   let popupContentHtml = `
+  <div class="edit-wrap">
     <div class="popUp-head-task">
       <div class="task-category-one" style="background-color:${task.color};">${task.category}</div>
       <img id="close-popUp-one" class="close-popUp-arrows" src="./asssets/img/popUp-arrow.svg" alt="" />
-      <img class="close-popUp-xx display-none" src="./asssets/img/popUp-close.svg" alt="" />
+      <img onclick="closeEditPopup()" class="close-popUp-xx display-none" src="./asssets/img/popUp-close.svg" alt="" />
     </div>
 
     <span class="popUp-titled">${task.title}</span>
@@ -571,9 +573,11 @@ function openEditPopup(taskId) {
         <img src="${getImagePath(task.selectedPriorityImagePath)}" alt="" />
       </div>
     </div>
+  </div>
   `;
 
   // Generiere HTML für "Assigned To" Abschnitt
+  popupContentHtml += `<span class="bolder assignedTo-divE">Assigned To:</span>`
   task.assignedTo.forEach(assignedPerson => {
     popupContentHtml += `
       <div class="assignedTo-divE">
@@ -598,26 +602,194 @@ function openEditPopup(taskId) {
     <div class="btns-responsive">
       <div></div>
       <div class="popUp-btns secondTypebtns">
-        <div id="popUpDelete" class="popUp-delete-responsive">
-          <img src="./asssets/img/popUpDelete.svg" alt="" />
-        </div>
-        <div class="popUp-edit-responsive">
-          <img src="./asssets/img/popUpEditPen.svg" alt="" />
-        </div>
+      <div id="popUpDelete" class="popUp-delete-responsive" data-id="${taskId}">
+        <img src="./asssets/img/popUpDelete.svg" alt="" />
+      </div>
+      <div class="popUp-edit-responsive" onclick="editingTask(${taskId})">
+        <img src="./asssets/img/popUpEditPen.svg" alt="" />
+      </div>
       </div>
     </div>
-    <button onclick="closeEditPopup()">Schließen</button>
+    
   `;
 
   // Zeige das Popup
   document.querySelector('.task-overlay-popup').classList.add('active');
   // Füge den Inhalt zum Popup hinzu
   document.getElementById('taskContent').innerHTML = popupContentHtml;
+  // Füge den Event Listener hinzu
+  document.getElementById('taskContent').addEventListener('click', function(event) {
+    if (event.target.closest('#popUpDelete')) {
+      const taskId = event.target.closest('#popUpDelete').dataset.id;
+      console.log(`Lösche Aufgabe mit ID: ${taskId}`);
+      deleteTask(taskId);
+      closeEditPopup();
+    }
+  });
 }
+
+
 
 function closeEditPopup() {
   // Verstecke das Popup
   document.querySelector('.task-overlay-popup').classList.remove('active');
   // Leere den Inhalt des Popups
   document.getElementById('taskContent').innerHTML = '';
+}
+
+async function deleteTask(id) {
+  console.log(`Lösche Aufgabe mit ID: ${id}`);
+  // Convert id to number
+  id = Number(id);
+
+  // Finden Sie den Index des zu löschenden Auftrags im todos Array
+  const taskIndex = todos.findIndex((task) => task.id === id);
+
+  // Überprüfen, ob der Auftrag gefunden wurde
+  if (taskIndex !== -1) {
+    // Entfernen Sie den Auftrag aus dem todos Array
+    todos.splice(taskIndex, 1);
+
+    // Speichern Sie das aktualisierte todos Array im Speicher
+    await setItem('task', JSON.stringify(todos));
+
+    // Aktualisieren Sie die Darstellung
+    updateHTML();
+    closeEditPopup();
+  }
+}
+
+// function editingTask(taskId) {
+//   // Finde den Task mit der angegebenen taskId
+//   let task = todos.find(t => t.id === Number(taskId));
+
+//   if (!task) {
+//     console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
+//     return;
+//   }
+
+//   // Führe den Bearbeitungsvorgang für den Task durch
+//   // Verwende die Informationen aus dem "task" Objekt, um die entsprechenden Felder zu aktualisieren oder anzeigen
+
+//   // Beispiel:
+//   console.log(`Bearbeite Task mit ID ${taskId}`);
+//   console.log('Titel:', task.title);
+//   console.log('Beschreibung:', task.description);
+//   console.log('Priorität:', task.priority);
+//   console.log('Zugewiesen an:', task.assignedTo);
+//   console.log('Fälligkeitsdatum:', task.dueDate);
+//   console.log('Kategorie:', task.category);
+
+//   // Hier können Sie den Code hinzufügen, um das Popup oder das Formular zur Bearbeitung des Tasks anzuzeigen
+// }
+
+function editingTask(taskId) {
+  let task = todos.find(t => t.id === Number(taskId));
+
+  if (!task) {
+    console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
+    return;
+  }
+
+  // Generiere den HTML-Inhalt für das Bearbeitungsfenster
+  let editFormHtml = `
+    <div class="edit-wrap">
+      <div class="popUp-head-task">
+        <div class="task-category-one" style="background-color:${task.color};">${task.category}</div>
+        <img id="close-popUp-one" class="close-popUp-arrows" src="./asssets/img/popUp-arrow.svg" alt="" />
+        <img onclick="closeEditPopup()" class="close-popUp-xx display-none" src="./asssets/img/popUp-close.svg" alt="" />
+      </div>
+      <input id="editTitle" type="text" value="${task.title}">
+      <input id="editDescription" type="text" value="${task.description}">
+      <div class="popUp-date">
+        <span class="bolder">Due date:</span>
+        <input id="editDueDate" type="date" value="${task.dueDate}">
+      </div>
+      <div class="popUp-prio">
+        <span class="bolder">Priority:</span>
+        <select id="editPriority">
+          <option value="urgent" ${task.priority === 'urgent' ? 'selected' : ''}>Urgent</option>
+          <option value="medium" ${task.priority === 'medium' ? 'selected' : ''}>Medium</option>
+          <option value="low" ${task.priority === 'low' ? 'selected' : ''}>Low</option>
+        </select>
+      </div>
+      <div class="popUp-assigned-to">
+        <span class="bolder">Assigned to:</span>
+        <div class="assignedTo-list">
+          ${generateAssignedToList(task.assignedTo)}
+        </div>
+      </div>
+      <button onclick="saveEditedTask(${taskId})">OK</button>
+    </div>
+  `;
+
+  // Zeige das Bearbeitungsfenster
+  document.querySelector('.task-overlay-popup').classList.add('active');
+  // Füge den Inhalt zum Popup hinzu
+  document.getElementById('taskContent').innerHTML = editFormHtml;
+}
+
+function generateAssignedToList(assignedTo) {
+  let assignedToListHtml = '';
+  assignedTo.forEach(person => {
+    assignedToListHtml += `
+      <div class="assignedTo-item">
+        <input type="checkbox" value="${person.id}" ${person.selected ? 'checked' : ''}>
+        <span>${person.name}</span>
+      </div>
+    `;
+  });
+  return assignedToListHtml;
+}
+
+function saveEditedTask(taskId) {
+  let task = todos.find(t => t.id === Number(taskId));
+
+  if (!task) {
+    console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
+    return;
+  }
+
+  // Lese die aktualisierten Werte aus den Eingabefeldern
+  let editedTitle = document.getElementById('editTitle').value;
+  let editedDescription = document.getElementById('editDescription').value;
+  let editedDueDate = document.getElementById('editDueDate').value;
+  let editedPriority = document.getElementById('editPriority').value;
+  let editedAssignedTo = getEditedAssignedTo();
+
+  // Aktualisiere die Task-Daten mit den neuen Werten
+  task.title = editedTitle;
+  task.description = editedDescription;
+  task.dueDate = editedDueDate;
+  task.priority = editedPriority;
+  task.assignedTo = editedAssignedTo;
+
+  // Speichere die aktualisierte Aufgabenliste im Speicher
+  setItem('task', JSON.stringify(todos)).then(() => {
+    // Schließe das Bearbeitungsfenster
+    closeEditPopup();
+    // Aktualisiere die Darstellung
+    updateHTML();
+  });
+}
+
+function getEditedAssignedTo() {
+  let assignedToInputs = document.querySelectorAll('.assignedTo-item input[type="checkbox"]');
+  let editedAssignedTo = [];
+
+  assignedToInputs.forEach(input => {
+    let personId = input.value;
+    let isSelected = input.checked;
+    let person = assignedPeople.find(p => p.id === Number(personId));
+
+    if (person) {
+      editedAssignedTo.push({
+        id: person.id,
+        name: person.name,
+        selected: isSelected
+      });
+    }
+  });
+
+  return editedAssignedTo;
 }
