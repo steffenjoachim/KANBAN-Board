@@ -408,7 +408,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 5px;
 }
+.card-change-status span {
+    background-color: rgba(211, 211, 211, 0.466);
+    border-radius: 5px;
+    width: 120px;
+    text-align: center;
+}
+
 .card-change-status span:hover{
     font-weight: 800;
 }

@@ -246,7 +246,7 @@ function moveTaskup(id) {
   card.innerHTML = `
 <div class="card-change-status">
 <div onclick="updateHTML(); event.stopPropagation()">Close X</div>
-<h3>Move to Task:</h3>
+<h3>Move to:</h3>
 <span onclick="chageStatusToToDo(${id}); event.stopPropagation()">To do</span>
 <span onclick="chageStatusToInProgress(${id}); event.stopPropagation()">In Progress</span>
 <span onclick="chageStatusToFeedback(${id}); event.stopPropagation()">Awaiting Feedback</span>
