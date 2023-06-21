@@ -162,7 +162,7 @@ body {
 }
 
 .list {
-    min-height: 900px;
+    min-height: auto;
 }
 
 .card-head {
