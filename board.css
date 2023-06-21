@@ -162,7 +162,7 @@ body {
 }
 
 .list {
-    min-height: auto;
+    min-height: 400px;
 }
 
 .card-head {
@@ -328,6 +328,9 @@ body {
     bottom: 0;
 }
 
+.remaining-contacts {
+    background: blue;
+  }
 
 
 /*----add-tast-popUp---------*/

@@ -193,7 +193,7 @@ function showContactSuccessfullyCreatedPopup() {
     popup.style.transform = 'translateY(0)';
     setTimeout(function() {
       
-      popup.style.transform = 'translateY(360%)';
+      popup.style.transform = 'translateY(400%)';
     }, 750);
   }
   

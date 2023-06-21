@@ -59,7 +59,7 @@ function generateForgotHtml() {
     <h1 class="forgot-password-headline">I forgot my password</h1>
     <img class="line" src="./asssets/img/line.svg" alt="Trennlinie">
     <p class="forgot-password-text">Don't worry! We will send you an email with the instructions to reset your password.
-    <form onsubmit="showEmailSendInfo()">
+    <form onsubmit="showEmailSendInfo(); return false;">
     <div class="forgot-input-outer-container">
         <div class="input-field">
             <input class="e-mail" itemid="email" type="email" name="" required placeholder="Email">
