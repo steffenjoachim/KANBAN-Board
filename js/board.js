@@ -196,29 +196,6 @@ function updateHTML() {
 
 }
 
-function renderAssignedContacts(index) {
-  let renderedContacts = '';
-  for (let j = 0; j < 2 && j < todos[index]['assignedTo'].length; j++) {
-    const assignedContact = todos[index]['assignedTo'][j];
-    const contact = `<span class="${assignedContact['iconColor']}">test</span>`;
-    renderedContacts += contact;
-  }
-  if (todos[index]['assignedTo'].length > 2) {
-
-    for (let j = 2; j < 3 && j < todos[index]['assignedTo'].length; j++) {
-      if (todos[index]['assignedTo'].length == 3) {
-        const assignedContact = todos[index]['assignedTo'][j];
-        const contact = `<span class="${assignedContact['iconColor']}">${assignedContact['initials']}</span>`;
-        renderedContacts += contact;
-      } else {
-        const assignedContact = todos[index]['assignedTo'][j];
-        const contact = `<span class="join-color">+${todos[index]['assignedTo'].length - 2}</span>`;
-        renderedContacts += contact;
-      }
-
-    }
-  }
-}
 
 async function chageStatusToToDo(id) {
   todos[id]['status'] = 'todo';
@@ -245,12 +222,12 @@ function moveTaskup(id) {
   card.innerHTML = '';
   card.innerHTML = `
 <div class="card-change-status">
-<div onclick="updateHTML(); event.stopPropagation()">Close X</div>
 <h3>Move to:</h3>
 <span onclick="chageStatusToToDo(${id}); event.stopPropagation()">To do</span>
 <span onclick="chageStatusToInProgress(${id}); event.stopPropagation()">In Progress</span>
 <span onclick="chageStatusToFeedback(${id}); event.stopPropagation()">Awaiting Feedback</span>
 <span onclick="chageStatusToDone(${id}); event.stopPropagation()">Done</span>
+<div onclick="updateHTML(); event.stopPropagation()">Close X</div>
 </div>
 `
 }
@@ -279,6 +256,7 @@ function generateTodoHTML(element) {
   </div>`;
 
 }
+
 
 
 
@@ -332,6 +310,29 @@ function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
   percent = Math.round(percent * 100)
   document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`
 }
+
+function renderAssignedContacts(id) {
+  let renderedContacts = '';
+
+  if (todos[id] && todos[id].assignedTo) {
+    const assignedContacts = todos[id].assignedTo;
+    const remainingContacts = assignedContacts.length - 2;
+
+    for (let j = 0; j < 2 && j < assignedContacts.length; j++) {
+      const assignedContact = assignedContacts[j];
+      const contact = `<span class="${assignedContact.iconColor}">${assignedContact.initials}</span>`;
+      renderedContacts += contact;
+    }
+
+    if (remainingContacts > 0) {
+      renderedContacts += `<span class="remaining-contacts">+${remainingContacts}</span>`;
+    }
+  }
+
+  return renderedContacts;
+}
+
+
 
 
 
@@ -473,6 +474,7 @@ function listdesigne(element) {
 
 function openEditPopup(taskId) {
   let task = todos.find(t => t.id === Number(taskId));
+
   if (!task) {
     console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
     return;
@@ -560,7 +562,7 @@ function openEditPopup(taskId) {
   // Füge den Inhalt zum Popup hinzu
   document.getElementById('taskContent').innerHTML = popupContentHtml;
   // Füge den Event Listener hinzu
-  document.getElementById('taskContent').addEventListener('click', function (event) {
+  document.getElementById('taskContent').addEventListener('click', function(event) {
     if (event.target.closest('#popUpDelete')) {
       const taskId = event.target.closest('#popUpDelete').dataset.id;
       console.log(`Lösche Aufgabe mit ID: ${taskId}`);
