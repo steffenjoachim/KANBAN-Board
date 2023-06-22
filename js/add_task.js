@@ -3,21 +3,21 @@ let selectedColor = null;
 const subtasks = [];
 
 
-async function loadContactsForAssign(){
-  try{contacts = JSON.parse(await getItem('contacts'))} catch(e){
-      alert('Daten konten nicht geladen werden!')
-   }
-   
-      populateContactList();
-    
+async function loadContactsForAssign() {
+  try { contacts = JSON.parse(await getItem('contacts')) } catch (e) {
+    alert('Daten konten nicht geladen werden!')
+  }
+
+  populateContactList();
+
 }
 
 async function loadNewtasks() {
-  try {todos = JSON.parse(await getItem('task'))}
+  try { todos = JSON.parse(await getItem('task')) }
   catch (e) {
     alert('Error')
   }
-} 
+}
 
 
 async function createTask() {
@@ -27,8 +27,8 @@ async function createTask() {
   let description = document.getElementById("description-input").value;
   let category = document.getElementById("select-one").innerText;  // Sie müssen den richtigen Weg finden, um den ausgewählten Wert zu erhalten
   let assignedTo = getAssignedTo(); // Neue Funktion, um die zugewiesene Person zu erhalten
-  let dueDate = document.querySelector(".date-input-container input").value; 
-  let taskId = calculateId(); 
+  let dueDate = document.querySelector(".date-input-container input").value;
+  let taskId = calculateId();
 
   // Hier holen wir die Subtasks aus dem Subtask-Array
   let subtasks = [];
@@ -45,10 +45,10 @@ async function createTask() {
   });
 
   let selectedPriorityImagePath = getSelectedPrioImagePath();
-  
-  
 
- 
+
+
+
 
   // Nun erstellen wir ein neues Task-Objekt mit diesen Werten
   console.log("Current color: " + selectedColor); // Hinzufügen dieser Zeile
@@ -62,7 +62,7 @@ async function createTask() {
     dueDate: dueDate,
     selectedPriorityImagePath: selectedPriorityImagePath,
     subtasks: subtasks,
-    color: selectedColor, 
+    color: selectedColor,
   };
 
   // Jetzt können wir das Task-Objekt zu unserem Array hinzufügen
@@ -107,7 +107,7 @@ function resetInputFields() {
   const subtasksContainer = document.getElementById("subtasks");
   subtasksContainer.innerHTML = "";
 
-  
+
 
   // Zurücksetzen der ausgewählten Priorität
   resetImages();
@@ -116,8 +116,8 @@ function resetInputFields() {
   resetAssignedTo();
   resetTaskCategoryDropdown();
   resetSelectedCategory();
-  
-  
+
+
 }
 
 
@@ -145,40 +145,40 @@ function calculateId() {
 
 
 function selectTaskCategory() {
-    let dropdown = document.getElementById('dropdown');
-    let selectOne = document.getElementById('select-one');
-    let selectThree = document.getElementById('selected-three')
-    
-    if (dropdown.classList.contains('d-none')) {
-        dropdown.classList.remove('d-none');
-        selectOne.style.borderRadius = "10px 10px 0 0";
-        selectOne.style.borderBottom = "none";
-        selectThree.style.borderRadius = "0 0 10px 10px";
-    } else {
-        dropdown.classList.add('d-none');
-        selectOne.style.borderRadius = "10px";
-        selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn das Dropdown-Menü geschlossen ist.
-    } 
-    if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
-      checkScrollbar();
-    }
+  let dropdown = document.getElementById('dropdown');
+  let selectOne = document.getElementById('select-one');
+  let selectThree = document.getElementById('selected-three')
+
+  if (dropdown.classList.contains('d-none')) {
+    dropdown.classList.remove('d-none');
+    selectOne.style.borderRadius = "10px 10px 0 0";
+    selectOne.style.borderBottom = "none";
+    selectThree.style.borderRadius = "0 0 10px 10px";
+  } else {
+    dropdown.classList.add('d-none');
+    selectOne.style.borderRadius = "10px";
+    selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn das Dropdown-Menü geschlossen ist.
+  }
+  if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
+    checkScrollbar();
+  }
 }
 
 function showNewCategoryFields() {
-    document.getElementById('select-one').classList.add('d-none'); // versteckt das Select task category Element
-    document.getElementById('new-category-fields').classList.remove('d-none'); // zeigt das Eingabefeld und die Farbauswahl
-    document.getElementById('dropdown').classList.add('d-none');
-    if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
-      checkScrollbar();
-    }
+  document.getElementById('select-one').classList.add('d-none'); // versteckt das Select task category Element
+  document.getElementById('new-category-fields').classList.remove('d-none'); // zeigt das Eingabefeld und die Farbauswahl
+  document.getElementById('dropdown').classList.add('d-none');
+  if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
+    checkScrollbar();
+  }
 }
 
 function selectOption(event, color) {
   let selectOne = document.getElementById('select-one');
-  
+
   // Definieren von selectedColorDiv außerhalb der if-Anweisungen
   let selectedColorDiv = null;
-  
+
   // Überprüfen, ob selectOne existiert
   if (selectOne) {
     const selectedText = event.target.querySelector('span').cloneNode(true);
@@ -187,7 +187,7 @@ function selectOption(event, color) {
 
     // select the div containing the span and the color div
     const textAndColorContainer = selectOne.querySelector('div');
-  
+
     // Überprüfen, ob textAndColorContainer existiert
     if (textAndColorContainer) {
       // clear the content of the container and add the new content
@@ -236,38 +236,38 @@ function resetColors() {
 }
 
 function cancelNewCategory() {
-    document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
-    document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
-    document.getElementById('new-category-name').value = '';
-    
-    // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
-  }
-  
- 
+  document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
+  document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
+  document.getElementById('new-category-name').value = '';
 
-  function saveNewCategory() {
-    const categoryName = document.getElementById('new-category-name').value;
-  
-    if (!categoryName || !selectedColor) {
-      alert('Bitte geben Sie einen Kategorienamen ein und wählen Sie eine Farbe aus.');
-      return;
-    }
-  
-    const newCategoryId = document.getElementById('new-category-name').value;
-  
-    let newCategory = createCategoryElement(newCategoryId, categoryName, selectedColor);
-    const dropdown = document.getElementById('dropdown');
-    const firstCategory = dropdown.querySelector('.selected');
-    dropdown.insertBefore(newCategory, firstCategory);
-  
-    selectOption({ target: newCategory }, selectedColor); // Hier wird der Farbwert an die selectOption-Funktion übergeben
-  
-    document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
-    document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
-    document.getElementById('new-category-name').value = '';
-    
-    // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
+  // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
+}
+
+
+
+function saveNewCategory() {
+  const categoryName = document.getElementById('new-category-name').value;
+
+  if (!categoryName || !selectedColor) {
+    alert('Bitte geben Sie einen Kategorienamen ein und wählen Sie eine Farbe aus.');
+    return;
   }
+
+  const newCategoryId = document.getElementById('new-category-name').value;
+
+  let newCategory = createCategoryElement(newCategoryId, categoryName, selectedColor);
+  const dropdown = document.getElementById('dropdown');
+  const firstCategory = dropdown.querySelector('.selected');
+  dropdown.insertBefore(newCategory, firstCategory);
+
+  selectOption({ target: newCategory }, selectedColor); // Hier wird der Farbwert an die selectOption-Funktion übergeben
+
+  document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
+  document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
+  document.getElementById('new-category-name').value = '';
+
+  // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
+}
 
 function createCategoryElement(id, name, color) {
   let newCategory = document.createElement('div');
@@ -294,7 +294,7 @@ function createCategoryElement(id, name, color) {
 function resetSelectedCategory() {
   const selectOne = document.getElementById('select-one');
   const textAndImgContainer = selectOne.querySelector('div');
-  
+
   // Set default text
   const defaultText = document.createElement('span');
   defaultText.textContent = 'Select task category';
@@ -315,9 +315,9 @@ function resetTaskCategoryDropdown() {
   let selectOne = document.getElementById('select-one');
 
   if (!dropdown.classList.contains('d-none')) {
-      dropdown.classList.add('d-none');
-      selectOne.style.borderRadius = "10px";
-      selectOne.style.borderBottom = "";
+    dropdown.classList.add('d-none');
+    selectOne.style.borderRadius = "10px";
+    selectOne.style.borderBottom = "";
   }
 }
 
@@ -381,9 +381,9 @@ function resetTaskCategoryDropdown() {
 //---------------------------------------------------
 
 function selectAssignedTo() {
-  let dropdownAssign = document.getElementById('dropdown-assign');
-  let assignOne = document.getElementById('assign-one');
-  let assignThree = document.getElementById('assigned-three')
+  let dropdownAssign = document.getElementById(`dropdown-assign`);
+  let assignOne = document.getElementById(`assign-one`);
+  let assignThree = document.getElementById(`assigned-three`)
 
   if (!contacts) {
     // Das 'contacts'-Array ist noch nicht geladen, daher keine Aktion ausführen
@@ -391,7 +391,7 @@ function selectAssignedTo() {
   }
 
   if (dropdownAssign.classList.contains('d-none')) {
-    dropdownAssign.classList.remove('d-none');
+    dropdownAssign.classList.remove('d-none');s
     assignOne.style.borderRadius = "10px 10px 0 0";
     assignOne.style.borderBottom = "none";
     assignThree.style.borderRadius = "0 0 10px 10px";
@@ -405,7 +405,41 @@ function selectAssignedTo() {
     checkScrollbar();
   }
 }
+function selectAssignedTo2(id) {
+  let dropdownAssign = document.getElementById(`dropdown-assign${id}`);
+  dropdownAssign.innerHTML = '';
+  let assignOne = document.getElementById(`assign-one${id}`);
+  let assignThree = document.getElementById(`assigned-three${id}`);
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+    console.log(element['name'])
+    dropdownAssign.innerHTML += `<div class="selected">${element['name']}
+    <input id="checkbox${i}" type="checkbox">
+    </div>`
+  }
+  {
 
+    if (!contacts) {
+      // Das 'contacts'-Array ist noch nicht geladen, daher keine Aktion ausführen
+      return;
+    }
+
+    if (dropdownAssign.classList.contains('d-none')) {
+      dropdownAssign.classList.remove('d-none');
+      assignOne.style.borderRadius = "10px 10px 0 0";
+      assignOne.style.borderBottom = "none";
+      assignThree.style.borderRadius = "0 0 10px 10px";
+    } else {
+      dropdownAssign.classList.add('d-none');
+      assignOne.style.borderRadius = "10px";
+      assignOne.style.borderBottom = "";
+    }
+
+    if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
+      checkScrollbar();
+    }
+  }
+}
 
 function selectAssign(event) {
   const assignOne = document.getElementById('assign-one');
@@ -419,7 +453,7 @@ function selectAssign(event) {
 
       // Suche nach dem ausgewählten Kontakt in Ihrem Array
       let selectedContact = contacts.find(contact => contact.name === selectedPerson);
-      
+
       if (selectedContact) {
         // Erstellung des divs für den ausgewählten Kontakt
         let contactDiv = document.createElement('div');
@@ -453,7 +487,7 @@ function selectAssign(event) {
   }
 
   if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
-    checkScrollbar();
+    checkScrollbar(id);
   }
 }
 
@@ -542,7 +576,7 @@ function resetAssignedTo() {
 // Diese Funktion geht durch das 'contacts' Array und erstellt für jeden Kontakt ein div
 function populateContactList() {
   const dropdownAssign = document.getElementById('dropdown-assign');
-  
+
   // Gehe durch das 'contacts' Array
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
@@ -551,22 +585,21 @@ function populateContactList() {
     const newDiv = document.createElement('div');
     newDiv.onclick = selectAssign;  // Verbinde das 'selectAssign' Ereignis mit dem neuen div
     newDiv.className = 'selected space-between'; // Setze die Klasse für das div
-    newDiv.id = `assigned-${i+1}`; // Setze die id für das div
+    newDiv.id = `assigned-${i + 1}`; // Setze die id für das div
 
     // Erstelle einen neuen Span für den Namen
     const nameSpan = document.createElement('span');
     nameSpan.textContent = contact.name;
-    
+
     // Erstelle ein neues Input-Element für die Checkbox
     const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox'; 
-    checkbox.id = `checkbox-${contact.name.toLowerCase()}`; 
+    checkbox.type = 'checkbox';
+    checkbox.id = `checkbox-${contact.name.toLowerCase()}`;
     checkbox.className = 'checkbox-style';
 
     // Füge den Span und das Input-Element zum div hinzu
     newDiv.appendChild(nameSpan);
     newDiv.appendChild(checkbox);
-    
     // Füge das div zum 'dropdown-assign' div hinzu
     dropdownAssign.insertBefore(newDiv, document.getElementById('assigned-three'));
   }
@@ -626,7 +659,7 @@ function createSubtask() {
   deleteImage.src = './asssets/img/cancel-svg.svg';
   deleteImage.alt = 'Delete Subtask';
   // onclick-Funktion hinzufügen
-  deleteImage.onclick = function() {
+  deleteImage.onclick = function () {
     newSubtask.remove();
     // Sie können hier auch Code hinzufügen, um das Subtask-Objekt aus dem subtasks-Array zu entfernen.
   }
@@ -683,7 +716,7 @@ function selectImage(event) {
 function setupPriorityClick() {
   const prioImages = document.querySelectorAll('.prio-img');
   prioImages.forEach(img => {
-    img.addEventListener('click', function(event) {
+    img.addEventListener('click', function (event) {
       resetImages();
       selectImage(event);
     });
@@ -714,12 +747,12 @@ function getSelectedPrioImagePath() {
 }
 
 loadContactsForAssign().then(() => {
-  
+
   populateContactList();
 });
 
 // Event-Listener für das DOMContentLoaded-Event
 document.addEventListener('DOMContentLoaded', () => {
-  
+
   // Hier können Sie weitere Funktionen oder Logik hinzufügen, die nach dem Laden des DOM ausgeführt werden sollen.
 });

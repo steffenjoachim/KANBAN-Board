@@ -657,6 +657,20 @@ async function deleteTask(id) {
 
 //   // Hier können Sie den Code hinzufügen, um das Popup oder das Formular zur Bearbeitung des Tasks anzuzeigen
 // }
+function openDropDownContacts(taskId) {
+  let contactsContainer = document.getElementById('contacts-container');
+  contactsContainer.innerHTML = '';
+  if (contactsContainer.style.display === 'flex') {
+    contactsContainer.style.display = 'none';
+
+  } else {
+    contactsContainer.style.display = 'flex';
+  }
+  
+
+}
+
+
 
 function editingTask(taskId) {
   let task = todos.find(t => t.id === Number(taskId));
@@ -690,7 +704,7 @@ function editingTask(taskId) {
       <div class="popUp-prio">
         <span class="bolder">Priority:</span>
         <label for="prio-buttons"></label>
-              <div id="prio-buttons">
+              <div id="prio-buttons${taskId}">
                 <img id="urgent" class="prio-img" src="./asssets/img/urgent-urgent.svg" alt="">
                 <img id="medium" class="prio-img" src="./asssets/img/medium-urgent.svg" alt="">
                 <img id="low" class="prio-img" src="./asssets/img/low-urgent.svg" alt="">
@@ -698,14 +712,13 @@ function editingTask(taskId) {
       </div>
 
       <label for="Assigned-to">Assigned to</label>
-              <div onclick="selectAssignedTo()" id="assign-one${taskId}" class="select-one">
+              <div onclick="selectAssignedTo(${taskId})" id="assign-one${taskId}" class="select-one">
                 <span>Select assigned person</span>
-                <div>${todos[taskId]['assignedTo']['0']['name']}
-                <img src="./add_task_img/open.svg" alt="" />
-              </div>
+                <img onclick="selectAssignedTo2(${taskId})" src="./add_task_img/open.svg" alt="" />
+                <div id="contacts-container" class="contacts"></div>
 
-              <div id="dropdown-assign" class="d-none">
-                <div onclick="showInviteContactFields()" id="assigned-three" class="selected">
+              <div id="dropdown-assign${taskId}" class="d-none">
+                <div onclick="showInviteContactFields()" id="assigned-three${taskId}" class="selected">
                   <span>Invite new contact</span>
                   <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
                 </div>
@@ -739,6 +752,8 @@ function saveTask(id) {
  let tittle =  document.getElementById(`title-input${id}`).value;
  let description =  document.getElementById(`description-input${id}`).value;
  let date = document.getElementById(`date${id}`).value
+ let priority = document.getElementById('')
+ todos[id]['dueDate'] = date;
  todos[id]['description'] = description;
  todos[id]['title'] = tittle;
  updateHTML();
