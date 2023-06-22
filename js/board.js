@@ -702,7 +702,7 @@ function saveTask(id) {
  todos[id]['dueDate'] = date;
  todos[id]['description'] = description;
  todos[id]['title'] = tittle;
- updateHTML();
+
 
   // Verwende die ausgewählte Priorität
   let priorityImagePath;
@@ -719,16 +719,8 @@ function saveTask(id) {
     default:
       priorityImagePath = "./asssets/img/inProgress-icon.svg";
   }
-
-  todos[id].dueDate = date;
-  todos[id].description = description;
-  todos[id].title = title;
   todos[id].selectedPriorityImagePath = priorityImagePath; // Aktualisiere das Bildpfad-Feld mit der ausgewählten Priorität
   updateHTML();
-
-  console.log(title);
-  console.log(id);
-  console.log(selectedPriority);
   closeEditPopup();
 }
 
