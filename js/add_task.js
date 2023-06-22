@@ -28,15 +28,19 @@ async function loadNewtasks() {
 
 
 function validateForm() {
-  let title = document.getElementById("title-input").value;
-  let description = document.getElementById("description-input").value;
+  const title = document.getElementById("title-input").value;
+  const description = document.getElementById("description-input").value;
+  const category = document.getElementById("select-one").innerText;
+  const assignedTo = getAssignedTo();
+  const dueDate = document.querySelector(".date-input-container input").value;
+  const selectedPriorityImagePath = getSelectedPrioImagePath();
 
-  // Prüfen, ob Titel und Beschreibung ausgefüllt sind
-  if(title === "" || description === "") {
-    alert("Bitte füllen Sie alle erforderlichen Felder aus.");
+  if (!title || !description || !category || !assignedTo || !dueDate ||  !selectedPriorityImagePath) {
+    alert('Bitte füllen Sie alle Felder aus');
     return false;
   }
 
+  // Wenn alle Felder ausgefüllt sind, ist die Formularvalidierung erfolgreich
   return true;
 }
 
@@ -68,11 +72,8 @@ async function createTask() {
     resetInputFields();
 
     // Versuchen, die Benachrichtigung anzuzeigen
-  try {
     showTaskAddedNotification();
-  } catch (e) {
-    console.error("Fehler beim Anzeigen der Benachrichtigung: ", e);
-  }
+  
 }
 
 /**
@@ -575,7 +576,7 @@ function selectAssign(event) {
   }
 
   if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
-    checkScrollbar(id);
+    checkScrollbar();
   }
 }
 
