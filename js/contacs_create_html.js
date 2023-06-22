@@ -33,7 +33,7 @@ function createEditContactPageHtml(i, contact){
                         <img src="./asssets/img/email-icon.svg" alt="email icon">
                     </div>
                     <div class="input-field">
-                        <input required id="phone-displayed${i}" class="tel-input" type="number" placeholder="Phone">
+                        <input required id="phone-displayed${i}" class="tel-input" type="text" pattern="[0-9\\s]*" placeholder="Phone">
                         <img src="./asssets/img/tel.svg" alt="name icon">
                     </div>
                     <div class="delete-save">

@@ -445,7 +445,7 @@ async function deleteContact(i) {
  */
 
 async function functionsToBeCalledAfterEdit(i, contact){ 
-    deleteContact(i);
+    await deleteContact(i);
     await insertContact(contact);
     await loadContacts();
     openContactDetails(i);
