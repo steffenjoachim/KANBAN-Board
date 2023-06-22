@@ -14,6 +14,9 @@
 .pink{
     background: #FC71FF;
 }
+.dark-pink{
+    background: #944796;
+  }
 .blue{
     background: #0038FF;
 }
@@ -29,6 +32,11 @@
 .red{
     background: #AF1616 ;
 }
+
+.dark-red{
+    background: #901e1e;
+  }
+  
 .dark-blue{
     background: #2A3647 ;
 }
@@ -320,9 +328,9 @@
   /* -----editPopup--- */
 
  
-  .edit-wrap {
+  /* .edit-wrap {
     height: 824px;
-  }
+  } */
 
 
  .edit-wrap button {
@@ -337,4 +345,3 @@
   .edit-wrap button:hover {
     background-color: #0056b3;
   }
-
