@@ -391,7 +391,7 @@ function selectAssignedTo() {
   }
 
   if (dropdownAssign.classList.contains('d-none')) {
-    dropdownAssign.classList.remove('d-none');s
+    dropdownAssign.classList.remove('d-none');
     assignOne.style.borderRadius = "10px 10px 0 0";
     assignOne.style.borderBottom = "none";
     assignThree.style.borderRadius = "0 0 10px 10px";
@@ -405,17 +405,40 @@ function selectAssignedTo() {
     checkScrollbar();
   }
 }
+function checkboxValue(i, contact) {
+  let isChecked = document.getElementById(`checkbox${i}`).checked
+  if (isChecked == true) {
+
+    console.log(isChecked + contact)
+  }
+  else {
+    console.log(isChecked + contact)
+  }
+}
+
+function createDropdownAssignedHTML(id, contact, i) {
+  let dropdownAssign = document.getElementById(`dropdown-assign${id}`)
+  return dropdownAssign.innerHTML += `<div class="selected">${contact['name']}
+<input onclick="checkboxValue(${i}, '${contact['name']}')" id="checkbox${i}" type="checkbox">
+</div>`
+}
 function selectAssignedTo2(id) {
   let dropdownAssign = document.getElementById(`dropdown-assign${id}`);
   dropdownAssign.innerHTML = '';
   let assignOne = document.getElementById(`assign-one${id}`);
   let assignThree = document.getElementById(`assigned-three${id}`);
   for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i];
-    console.log(element['name'])
-    dropdownAssign.innerHTML += `<div class="selected">${element['name']}
-    <input id="checkbox${i}" type="checkbox">
-    </div>`
+    const contact = contacts[i];
+    createDropdownAssignedHTML(id, contact, i);
+    for (let j = 0; j < todos[id]['assignedTo'].length; j++) {
+      const checkedContacts = todos[id]['assignedTo'][j]['name'];
+      if (contact['name'] == checkedContacts) {
+        setTimeout(() => {
+          let checkbox = document.getElementById(`checkbox${i}`);
+          checkbox.checked = true;
+        }, 0);
+      }
+    }
   }
   {
 
@@ -428,7 +451,7 @@ function selectAssignedTo2(id) {
       dropdownAssign.classList.remove('d-none');
       assignOne.style.borderRadius = "10px 10px 0 0";
       assignOne.style.borderBottom = "none";
-      assignThree.style.borderRadius = "0 0 10px 10px";
+      //assignThree.style.borderRadius = "0 0 10px 10px";
     } else {
       dropdownAssign.classList.add('d-none');
       assignOne.style.borderRadius = "10px";

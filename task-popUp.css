@@ -320,9 +320,9 @@
   /* -----editPopup--- */
 
  
-  .edit-wrap {
+  /* .edit-wrap {
     height: 824px;
-  }
+  } */
 
 
  .edit-wrap button {
@@ -337,4 +337,3 @@
   .edit-wrap button:hover {
     background-color: #0056b3;
   }
-
