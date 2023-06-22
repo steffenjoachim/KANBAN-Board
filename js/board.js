@@ -1,4 +1,6 @@
-
+/**
+ * This Function load the tasks from the remote Storage then executes updateHTML to render
+ */
 async function loadNewtasksboard() {
   try { todos = JSON.parse(await getItem('task')) }
   catch (e) {
@@ -7,23 +9,27 @@ async function loadNewtasksboard() {
   updateHTML()
 }
 
-//  beim hovern auf dem div-count1 wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
-
-function changeimage(element) {
+/**
+ * Add a hover effect on the add button above each list. The function changes the icon. 
+ * The Div of the img gets (onmouseover="changeImage(this)")
+ * 
+ * @param {object} element - This is the div of the img
+ */
+function changeImage(element) {
   let img = element.querySelector('#add-card');
   img.src = './asssets/img/add-card-hover.svg';
 }
-// Funktion die das ursprüngliche Bild wiederherzustellt das div bekommt zudem onmouseout="restoreDoneimage(this)"
 
-function restoreimage(element) {
+/**
+ * Function to restore the original image when hover out . 
+ * The div also gets onmouseout="restoreImage(this)"
+ * 
+ * @param {object} element - This is the div of the img
+ */
+function restoreImage(element) {
   let img = element.querySelector('#add-card');
   img.src = './asssets/img/add-card.svg';
 }
-
-
-
-
-//  beim hovern auf dem edit-secondBtn wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
 
 
 //----------------Add-task PopUp--------------------
@@ -106,29 +112,13 @@ if (window.location.pathname.includes('board.html')) {
   }
 }
 
-//----------------task-popup-----------------
-
-// document.addEventListener('DOMContentLoaded', () => {  // Wenn das Dokument vollständig geladen ist
-//   const openTaskPopupBtn = document.querySelector('#task-card-id'); // Der Button, der das Overlay öffnet
-//   const taskOverlayPopup = document.querySelector('.task-overlay-popup'); // Das Overlay selbst
-
-//   openTaskPopupBtn.addEventListener('click', () => { // Wenn auf den Button geklickt wird
-//     taskOverlayPopup.classList.add('active'); // Fügen Sie die "active" Klasse hinzu, um das Overlay anzuzeigen
-//   });
-
-//   taskOverlayPopup.addEventListener('click', (event) => { // Wenn auf das Overlay geklickt wird
-//     if (event.target === taskOverlayPopup) { // Wenn das Ziel des Klicks das Overlay selbst ist (und nicht ein Element im Overlay)
-//       taskOverlayPopup.classList.remove('active'); // Entfernen Sie die "active" Klasse, um das Overlay zu verbergen
-//     }
-//   });
-// });
-
-
-
-
 
 let todos = [];
 let currentDraggedElement;
+
+/**
+ * This function first filter the array (todos) by status, then render each list  
+ */
 
 function updateHTML() {
 
@@ -140,7 +130,6 @@ function updateHTML() {
     listdesign(element);
   }checkEmptyList();
 
-
   let filterInpro = todos.filter(t => t['status'] == 'inProgress');
   document.getElementById('progress-card').innerHTML = '';
   for (let index = 0; index < filterInpro.length; index++) {
@@ -149,7 +138,6 @@ function updateHTML() {
     listdesign(element);
   }checkEmptyListProgress();
 
-
   let filterFeedback = todos.filter(t => t['status'] == 'feedback');
   document.getElementById('Feedback-card').innerHTML = '';
   for (let index = 0; index < filterFeedback.length; index++) {
@@ -157,7 +145,6 @@ function updateHTML() {
     document.getElementById('Feedback-card').innerHTML += generateTodoHTML(element);
     listdesign(element);
   }checkEmptyListFeedback();
-
 
   let filterDone = todos.filter(t => t['status'] == 'done');
   document.getElementById('done-card').innerHTML = '';
@@ -168,53 +155,12 @@ function updateHTML() {
   }checkEmptyListDone();
 }
 
-function listdesign(element) {
-  document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
-  document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
-  document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
-  document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-  showProgressBar(element, element['id'])
-}
-
-
-async function chageStatusToToDo(id) {
-  todos[id]['status'] = 'todo';
-  await setItem('task', JSON.stringify(todos))
-  updateHTML()
-}
-async function chageStatusToInProgress(id) {
-  todos[id]['status'] = 'inProgress';
-  await setItem('task', JSON.stringify(todos))
-  updateHTML()
-}
-async function chageStatusToFeedback(id) {
-  todos[id]['status'] = 'feedback';
-  await setItem('task', JSON.stringify(todos))
-  updateHTML()
-}
-async function chageStatusToDone(id) {
-  todos[id]['status'] = 'done';
-  await setItem('task', JSON.stringify(todos))
-  updateHTML()
-}
-function moveTaskup(id) {
-  let card = document.getElementById(`card${id}`);
-  card.innerHTML = '';
-  card.innerHTML = `
-<div class="card-change-status">
-<h3>Move to:</h3>
-<span onclick="chageStatusToToDo(${id}); event.stopPropagation()">To do</span>
-<span onclick="chageStatusToInProgress(${id}); event.stopPropagation()">In Progress</span>
-<span onclick="chageStatusToFeedback(${id}); event.stopPropagation()">Awaiting Feedback</span>
-<span onclick="chageStatusToDone(${id}); event.stopPropagation()">Done</span>
-<div onclick="updateHTML(); event.stopPropagation()">X</div>
-</div>
-`
-}
-
-function startDragging(id) {
-  currentDraggedElement = id;
-}
+/**
+ * This function generate the task cards
+ * 
+ * @param {object} element - This is the task with its index in the list
+ * @returns - this is the construct of the taks card
+ */
 
 function generateTodoHTML(element) {
   return `<div draggable="true" ontouchstart="startDragging(${element['id']})" ondragstart="startDragging(${element['id']})" id="card${element['id']}" class="item task-card card-with-PBar" onclick="openEditPopup(${element['id']})">
@@ -233,29 +179,121 @@ function generateTodoHTML(element) {
       </div>
       <img id="task-icon${element['id']}" src="./asssets/img/toDo-icon.svg" alt="">
   </div>
-  </div>`;
-
+  </div>
+  `;
 }
 
+/**
+ * This function is responsible for design of the task card
+ * 
+ * @param {object} element - This is the task with its index in the list
+ */
+function listdesign(element) {
+  document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
+  document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
+  document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
+  document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
+  showProgressBar(element, element['id'])
+}
+
+/**
+ * The function changes the status of the task, then save the change in the remote storage and render the new changed tasks
+ * 
+ * @param {number} id - This is the index of the task in its list
+ * @param {string} status - This is the status that is transfered from the onclick="changeStatus..."
+ */
+async function changeStatus(id, status) {
+  todos[id]['status'] = status;
+  await setItem('task', JSON.stringify(todos));
+  updateHTML();
+}
+
+/**
+ * This function clear the task card in the list, then render the target optiones 
+ * 
+ * @param {number} id - This is the index of task
+ */
+function moveTaskup(id) {
+  let card = document.getElementById(`card${id}`);
+  card.innerHTML = '';
+  card.innerHTML = `
+    <div class="card-change-status">
+      <h3>Move to:</h3>
+      <span onclick="changeStatus(${id}, 'todo'); event.stopPropagation()">To do</span>
+      <span onclick="changeStatus(${id}, 'inProgress'); event.stopPropagation()">In Progress</span>
+      <span onclick="changeStatus(${id}, 'feedback'); event.stopPropagation()">Awaiting Feedback</span>
+      <span onclick="changeStatus(${id}, 'done'); event.stopPropagation()">Done</span>
+      <div onclick="updateHTML(); event.stopPropagation()">X</div>
+    </div>
+  `;
+}
+
+/**
+ * This function gets the index of the task in the array an transfer it to variable (currentDraggedElement)
+ * 
+ * @param {number} id - This the index of the task
+ */
+function startDragging(id) {
+  currentDraggedElement = id;
+}
+
+/**
+ * The code ev.preventDefault(); used in this function to suppress the default behavior of the browser. For example, by default it is not allowed to insert elements into other elements. Calling preventDefault() prevents this default action and allows us to implement custom behavior for inserting the element.
+ * 
+ * @param {*} ev - Information about the drag event, such as B. the coordinates of the mouse pointer during dragging.
+ */
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
+/**
+ * The function changes the status of the task, then save the change in the remote storage and render the new changed tasks
+ * 
+ * @param {*} status - This the new status of the task
+ */
 async function moveTo(status) {
   todos[currentDraggedElement]['status'] = status;
   await setItem('task', JSON.stringify(todos))
   updateHTML()
-
 }
 
+/**
+ * This function changes the color when ondragover this target list by adding a classList
+ * 
+ * @param {*} id - This the index of the task
+ */
 function highlight(id) {
   document.getElementById(id).classList.add('drag-area-highlight');
 }
 
+/**
+ * This function remove the color when ondragleave the target list by removing a classList
+ * 
+ * @param {*} id - This the index of the task
+ */
 function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
+/**
+ * This function shows the process bar after checking if there are subtasks. If not the bar gets display: none;
+ * 
+ * @param {object} element - This is the task in which the bar should be displayed
+ * @param {number} id - This is the index of the task
+ */
+function showProgressBar(element, id) {
+  if (todos[id] && todos[id].subtasks && todos[id].subtasks.length > 0) {
+    document.getElementById(`task-progress${element.id}`).classList.remove('dis-none');
+    document.getElementById(`progress-steps${element.id}`).innerHTML = countProgressSteps(id);
+  }
+}
+
+/**
+ * This function count the subtasks of the target task and check how many subtasks are done
+ * 
+ * @param {number} id - This the index of the task
+ * @returns - shows the done subtasks and the total number of the subtasks
+ */
 function countProgressSteps(id) {
   let totalSubTask = todos[id]['subtasks'].length;
   let totalSubTaskChecked = 0;
@@ -269,21 +307,25 @@ function countProgressSteps(id) {
   return `${totalSubTaskChecked} / ${totalSubTask} Done`
 }
 
-function showProgressBar(element, id) {
-  if (todos[id] && todos[id].subtasks && todos[id].subtasks.length > 0) {
-    document.getElementById(`task-progress${element.id}`).classList.remove('dis-none');
-    document.getElementById(`progress-steps${element.id}`).innerHTML = countProgressSteps(id);
-  }
-}
-
-
+/**
+ * This function calculates what percentage of the tasks are completed and show the the animation in the bar
+ * 
+ * @param {number} totalSubTask - number of total subtasks
+ * @param {number} totalSubTaskChecked - number of the checked or done subtasks
+ * @param {number} id - this is the index of the task
+ */
 function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
-
   let percent = totalSubTaskChecked / totalSubTask;
   percent = Math.round(percent * 100)
   document.getElementById(`progress-bar${id}`).style = `width: ${percent}%;`
 }
 
+/**
+ * This function renders only 3 of the assigned contacts for a task. It show only two contacts and in the third element the number of the unshow contacts
+ * 
+ * @param {number} id - this the index of the task
+ * @returns - show the assigned contacts for a task
+ */
 function renderAssignedContacts(id) {
   let renderedContacts = '';
 
@@ -301,13 +343,14 @@ function renderAssignedContacts(id) {
       renderedContacts += `<span class="remaining-contacts">+${remainingContacts}</span>`;
     }
   }
-
   return renderedContacts;
 }
 
-
 ////////////// Check if the lists are empty //////////////
 
+/**
+ * This function inspect the list todo-card, if its empty the empty-card will be shown if not the empty-card will be hidden 
+ */
 function checkEmptyList() {
   var todoCard = document.getElementById("todo-card");
   var emptyCard = document.getElementsByClassName("empty-card")[0];
@@ -319,6 +362,9 @@ function checkEmptyList() {
   }
 }
 
+/**
+ * This function inspect the list progress-card, if its empty the empty-card will be shown if not the empty-card will be hidden 
+ */
 function checkEmptyListProgress() {
   var progressCard = document.getElementById("progress-card");
   var emptyCard = document.getElementById("empty-card-progress");
@@ -330,6 +376,9 @@ function checkEmptyListProgress() {
   }
 }
 
+/**
+ * This function inspect the list Feedback-card, if its empty the empty-card will be shown if not the empty-card will be hidden 
+ */
 function checkEmptyListFeedback() {
   var feedbackCard = document.getElementById("Feedback-card");
   var emptyCard = document.getElementById("empty-card-feedback");
@@ -341,6 +390,9 @@ function checkEmptyListFeedback() {
   }
 }
 
+/**
+ * This function inspect the list done-card, if its empty the empty-card will be shown if not the empty-card will be hidden 
+ */
 function checkEmptyListDone() {
   var doneCard = document.getElementById("done-card");
   var emptyCard = document.getElementById("empty-card-done");
@@ -352,11 +404,11 @@ function checkEmptyListDone() {
   }
 }
 
-
-
 //////////////// Search function ///////////////
 
-
+/**
+ * This function filter all tasks of the value in the search field
+ */
 function filterTasks() {
   let search = document.getElementById('searchTask-input').value.toLowerCase();
 
@@ -375,24 +427,9 @@ function filterTasks() {
     feedbackCard.innerHTML = '';
     doneCard.innerHTML = '';
 
-    for (let index = 0; index < todos.length; index++) {
-      const element = todos[index];
-      if (element.title.toLowerCase().includes(search) || element.description.toLowerCase().includes(search)) {
-        if (element.status === 'todo') {
-          todoCard.innerHTML += generateTodoHTML(element);
-          listdesign(element)
-        } else if (element.status === 'inProgress') {
-          progressCard.innerHTML += generateTodoHTML(element);
-          listdesign(element)
-        } else if (element.status === 'feedback') {
-          feedbackCard.innerHTML += generateTodoHTML(element);
-          listdesign(element)
-        } else if (element.status === 'done') {
-          doneCard.innerHTML += generateTodoHTML(element);
-          listdesign(element)
-        }
-      }
-    }
+    // Call the function with the appropriate arguments
+    filterAndRenderTodos(todos, search, todoCard, progressCard, feedbackCard, doneCard);
+
     // Check if the filtered lists are empty
     checkEmptyList();
     checkEmptyListProgress();
@@ -401,38 +438,38 @@ function filterTasks() {
   }
 }
 
-
-
-
-
-
-
-
-
-
+/**
+ * This function filters and renders a list of todos based on a search criteria. It accepts the following parameters:
+ * 
+ * @param {object} todos - tasks in the todos array
+ * @param {string} search - value of the search field
+ * @param {object} todoCard - tasks in the todoCard list
+ * @param {object} progressCard - tasks in the progressCard list
+ * @param {object} feedbackCard - tasks in the feedbackCard list
+ * @param {object} doneCard - tasks in the doneCard list
+ */
+function filterAndRenderTodos(todos, search, todoCard, progressCard, feedbackCard, doneCard) {
+  for (let index = 0; index < todos.length; index++) {
+    const element = todos[index];
+    if (element.title.toLowerCase().includes(search) || element.description.toLowerCase().includes(search)) {
+      if (element.status === 'todo') {
+        todoCard.innerHTML += generateTodoHTML(element);
+        listdesign(element);
+      } else if (element.status === 'inProgress') {
+        progressCard.innerHTML += generateTodoHTML(element);
+        listdesign(element);
+      } else if (element.status === 'feedback') {
+        feedbackCard.innerHTML += generateTodoHTML(element);
+        listdesign(element);
+      } else if (element.status === 'done') {
+        doneCard.innerHTML += generateTodoHTML(element);
+        listdesign(element);
+      }
+    }
+  }
+}
 
 // -------------Edit Task popup---------------
-
-// function openEditPopup(taskId) {
-//   let task = todos.find(t => t.id == taskId);
-
-//   if (!task) {
-//     console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
-//     return;
-//   }
-
-//   document.getElementById('popup-title').innerText = task.title;
-//   document.getElementById('popup-description').innerText = task.description;
-//   // und so weiter für alle Felder, die du in deinem Popup hast...
-
-//   // Füge die "active" Klasse zum Popup hinzu, um es anzuzeigen
-//   document.getElementById('task-overlay-popup').classList.add('active');
-// }
-
-// function closeEditPopup() {
-//   // Entferne die "active" Klasse vom Popup, um es zu verbergen
-//   document.getElementById('task-overlay-popup').classList.remove('active');
-// }
 
 function openEditPopup(taskId) {
   let task = todos.find(t => t.id === Number(taskId));
@@ -492,8 +529,6 @@ function openEditPopup(taskId) {
       </div>
     `;
   });
-
-
 
   // Generiere HTML für die Schließen und Bearbeiten Buttons
   popupContentHtml += `
@@ -565,29 +600,7 @@ async function deleteTask(id) {
   }
 }
 
-// function editingTask(taskId) {
-//   // Finde den Task mit der angegebenen taskId
-//   let task = todos.find(t => t.id === Number(taskId));
 
-//   if (!task) {
-//     console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
-//     return;
-//   }
-
-//   // Führe den Bearbeitungsvorgang für den Task durch
-//   // Verwende die Informationen aus dem "task" Objekt, um die entsprechenden Felder zu aktualisieren oder anzeigen
-
-//   // Beispiel:
-//   console.log(`Bearbeite Task mit ID ${taskId}`);
-//   console.log('Titel:', task.title);
-//   console.log('Beschreibung:', task.description);
-//   console.log('Priorität:', task.priority);
-//   console.log('Zugewiesen an:', task.assignedTo);
-//   console.log('Fälligkeitsdatum:', task.dueDate);
-//   console.log('Kategorie:', task.category);
-
-//   // Hier können Sie den Code hinzufügen, um das Popup oder das Formular zur Bearbeitung des Tasks anzuzeigen
-// }
 function openDropDownContacts(taskId) {
   let contactsContainer = document.getElementById('contacts-container');
   contactsContainer.innerHTML = '';
@@ -597,10 +610,8 @@ function openDropDownContacts(taskId) {
   } else {
     contactsContainer.style.display = 'flex';
   }
-  
 
 }
-
 
 
 function editingTask(taskId) {

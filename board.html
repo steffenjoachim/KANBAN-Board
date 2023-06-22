@@ -76,19 +76,14 @@
     <div>
     </div>
   </div>
-
   <div class="main-div">
-
-
 
     <!------------------ Head Section ----------------------->
 
     <div class="head-span">Kanban Project Management Tool</div>
-
     <div class="title-section">
       <h1 class="title">Board</h1>
       <img class="edit-btn" src="./asssets/img/add task mobile.svg" alt="" />
-
       <div class="responsive-searchbar dis-none">
         <div class="secondSearch-bar">
           <input id="searchTask-input" onkeydown="filterTasks()" class="search-input" type="text"
@@ -102,7 +97,6 @@
         </div>
       </div>
     </div>
-
     <div class="search-bar">
       <input class="search-input" type="text" placeholder="Find Task" />
       <img class="search-bar-line" src="./asssets/img/searchBar line.svg" alt="" />
@@ -116,26 +110,21 @@
       <div class="task-list">
         <div class="card-head">
           <div class="head-title">To do</div>
-          <div onmouseover="changeimage(this)" onmouseout="restoreimage(this)">
+          <div onmouseover="changeImage(this)" onmouseout="restoreImage(this)">
             <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
           </div>
         </div>
         <div class="empty-card">No tasks to do</div>
         <div class="list" id="todo-card" ondrop="moveTo('todo'); removeHighlight('todo-card')"
           ondragleave="removeHighlight('todo-card')" ondragover="allowDrop(event); highlight('todo-card')">
-        
         </div>
-
-
-
-
       </div>
       <!----------- In progress Section ---------------->
 
       <div class="task-list">
         <div class="card-head">
           <div class="head-title">In progress</div>
-          <div onmouseover="changeimage(this)" onmouseout="restoreimage(this)">
+          <div onmouseover="changeImage(this)" onmouseout="restoreImage(this)">
             <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
           </div>
         </div>
@@ -163,7 +152,7 @@
       <div class="task-list">
         <div class="card-head">
           <div class="head-title">Awaiting Feedback</div>
-          <div onmouseover="changeimage(this)" onmouseout="restoreimage(this)">
+          <div onmouseover="changeImage(this)" onmouseout="restoreImage(this)">
             <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
           </div>
         </div>
@@ -188,7 +177,7 @@
       <div class="task-list">
         <div class="card-head">
           <div class="head-title">Done</div>
-          <div onmouseover="changeimage(this)" onmouseout="restoreimage(this)">
+          <div onmouseover="changeImage(this)" onmouseout="restoreImage(this)">
             <img id="add-card" src="./asssets/img/add-card.svg" alt="" />
           </div>
         </div>

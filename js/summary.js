@@ -1,27 +1,46 @@
-//  beim hovern auf dem div-count1 wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
+/**
+ * This function change the pen image when hover on the div
+ * 
+ * @param {object} element - This is the div of the img
+ */
 function changePenimage(element) {
     let img = element.querySelector('#summary-pen');
     img.src = './asssets/img/summary-pen.svg';
 }
-// Funktion die das ursprüngliche Bild wiederherzustellt das div bekommt zudem onmouseout="restoreDoneimage(this)"
+/**
+ * This function change (restore) the pen image when hover on the div
+ * 
+ * @param {object} element - This is the div of the img
+ */
 function restorePenimage(element) {
     let img = element.querySelector('#summary-pen');
     img.src = './asssets/img/edit-icon.png';
 }
 
-// Funktionen für das andere div
-
+/**
+ * This function change the check image when hover on the div
+ * 
+ * @param {object} element - This is the div of the img
+ */
 function changeDoneimage(element) {
     let img = element.querySelector('#summary-done');
     img.src = './asssets/img/summary-done.svg';
 }
+
+/**
+ * This function change (restore) the check image when hover on the div
+ * 
+ * @param {object} element - This is the div of the img
+ */
 function restoreDoneimage(element) {
     let img = element.querySelector('#summary-done');
     img.src = './asssets/img/done-icon.png';
 }
 
-
-
+/**
+ * This function creates a short greeting message based on the current time. 
+  It uses the JavaScript date functions to get the current hour. Depending on the time of day, an appropriate welcome message is assigned.
+ */
 function userGreetingOnSummary() {
     let currentTime = new Date().getHours();
     let greetingText;
@@ -41,6 +60,9 @@ function userGreetingOnSummary() {
 
 let boardTodos = [];
 
+/**
+ * This function retrieve tasks from local storage and displaying them
+ */
 async function loadNewtasksboardd() {
   try {boardTodos = JSON.parse(await getItem('task'))}
   catch (e) {
@@ -70,10 +92,12 @@ function getNextDueDate(boardTodos) {
   document.getElementById('summary-date').innerHTML = nextDueDate
 }
 
-
-
-
-
+/**
+ * This function counts the number of tasks in different status categories 
+   and updates the corresponding counters on a web page.
+ * 
+ * @param {object} boardTodos - this is the array of the tasks
+ */
 function displayTodoCount(boardTodos) {
     let countTodos = 0;
     let countInProgress = 0;
@@ -119,9 +143,9 @@ function displayTodoCount(boardTodos) {
     document.getElementById('countPrio').textContent = countPrio.toString();
   }
   
-
-/////   Funktion die bei einem Klick auf ein div-Element zur "board.html"-Seite weiterleitet /////
-
+/**
+ * This function redirects to the "board.html" page when a div element is clicked
+ */
   function redirectToBoard() {
     window.location.href = 'board.html';
   }
