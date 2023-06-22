@@ -683,9 +683,15 @@ function editingTask(taskId) {
 
 
 function saveTask(id) {
-  let title = document.getElementById(`title-input${id}`).value;
-  let description = document.getElementById(`description-input${id}`).value;
-  let date = document.getElementById(`date${id}`).value;
+ let tittle =  document.getElementById(`title-input${id}`).value;
+ let description =  document.getElementById(`description-input${id}`).value;
+ let date = document.getElementById(`date${id}`).value
+ let checbox = document.getElementById(`checkbox${id}`)
+ let priority = document.getElementById('')
+ todos[id]['dueDate'] = date;
+ todos[id]['description'] = description;
+ todos[id]['title'] = tittle;
+ updateHTML();
 
   // Verwende die ausgewählte Priorität
   let priorityImagePath;
