@@ -73,6 +73,11 @@ border: none;
   font-weight: 400;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 .all-input, textarea {
   
   margin-bottom: 10px;
@@ -617,6 +622,12 @@ border-top: none;
       flex-direction: column;
       align-items: center;
     }  
+    form {
+      flex-direction: row;  
+     }
+
+    
+
    .inner-wrap {
     display: flex;
     justify-content: center;
@@ -632,6 +643,7 @@ border-top: none;
     padding-left: 15px;
     position: relative;
    }
+   
 
    
 }
