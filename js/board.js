@@ -588,6 +588,20 @@ async function deleteTask(id) {
 
 //   // Hier können Sie den Code hinzufügen, um das Popup oder das Formular zur Bearbeitung des Tasks anzuzeigen
 // }
+function openDropDownContacts(taskId) {
+  let contactsContainer = document.getElementById('contacts-container');
+  contactsContainer.innerHTML = '';
+  if (contactsContainer.style.display === 'flex') {
+    contactsContainer.style.display = 'none';
+
+  } else {
+    contactsContainer.style.display = 'flex';
+  }
+  
+
+}
+
+
 
 function editingTask(taskId) {
   let task = todos.find(t => t.id === Number(taskId));
@@ -607,21 +621,21 @@ function editingTask(taskId) {
       </div>
       
       <label for="title-input">Title</label>
-          <input class="all-input" id="title-input" type="text" name="title" value="${task.title}" required />
+          <input class="all-input" id="title-input${taskId}" type="text" name="title" value="${task.title}" required />
 
           <label for="description-input" >Description</label>
-          <textarea id="description-input" name="description" value="${task.description}" required></textarea>
+          <textarea id="description-input${taskId}" name="description" value="${task.description}" required>${todos[taskId]['description']}</textarea>
 
           <label for="date-input">Due Date</label>
           <div class="date-input-container">
-            <input class="all-input" type="date" placeholder="dd/mm/yyyy" value="${task.dueDate}" />
+            <input id="date${taskId}" class="all-input" type="date" placeholder="dd/mm/yyyy" value="${task.dueDate}" />
           </div>
 
       
       <div class="popUp-prio">
         <span class="bolder">Priority:</span>
         <label for="prio-buttons"></label>
-              <div id="prio-buttons">
+              <div id="prio-buttons${taskId}">
                 <img id="urgent" class="prio-img" src="./asssets/img/urgent-urgent.svg" alt="">
                 <img id="medium" class="prio-img" src="./asssets/img/medium-urgent.svg" alt="">
                 <img id="low" class="prio-img" src="./asssets/img/low-urgent.svg" alt="">
@@ -629,13 +643,13 @@ function editingTask(taskId) {
       </div>
 
       <label for="Assigned-to">Assigned to</label>
-              <div onclick="selectAssignedTo()" id="assign-one" class="select-one">
+              <div onclick="selectAssignedTo(${taskId})" id="assign-one${taskId}" class="select-one">
                 <span>Select assigned person</span>
-                <img src="./add_task_img/open.svg" alt="" />
-              </div>
+                <img onclick="selectAssignedTo2(${taskId})" src="./add_task_img/open.svg" alt="" />
+                <div id="contacts-container" class="contacts"></div>
 
-              <div id="dropdown-assign" class="d-none">
-                <div onclick="showInviteContactFields()" id="assigned-three" class="selected">
+              <div id="dropdown-assign${taskId}" class="d-none">
+                <div onclick="showInviteContactFields()" id="assigned-three${taskId}" class="selected">
                   <span>Invite new contact</span>
                   <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
                 </div>
@@ -655,7 +669,7 @@ function editingTask(taskId) {
 
       
       </div>
-      <button onclick="saveEditedTask(${taskId})">OK</button>
+      <button onclick="saveTask(${taskId})">OK</button>
     </div>
   `;
 
@@ -665,67 +679,16 @@ function editingTask(taskId) {
   document.getElementById('taskContent').innerHTML = editFormHtml;
 }
 
-function generateAssignedToList(assignedTo) {
-  let assignedToListHtml = '';
-  assignedTo.forEach(person => {
-    assignedToListHtml += `
-      <div class="assignedTo-item">
-        <input type="checkbox" value="${person.id}" ${person.selected ? 'checked' : ''}>
-        <span>${person.name}</span>
-      </div>
-    `;
-  });
-  return assignedToListHtml;
-}
+function saveTask(id) {
+ let tittle =  document.getElementById(`title-input${id}`).value;
+ let description =  document.getElementById(`description-input${id}`).value;
+ let date = document.getElementById(`date${id}`).value
+ let priority = document.getElementById('')
+ todos[id]['dueDate'] = date;
+ todos[id]['description'] = description;
+ todos[id]['title'] = tittle;
+ updateHTML();
 
-function saveEditedTask(taskId) {
-  let task = todos.find(t => t.id === Number(taskId));
-
-  if (!task) {
-    console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
-    return;
-  }
-
-  // Lese die aktualisierten Werte aus den Eingabefeldern
-  let editedTitle = document.getElementById('editTitle').value;
-  let editedDescription = document.getElementById('editDescription').value;
-  let editedDueDate = document.getElementById('editDueDate').value;
-  let editedPriority = document.getElementById('editPriority').value;
-  let editedAssignedTo = getEditedAssignedTo();
-
-  // Aktualisiere die Task-Daten mit den neuen Werten
-  task.title = editedTitle;
-  task.description = editedDescription;
-  task.dueDate = editedDueDate;
-  task.priority = editedPriority;
-  task.assignedTo = editedAssignedTo;
-
-  // Speichere die aktualisierte Aufgabenliste im Speicher
-  setItem('task', JSON.stringify(todos)).then(() => {
-    // Schließe das Bearbeitungsfenster
-    closeEditPopup();
-    // Aktualisiere die Darstellung
-    updateHTML();
-  });
-}
-
-function getEditedAssignedTo() {
-  let assignedToInputs = document.querySelectorAll('.assignedTo-item input[type="checkbox"]');
-  let editedAssignedTo = [];
-
-  assignedToInputs.forEach(input => {
-    let personId = input.value;
-    let isSelected = input.checked;
-    let person = assignedPeople.find(p => p.id === Number(personId));
-
-    if (person) {
-      editedAssignedTo.push({
-        id: person.id,
-        name: person.name,
-        selected: isSelected
-      });
-    }
-  });
-
-  return editedAssignedTo;
+  console.log(tittle)
+  console.log(id)
 }
