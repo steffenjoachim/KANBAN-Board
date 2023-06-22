@@ -68,7 +68,7 @@
     <div>
     </div>
   </div>
-
+<!--  -->
   <header>
     <img class="small-logo" src="./add_task_img/small-logo.svg" alt="Logo" />
     <button onclick="createTask()" id="create-button">Create &#10003;</button>
@@ -78,13 +78,14 @@
     <p>Kanban Project Management Tool</p>
     <h1>Add Task</h1>
     <div class="inner-wrap">
+      <form onsubmit="handleFormSubmit(event);return false">
       <section class="section-one">
-        <form>
-          <label for="title-input">Title</label>
-          <input class="all-input" id="title-input" type="text" name="title" placeholder="Enter a title" required />
-
-          <label for="description-input" >Description</label>
-          <textarea id="description-input" name="description" placeholder="Enter a description" required></textarea>
+        
+        <label for="title-input">Title</label>
+        <input class="all-input" id="title-input" type="text" name="title" placeholder="Enter a title" required />
+    
+        <label for="description-input">Description</label>
+        <textarea id="description-input" name="description" placeholder="Enter a description" required></textarea>
 
           <label for="Category">Category</label>
           <div onclick="selectTaskCategory()" id="select-one" class="select-one">
@@ -164,13 +165,13 @@
           </div>
 
 
-        </form>
+        
       </section>
 
       <div class="vertical-line"></div>
 
       <section class="section-two">
-        <form>
+        
           <label for="date-input">Due Date</label>
           <div class="date-input-container">
             <input class="all-input dateInput" type="date" placeholder="dd/mm/yyyy" />
@@ -215,13 +216,14 @@
             <img class="cancel-img" src="./asssets/img/cancel-svg.svg" alt="">
           </div>
 
-          <div class="create-btn-desktop">
+          <button class="create-btn-desktop" type="submit">
             <span>Create task</span>
             <img class="create-correctly" src="./asssets/img/hook-correctly.png" alt="">
-          </div>
+          </button>
 
-        </form>
+        
       </section>
+    </form>
     </div>
 
     <div class="task-added-container">

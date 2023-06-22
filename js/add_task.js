@@ -26,25 +26,53 @@ async function loadNewtasks() {
   }
 }
 
+
+function validateForm() {
+  let title = document.getElementById("title-input").value;
+  let description = document.getElementById("description-input").value;
+
+  // Prüfen, ob Titel und Beschreibung ausgefüllt sind
+  if(title === "" || description === "") {
+    alert("Bitte füllen Sie alle erforderlichen Felder aus.");
+    return false;
+  }
+
+  return true;
+}
+
+
 /**
  * Collects and creates a new task, adds it to task array, and updates UI.
  */
 async function createTask() {
-  let title = document.getElementById("title-input").value;
-  let description = document.getElementById("description-input").value;
-  let category = document.getElementById("select-one").innerText; 
-  let assignedTo = getAssignedTo(); 
-  let dueDate = document.querySelector(".date-input-container input").value;
-  let taskId = calculateId();
-  let subtasks = collectSubtasks();
-  let selectedPriorityImagePath = getSelectedPrioImagePath();
+  if (!validateForm()) {
+    return;
+  }
+    let title = document.getElementById("title-input").value;
+    let description = document.getElementById("description-input").value;
 
-  let newTask = createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, selectedPriorityImagePath);
+    
 
-  await addTaskToArray(newTask);
+    // Rest des Codes hier
+    let category = document.getElementById("select-one").innerText; 
+    let assignedTo = getAssignedTo(); 
+    let dueDate = document.querySelector(".date-input-container input").value;
+    let taskId = calculateId();
+    let subtasks = collectSubtasks();
+    let selectedPriorityImagePath = getSelectedPrioImagePath();
 
-  resetInputFields();
-  showTaskAddedNotification();
+    let newTask = createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, selectedPriorityImagePath);
+
+    await addTaskToArray(newTask);
+
+    resetInputFields();
+
+    // Versuchen, die Benachrichtigung anzuzeigen
+  try {
+    showTaskAddedNotification();
+  } catch (e) {
+    console.error("Fehler beim Anzeigen der Benachrichtigung: ", e);
+  }
 }
 
 /**
