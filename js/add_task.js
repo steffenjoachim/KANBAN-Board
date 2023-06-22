@@ -534,6 +534,17 @@ function selectAssignedTo2(id) {
   }
 }
 
+function getCheckedContacts(id) {
+  let checkedContacts = [];
+  for (let i = 0; i < contacts.length; i++) {
+    let checkbox = document.getElementById(`checkbox${i}`);
+    if (checkbox.checked) {
+      checkedContacts.push(contacts[i]);
+    }
+  }
+  return checkedContacts;
+}
+
 function selectAssign(event) {
   const assignOne = document.getElementById('assign-one');
   const dropdownAssign = document.getElementById('dropdown-assign');

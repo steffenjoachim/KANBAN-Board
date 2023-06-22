@@ -693,12 +693,14 @@ function editingTask(taskId) {
 
 
 
-function saveTask(id) {
+async function saveTask(id) {
+
+  const checkedContacts = getCheckedContacts(id);
+  console.log(checkedContacts);
+  todos[id].assignedTo = checkedContacts;
  let tittle =  document.getElementById(`title-input${id}`).value;
  let description =  document.getElementById(`description-input${id}`).value;
  let date = document.getElementById(`date${id}`).value
- let checbox = document.getElementById(`checkbox${id}`)
- let priority = document.getElementById('')
  todos[id]['dueDate'] = date;
  todos[id]['description'] = description;
  todos[id]['title'] = tittle;
@@ -719,7 +721,9 @@ function saveTask(id) {
       priorityImagePath = "./asssets/img/inProgress-icon.svg";
   }
   todos[id].selectedPriorityImagePath = priorityImagePath; // Aktualisiere das Bildpfad-Feld mit der ausgewählten Priorität
+  
   updateHTML();
+  await setItem("task", JSON.stringify(todos));
   closeEditPopup();
 }
 
