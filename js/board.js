@@ -134,91 +134,48 @@ function updateHTML() {
 
   let filterTodo = todos.filter(t => t['status'] == 'todo');
   document.getElementById('todo-card').innerHTML = '';
-
   for (let index = 0; index < filterTodo.length; index++) {
     const element = filterTodo[index];
     document.getElementById('todo-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
-    document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
-    document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
-    document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(element, element['id'])
-  }
-  checkEmptyList();
+    listdesign(element);
+  }checkEmptyList();
+
 
   let filterInpro = todos.filter(t => t['status'] == 'inProgress');
   document.getElementById('progress-card').innerHTML = '';
-
   for (let index = 0; index < filterInpro.length; index++) {
-
     const element = filterInpro[index];
     document.getElementById('progress-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
-    document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
-    document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
-    document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(element, element['id'])
-  }
-
-  checkEmptyListProgress();
+    listdesign(element);
+  }checkEmptyListProgress();
 
 
   let filterFeedback = todos.filter(t => t['status'] == 'feedback');
   document.getElementById('Feedback-card').innerHTML = '';
-
   for (let index = 0; index < filterFeedback.length; index++) {
     const element = filterFeedback[index];
     document.getElementById('Feedback-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
-    document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
-    document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
-    document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(element, element['id'])
-  }
-
-  checkEmptyListFeedback();
+    listdesign(element);
+  }checkEmptyListFeedback();
 
 
   let filterDone = todos.filter(t => t['status'] == 'done');
   document.getElementById('done-card').innerHTML = '';
-
   for (let index = 0; index < filterDone.length; index++) {
     const element = filterDone[index];
     document.getElementById('done-card').innerHTML += generateTodoHTML(element);
-    document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
-    document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
-    document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
-    document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-    showProgressBar(element, element['id'])
-  }
-
-  checkEmptyListDone();
-
+    listdesign(element);
+  }checkEmptyListDone();
 }
 
-function renderAssignedContacts(index) {
-  let renderedContacts = '';
-  for (let j = 0; j < 2 && j < todos[index]['assignedTo'].length; j++) {
-    const assignedContact = todos[index]['assignedTo'][j];
-    const contact = `<span class="${assignedContact['iconColor']}">test</span>`;
-    renderedContacts += contact;
-  }
-  if (todos[index]['assignedTo'].length > 2) {
-
-    for (let j = 2; j < 3 && j < todos[index]['assignedTo'].length; j++) {
-      if (todos[index]['assignedTo'].length == 3) {
-        const assignedContact = todos[index]['assignedTo'][j];
-        const contact = `<span class="${assignedContact['iconColor']}">${assignedContact['initials']}</span>`;
-        renderedContacts += contact;
-      } else {
-        const assignedContact = todos[index]['assignedTo'][j];
-        const contact = `<span class="join-color">+${todos[index]['assignedTo'].length - 2}</span>`;
-        renderedContacts += contact;
-      }
-
-    }
-  }
+function listdesign(element) {
+  document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
+  document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
+  document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
+  document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
+  showProgressBar(element, element['id'])
 }
+
 
 async function chageStatusToToDo(id) {
   todos[id]['status'] = 'todo';
@@ -280,18 +237,12 @@ function generateTodoHTML(element) {
 
 }
 
-
-
-
-
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
 async function moveTo(status) {
-
   todos[currentDraggedElement]['status'] = status;
-
   await setItem('task', JSON.stringify(todos))
   updateHTML()
 
@@ -314,7 +265,6 @@ function countProgressSteps(id) {
       totalSubTaskChecked++
     }
   }
-
   progressAnimation(totalSubTask, totalSubTaskChecked, id)
   return `${totalSubTaskChecked} / ${totalSubTask} Done`
 }
@@ -356,9 +306,6 @@ function renderAssignedContacts(id) {
 }
 
 
-
-
-
 ////////////// Check if the lists are empty //////////////
 
 function checkEmptyList() {
@@ -367,10 +314,8 @@ function checkEmptyList() {
 
   if (todoCard.children.length === 0) {
     emptyCard.style.display = "flex";
-    todoCard.style.height = "239px";
   } else {
     emptyCard.style.display = "none";
-    todoCard.style.height = "500px";
   }
 }
 
@@ -380,10 +325,8 @@ function checkEmptyListProgress() {
 
   if (progressCard.children.length === 0) {
     emptyCard.style.display = "flex";
-    progressCard.style.height = "239px";
   } else {
     emptyCard.style.display = "none";
-    progressCard.style.height = "500px";
   }
 }
 
@@ -393,10 +336,8 @@ function checkEmptyListFeedback() {
 
   if (feedbackCard.children.length === 0) {
     emptyCard.style.display = "flex";
-    feedbackCard.style.height = "239px";
   } else {
     emptyCard.style.display = "none";
-    feedbackCard.style.height = "500px";
   }
 }
 
@@ -406,10 +347,8 @@ function checkEmptyListDone() {
 
   if (doneCard.children.length === 0) {
     emptyCard.style.display = "flex";
-    doneCard.style.height = "239px";
   } else {
     emptyCard.style.display = "none";
-    doneCard.style.height = "500px";
   }
 }
 
@@ -441,16 +380,16 @@ function filterTasks() {
       if (element.title.toLowerCase().includes(search) || element.description.toLowerCase().includes(search)) {
         if (element.status === 'todo') {
           todoCard.innerHTML += generateTodoHTML(element);
-          listdesigne(element)
+          listdesign(element)
         } else if (element.status === 'inProgress') {
           progressCard.innerHTML += generateTodoHTML(element);
-          listdesigne(element)
+          listdesign(element)
         } else if (element.status === 'feedback') {
           feedbackCard.innerHTML += generateTodoHTML(element);
-          listdesigne(element)
+          listdesign(element)
         } else if (element.status === 'done') {
           doneCard.innerHTML += generateTodoHTML(element);
-          listdesigne(element)
+          listdesign(element)
         }
       }
     }
@@ -460,14 +399,6 @@ function filterTasks() {
     checkEmptyListFeedback();
     checkEmptyListDone();
   }
-}
-
-function listdesigne(element) {
-  document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
-  document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
-  document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
-  document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
-  showProgressBar(element, element['id'])
 }
 
 

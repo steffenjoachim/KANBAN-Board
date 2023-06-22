@@ -70,7 +70,7 @@ body {
 
 .main-div {
     background-color: #F5F5F5;
-    ;
+    height: 91vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -166,9 +166,9 @@ body {
     max-width: 100%;
 }
 
-/* .list {
-    height: (100% - 90px);
-} */
+.list {
+    height: calc(100% - 90px);
+}
 
 .card-head {
     display: flex;
@@ -470,8 +470,6 @@ body {
 
 @media (max-width: 900px) and (min-width: 280px) {
 
-
-
     .popup-content {
         position: fixed;
         top: 80px;
@@ -491,8 +489,6 @@ body {
     .popup-overlay.active {
         top: 80px;
     }
-
-
 
     #burger-menu {
         z-index: 9999999;
@@ -525,12 +521,9 @@ body {
         max-height: 239px;
     }
 
-
     .head-title {
         margin-left: 9px;
     }
-
-
 }
 
 @media (min-width: 1024px) {
@@ -594,7 +587,6 @@ body {
 
     .search-input {
         height: 51px;
-
     }
 
     .search-bar-line {
@@ -613,23 +605,23 @@ body {
     .popup-content {
         width: 920px;
     }
-
 }
 
 @media (min-width: 1200px) {
-
-
     .popup-content {
         width: 1116px
     }
 }
 
-
-@media (min-width: 1450px) {
+@media (min-width: 1650px) {
     .task-card {
         max-width: 370px;
         height: auto;
     }
-
-
 }
+
+/* @media (max-width: 723px) {
+    .list {
+        min-height: 100px !important;
+    }
+} */
