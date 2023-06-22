@@ -703,7 +703,6 @@ function saveTask(id) {
  todos[id]['description'] = description;
  todos[id]['title'] = tittle;
 
-
   // Verwende die ausgewählte Priorität
   let priorityImagePath;
   switch (selectedPriority) {

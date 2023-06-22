@@ -471,11 +471,14 @@ function selectAssignedTo() {
     checkScrollbar();
   }
 }
-function checkboxValue(i, contact) {
+let selectedAssignedContact = [];
+function checkboxValue(i,id) {
+   let initials = selectedAssignedContact[i]['initials']
+   let name = selectedAssignedContact[i]['name']
+   let iconColor = selectedAssignedContact[i]['icon-color']
+   console.log(initials+name+iconColor)
   let isChecked = document.getElementById(`checkbox${i}`).checked
   if (isChecked == true) {
-
-    console.log(isChecked + contact)
   }
   else {
     console.log(isChecked + contact)
@@ -483,9 +486,10 @@ function checkboxValue(i, contact) {
 }
 
 function createDropdownAssignedHTML(id, contact, i) {
+  selectedAssignedContact.push(contact)
   let dropdownAssign = document.getElementById(`dropdown-assign${id}`)
   return dropdownAssign.innerHTML += `<div class="selected">${contact['name']}
-<input onclick="checkboxValue(${i}, '${contact['name']}')" id="checkbox${i}" type="checkbox">
+<input onclick="checkboxValue(${i}, '${contact}','${id}')" id="checkbox${i}" type="checkbox">
 </div>`
 }
 function selectAssignedTo2(id) {
@@ -497,7 +501,7 @@ function selectAssignedTo2(id) {
     const contact = contacts[i];
     createDropdownAssignedHTML(id, contact, i);
     for (let j = 0; j < todos[id]['assignedTo'].length; j++) {
-      const checkedContacts = todos[id]['assignedTo'][j]['name'];
+      const checkedContacts = todos[id]['assignedTo'][j]['name'];  
       if (contact['name'] == checkedContacts) {
         setTimeout(() => {
           let checkbox = document.getElementById(`checkbox${i}`);
