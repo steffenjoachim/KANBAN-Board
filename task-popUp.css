@@ -14,6 +14,9 @@
 .pink{
     background: #FC71FF;
 }
+.dark-pink{
+    background: #944796;
+  }
 .blue{
     background: #0038FF;
 }
@@ -29,6 +32,11 @@
 .red{
     background: #AF1616 ;
 }
+
+.dark-red{
+    background: #901e1e;
+  }
+  
 .dark-blue{
     background: #2A3647 ;
 }
@@ -321,7 +329,7 @@
 
  
   .edit-wrap {
-    height: 824px;
+    height: auto;
   }
 
 

@@ -152,7 +152,7 @@ h1 {
     font-weight: 400;
     transition: 125ms;
     border: 1px solid #D1D1D1;
-    flex-direction: column;
+    /* flex-direction: column; */
   }
   
   .select-one span {
