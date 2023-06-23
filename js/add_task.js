@@ -7,7 +7,7 @@ const subtasks = [];
  * Asynchronously load contacts from storage.
  */
 async function loadContactsForAssign() {
-  try { 
+  try {
     contacts = JSON.parse(await getItem('contacts'));
   } catch (e) {
     alert('Daten konten nicht geladen werden!');
@@ -19,7 +19,7 @@ async function loadContactsForAssign() {
  * Asynchronously load tasks from storage.
  */
 async function loadNewtasks() {
-  try { 
+  try {
     todos = JSON.parse(await getItem('task'));
   } catch (e) {
     alert('Error');
@@ -35,7 +35,7 @@ function validateForm() {
   const dueDate = document.querySelector(".date-input-container input").value;
   const selectedPriorityImagePath = getSelectedPrioImagePath();
 
-  if (!title || !description || !category || !assignedTo || !dueDate ||  !selectedPriorityImagePath) {
+  if (!title || !description || !category || !assignedTo || !dueDate || !selectedPriorityImagePath) {
     alert('Bitte füllen Sie alle Felder aus');
     return false;
   }
@@ -52,28 +52,28 @@ async function createTask() {
   if (!validateForm()) {
     return;
   }
-    let title = document.getElementById("title-input").value;
-    let description = document.getElementById("description-input").value;
+  let title = document.getElementById("title-input").value;
+  let description = document.getElementById("description-input").value;
 
-    
 
-    // Rest des Codes hier
-    let category = document.getElementById("select-one").innerText; 
-    let assignedTo = getAssignedTo(); 
-    let dueDate = document.querySelector(".date-input-container input").value;
-    let taskId = calculateId();
-    let subtasks = collectSubtasks();
-    let selectedPriorityImagePath = getSelectedPrioImagePath();
 
-    let newTask = createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, selectedPriorityImagePath);
+  // Rest des Codes hier
+  let category = document.getElementById("select-one").innerText;
+  let assignedTo = getAssignedTo();
+  let dueDate = document.querySelector(".date-input-container input").value;
+  let taskId = calculateId();
+  let subtasks = collectSubtasks();
+  let selectedPriorityImagePath = getSelectedPrioImagePath();
 
-    await addTaskToArray(newTask);
+  let newTask = createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, selectedPriorityImagePath);
 
-    resetInputFields();
+  await addTaskToArray(newTask);
+  await setItem('task',JSON.stringify(todos));
+  resetInputFields();
 
-    // Versuchen, die Benachrichtigung anzuzeigen
-    showTaskAddedNotification();
-  
+  // Versuchen, die Benachrichtigung anzuzeigen
+  showTaskAddedNotification();
+
 }
 
 /**
@@ -169,7 +169,7 @@ function resetInputFields() {
   // Subtasks zurücksetzen
   const subtasksContainer = document.getElementById("subtasks");
   subtasksContainer.innerHTML = "";
- // Zurücksetzen der ausgewählten Priorität
+  // Zurücksetzen der ausgewählten Priorität
   resetImages();
   // Zurücksetzen des "assignedTo"-Feldes
   resetAssignedTo();
@@ -239,7 +239,7 @@ function showNewCategoryFields() {
 function getSelectedElements(event) {
   const selectedText = event.target.querySelector('span').cloneNode(true);
   const selectedColorDiv = event.target.querySelector('.circle') ? event.target.querySelector('.circle').cloneNode(true) : null;
-  return {selectedText, selectedColorDiv};
+  return { selectedText, selectedColorDiv };
 }
 
 /**
@@ -249,7 +249,7 @@ function getSelectedElements(event) {
  * @param {Object} selectedElements - An object containing the selected text and color div elements
  */
 function updateSelectOneContainer(selectOne, selectedElements) {
-  const {selectedText, selectedColorDiv} = selectedElements;
+  const { selectedText, selectedColorDiv } = selectedElements;
   const textAndColorContainer = selectOne.querySelector('div');
   if (textAndColorContainer) {
     textAndColorContainer.innerHTML = '';
@@ -300,9 +300,9 @@ function selectOption(event, color) {
   let selectOne = document.getElementById('select-one');
   let dropdown = document.getElementById('dropdown');
   let selectedColorContainer = document.getElementById('selected-color');
-  const {selectedText, selectedColorDiv} = getSelectedElements(event);
+  const { selectedText, selectedColorDiv } = getSelectedElements(event);
   if (selectOne) {
-    updateSelectOneContainer(selectOne, {selectedText, selectedColorDiv});
+    updateSelectOneContainer(selectOne, { selectedText, selectedColorDiv });
   }
   updateDropdown(dropdown, selectOne);
   updateSelectedColorContainer(selectedColorContainer, selectedColorDiv);
@@ -472,36 +472,33 @@ function selectAssignedTo() {
   }
 }
 let selectedAssignedContact = [];
-function checkboxValue(i,id) {
-   let initials = selectedAssignedContact[i]['initials']
-   let name = selectedAssignedContact[i]['name']
-   let iconColor = selectedAssignedContact[i]['icon-color']
-   console.log(initials+name+iconColor)
+function checkboxValue(i, id) {
+  let initials = selectedAssignedContact[i]['initials']
+  let name = selectedAssignedContact[i]['name']
+  let iconColor = selectedAssignedContact[i]['icon-color']
   let isChecked = document.getElementById(`checkbox${i}`).checked
   if (isChecked == true) {
   }
   else {
-    console.log(isChecked + contact)
   }
 }
 
 function createDropdownAssignedHTML(id, contact, i) {
   selectedAssignedContact.push(contact)
   let dropdownAssign = document.getElementById(`dropdown-assign${id}`)
-  return dropdownAssign.innerHTML += `<div class="selected">${contact['name']}
+  dropdownAssign.innerHTML += `<div class="selected">${contact['name']}
 <input onclick="checkboxValue(${i}, '${contact}','${id}')" id="checkbox${i}" type="checkbox">
 </div>`
 }
 function selectAssignedTo2(id) {
   let dropdownAssign = document.getElementById(`dropdown-assign${id}`);
   dropdownAssign.innerHTML = '';
-  let assignOne = document.getElementById(`assign-one${id}`);
-  let assignThree = document.getElementById(`assigned-three${id}`);
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
     createDropdownAssignedHTML(id, contact, i);
-    for (let j = 0; j < todos[id]['assignedTo'].length; j++) {
-      const checkedContacts = todos[id]['assignedTo'][j]['name'];  
+   let idJSON = todos.find(t => t.id === Number(id));
+    for (let j = 0; j < idJSON.assignedTo.length; j++) {
+      const checkedContacts = idJSON.assignedTo[j]['name'];
       if (contact['name'] == checkedContacts) {
         setTimeout(() => {
           let checkbox = document.getElementById(`checkbox${i}`);
@@ -519,9 +516,7 @@ function selectAssignedTo2(id) {
 
     if (dropdownAssign.classList.contains('d-none')) {
       dropdownAssign.classList.remove('d-none');
-      assignOne.style.borderRadius = "10px 10px 0 0";
-      assignOne.style.borderBottom = "none";
-      //assignThree.style.borderRadius = "0 0 10px 10px";
+
     } else {
       dropdownAssign.classList.add('d-none');
       assignOne.style.borderRadius = "10px";
@@ -534,16 +529,16 @@ function selectAssignedTo2(id) {
   }
 }
 
-function getCheckedContacts(id) {
+/*function getCheckedContacts(id) {
   let checkedContacts = [];
   for (let i = 0; i < contacts.length; i++) {
     let checkbox = document.getElementById(`checkbox${i}`);
     if (checkbox.checked) {
-      checkedContacts.push(contacts[i]);
+      // checkedContacts.push(contacts[i]);
     }
   }
   return checkedContacts;
-}
+}*/
 
 function selectAssign(event) {
   const assignOne = document.getElementById('assign-one');

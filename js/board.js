@@ -252,6 +252,7 @@ function allowDrop(ev) {
  * @param {*} status - This the new status of the task
  */
 async function moveTo(status) {
+  currentDraggedElement = todos.findIndex(obj => obj.id === currentDraggedElement);
   todos[currentDraggedElement]['status'] = status;
   await setItem('task', JSON.stringify(todos))
   updateHTML()
@@ -472,6 +473,7 @@ function filterAndRenderTodos(todos, search, todoCard, progressCard, feedbackCar
 // -------------Edit Task popup---------------
 
 function openEditPopup(taskId) {
+  console.log(taskId)
   let task = todos.find(t => t.id === Number(taskId));
 
   if (!task) {
@@ -635,7 +637,7 @@ function editingTask(taskId) {
           <input class="all-input" id="title-input${taskId}" type="text" name="title" value="${task.title}" required />
 
           <label for="description-input" >Description</label>
-          <textarea id="description-input${taskId}" name="description" value="${task.description}" required>${todos[taskId]['description']}</textarea>
+          <textarea id="description-input${taskId}" name="description" value="${task.description}" required>${task.description}</textarea>
 
           <label for="date-input">Due Date</label>
           <div class="date-input-container">
@@ -694,16 +696,17 @@ function editingTask(taskId) {
 
 
 async function saveTask(id) {
-
-  const checkedContacts = getCheckedContacts(id);
-  console.log(checkedContacts);
-  todos[id].assignedTo = checkedContacts;
+  
+  //const checkedContacts = getCheckedContacts(id);
+  //console.log(checkedContacts);
+  //todos[id].assignedTo = checkedContacts;
  let tittle =  document.getElementById(`title-input${id}`).value;
  let description =  document.getElementById(`description-input${id}`).value;
  let date = document.getElementById(`date${id}`).value
- todos[id]['dueDate'] = date;
- todos[id]['description'] = description;
- todos[id]['title'] = tittle;
+ id = todos.find(t => t.id === Number(id));
+ id.dueDate = date;
+ id.description = description;
+ id.title = tittle;
 
   // Verwende die ausgewählte Priorität
   let priorityImagePath;
@@ -720,7 +723,7 @@ async function saveTask(id) {
     default:
       priorityImagePath = "./asssets/img/inProgress-icon.svg";
   }
-  todos[id].selectedPriorityImagePath = priorityImagePath; // Aktualisiere das Bildpfad-Feld mit der ausgewählten Priorität
+  id.selectedPriorityImagePath = priorityImagePath; // Aktualisiere das Bildpfad-Feld mit der ausgewählten Priorität
   
   updateHTML();
   await setItem("task", JSON.stringify(todos));
