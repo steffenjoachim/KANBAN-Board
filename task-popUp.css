@@ -24,6 +24,9 @@
 .green{
     background: #02CF2F;
 }
+.dark-green{
+    background: #077E21;
+  }
 
 .light-green{
     background: #1FD7C1;
@@ -273,9 +276,7 @@
     height: 48px;
 }
 
-.display-none {
-    display: none;
-}
+
 
 @media (max-width: 370px) {
     .assignedTo-divE {
@@ -407,5 +408,40 @@
   }
   
   .edit-wrap button:hover {
-    background-color: #0056b3;
+    background-color: #29abe2;
+  }
+
+  .ok-button {
+    
+    width: 80px;
+    height: 40px;
+    margin-left: 20px;
+    color: white;
+    background-color: #2a3647;
+    border-color: transparent;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    
+  }
+
+  .ok-button:hover {
+    background-color: #29ABE2;
+    border-color: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .cancel-button-edit {
+    width: 80px;
+    height: 40px;
+    border: 1px solid #2A3647;
+    margin-left: 20px;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  .cancel-button-edit:hover {
+    border: 1px solid #29ABE2;
+    color: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
   }

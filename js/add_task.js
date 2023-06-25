@@ -62,8 +62,9 @@ async function createTask() {
   let taskId = calculateId();
   let subtasks = collectSubtasks();
   let selectedPrioImage = getSelectedPrioImage();  // Update hier
+  
 
-  let newTask = createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, selectedPrioImage.prio);  // Update hier
+  let newTask = createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, selectedPrioImage.prio, selectedColor);  // Update hier
 
   await addTaskToArray(newTask);
   // todos.splice(0, todos.length);
@@ -108,7 +109,7 @@ function collectSubtasks() {
  * @param {Object} prio - The object containing priority id and path to the image representing task priority.
  * @return {Object} The created task object.
  */
-function createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, prio) {
+function createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, prio,selectedColor) {
   return {
     id: taskId,
     status: "todo",

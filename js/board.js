@@ -509,7 +509,6 @@ function openEditPopup(taskId) {
   <div class="edit-wrap">
     <div class="popUp-head-task">
       <div class="task-category-one" style="background-color:${task.color};">${task.category}</div>
-      <img id="close-popUp-one" class="close-popUp-arrows" src="./asssets/img/popUp-arrow.svg" alt="" />
       <img onclick="closeEditPopup()" class="close-popUp-xx display-none" src="./asssets/img/popUp-close.svg" alt="" />
     </div>
 
@@ -739,6 +738,7 @@ if (selectedPriority.id === 'urgent') {
   // Hinzufügen des "Cancel" Buttons
   const cancelButton = document.createElement('button');
   cancelButton.textContent = 'Cancel';
+  cancelButton.classList.add('cancel-button-edit')
   cancelButton.addEventListener('click', () => {
     closePopup(); // Funktion zum Schließen des Popups aufrufen
   });
@@ -747,6 +747,7 @@ if (selectedPriority.id === 'urgent') {
   // Hinzufügen des "OK" Buttons
   const okButton = document.createElement('button');
   okButton.textContent = 'OK';
+  okButton.classList.add('ok-button')
   okButton.addEventListener('click', (event) => {
     event.preventDefault(); // Verhindert das Standardverhalten des Formularsubmit
     saveTask(taskId);
