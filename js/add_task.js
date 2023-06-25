@@ -33,9 +33,9 @@ function validateForm() {
   const category = document.getElementById("select-one").innerText;
   const assignedTo = getAssignedTo();
   const dueDate = document.querySelector(".date-input-container input").value;
-  const selectedPriorityImagePath = getSelectedPrioImagePath();
+  const selectedPrioImage = getSelectedPrioImage();  
 
-  if (!title || !description || !category || !assignedTo || !dueDate || !selectedPriorityImagePath) {
+  if (!title || !description || !category || !assignedTo || !dueDate || !selectedPrioImage) {
     alert('Bitte füllen Sie alle Felder aus');
     return false;
   }
@@ -55,25 +55,23 @@ async function createTask() {
   let title = document.getElementById("title-input").value;
   let description = document.getElementById("description-input").value;
 
-
-
   // Rest des Codes hier
   let category = document.getElementById("select-one").innerText;
   let assignedTo = getAssignedTo();
   let dueDate = document.querySelector(".date-input-container input").value;
   let taskId = calculateId();
   let subtasks = collectSubtasks();
-  let selectedPriorityImagePath = getSelectedPrioImagePath();
+  let selectedPrioImage = getSelectedPrioImage();  // Update hier
 
-  let newTask = createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, selectedPriorityImagePath);
+  let newTask = createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, selectedPrioImage.prio);  // Update hier
 
   await addTaskToArray(newTask);
+  // todos.splice(0, todos.length);
   await setItem('task',JSON.stringify(todos));
   resetInputFields();
 
   // Versuchen, die Benachrichtigung anzuzeigen
   showTaskAddedNotification();
-
 }
 
 /**
@@ -107,10 +105,10 @@ function collectSubtasks() {
  * @param {string} assignedTo - The individual assigned to the task.
  * @param {string} dueDate - The due date of the task.
  * @param {Object[]} subtasks - An array of subtask objects.
- * @param {string} selectedPriorityImagePath - The path to the image representing task priority.
+ * @param {Object} prio - The object containing priority id and path to the image representing task priority.
  * @return {Object} The created task object.
  */
-function createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, selectedPriorityImagePath) {
+function createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, prio) {
   return {
     id: taskId,
     status: "todo",
@@ -119,7 +117,7 @@ function createNewTask(taskId, title, description, category, assignedTo, dueDate
     category: category,
     assignedTo: assignedTo,
     dueDate: dueDate,
-    selectedPriorityImagePath: selectedPriorityImagePath,
+    prio: prio,
     subtasks: subtasks,
     color: selectedColor,
   };
@@ -824,7 +822,7 @@ function setupPriorityClick() {
 
 setupPriorityClick();
 
-function getSelectedPrioImagePath() {
+function getSelectedPrioImage() {
   const prioImages = document.querySelectorAll('.prio-img');
   let selectedPriority = '';
   prioImages.forEach(img => {
@@ -842,13 +840,14 @@ function getSelectedPrioImagePath() {
     selectedImagePath = './asssets/img/toDo-icon.svg';
   }
 
-  return selectedImagePath;
+  // Gib das "prio" Objekt mit Pfad und ID zurück
+  return {prio: {path: selectedImagePath, id: selectedPriority}};
 }
 
-loadContactsForAssign().then(() => {
+// loadContactsForAssign().then(() => {
 
-  populateContactList();
-});
+//   populateContactList();
+// });
 
 // Event-Listener für das DOMContentLoaded-Event
 document.addEventListener('DOMContentLoaded', () => {

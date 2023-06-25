@@ -41,6 +41,7 @@ if (window.location.pathname.includes('board.html')) {
     const popupOverlay = document.querySelector('.popup-overlay');
 
     openPopupBtn.addEventListener('click', openPopup);
+    
     openPopupBtnResponiv.addEventListener('click', openPopup);
 
     popupOverlay.addEventListener('click', (event) => {
@@ -50,8 +51,10 @@ if (window.location.pathname.includes('board.html')) {
     });
   });
 
+
   document.addEventListener('DOMContentLoaded', function () {
     function adjustPopupContent() {
+      
       const popupOverlay = document.querySelector('.popup-overlay');
       const popupContent = document.getElementById('popupContent');
       const body = document.body;
@@ -76,8 +79,10 @@ if (window.location.pathname.includes('board.html')) {
     // Call the function initially to account for the current window size
     adjustPopupContent();
   });
+  
 
   function openPopup() {
+    
     const popupOverlay = document.querySelector('.popup-overlay');
     popupOverlay.classList.add('active');
     disableBackgroundScroll();
@@ -87,11 +92,15 @@ if (window.location.pathname.includes('board.html')) {
   function closePopup() {
     const popupOverlay = document.querySelector('.popup-overlay');
     popupOverlay.classList.remove('active');
+    const createButton = document.getElementById('create-button');
+  // Zeige es an
+  createButton.style.display = 'block';
     enableBackgroundScroll();
     resetInputFields();
     resetTaskCategoryDropdown();
     resetSelectedCategory();
     checkScrollbar();
+    location.reload();
   }
 
   function disableBackgroundScroll() {
@@ -177,7 +186,7 @@ function generateTodoHTML(element) {
   <div class="task-assignedTo">
       <div id="assigned-contacts${element['id']}" class="task-icons">
       </div>
-      <img id="task-icon${element['id']}" src="./asssets/img/toDo-icon.svg" alt="">
+      <img id="task-icon${element['id']}" src="${element.prio.path}" alt="">
   </div>
   </div>
   `;
@@ -192,7 +201,7 @@ function listdesign(element) {
   document.getElementById(`task-category${element['id']}`).style.backgroundColor = element['color'];
   document.getElementById(`task-category${element['id']}`).innerHTML = element['category'];
   document.getElementById(`assigned-contacts${element['id']}`).innerHTML = renderAssignedContacts(element['id']);
-  document.getElementById(`task-icon${element['id']}`).src = element['selectedPriorityImagePath']
+  document.getElementById(`task-icon${element['id']}`).src = element.prio.path;
   showProgressBar(element, element['id'])
 }
 
@@ -481,8 +490,8 @@ function openEditPopup(taskId) {
     return;
   }
 
-  function getImagePath(priorityImagePath) {
-    switch (priorityImagePath) {
+  function getImagePath(priorityObject) {
+    switch (priorityObject.path) {
       case "./asssets/img/inProgress-icon.svg":
         return "./asssets/img/urgent-edit-task.svg";
       case "./asssets/img/Feedback-icon.svg":
@@ -490,7 +499,7 @@ function openEditPopup(taskId) {
       case "./asssets/img/toDo-icon.svg":
         return "./asssets/img/low-edit-task.svg";
       default:
-        return priorityImagePath;
+        return priorityObject.path;
     }
   }
 
@@ -513,12 +522,13 @@ function openEditPopup(taskId) {
     </div>
 
     <div class="popUp-prio">
-      <span class="bolder">Priority:</span>
-      <div class="popUp-prio-btn">
-        <img src="${getImagePath(task.selectedPriorityImagePath)}" alt="" />
-      </div>
+    <span class="bolder">Priority:</span>
+    <div class="popUp-prio-btn">
+      <img src="${getImagePath(task.prio)}" alt="" />
     </div>
   </div>
+
+  
   `;
 
   // Generiere HTML für "Assigned To" Abschnitt
@@ -534,13 +544,7 @@ function openEditPopup(taskId) {
 
   // Generiere HTML für die Schließen und Bearbeiten Buttons
   popupContentHtml += `
-    <div class="btns-responsive firstTypebtns">
-      <div></div>
-      <div class="popUp-btns">
-        <img class="popUp-delete" src="./asssets/img/popUp-deleteBTN.svg" alt="" />
-        <img class="popUp-edit" src="./asssets/img/popUp-editBTN.svg" alt="" />
-      </div>
-    </div>
+    
 
     <div class="btns-responsive">
       <div></div>
@@ -616,6 +620,8 @@ function openDropDownContacts(taskId) {
 }
 
 
+
+
 function editingTask(taskId) {
   let task = todos.find(t => t.id === Number(taskId));
 
@@ -623,155 +629,262 @@ function editingTask(taskId) {
     console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
     return;
   }
+  closeEditPopup();
+  openPopup(taskId);
+  const createButton = document.getElementById('create-button');
+  // Verstecke es
+  createButton.style.display = 'none';
 
-  // Generiere den HTML-Inhalt für das Bearbeitungsfenster
-  let editFormHtml = `
-    <div class="edit-wrap">
-      <div class="popUp-head-task">
-        <div class="task-category-one" style="background-color:${task.color};">${task.category}</div>
-        <img id="close-popUp-one" class="close-popUp-arrows" src="./asssets/img/popUp-arrow.svg" alt="" />
-        <img onclick="closeEditPopup()" class="close-popUp-xx display-none" src="./asssets/img/popUp-close.svg" alt="" />
-      </div>
-      
-      <label for="title-input">Title</label>
-          <input class="all-input" id="title-input${taskId}" type="text" name="title" value="${task.title}" required />
+  
+  // Einfügen des Codes für Priorität, Zuweisung und Kategorie
+  // Title
+  document.getElementById('title-input').value = task.title;
 
-          <label for="description-input" >Description</label>
-          <textarea id="description-input${taskId}" name="description" value="${task.description}" required>${task.description}</textarea>
+  // Description
+  document.getElementById('description-input').value = task.description;
 
-          <label for="date-input">Due Date</label>
-          <div class="date-input-container">
-            <input id="date${taskId}" class="all-input" type="date" placeholder="dd/mm/yyyy" value="${task.dueDate}" />
-          </div>
+  // Category
+  const categoryElement = document.getElementById('select-one');
+  categoryElement.querySelector('span').textContent = task.category;
+  const circleElement = categoryElement.querySelector('.circle');
+  circleElement.style.backgroundColor = task.color;
 
-      
-      <div class="popUp-prio">
-        <span class="bolder">Priority:</span>
-        <label for="prio-buttons"></label>
-        <div id="prio-buttons${taskId}">
-        <img id="urgent" class="prio-img2" src="./asssets/img/urgent-urgent.svg" alt="" onclick="selectImageEdit(event)">
-        <img id="medium" class="prio-img2" src="./asssets/img/medium-urgent.svg" alt="" onclick="selectImageEdit(event)">
-        <img id="low" class="prio-img2" src="./asssets/img/low-urgent.svg" alt="" onclick="selectImageEdit(event)">
-      </div>
-      </div>
+  // Due Date
+  document.querySelector('.date-input-container input').value = task.dueDate;
 
-      <label for="Assigned-to">Assigned to</label>
-              <div onclick="selectAssignedTo(${taskId})" id="assign-one${taskId}" class="select-one">
-                <span>Select assigned person</span>
-                <img onclick="selectAssignedTo2(${taskId})" src="./add_task_img/open.svg" alt="" />
-                <div id="contacts-container" class="contacts"></div>
+  
 
-              <div id="dropdown-assign${taskId}" class="d-none">
-                <div onclick="showInviteContactFields()" id="assigned-three${taskId}" class="selected">
-                  <span>Invite new contact</span>
-                  <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
-                </div>
-              </div>
+  // Assigned To
+  const assignedToElement = document.getElementById('dropdown-assign');
+  const checkboxes = assignedToElement.querySelectorAll('input[type="checkbox"]');
+  const selectedContactDiv = document.getElementById('selected-contact');
 
-              <div id="selected-contact"></div>
+  // Deaktiviere alle Checkboxen
+  checkboxes.forEach(checkbox => {
+    checkbox.checked = false;
+  });
 
-              <div id="new-contact-fields" class="d-none">
-                <input type="text" id="new-contact-email" placeholder="Enter email address">
-                <div class="icons-wrapper-three">
-                  <img src="./asssets/img/cancel-svg.svg" id="cross-icon2" onclick="cancelInviteContact()">
-                  |
-                  <img src="./asssets/img/checkmark.svg" id="check-icon2" onclick="saveInviteContact()">
-                </div>
-              </div>
+  // Füge die zugewiesenen Personen hinzu und aktiviere ihre Checkboxen
+  task.assignedTo.forEach(person => {
+    const selectedPerson = person.name;
 
+    // Suche nach dem ausgewählten Kontakt in Ihrem Array
+    let selectedContact = contacts.find(contact => contact.name === selectedPerson);
 
-      
-      </div>
-      <button onclick="saveTask(${taskId})">OK</button>
-    </div>
-  `;
+    if (selectedContact) {
+      // Erstellung des divs für den ausgewählten Kontakt
+      let contactDiv = document.createElement('div');
+      contactDiv.classList.add(selectedContact['icon-color']);
+      contactDiv.style.borderRadius = '50%';
+      contactDiv.style.width = '50px';
+      contactDiv.style.height = '50px';
+      contactDiv.style.display = 'flex';
+      contactDiv.style.justifyContent = 'center';
+      contactDiv.style.alignItems = 'center';
+      contactDiv.style.color = 'white';
+      contactDiv.textContent = selectedContact.initials;
 
-  // Zeige das Bearbeitungsfenster
-  document.querySelector('.task-overlay-popup').classList.add('active');
-  // Füge den Inhalt zum Popup hinzu
-  document.getElementById('taskContent').innerHTML = editFormHtml;
+      // Hinzufügen des erstellten divs in die 'selected-contact'-div
+      selectedContactDiv.appendChild(contactDiv);
+
+      // Aktiviere die entsprechende Checkbox
+      const checkbox = assignedToElement.querySelector(`input[type="checkbox"][id="checkbox-${selectedPerson.toLowerCase()}"]`);
+      if (checkbox) {
+        checkbox.checked = true;
+      }
+    }
+  });
+
+  const selectedPriority = task.prio;  // Now this is an object with `id` and `path`
+
+// Based on the id, select the appropriate image and set it to selected
+if (selectedPriority.id === 'urgent') {
+  document.getElementById('urgent').src = './asssets/img/urgent-toggle.svg';
+} else if (selectedPriority.id === 'medium') {
+  document.getElementById('medium').src = './asssets/img/medium-urgent-toggle.svg';
+} else if (selectedPriority.id === 'low') {
+  document.getElementById('low').src = './asssets/img/low-urgent-toggle.svg';
+}
+
+  const subtasksContainer = document.getElementById('subtasks');
+  subtasksContainer.innerHTML = ''; // Leere den Container, um vorhandene Subtasks zu entfernen
+
+  task.subtasks.forEach(subtask => {
+    const subtaskDiv = document.createElement('div');
+    subtaskDiv.className = 'subtask';
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = subtask.id;
+    checkbox.name = subtask.name;
+    checkbox.className = 'checkbox-subtask';
+    checkbox.checked = subtask.checked;
+
+    const label = document.createElement('label');
+    label.className = 'subtask-name';
+    label.htmlFor = subtask.id;
+    label.textContent = subtask.name;
+
+    subtaskDiv.appendChild(checkbox);
+    subtaskDiv.appendChild(label);
+    subtasksContainer.appendChild(subtaskDiv);
+  });
+
+  // Entfernen der "Cancel" und "Create task" Buttons
+  const btnDiv = document.querySelector('.btn-div');
+  btnDiv.innerHTML = '';
+
+  // Hinzufügen des "Cancel" Buttons
+  const cancelButton = document.createElement('button');
+  cancelButton.textContent = 'Cancel';
+  cancelButton.addEventListener('click', () => {
+    closePopup(); // Funktion zum Schließen des Popups aufrufen
+  });
+  btnDiv.appendChild(cancelButton);
+
+  // Hinzufügen des "OK" Buttons
+  const okButton = document.createElement('button');
+  okButton.textContent = 'OK';
+  okButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Verhindert das Standardverhalten des Formularsubmit
+    saveTask(taskId);
+  });
+  btnDiv.appendChild(okButton);
 }
 
 
 
 
-async function saveTask(id) {
-  
-  //const checkedContacts = getCheckedContacts(id);
-  //console.log(checkedContacts);
-  //todos[id].assignedTo = checkedContacts;
- let tittle =  document.getElementById(`title-input${id}`).value;
- let description =  document.getElementById(`description-input${id}`).value;
- let date = document.getElementById(`date${id}`).value
- id = todos.find(t => t.id === Number(id));
- id.dueDate = date;
- id.description = description;
- id.title = tittle;
 
-  // Verwende die ausgewählte Priorität
-  let priorityImagePath;
-  switch (selectedPriority) {
-    case "urgent":
-      priorityImagePath = "./asssets/img/inProgress-icon.svg";
-      break;
-    case "medium":
-      priorityImagePath = "./asssets/img/Feedback-icon.svg";
-      break;
-    case "low":
-      priorityImagePath = "./asssets/img/toDo-icon.svg";
-      break;
-    default:
-      priorityImagePath = "./asssets/img/inProgress-icon.svg";
-  }
-  id.selectedPriorityImagePath = priorityImagePath; // Aktualisiere das Bildpfad-Feld mit der ausgewählten Priorität
+// async function saveTask(id) {
   
+//   //const checkedContacts = getCheckedContacts(id);
+//   //console.log(checkedContacts);
+//   //todos[id].assignedTo = checkedContacts;
+//  let tittle =  document.getElementById(`title-input${id}`).value;
+//  let description =  document.getElementById(`description-input${id}`).value;
+//  let date = document.getElementById(`date${id}`).value
+//  id = todos.find(t => t.id === Number(id));
+//  id.dueDate = date;
+//  id.description = description;
+//  id.title = tittle;
+
+//   // Verwende die ausgewählte Priorität
+//   let priorityImagePath;
+//   switch (selectedPriority) {
+//     case "urgent":
+//       priorityImagePath = "./asssets/img/inProgress-icon.svg";
+//       break;
+//     case "medium":
+//       priorityImagePath = "./asssets/img/Feedback-icon.svg";
+//       break;
+//     case "low":
+//       priorityImagePath = "./asssets/img/toDo-icon.svg";
+//       break;
+//     default:
+//       priorityImagePath = "./asssets/img/inProgress-icon.svg";
+//   }
+//   id.selectedPriorityImagePath = priorityImagePath; // Aktualisiere das Bildpfad-Feld mit der ausgewählten Priorität
+  
+//   updateHTML();
+//   await setItem("task", JSON.stringify(todos));
+//   closeEditPopup();
+// }
+
+async function saveTask(taskId) {
+  // Hier kannst du die Logik implementieren, um die bearbeitete Aufgabe zu speichern
+  const title = document.getElementById('title-input').value;
+  const description = document.getElementById('description-input').value;
+  const category = document.getElementById('select-one').querySelector('span').textContent;
+  const color = document.getElementById('select-one').querySelector('.circle').style.backgroundColor;
+  const dueDate = document.querySelector('.date-input-container input').value;
+  const selectedPrioImage = getSelectedPrioImage();  // Capture the selected priority image
+  
+  
+
+  const assignedTo = getAssignedTo();
+
+  const subtasksContainer = document.getElementById('subtasks');
+  const subtaskElements = subtasksContainer.querySelectorAll('.subtask');
+  const subtasks = [];
+
+  // Durchlaufe alle Subtask-Elemente und füge sie zum 'subtasks'-Array hinzu
+  subtaskElements.forEach(subtaskElement => {
+    const checkbox = subtaskElement.querySelector('.checkbox-subtask');
+    const label = subtaskElement.querySelector('.subtask-name');
+    const subtaskId = checkbox.id;
+    const subtaskName = label.textContent;
+    const isChecked = checkbox.checked;
+
+    subtasks.push({ id: subtaskId, name: subtaskName, checked: isChecked });
+  });
+
+  // Finde die Aufgabe mit der entsprechenden ID im 'todos'-Array
+  const taskIndex = todos.findIndex(task => task.id === Number(taskId));
+
+  if (taskIndex !== -1) {
+    // Aktualisiere die Eigenschaften der Aufgabe mit den bearbeiteten Werten
+    todos[taskIndex].title = title;
+    todos[taskIndex].description = description;
+    todos[taskIndex].category = category;
+    todos[taskIndex].color = color;
+    todos[taskIndex].dueDate = dueDate;
+    todos[taskIndex].assignedTo = assignedTo;
+    todos[taskIndex].subtasks = subtasks;
+    todos[taskIndex].prio = selectedPrioImage.prio; 
+  } else {
+    console.error(`Aufgabe mit der ID ${taskId} wurde nicht gefunden.`);
+  }
+
   updateHTML();
   await setItem("task", JSON.stringify(todos));
+  location.reload();
   closeEditPopup();
+  closePopup(); // Funktion zum Schließen des Popups aufrufen
 }
 
-function resetImages() {
-  const prioImages = document.querySelectorAll('.prio-img2');
-  prioImages.forEach(img => {
-    img.src = images[img.id].default;
-  });
-}
+// function resetImages() {
+//   const prioImages = document.querySelectorAll('.prio-img2');
+//   prioImages.forEach(img => {
+//     img.src = images[img.id].default;
+//   });
+// }
 
-const imagesEdit = {
-  "urgent": {
-    "default": "./asssets/img/urgent-urgent.svg",
-    "selected": "./asssets/img/urgent-toggle.svg"
-  },
-  "medium": {
-    "default": "./asssets/img/medium-urgent.svg",
-    "selected": "./asssets/img/medium-urgent-toggle.svg"
-  },
-  "low": {
-    "default": "./asssets/img/low-urgent.svg",
-    "selected": "./asssets/img/low-urgent-toggle.svg"
-  }
-};
+// const imagesEdit = {
+//   "urgent": {
+//     "default": "./asssets/img/urgent-urgent.svg",
+//     "selected": "./asssets/img/urgent-toggle.svg"
+//   },
+//   "medium": {
+//     "default": "./asssets/img/medium-urgent.svg",
+//     "selected": "./asssets/img/medium-urgent-toggle.svg"
+//   },
+//   "low": {
+//     "default": "./asssets/img/low-urgent.svg",
+//     "selected": "./asssets/img/low-urgent-toggle.svg"
+//   }
+// };
 
-let selectedPriority = ''; // Füge eine Variable hinzu, um die ausgewählte Priorität zu speichern
+// let selectedPriority = ''; // Füge eine Variable hinzu, um die ausgewählte Priorität zu speichern
 
-function selectImageEdit(event) {
-  const selectedImage = event.target;
-  const imageId = selectedImage.id;
+// function selectImageEdit(event) {
+//   const selectedImage = event.target;
+//   const imageId = selectedImage.id;
 
-  // Setze alle Bilder zurück und entferne die ausgewählte Klasse
-  const prioImages = document.querySelectorAll('.prio-img2');
-  prioImages.forEach(img => {
-    img.src = imagesEdit[img.id].default;
-    img.setAttribute("data-selected", "false");
-    // Füge spezifische CSS-Stile hinzu oder entferne sie (falls gewünscht)
-    img.style.border = "";
-  });
+//   // Setze alle Bilder zurück und entferne die ausgewählte Klasse
+//   const prioImages = document.querySelectorAll('.prio-img2');
+//   prioImages.forEach(img => {
+//     img.src = imagesEdit[img.id].default;
+//     img.setAttribute("data-selected", "false");
+//     // Füge spezifische CSS-Stile hinzu oder entferne sie (falls gewünscht)
+//     img.style.border = "";
+//   });
 
-  // Aktiviere das ausgewählte Bild
-  selectedImage.src = imagesEdit[imageId].selected;
-  selectedImage.setAttribute("data-selected", "true");
-  // Füge spezifische CSS-Stile hinzu oder entferne sie (falls gewünscht)
+//   // Aktiviere das ausgewählte Bild
+//   selectedImage.src = imagesEdit[imageId].selected;
+//   selectedImage.setAttribute("data-selected", "true");
+//   // Füge spezifische CSS-Stile hinzu oder entferne sie (falls gewünscht)
 
-  // Speichere die ausgewählte Priorität
-  selectedPriority = imageId;
-}
+//   // Speichere die ausgewählte Priorität
+//   selectedPriority = imageId;
+// }
