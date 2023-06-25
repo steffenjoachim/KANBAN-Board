@@ -361,7 +361,7 @@ h1 {
   }
   
   #dropdown-assign:not(.d-none) {
-  max-height: 200px;  
+  max-height: 240px;  
   border-bottom: 0.5px solid #d1d1d1;
   border-radius: 0 0 10px 10px;
   }

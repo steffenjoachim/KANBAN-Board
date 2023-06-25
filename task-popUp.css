@@ -64,8 +64,35 @@
 .edit-wrap {
     margin-left: 50px;
     margin-right: 50px;
+    overflow-y: auto;
+    max-height: 824px;
     
 }
+
+/* Das gilt für den gesamten Scrollbar */
+.edit-wrap::-webkit-scrollbar {
+    width: 5px;  /* Breite der vertikalen Scrollbar */
+    height: 5px; /* Höhe der horizontalen Scrollbar */
+  }
+  
+  /* Handle (Griff) */
+  .edit-wrap::-webkit-scrollbar-thumb {
+    background: #888; /* Farbe des Griffs */
+    border-radius: 2px; /* Rundung des Griffs */
+  }
+  
+  /* Handle (Griff) beim Überfahren */
+  .edit-wrap::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Farbe des Griffs beim Überfahren */
+  }
+  
+  /* Track (Laufschiene) */
+  .edit-wrap::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Farbe der Laufschiene */
+    border-radius: 2px; /* Rundung der Laufschiene */
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 
 .task-category-one {
     text-align: center;
@@ -266,7 +293,7 @@
 
     .edit-wrap {
         width: 100%;
-        height: 100%;
+        max-height: 100%;
         margin-left: 16px;
     }
 
@@ -348,6 +375,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    
 
   }
   

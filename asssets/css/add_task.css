@@ -193,6 +193,8 @@ input[type="date"]::before {
   text-indent: 11px;
 }
 
+
+
 .select-one span {
   margin-left: 10px;
 }
@@ -692,7 +694,7 @@ border-top: none;
   }
 
   .select-one-div {
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
   }

@@ -469,74 +469,7 @@ function selectAssignedTo() {
     checkScrollbar();
   }
 }
-let selectedAssignedContact = [];
-function checkboxValue(i, id) {
-  let initials = selectedAssignedContact[i]['initials']
-  let name = selectedAssignedContact[i]['name']
-  let iconColor = selectedAssignedContact[i]['icon-color']
-  let isChecked = document.getElementById(`checkbox${i}`).checked
-  if (isChecked == true) {
-  }
-  else {
-  }
-}
 
-function createDropdownAssignedHTML(id, contact, i) {
-  selectedAssignedContact.push(contact)
-  let dropdownAssign = document.getElementById(`dropdown-assign${id}`)
-  dropdownAssign.innerHTML += `<div class="selected">${contact['name']}
-<input onclick="checkboxValue(${i}, '${contact}','${id}')" id="checkbox${i}" type="checkbox">
-</div>`
-}
-function selectAssignedTo2(id) {
-  let dropdownAssign = document.getElementById(`dropdown-assign${id}`);
-  dropdownAssign.innerHTML = '';
-  for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
-    createDropdownAssignedHTML(id, contact, i);
-   let idJSON = todos.find(t => t.id === Number(id));
-    for (let j = 0; j < idJSON.assignedTo.length; j++) {
-      const checkedContacts = idJSON.assignedTo[j]['name'];
-      if (contact['name'] == checkedContacts) {
-        setTimeout(() => {
-          let checkbox = document.getElementById(`checkbox${i}`);
-          checkbox.checked = true;
-        }, 0);
-      }
-    }
-  }
-  {
-
-    if (!contacts) {
-      // Das 'contacts'-Array ist noch nicht geladen, daher keine Aktion ausführen
-      return;
-    }
-
-    if (dropdownAssign.classList.contains('d-none')) {
-      dropdownAssign.classList.remove('d-none');
-
-    } else {
-      dropdownAssign.classList.add('d-none');
-      assignOne.style.borderRadius = "10px";
-      assignOne.style.borderBottom = "";
-    }
-
-    if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
-      checkScrollbar();
-    }
-  }
-}
-
-/*function getCheckedContacts(id) {
-  let checkedContacts = [];
-  for (let i = 0; i < contacts.length; i++) {
-    let checkbox = document.getElementById(`checkbox${i}`);
-    if (checkbox.checked) {
-      // checkedContacts.push(contacts[i]);
-    }
-  }
-  return checkedContacts;
-}*/
 
 function selectAssign(event) {
   const assignOne = document.getElementById('assign-one');

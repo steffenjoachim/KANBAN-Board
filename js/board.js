@@ -482,6 +482,7 @@ function filterAndRenderTodos(todos, search, todoCard, progressCard, feedbackCar
 // -------------Edit Task popup---------------
 
 function openEditPopup(taskId) {
+
   console.log(taskId)
   let task = todos.find(t => t.id === Number(taskId));
 
@@ -573,6 +574,7 @@ function openEditPopup(taskId) {
       closeEditPopup();
     }
   });
+  
 }
 
 
@@ -754,43 +756,6 @@ if (selectedPriority.id === 'urgent') {
 
 
 
-
-
-// async function saveTask(id) {
-  
-//   //const checkedContacts = getCheckedContacts(id);
-//   //console.log(checkedContacts);
-//   //todos[id].assignedTo = checkedContacts;
-//  let tittle =  document.getElementById(`title-input${id}`).value;
-//  let description =  document.getElementById(`description-input${id}`).value;
-//  let date = document.getElementById(`date${id}`).value
-//  id = todos.find(t => t.id === Number(id));
-//  id.dueDate = date;
-//  id.description = description;
-//  id.title = tittle;
-
-//   // Verwende die ausgewählte Priorität
-//   let priorityImagePath;
-//   switch (selectedPriority) {
-//     case "urgent":
-//       priorityImagePath = "./asssets/img/inProgress-icon.svg";
-//       break;
-//     case "medium":
-//       priorityImagePath = "./asssets/img/Feedback-icon.svg";
-//       break;
-//     case "low":
-//       priorityImagePath = "./asssets/img/toDo-icon.svg";
-//       break;
-//     default:
-//       priorityImagePath = "./asssets/img/inProgress-icon.svg";
-//   }
-//   id.selectedPriorityImagePath = priorityImagePath; // Aktualisiere das Bildpfad-Feld mit der ausgewählten Priorität
-  
-//   updateHTML();
-//   await setItem("task", JSON.stringify(todos));
-//   closeEditPopup();
-// }
-
 async function saveTask(taskId) {
   // Hier kannst du die Logik implementieren, um die bearbeitete Aufgabe zu speichern
   const title = document.getElementById('title-input').value;
@@ -843,48 +808,3 @@ async function saveTask(taskId) {
   closePopup(); // Funktion zum Schließen des Popups aufrufen
 }
 
-// function resetImages() {
-//   const prioImages = document.querySelectorAll('.prio-img2');
-//   prioImages.forEach(img => {
-//     img.src = images[img.id].default;
-//   });
-// }
-
-// const imagesEdit = {
-//   "urgent": {
-//     "default": "./asssets/img/urgent-urgent.svg",
-//     "selected": "./asssets/img/urgent-toggle.svg"
-//   },
-//   "medium": {
-//     "default": "./asssets/img/medium-urgent.svg",
-//     "selected": "./asssets/img/medium-urgent-toggle.svg"
-//   },
-//   "low": {
-//     "default": "./asssets/img/low-urgent.svg",
-//     "selected": "./asssets/img/low-urgent-toggle.svg"
-//   }
-// };
-
-// let selectedPriority = ''; // Füge eine Variable hinzu, um die ausgewählte Priorität zu speichern
-
-// function selectImageEdit(event) {
-//   const selectedImage = event.target;
-//   const imageId = selectedImage.id;
-
-//   // Setze alle Bilder zurück und entferne die ausgewählte Klasse
-//   const prioImages = document.querySelectorAll('.prio-img2');
-//   prioImages.forEach(img => {
-//     img.src = imagesEdit[img.id].default;
-//     img.setAttribute("data-selected", "false");
-//     // Füge spezifische CSS-Stile hinzu oder entferne sie (falls gewünscht)
-//     img.style.border = "";
-//   });
-
-//   // Aktiviere das ausgewählte Bild
-//   selectedImage.src = imagesEdit[imageId].selected;
-//   selectedImage.setAttribute("data-selected", "true");
-//   // Füge spezifische CSS-Stile hinzu oder entferne sie (falls gewünscht)
-
-//   // Speichere die ausgewählte Priorität
-//   selectedPriority = imageId;
-// }
