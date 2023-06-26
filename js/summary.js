@@ -69,28 +69,8 @@ async function loadNewtasksboardd() {
     alert('Error')
   }
   displayTodoCount(boardTodos);
-  getNextDueDate(boardTodos);
+  displayEarliestDueDate(boardTodos)
 } 
-
-/**
- * This function is used to filter the next upcomming 'due date' out of the array boardTodos that has the priority "urgent" (which has the following img-path: ./asssets/img/inProgress-icon.svg)
- * 
- * @param {object} boardTodos - array including all tasks displayed in board.html
- */
-
-function getNextDueDate(boardTodos) {
-  const filteredArray = boardTodos.filter(todo => todo.selectedPriorityImagePath === './asssets/img/inProgress-icon.svg');
-
-  const sortedArray = filteredArray.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-
-  const nextDueDate = new Date(sortedArray[0].dueDate).toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric'
-  });
-
-  document.getElementById('summary-date').innerHTML = nextDueDate
-}
 
 /**
  * This function counts the number of tasks in different status categories 
@@ -130,7 +110,7 @@ function displayTodoCount(boardTodos) {
       }
 
     for (let i = 0; i < boardTodos.length; i++) {
-        if (boardTodos[i]['selectedPriorityImagePath'] == './asssets/img/inProgress-icon.svg') {
+        if (boardTodos[i]['prio']['id'] == 'urgent') {
             countPrio++;
         }
       }
@@ -148,4 +128,39 @@ function displayTodoCount(boardTodos) {
  */
   function redirectToBoard() {
     window.location.href = 'board.html';
+  }
+
+  /**
+   * This function is used to filter the next upcomming 'due date' out of the array boardTodos
+   * 
+   * @param {object} boardTodos - this is the array of the tasks 
+   *  
+   */
+  function displayEarliestDueDate(boardTodos) {
+    let earliestDate = Infinity;
+  
+    boardTodos.forEach(todo => {
+      const dueDateTimestamp = Date.parse(todo.dueDate);
+  
+      if (dueDateTimestamp < earliestDate) {
+        earliestDate = dueDateTimestamp;
+      }
+    });
+  
+    if (earliestDate !== Infinity) {
+      const earliestDateObj = new Date(earliestDate);
+      const earliestDateString = earliestDateObj.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+  
+      const summaryDateElement = document.getElementById("summary-date");
+      summaryDateElement.textContent = earliestDateString;
+  
+      return earliestDateObj;
+    } else {
+      console.log("Keine fälligen Termine vorhanden.");
+      return null;
+    }
   }
