@@ -361,7 +361,7 @@ h1 {
   }
   
   #dropdown-assign:not(.d-none) {
-  max-height: 240px;  
+  max-height: 250px;  
   border-bottom: 0.5px solid #d1d1d1;
   border-radius: 0 0 10px 10px;
   }
@@ -807,4 +807,50 @@ h1 {
 }
 .cancel-img {
   margin-left: 16px
+}
+
+/*--alert-popup----*/
+
+.popupContainer {
+  display: none;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  z-index: 10000;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+.popupBody {
+  padding: 5px;
+  background-color: #e90000;
+  border: 3px solid red;
+  border-radius: 10px;
+  width: 100%;
+  margin: 16px;
+}
+
+#popupDismiss {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#popupDismiss:hover,
+#popupDismiss:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#popupNote {
+  margin: 16px;
+  font-weight: 700;
+  color: white;
 }

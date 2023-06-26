@@ -498,6 +498,7 @@ function openPopup() {
     popupOverlay.classList.add('active');
     disableBackgroundScroll();
     checkScrollbar();
+    populateContactList();
 }
 
 function closePopup() {

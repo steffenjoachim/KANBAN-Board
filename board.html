@@ -78,6 +78,15 @@
   </div>
   <div class="main-div">
 
+
+    <!-- Form-alert -->
+    <div id="myCustomPopup" class="popupContainer">
+      <div class="popupBody">
+        <span id="popupDismiss">&times;</span>
+        <p id="popupNote"></p>
+      </div>
+    </div>
+
     <!------------------ Head Section ----------------------->
 
     <div class="head-span">Kanban Project Management Tool</div>
@@ -262,14 +271,7 @@
                   |
                   <img src="./asssets/img/checkmark.svg" id="check-icon" onclick="saveNewCategory()">
                 </div>
-                <!-- <div id="new-category-colors">
-                          <img class="hover-dot"  src="./asssets/img/dark-blue-dot.svg" alt="" onclick="selectColor(event)">
-                          <img class="hover-dot"  src="./asssets/img/green-dot.svg" alt="" onclick="selectColor(event)">
-                          <img class="hover-dot"  src="./asssets/img/light-blue-dot.svg" alt="" onclick="selectColor(event)">
-                          <img class="hover-dot"  src="./asssets/img/orange-dot.svg" alt="" onclick="selectColor(event)">
-                          <img class="hover-dot"  src="./asssets/img/pink-dot.svg" alt="" onclick="selectColor(event)">
-                          <img class="hover-dot"  src="./asssets/img/red-dot.svg" alt="" onclick="selectColor(event)">
-                        </div> -->
+                
                 <div id="new-category-colors">
                   <div class="circle dark-blue" onclick="selectColor('#2A3647')"></div>
                   <div class="circle green" onclick="selectColor('#00FF00')"></div>
@@ -376,29 +378,11 @@
 
   <div id="task-overlay-popup" class="task-overlay-popup">
     <div class="task-content-popup" id="taskContent">
-      
-
-     
-
-
        
     </div>
   </div> 
 
-  <!-- <div id="task-overlay-popup" class="task-overlay-popup">
-    <div id="task-content-popup" class="task-content-popup">
-      <h2>Edit Task</h2>
-      <form>
-        <label for="popup-title">Title:</label><br>
-        <input type="text" id="popup-title" name="popup-title"><br>
-        <label for="popup-description">Description:</label><br>
-        <input type="text" id="popup-description" name="popup-description"><br>
-        und so weiter für alle Felder, die du bearbeiten möchtest -->
-        <!-- <input type="submit" value="Submit">
-      </form>
-      <button onclick="closePopup()">Schließen</button>
-    </div>
-  </div> --> 
+  
 
 
 

@@ -243,6 +243,14 @@
         </div>
      </div>
 
+     <!-- Form-alert -->
+    <div id="myCustomPopup" class="popupContainer">
+        <div class="popupBody">
+          <span id="popupDismiss">&times;</span>
+          <p id="popupNote"></p>
+        </div>
+      </div>
+
     
 
      <!-------------------- Add Task popUp----------------------->
@@ -283,12 +291,14 @@
                         <div onclick="showNewCategoryFields()" id="selected-one" class="selected">
                           <span>New Category</span>
                         </div>
-                        <div onclick="selectOption(event)" id="selected-two" class="selected">
-                          <span>Sales</span><div class="circle green"></div>
-                        </div>
-                        <div onclick="selectOption(event)" id="selected-three" class="selected">
-                          <span>Backoffice</span><div class="circle dark-blue"></div>
-                        </div>
+                        <div onclick="selectOption(event, '#00FF00')" id="selected-two" class="selected">
+                            <span>Sales</span>
+                            <div class="circle green"></div>
+                          </div>
+                          <div onclick="selectOption(event, '#2A3647')" id="selected-three" class="selected">
+                            <span>Backoffice</span>
+                            <div class="circle dark-blue"></div>
+                          </div>
                       </div>
                   
                       <div id="new-category-fields" class="d-none">
@@ -298,14 +308,7 @@
                           |
                           <img src="./asssets/img/checkmark.svg" id="check-icon" onclick="saveNewCategory()">
                         </div>
-                        <!-- <div id="new-category-colors">
-                          <img class="hover-dot"  src="./asssets/img/dark-blue-dot.svg" alt="" onclick="selectColor(event)">
-                          <img class="hover-dot"  src="./asssets/img/green-dot.svg" alt="" onclick="selectColor(event)">
-                          <img class="hover-dot"  src="./asssets/img/light-blue-dot.svg" alt="" onclick="selectColor(event)">
-                          <img class="hover-dot"  src="./asssets/img/orange-dot.svg" alt="" onclick="selectColor(event)">
-                          <img class="hover-dot"  src="./asssets/img/pink-dot.svg" alt="" onclick="selectColor(event)">
-                          <img class="hover-dot"  src="./asssets/img/red-dot.svg" alt="" onclick="selectColor(event)">
-                        </div> -->
+                        
                         <div id="new-category-colors">
                           <div class="circle dark-blue" onclick="selectColor('#2A3647')"></div>
                           <div class="circle green" onclick="selectColor('#00FF00')"></div>
@@ -362,8 +365,7 @@
                         <img id="low" class="prio-img" src="./asssets/img/low-urgent.svg" alt="">
                       </div>
             
-                      <!-- <label for="subTask">Subtasks</label>
-                      <input type="text" id="subTask" class="subtask-input all-input" placeholder="Add new subtask" > -->
+                      
             
             
             
