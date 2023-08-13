@@ -110,12 +110,17 @@ function collectSubtasks() {
   subtaskElements.forEach((subtaskElement, index) => {
     const checkbox = subtaskElement.querySelector(".checkbox-subtask");
     const label = subtaskElement.querySelector(".subtask-name");
-    const subtaskObj = {
-      id: index,
-      name: label.textContent,
-      checked: checkbox.checked
-    };
-    subtasks.push(subtaskObj);
+
+    if (label && label.textContent.trim() !== "") {
+        const subtaskObj = {
+            id: index,
+            name: label.textContent,
+            checked: checkbox ? checkbox.checked : false  // Hier wurde auch eine Überprüfung hinzugefügt, falls das "checkbox"-Element nicht existiert
+        };
+        subtasks.push(subtaskObj);
+    } else {
+        console.warn("Subtask ohne Namen oder ohne .subtask-name Element bei Index gefunden:", index);
+    }
   });
   return subtasks;
 }

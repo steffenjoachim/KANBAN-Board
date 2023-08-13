@@ -449,6 +449,10 @@ body {
     font-weight: 800;
 }
 
+.close-task {
+    cursor: pointer;
+}
+
 /*---------------*/
 
 @media (max-width: 900px) {
