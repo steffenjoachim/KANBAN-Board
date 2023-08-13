@@ -1,11 +1,9 @@
 /**
  * This function is used to create the necessary html block for the edit contact page 
- * 
  * @param {number} i - the index of the contact to be editted.
  * @param {object} contact - the Jason array that contains the data of the contact to be editted.
  * @returns - the html block for the edit contact page.
  */
-
 function createEditContactPageHtml(i, contact){
     return `
     <div class="edit-contact-frame">
@@ -16,7 +14,6 @@ function createEditContactPageHtml(i, contact){
                 <img class="join-logo-white d-none" src="./asssets/img/join-logo-white.svg" alt="Join logo">
                 <h1 class="white">Edit Contact</h1>
                 <hr id="hr-blue-small-left" class="hr-blue-small-left">
-
             </div>
             <div class="edit-contact-bottom">
                 <span id="logo-bigger${i}" class="contact-logo-bigger ${contact['icon-color']}">TW</span>
@@ -43,19 +40,15 @@ function createEditContactPageHtml(i, contact){
                         </button>
                  </form>
             </div>
-    
-    `
+    `;
 }
-
 
 /**
  * This function is used to create the necessary html block to display the contact details in the mobile version.
- * 
  * @param {number} i - the index of the current contact. 
  * @param {object} contact - is the JASON with the data of the current contact.
  * @returns @returns - the html block to be added.
  */
-
 function createContactDetailsMobileHtml(i, contact){
     return `
     <div id="big-contact-frame" class="big-contact-frame">
@@ -110,18 +103,15 @@ function createContactDetailsMobileHtml(i, contact){
                 </div>
             </div>
         </div>
-    `
+    `;
 }
 
-
-// /**
-//  * This function is used to create the necessary html block to display the contact details in the desktop version. 
-//  * 
-//  * @param {number} i -the index of the current contact.
-//  * @param {object} contact - the JASON with the data of the current contact.
-//  * @returns - the html block to be added.
-//  */
-
+/**
+* This function is used to create the necessary html block to display the contact details in the desktop version. 
+* @param {number} i -the index of the current contact.
+* @param {object} contact - the JASON with the data of the current contact.
+* @returns - the html block to be added.
+*/
 function createContactDetailsDesktopHtml(i, contact){
     return `
     <div class="name-add-task-logo">
@@ -148,20 +138,16 @@ function createContactDetailsDesktopHtml(i, contact){
                             <span class="mobile-head">Mobil</span>
                             <span id="mobile-number${i}" class="mobile-number-blue">+49 1111 111 11 1</span>
                         </div>    
-    `
+    `;
 }
-
 
 /**
  * This This function is used to insert a html block with h2 heading. This is necessary if the first letter of the initials of the previous contact does not correspond to that of the current contact.
- * 
  * @param {number} i - the in Index of the current contact.
  * @param {object} contact - the JASON with the data of the current contact.
  * @returns - the html block to be added
  */
-
 function returnHtmlWithH2(i, contact){
-
     return `
     <div class="letter-frame">
         <h2 id="letter${i}"></h2>
@@ -174,20 +160,16 @@ function returnHtmlWithH2(i, contact){
             </div>
         </div>
     </div>
-    `
+    `;
     }
-
 
 /**
  * This function is used to insert a html block without h2 heading. This is necessary if the first letter of the initials of the previous contact corresponds to that of the current contact.
- * 
  * @param {*} i - the in Index of the current contact.
  * @param {*} contact - the JASON with the data of the current contact.
  * @returns - the html block to be added.
  */
-
     function returnHtmlWithoutH2(i, contact){
-
         return `
         <div class="letter-frame">
             <div onclick="openContactDetails(${i})" class="single-contact-frame">
@@ -198,5 +180,5 @@ function returnHtmlWithH2(i, contact){
                 </div>
             </div>
         </div>
-        `
+        `;
         }

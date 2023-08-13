@@ -75,17 +75,12 @@
     </div>
   </div>
   <div class="main-div">
-
-    <!-- Form-alert -->
     <div id="myCustomPopup" class="popupContainer">
       <div class="popupBody">
         <span id="popupDismiss">&times;</span>
         <p id="popupNote"></p>
       </div>
     </div>
-
-    <!------------------ Head Section ----------------------->
-
     <div class="head-span">Kanban Project Management Tool</div>
     <div class="title-section">
       <h1 class="title">Board</h1>
@@ -108,11 +103,7 @@
       <img class="search-bar-line" src="./asssets/img/searchBar line.svg" alt="" />
       <img class="search-icon" src="./asssets/img/search-icon.svg" alt="" />
     </div>
-
-    <!------------------ Main Section ----------------------->
-
     <div class="task-content">
-      <!----------- To do Section ---------------->
       <div class="task-list">
         <div class="card-head">
           <div class="head-title">To do</div>
@@ -125,8 +116,6 @@
           ondragleave="removeHighlight('todo-card')" ondragover="allowDrop(event); highlight('todo-card')">
         </div>
       </div>
-      <!----------- In progress Section ---------------->
-
       <div class="task-list">
         <div class="card-head">
           <div class="head-title">In progress</div>
@@ -153,8 +142,6 @@
           </div>
         </div>
       </div>
-      <!----------- Awaiting Feedback Section ---------------->
-
       <div class="task-list">
         <div class="card-head">
           <div class="head-title">Awaiting Feedback</div>
@@ -178,8 +165,6 @@
           </div>
         </div>
       </div>
-      <!----------- Done Section ---------------->
-
       <div class="task-list">
         <div class="card-head">
           <div class="head-title">Done</div>
@@ -212,8 +197,6 @@
       </div>
     </div>
   </div>
-
-  <!-------------------- Add Task popUp----------------------->
   <div class="popup-overlay">
     <div class="popup-content" id="popupContent">
       <header class="header-popup">
@@ -225,16 +208,13 @@
           <h1>Add Task</h1>
           <img class="close-task" src="./asssets/img/close-x-dark.svg" alt="" onclick="closePopup()">
         </div>
-
         <div class="inner-wrap">
           <section class="section-one">
             <form>
               <label for="title-input">Title</label>
               <input class="all-input" id="title-input" type="text" name="title" required />
-
               <label for="description-input">Description</label>
               <textarea id="description-input" name="description" required></textarea>
-
               <label for="Category">Category</label>
               <div onclick="selectTaskCategory()" id="select-one" class="select-one">
                 <div class="select-one-div">
@@ -243,10 +223,7 @@
                 </div>
                 <img src="./asssets/img/open.svg" alt="" />
               </div>
-
-              <!-- Hinzufügen des neuen Elements für das ausgewählte Bild -->
               <div id="selected-image"></div>
-
               <div id="dropdown" class="d-none">
                 <div onclick="showNewCategoryFields()" id="selected-one" class="selected">
                   <span>New Category</span>
@@ -260,7 +237,6 @@
                   <div class="circle dark-blue"></div>
                 </div>
               </div>
-
               <div id="new-category-fields" class="d-none">
                 <input id="new-category-name" type="text" placeholder="Category name">
                 <div class="icons-wrapper-two">
@@ -268,7 +244,6 @@
                   |
                   <img src="./asssets/img/checkmark.svg" id="check-icon" onclick="saveNewCategory()">
                 </div>
-                
                 <div id="new-category-colors">
                   <div class="circle dark-blue" onclick="selectColor('#2A3647')"></div>
                   <div class="circle green" onclick="selectColor('#00FF00')"></div>
@@ -278,22 +253,18 @@
                   <div class="circle red" onclick="selectColor('#FF0000')"></div>
                 </div>
               </div>
-
               <label for="Assigned-to">Assigned to</label>
               <div onclick="selectAssignedTo()" id="assign-one" class="select-one">
                 <span>Select assigned person</span>
                 <img src="./add_task_img/open.svg" alt="" />
               </div>
-
               <div id="dropdown-assign" class="d-none">
                 <div onclick="showInviteContactFields()" id="assigned-three" class="selected">
                   <span>Invite new contact</span>
                   <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
                 </div>
               </div>
-
               <div id="selected-contact"></div>
-
               <div id="new-contact-fields" class="d-none">
                 <input type="text" id="new-contact-email" placeholder="Enter email address">
                 <div class="icons-wrapper-three">
@@ -304,23 +275,19 @@
               </div>
             </form>
           </section>
-
           <div class="vertical-line"></div>
-
           <section class="section-two">
             <form>
               <label for="date-input">Due Date</label>
               <div class="date-input-container">
                 <input class="all-input" type="date" placeholder="dd/mm/yyyy" />
               </div>
-
               <label for="prio-buttons">Prio</label>
               <div id="prio-buttons">
                 <img id="urgent" class="prio-img" src="./asssets/img/urgent-urgent.svg" alt="">
                 <img id="medium" class="prio-img" src="./asssets/img/medium-urgent.svg" alt="">
                 <img id="low" class="prio-img" src="./asssets/img/low-urgent.svg" alt="">
               </div>
-
               <label for="subTask">Subtasks</label>
               <div class="subtask-input-wrapper" onmouseover="toggleIcons('block')" onmouseout="toggleIcons('none')">
                 <input type="text" id="subTask" class="subtask-input all-input" placeholder="Add new subtask">
@@ -331,19 +298,15 @@
                   <img src="./asssets/img/checkmark.svg" id="check-icon" onclick="createSubtask()">
                 </div>
               </div>
-
-              <div id="subtasks"> <!-- Dieses Element wird als Container für die neuen Subtasks verwendet -->
+              <div id="subtasks">
                 <div class="subtask">
-  
                 </div>
               </div>
-
               <div class="btn-div">
                 <div class="cancel-btn-desktop">
                   <span>Cancel</span>
                   <img class="cancel-img" src="./asssets/img/cancel-svg.svg" alt="">
                 </div>
-
                 <div class="create-btn-desktop">
                   <span>Create task</span>
                   <img class="create-correctly" src="./asssets/img/hook-correctly.png" alt="">
@@ -355,15 +318,10 @@
       </div>
     </div>
   </div>
-
-  <!-- ----------Task overlay------------ -->
-
   <div id="task-overlay-popup" class="task-overlay-popup">
     <div class="task-content-popup" id="taskContent">
     </div>
-  </div> 
-
-  <!-- <footer w3-footer-include-html="/asssets/templates/footer.html"></footer> -->
+  </div>
   <footer>
     <div id="summary-div" class="icon-container summary">
       <a href="./summary.html"><img class="icon" src="./asssets/img/Summary_icon_grey.svg" alt="" /></a>
@@ -382,14 +340,13 @@
       <a href="./contacts.html"><span>Contacts</span></a>
     </div>
   </footer>
-  <!-- createTask-animation -->
   <div class="task-added-container">
     <div id="task-added">
       <span>Task added to board</span>
       <img src="./add_task_img/gitter.svg" alt="">
     </div>
   </div>
-
   <script src="./js/add_task.js"></script>
 </body>
+
 </html>

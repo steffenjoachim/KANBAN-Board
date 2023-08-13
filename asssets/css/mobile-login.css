@@ -594,9 +594,29 @@ form {
             margin-top: -20px;
         }
 
-    .sign-up-container {
-        margin-top: 60px;
-    }
+        .sign-up-container {
+            margin-top: 60px;
+        }
+
+        .sign-up-container div {
+            z-index: 99;
+        }
+
+
+        .sign-up-container img {
+            transition: transform 0.125s ease-in-out;
+            animation: slide-in 0.3s;
+        }
+
+        @keyframes slide-in {
+            0% {
+                transform: translateY(50vh);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
 
         .fedback-popup-container {
             width: 100%;
@@ -610,7 +630,7 @@ form {
             top: -60px;
         }
 
-    .margin{
-        margin-top: 16px;
+        .margin {
+            margin-top: 16px;
+        }
     }
-}
