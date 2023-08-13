@@ -23,6 +23,25 @@
     cursor: pointer;
 }
 
+.new-contact-mobile-container{
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+
+  height: 64px;
+  background: #2A3647;
+  border: 1px solid #2A3647;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 100%;
+  cursor: pointer;
+  position: fixed;
+  bottom: -132px;
+  right: -50px;
+}
+
 .contact-information-frame{
     display: flex;
     align-items: center;
