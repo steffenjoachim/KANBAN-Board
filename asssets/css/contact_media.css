@@ -1,3 +1,18 @@
+@media(min-width: 350px){
+    .new-contact-mobile-container{
+        bottom: -190px !important;
+        right: 0 !important;
+      }
+}
+
+@media(min-width: 350px){
+    .new-contact-mobile-container{
+        bottom: 48px !important;
+        right: 0 !important;
+      }
+}
+
+
 @media(min-width: 430px){
 
     .contact-logo-big{
@@ -26,6 +41,7 @@
     .content-big-contact {
         bottom: 0;
         left: 0;
+        z-index: -9;
     }
 }
 
@@ -58,7 +74,7 @@
 
     .contact-frame {
         overflow-y: scroll;
-        height: 750px;
+        height: 950px;
         margin-top: -57px;
       }
       
@@ -332,6 +348,16 @@
         min-width: calc(100% - 353) !important;
     }
 
+    .big-contact-frame-header {
+        flex-direction: column !important;
+    }
+
+}
+
+@media(min-width: 1150px){
+
+    .big-contact-frame-header {
+        flex-direction: row !important;
 }
 
 @media(min-width: 1440px){
