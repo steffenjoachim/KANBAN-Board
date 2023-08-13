@@ -1,3 +1,6 @@
+let todos = [];
+let currentDraggedElement;
+
 /**
  * This Function load the tasks from the remote Storage then executes updateHTML to render
  */
@@ -120,10 +123,6 @@ if (window.location.pathname.includes('board.html')) {
     }
   }
 }
-
-
-let todos = [];
-let currentDraggedElement;
 
 /**
  * This function first filter the array (todos) by status, then render each list  
@@ -547,8 +546,6 @@ function openEditPopup(taskId) {
 
   // Generiere HTML für die Schließen und Bearbeiten Buttons
   popupContentHtml += `
-    
-
     <div class="btns-responsive">
       <div></div>
       <div class="popUp-btns secondTypebtns">
@@ -560,7 +557,6 @@ function openEditPopup(taskId) {
       </div>
       </div>
     </div>
-    
   `;
 
   // Zeige das Popup
@@ -576,10 +572,7 @@ function openEditPopup(taskId) {
       closeEditPopup();
     }
   });
-  
 }
-
-
 
 function closeEditPopup() {
   // Verstecke das Popup
@@ -610,21 +603,15 @@ async function deleteTask(id) {
   }
 }
 
-
 function openDropDownContacts(taskId) {
   let contactsContainer = document.getElementById('contacts-container');
   contactsContainer.innerHTML = '';
   if (contactsContainer.style.display === 'flex') {
     contactsContainer.style.display = 'none';
-
   } else {
     contactsContainer.style.display = 'flex';
   }
-
 }
-
-
-
 
 function editingTask(taskId) {
   let task = todos.find(t => t.id === Number(taskId));
@@ -639,7 +626,6 @@ function editingTask(taskId) {
   // Verstecke es
   createButton.style.display = 'none';
 
-  
   // Einfügen des Codes für Priorität, Zuweisung und Kategorie
   // Title
   document.getElementById('title-input').value = task.title;

@@ -22,8 +22,6 @@
   <script src="./js/board.js"></script>
   <script src="./js/add_task_popup.js"></script>
   <script src="./js/header_include.js"></script>
-
-
   <title>Board</title>
 </head>
 
@@ -77,7 +75,6 @@
     </div>
   </div>
   <div class="main-div">
-
 
     <!-- Form-alert -->
     <div id="myCustomPopup" class="popupContainer">
@@ -305,8 +302,6 @@
                   <img src="./asssets/img/checkmark.svg" id="check-icon2" onclick="saveInviteContact()">
                 </div>
               </div>
-
-
             </form>
           </section>
 
@@ -319,8 +314,6 @@
                 <input class="all-input" type="date" placeholder="dd/mm/yyyy" />
               </div>
 
-
-
               <label for="prio-buttons">Prio</label>
               <div id="prio-buttons">
                 <img id="urgent" class="prio-img" src="./asssets/img/urgent-urgent.svg" alt="">
@@ -328,15 +321,10 @@
                 <img id="low" class="prio-img" src="./asssets/img/low-urgent.svg" alt="">
               </div>
 
-              <!-- <label for="subTask">Subtasks</label>
-                      <input type="text" id="subTask" class="subtask-input all-input" placeholder="Add new subtask" > -->
-
-
-
               <label for="subTask">Subtasks</label>
               <div class="subtask-input-wrapper" onmouseover="toggleIcons('block')" onmouseout="toggleIcons('none')">
                 <input type="text" id="subTask" class="subtask-input all-input" placeholder="Add new subtask">
-                <img src="../../asssets/img/plus-black.svg" class="plus-icon">
+                <img src="./asssets/img/plus-black.svg" class="plus-icon">
                 <div class="icons-wrapper">
                   <img src="./asssets/img/cancel-svg.svg" id="cross-icon" onclick="clearInput()">
                   |
@@ -350,7 +338,6 @@
                 </div>
               </div>
 
-
               <div class="btn-div">
                 <div class="cancel-btn-desktop">
                   <span>Cancel</span>
@@ -362,28 +349,19 @@
                   <img class="create-correctly" src="./asssets/img/hook-correctly.png" alt="">
                 </div>
               </div>
-
             </form>
           </section>
         </div>
       </div>
-      <!-- Inhalt deines Popups -->
     </div>
-
   </div>
-
 
   <!-- ----------Task overlay------------ -->
 
   <div id="task-overlay-popup" class="task-overlay-popup">
     <div class="task-content-popup" id="taskContent">
-       
     </div>
   </div> 
-
-  
-
-
 
   <!-- <footer w3-footer-include-html="/asssets/templates/footer.html"></footer> -->
   <footer>
@@ -413,8 +391,5 @@
   </div>
 
   <script src="./js/add_task.js"></script>
-
-
 </body>
-
 </html>
