@@ -1,5 +1,5 @@
 * {
-box-sizing:unset;
+    box-sizing: unset;
 }
 
 .dis-none {
@@ -56,7 +56,6 @@ body {
 }
 
 .second-section {
-    /* width: 100%; */
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -94,7 +93,7 @@ body {
     margin-right: 123px
 }
 
-.welcome-name{
+.welcome-name {
     font-weight: 700;
     font-size: 3.4vw;
     color: #29ABE2;
@@ -139,7 +138,7 @@ body {
     cursor: pointer;
 }
 
-.task-status-description { 
+.task-status-description {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -165,7 +164,7 @@ body {
     font-weight: 600;
     font-size: 47px;
     margin-top: 10px;
-    
+
 }
 
 .summary-date {
@@ -180,6 +179,25 @@ body {
 
 .boxshadow {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 390px) {
+    .main-div {
+        padding-top: 70px;
+    }
+
+    .head-span {
+        margin-bottom: 10px;
+    }
+
+    .head-span2 {
+        margin-top: 10px;
+    }
+
+    .underHead-line {
+        margin-bottom: 16px;
+        margin-top: -3px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -201,13 +219,11 @@ body {
         background-color: #2A3647;
         color: #ffffff;
     }
-
-    
 }
 
 @media (min-width: 1024px) {
     .count-task div {
-       height: 170px;
+        height: 170px;
     }
 
     .main-div {
@@ -223,8 +239,8 @@ body {
     }
 
     .s-number {
-       font-weight: 600;
-       font-size: 64px;
+        font-weight: 600;
+        font-size: 64px;
     }
 
     .counter-description {
@@ -269,7 +285,7 @@ body {
         font-size: 27px;
         margin-left: -39px;
     }
-    
+
 
     .second-section {
         margin-top: 87px;

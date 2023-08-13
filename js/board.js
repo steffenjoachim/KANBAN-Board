@@ -149,6 +149,64 @@ function updateHTML() {
   checkEmptyListDone();
 }
 
+////////////// Check if the lists are empty //////////////
+
+/**
+ * This function inspect the list todo-card, if its empty the empty-card will be shown if not the empty-card will be hidden
+ */
+function checkEmptyList() {
+  var todoCard = document.getElementById("todo-card");
+  var emptyCard = document.getElementsByClassName("empty-card")[0];
+
+  if (todoCard.children.length === 0) {
+    emptyCard.style.display = "flex";
+  } else {
+    emptyCard.style.display = "none";
+  }
+}
+
+/**
+ * This function inspect the list progress-card, if its empty the empty-card will be shown if not the empty-card will be hidden
+ */
+function checkEmptyListProgress() {
+  var progressCard = document.getElementById("progress-card");
+  var emptyCard = document.getElementById("empty-card-progress");
+
+  if (progressCard.children.length === 0) {
+    emptyCard.style.display = "flex";
+  } else {
+    emptyCard.style.display = "none";
+  }
+}
+
+/**
+ * This function inspect the list Feedback-card, if its empty the empty-card will be shown if not the empty-card will be hidden
+ */
+function checkEmptyListFeedback() {
+  var feedbackCard = document.getElementById("Feedback-card");
+  var emptyCard = document.getElementById("empty-card-feedback");
+
+  if (feedbackCard.children.length === 0) {
+    emptyCard.style.display = "flex";
+  } else {
+    emptyCard.style.display = "none";
+  }
+}
+
+/**
+ * This function inspect the list done-card, if its empty the empty-card will be shown if not the empty-card will be hidden
+ */
+function checkEmptyListDone() {
+  var doneCard = document.getElementById("done-card");
+  var emptyCard = document.getElementById("empty-card-done");
+
+  if (doneCard.children.length === 0) {
+    emptyCard.style.display = "flex";
+  } else {
+    emptyCard.style.display = "none";
+  }
+}
+
 /**
  * This function generate the task cards
  * @param {object} element - This is the task with its index in the list
@@ -457,6 +515,8 @@ function filterAndRenderTodos(
     }
   }
 }
+
+// -------------Edit Task popup---------------
 
 function openEditPopup(taskId) {
   console.log(taskId);
