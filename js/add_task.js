@@ -119,9 +119,8 @@ async function createTask() {
 }
 
 /**
- * Collects all subtasks from the UI and return them as an array.
- *
- * @return {Object[]} An array of subtask objects.
+ * Collects subtasks from the current DOM elements.
+ * @returns {Array} An array of subtask objects, each object contains the properties: id, name, and checked.
  */
 function collectSubtasks() {
   let subtasks = [];

@@ -504,126 +504,41 @@ function filterAndRenderTodos(
   }
 }
 
-// überarbeitete function edit task
-
 // -------------Edit Task popup---------------
 
-// function openEditPopup(taskId) {
-//   console.log(taskId);
-//   let task = todos.find((t) => t.id === Number(taskId));
-
-//   if (!task) {
-//     console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
-//     return;
-//   }
-
-//   function getImagePath(priorityObject) {
-//     switch (priorityObject.path) {
-//       case "./asssets/img/inProgress-icon.svg":
-//         return "./asssets/img/urgent-edit-task.svg";
-//       case "./asssets/img/Feedback-icon.svg":
-//         return "./asssets/img/medium-edit-task.svg";
-//       case "./asssets/img/toDo-icon.svg":
-//         return "./asssets/img/low-edit-task.svg";
-//       default:
-//         return priorityObject.path;
-//     }
-//   }
-
-//   // Generiere den HTML-Inhalt
-//   let popupContentHtml = `
-//   <div class="edit-wrap">
-//     <div class="popUp-head-task">
-//       <div class="task-category-one" style="background-color:${task.color};">${
-//     task.category
-//   }</div>
-//       <img onclick="closeEditPopup()" class="close-popUp-xx display-none" src="./asssets/img/popUp-close.svg" alt="" />
-//     </div>
-
-//     <span class="popUp-titled">${task.title}</span>
-
-//     <p class="popUp-description">${task.description}</p>
-
-//     <div class="popUp-date">
-//       <span class="bolder">Due date:</span>
-//       <span>${task.dueDate}</span>
-//     </div>
-
-//     <div class="popUp-prio">
-//     <span class="bolder">Priority:</span>
-//     <div class="popUp-prio-btn">
-//       <img src="${getImagePath(task.prio)}" alt="" />
-//     </div>
-//   </div>
-
-//   `;
-
-//   // Generiere HTML für "Assigned To" Abschnitt
-//   popupContentHtml += `<span class="bolder assignedTo-divE">Assigned To:</span>`;
-//   task.assignedTo.forEach((assignedPerson) => {
-//     popupContentHtml += `
-//       <div class="assignedTo-divE">
-//         <div class="assignedTo-iconE ${assignedPerson.iconColor}" ;">${assignedPerson.initials}</div>
-//         <div class="assignedTo-name">${assignedPerson.name}</div>
-//       </div>
-//     `;
-//   });
-
-//   // Generiere HTML für die Schließen und Bearbeiten Buttons
-//   popupContentHtml += `
-
-//     <div class="btns-responsive">
-//       <div></div>
-//       <div class="popUp-btns secondTypebtns">
-//       <div id="popUpDelete" class="popUp-delete-responsive" data-id="${taskId}">
-//         <img src="./asssets/img/popUpDelete.svg" alt="" />
-//       </div>
-//       <div class="popUp-edit-responsive" onclick="editingTask(${taskId})">
-//         <img src="./asssets/img/popUpEditPen.svg" alt="" />
-//       </div>
-//       </div>
-//     </div>
-
-//   `;
-
-//   // Zeige das Popup
-//   document.querySelector(".task-overlay-popup").classList.add("active");
-//   // Füge den Inhalt zum Popup hinzu
-//   document.getElementById("taskContent").innerHTML = popupContentHtml;
-//   // Füge den Event Listener hinzu
-//   document
-//     .getElementById("taskContent")
-//     .addEventListener("click", function (event) {
-//       if (event.target.closest("#popUpDelete")) {
-//         const taskId = event.target.closest("#popUpDelete").dataset.id;
-//         console.log(`Lösche Aufgabe mit ID: ${taskId}`);
-//         deleteTask(taskId);
-//         closeEditPopup();
-//       }
-//     });
-// }
+/**
+ * Opens the task edit popup.
+ * @param {number} taskId - ID of the task to be edited.
+ */
 function openEditPopup(taskId) {
-  console.log(taskId);
   const task = getTaskById(taskId);
-
   if (!task) {
     console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
     return;
   }
-
   const popupContentHtml = generatePopupContentHtml(task, taskId);
   displayPopupContent(popupContentHtml);
   setupPopupListeners(taskId);
 }
 
+/**
+ * Retrieves a task by its ID.
+ * @param {number} taskId - ID of the task to retrieve.
+ * @returns {Object} The task object.
+ */
 function getTaskById(taskId) {
   return todos.find((t) => t.id === Number(taskId));
 }
 
+/**
+ * Generates the HTML content for the task popup.
+ * @param {Object} task - Task data.
+ * @param {number} taskId - ID of the task.
+ * @returns {string} HTML string for the task popup.
+ */
 function generatePopupContentHtml(task, taskId) {
   const imagePath = getImagePath(task.prio);
   const assignedPersonsHtml = generateAssignedPersonsHtml(task.assignedTo);
-
   return `
     <div class="edit-wrap">
       <div class="popUp-head-task">
@@ -657,6 +572,11 @@ function generatePopupContentHtml(task, taskId) {
     `;
 }
 
+/**
+ * Returns the image path based on the priority object.
+ * @param {Object} priorityObject - Priority data object.
+ * @returns {string} Path to the corresponding image.
+ */
 function getImagePath(priorityObject) {
   switch (priorityObject.path) {
     case "./asssets/img/inProgress-icon.svg":
@@ -670,6 +590,11 @@ function getImagePath(priorityObject) {
   }
 }
 
+/**
+ * Generates HTML content for assigned persons.
+ * @param {Array} assignedPersons - Array of persons assigned to a task.
+ * @returns {string} HTML string for the assigned persons.
+ */
 function generateAssignedPersonsHtml(assignedPersons) {
   return assignedPersons
     .map(
@@ -683,50 +608,56 @@ function generateAssignedPersonsHtml(assignedPersons) {
     .join("");
 }
 
+/**
+ * Displays the provided popup content.
+ * @param {string} content - HTML content to display in the popup.
+ */
 function displayPopupContent(content) {
   document.querySelector(".task-overlay-popup").classList.add("active");
   document.getElementById("taskContent").innerHTML = content;
 }
 
+/**
+ * Sets up event listeners for the task popup.
+ * @param {number} taskId - ID of the task.
+ */
 function setupPopupListeners(taskId) {
   document.getElementById("taskContent").addEventListener("click", (event) => {
     if (event.target.closest("#popUpDelete")) {
       const taskId = event.target.closest("#popUpDelete").dataset.id;
-      console.log(`Lösche Aufgabe mit ID: ${taskId}`);
       deleteTask(taskId);
       closeEditPopup();
     }
   });
 }
+
+/**
+ * Closes the task edit popup.
+ */
 function closeEditPopup() {
-  // Verstecke das Popup
   document.querySelector(".task-overlay-popup").classList.remove("active");
-  // Leere den Inhalt des Popups
   document.getElementById("taskContent").innerHTML = "";
 }
 
+/**
+ * Deletes a task by its ID.
+ * @param {number} id - ID of the task to be deleted.
+ */
 async function deleteTask(id) {
-  console.log(`Lösche Aufgabe mit ID: ${id}`);
-  // Convert id to number
   id = Number(id);
-
-  // Finden Sie den Index des zu löschenden Auftrags im todos Array
   const taskIndex = todos.findIndex((task) => task.id === id);
-
-  // Überprüfen, ob der Auftrag gefunden wurde
   if (taskIndex !== -1) {
-    // Entfernen Sie den Auftrag aus dem todos Array
     todos.splice(taskIndex, 1);
-
-    // Speichern Sie das aktualisierte todos Array im Speicher
     await setItem("task", JSON.stringify(todos));
-
-    // Aktualisieren Sie die Darstellung
     updateHTML();
     closeEditPopup();
   }
 }
 
+/**
+ * Toggles the display of the dropdown contacts.
+ * @param {number} taskId - ID of the task.
+ */
 function openDropDownContacts(taskId) {
   let contactsContainer = document.getElementById("contacts-container");
   contactsContainer.innerHTML = "";
@@ -737,98 +668,130 @@ function openDropDownContacts(taskId) {
   }
 }
 
+//editing task
+
+/**
+ * Edits an existing task based on its ID.
+ * @param {number} taskId - The ID of the task to be edited.
+ */
 function editingTask(taskId) {
-  let task = todos.find((t) => t.id === Number(taskId));
+  const task = todos.find((t) => t.id === Number(taskId));
 
   if (!task) {
     console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
     return;
   }
+
   closeEditPopup();
   openPopup(taskId);
-  const createButton = document.getElementById("create-button");
-  // Verstecke es
-  createButton.style.display = "none";
+  populateTaskDetails(task);
+  populateAssignedPersons(task.assignedTo);
+  setTaskPriority(task.prio);
+  populateSubtasks(task.subtasks);
+  setupButtons(taskId);
+}
 
-  // Einfügen des Codes für Priorität, Zuweisung und Kategorie
-  // Title
+/**
+ * Populates the task details into the corresponding input elements.
+ * @param {Object} task - The task whose details are to be displayed.
+ */
+function populateTaskDetails(task) {
   document.getElementById("title-input").value = task.title;
-
-  // Description
   document.getElementById("description-input").value = task.description;
 
-  // Category
   const categoryElement = document.getElementById("select-one");
   categoryElement.querySelector("span").textContent = task.category;
-  const circleElement = categoryElement.querySelector(".circle");
-  circleElement.style.backgroundColor = task.color;
+  categoryElement.querySelector(".circle").style.backgroundColor = task.color;
 
-  // Due Date
   document.querySelector(".date-input-container input").value = task.dueDate;
+  document.getElementById("create-button").style.display = "none";
+}
 
-  // Assigned To
+/**
+ * Populates the assigned persons into the corresponding input elements.
+ * @param {Array} assignedPersons - The list of persons the task is assigned to.
+ */
+function populateAssignedPersons(assignedPersons) {
   const assignedToElement = document.getElementById("dropdown-assign");
   const checkboxes = assignedToElement.querySelectorAll(
     'input[type="checkbox"]'
   );
-  const selectedContactDiv = document.getElementById("selected-contact");
-
-  // Deaktiviere alle Checkboxen
   checkboxes.forEach((checkbox) => {
     checkbox.checked = false;
   });
 
-  // Füge die zugewiesenen Personen hinzu und aktiviere ihre Checkboxen
-  task.assignedTo.forEach((person) => {
-    const selectedPerson = person.name;
-
-    // Suche nach dem ausgewählten Kontakt in Ihrem Array
-    let selectedContact = contacts.find(
-      (contact) => contact.name === selectedPerson
-    );
-
-    if (selectedContact) {
-      // Erstellung des divs für den ausgewählten Kontakt
-      let contactDiv = document.createElement("div");
-      contactDiv.classList.add(selectedContact["icon-color"]);
-      contactDiv.style.borderRadius = "50%";
-      contactDiv.style.width = "50px";
-      contactDiv.style.height = "50px";
-      contactDiv.style.display = "flex";
-      contactDiv.style.justifyContent = "center";
-      contactDiv.style.alignItems = "center";
-      contactDiv.style.color = "white";
-      contactDiv.textContent = selectedContact.initials;
-
-      // Hinzufügen des erstellten divs in die 'selected-contact'-div
-      selectedContactDiv.appendChild(contactDiv);
-
-      // Aktiviere die entsprechende Checkbox
-      const checkbox = assignedToElement.querySelector(
-        `input[type="checkbox"][id="checkbox-${selectedPerson.toLowerCase()}"]`
-      );
-      if (checkbox) {
-        checkbox.checked = true;
-      }
-    }
+  const selectedContactDiv = document.getElementById("selected-contact");
+  assignedPersons.forEach((person) => {
+    addAssignedPersonToUI(selectedContactDiv, person.name);
   });
+}
 
-  const selectedPriority = task.prio; // Now this is an object with `id` and `path`
+/**
+ * Adds an assigned person to the UI.
+ * @param {HTMLElement} container - The HTML element to which the person should be added.
+ * @param {string} personName - The name of the person to be added.
+ */
+function addAssignedPersonToUI(container, personName) {
+  const selectedContact = contacts.find(
+    (contact) => contact.name === personName
+  );
+  if (selectedContact) {
+    let contactDiv = createContactDiv(selectedContact);
+    container.appendChild(contactDiv);
 
-  // Based on the id, select the appropriate image and set it to selected
-  if (selectedPriority.id === "urgent") {
-    document.getElementById("urgent").src = "./asssets/img/urgent-toggle.svg";
-  } else if (selectedPriority.id === "medium") {
-    document.getElementById("medium").src =
-      "./asssets/img/medium-urgent-toggle.svg";
-  } else if (selectedPriority.id === "low") {
-    document.getElementById("low").src = "./asssets/img/low-urgent-toggle.svg";
+    const checkbox = document.querySelector(
+      `input[type="checkbox"][id="checkbox-${personName.toLowerCase()}"]`
+    );
+    if (checkbox) {
+      checkbox.checked = true;
+    }
   }
+}
 
+/**
+ * Creates a div element for the contact.
+ * @param {Object} contact - The contact object for which a div is to be created.
+ * @returns {HTMLElement} The created div element for the contact.
+ */
+function createContactDiv(contact) {
+  let contactDiv = document.createElement("div");
+  contactDiv.classList.add(contact["icon-color"]);
+  contactDiv.style.borderRadius = "50%";
+  contactDiv.style.width = "50px";
+  contactDiv.style.height = "50px";
+  contactDiv.style.display = "flex";
+  contactDiv.style.justifyContent = "center";
+  contactDiv.style.alignItems = "center";
+  contactDiv.style.color = "white";
+  contactDiv.textContent = contact.initials;
+  return contactDiv;
+}
+
+/**
+ * Sets the priority for a task.
+ * @param {Object} priority - The priority object containing the priority's ID.
+ */
+function setTaskPriority(priority) {
+  const priorityMappings = {
+    urgent: "./asssets/img/urgent-toggle.svg",
+    medium: "./asssets/img/medium-urgent-toggle.svg",
+    low: "./asssets/img/low-urgent-toggle.svg",
+  };
+
+  if (priorityMappings[priority.id]) {
+    document.getElementById(priority.id).src = priorityMappings[priority.id];
+  }
+}
+
+/**
+ * Populates the subtasks into the corresponding input elements.
+ * @param {Array} subtasks - The list of subtasks to be displayed.
+ */
+function populateSubtasks(subtasks) {
   const subtasksContainer = document.getElementById("subtasks");
-  subtasksContainer.innerHTML = ""; // Leere den Container, um vorhandene Subtasks zu entfernen
+  subtasksContainer.innerHTML = "";
 
-  task.subtasks.forEach((subtask) => {
+  subtasks.forEach((subtask) => {
     const subtaskDiv = document.createElement("div");
     subtaskDiv.className = "subtask";
 
@@ -848,80 +811,84 @@ function editingTask(taskId) {
     subtaskDiv.appendChild(label);
     subtasksContainer.appendChild(subtaskDiv);
   });
+}
 
-  // Entfernen der "Cancel" und "Create task" Buttons
+/**
+ * Configures the buttons in the edit mode.
+ * @param {number} taskId - The ID of the task being edited.
+ */
+function setupButtons(taskId) {
   const btnDiv = document.querySelector(".btn-div");
   btnDiv.innerHTML = "";
 
-  // Hinzufügen des "Cancel" Buttons
   const cancelButton = document.createElement("button");
   cancelButton.textContent = "Cancel";
   cancelButton.classList.add("cancel-button-edit");
   cancelButton.addEventListener("click", () => {
-    closePopup(); // Funktion zum Schließen des Popups aufrufen
+    closePopup();
   });
   btnDiv.appendChild(cancelButton);
 
-  // Hinzufügen des "OK" Buttons
   const okButton = document.createElement("button");
   okButton.textContent = "OK";
   okButton.classList.add("ok-button");
   okButton.addEventListener("click", (event) => {
-    event.preventDefault(); // Verhindert das Standardverhalten des Formularsubmit
+    event.preventDefault();
     saveTask(taskId);
   });
   btnDiv.appendChild(okButton);
 }
 
+/**
+ * Save the task details based on the provided task ID.
+ * @param {number} taskId - The ID of the task to save.
+ */
 async function saveTask(taskId) {
-  // Hier kannst du die Logik implementieren, um die bearbeitete Aufgabe zu speichern
-  const title = document.getElementById("title-input").value;
-  const description = document.getElementById("description-input").value;
-  const category = document
-    .getElementById("select-one")
-    .querySelector("span").textContent;
-  const color = document.getElementById("select-one").querySelector(".circle")
-    .style.backgroundColor;
-  const dueDate = document.querySelector(".date-input-container input").value;
-  const selectedPrioImage = getSelectedPrioImage(); // Capture the selected priority image
+  const taskDetails = {
+    title: document.getElementById("title-input").value,
+    description: document.getElementById("description-input").value,
+    category: document.getElementById("select-one").querySelector("span")
+      .textContent,
+    color: document.getElementById("select-one").querySelector(".circle").style
+      .backgroundColor,
+    dueDate: document.querySelector(".date-input-container input").value,
+    assignedTo: getAssignedTo(),
+    subtasks: getSubtasks(),
+    prio: getSelectedPrioImage().prio,
+  };
 
-  const assignedTo = getAssignedTo();
-
-  const subtasksContainer = document.getElementById("subtasks");
-  const subtaskElements = subtasksContainer.querySelectorAll(".subtask");
-  const subtasks = [];
-
-  // Durchlaufe alle Subtask-Elemente und füge sie zum 'subtasks'-Array hinzu
-  subtaskElements.forEach((subtaskElement) => {
-    const checkbox = subtaskElement.querySelector(".checkbox-subtask");
-    const label = subtaskElement.querySelector(".subtask-name");
-    const subtaskId = checkbox.id;
-    const subtaskName = label.textContent;
-    const isChecked = checkbox.checked;
-
-    subtasks.push({ id: subtaskId, name: subtaskName, checked: isChecked });
-  });
-
-  // Finde die Aufgabe mit der entsprechenden ID im 'todos'-Array
   const taskIndex = todos.findIndex((task) => task.id === Number(taskId));
 
   if (taskIndex !== -1) {
-    // Aktualisiere die Eigenschaften der Aufgabe mit den bearbeiteten Werten
-    todos[taskIndex].title = title;
-    todos[taskIndex].description = description;
-    todos[taskIndex].category = category;
-    todos[taskIndex].color = color;
-    todos[taskIndex].dueDate = dueDate;
-    todos[taskIndex].assignedTo = assignedTo;
-    todos[taskIndex].subtasks = subtasks;
-    todos[taskIndex].prio = selectedPrioImage.prio;
+    Object.assign(todos[taskIndex], taskDetails);
   } else {
-    console.error(`Aufgabe mit der ID ${taskId} wurde nicht gefunden.`);
+    console.error(`Task with the ID ${taskId} was not found.`);
   }
 
+  await finalizeTaskUpdates();
+}
+
+/**
+ * Retrieve the subtasks from the DOM.
+ * @returns {Array} - An array of subtask objects.
+ */
+function getSubtasks() {
+  return Array.from(document.querySelectorAll(".subtask")).map(
+    (subtaskElement) => ({
+      id: subtaskElement.querySelector(".checkbox-subtask").id,
+      name: subtaskElement.querySelector(".subtask-name").textContent,
+      checked: subtaskElement.querySelector(".checkbox-subtask").checked,
+    })
+  );
+}
+
+/**
+ * Finalize the task updates, render the changes, and persist them.
+ */
+async function finalizeTaskUpdates() {
   updateHTML();
   await setItem("task", JSON.stringify(todos));
   location.reload();
   closeEditPopup();
-  closePopup(); // Funktion zum Schließen des Popups aufrufen
+  closePopup();
 }
