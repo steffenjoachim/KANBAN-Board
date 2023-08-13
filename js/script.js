@@ -82,7 +82,7 @@ function checkmarkUnChecked() {
 function updateArrow() {
     if (window.innerWidth > 1024) {
         document.getElementById('arrow-a').innerHTML = `
-        <img src="asssets/img/arrow-left-blue.svg" style="width:34px; height:34px;">
+        <img src="./asssets/img/arrow-left-blue.svg" style="width:34px; height:34px;">
         `;
     } else {
         document.getElementById('arrow-a').innerHTML = `
@@ -142,7 +142,7 @@ function resetPassword() {
     insideWindow.innerHTML = generateResetPasswordHtml();
     if (window.innerWidth > 1024) {
         document.getElementById('forgot-pass-img-container').innerHTML = `
-        <img src="asssets/img/arrow-left-blue.svg" style="width:34px; height:34px;">
+        <img src="./asssets/img/arrow-left-blue.svg" style="width:34px; height:34px;">
         `;
     }
     document.getElementById('sign-up-container').innerHTML = '';
