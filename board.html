@@ -2,23 +2,23 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="board.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="./asssets/css/board.css" />
   <script src="./js/storage.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
-  <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
-  <link rel="stylesheet" href="./asssets/css/header.css">
-  <link rel="stylesheet" href="./asssets/css/footer.css">
-  <link rel="stylesheet" href="./asssets/css/add_task_popUp.css">
-  <link rel="stylesheet" href="./task-popUp.css">
-  <link rel="stylesheet" href="./asssets/css/web_header.css">
+  <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="./asssets/css/header.css" />
+  <link rel="stylesheet" href="./asssets/css/footer.css" />
+  <link rel="stylesheet" href="./asssets/css/add_task_popUp.css" />
+  <link rel="stylesheet" href="./task-popUp.css" />
+  <link rel="stylesheet" href="./asssets/css/web_header.css" />
   <script src="./js/board.js"></script>
   <script src="./js/add_task_popup.js"></script>
   <script src="./js/header_include.js"></script>
@@ -75,17 +75,12 @@
     </div>
   </div>
   <div class="main-div">
-
-    <!-- Form-alert -->
     <div id="myCustomPopup" class="popupContainer">
       <div class="popupBody">
         <span id="popupDismiss">&times;</span>
         <p id="popupNote"></p>
       </div>
     </div>
-
-    <!------------------ Head Section ----------------------->
-
     <div class="head-span">Kanban Project Management Tool</div>
     <div class="title-section">
       <h1 class="title">Board</h1>
@@ -108,11 +103,7 @@
       <img class="search-bar-line" src="./asssets/img/searchBar line.svg" alt="" />
       <img class="search-icon" src="./asssets/img/search-icon.svg" alt="" />
     </div>
-
-    <!------------------ Main Section ----------------------->
-
     <div class="task-content">
-      <!----------- To do Section ---------------->
       <div class="task-list">
         <div class="card-head">
           <div class="head-title">To do</div>
@@ -125,8 +116,6 @@
           ondragleave="removeHighlight('todo-card')" ondragover="allowDrop(event); highlight('todo-card')">
         </div>
       </div>
-      <!----------- In progress Section ---------------->
-
       <div class="task-list">
         <div class="card-head">
           <div class="head-title">In progress</div>
@@ -153,8 +142,6 @@
           </div>
         </div>
       </div>
-      <!----------- Awaiting Feedback Section ---------------->
-
       <div class="task-list">
         <div class="card-head">
           <div class="head-title">Awaiting Feedback</div>
@@ -268,7 +255,7 @@
                   |
                   <img src="./asssets/img/checkmark.svg" id="check-icon" onclick="saveNewCategory()">
                 </div>
-                
+
                 <div id="new-category-colors">
                   <div class="circle dark-blue" onclick="selectColor('#2A3647')"></div>
                   <div class="circle green" onclick="selectColor('#00FF00')"></div>
@@ -334,7 +321,7 @@
 
               <div id="subtasks"> <!-- Dieses Element wird als Container für die neuen Subtasks verwendet -->
                 <div class="subtask">
-  
+
                 </div>
               </div>
 
@@ -361,7 +348,7 @@
   <div id="task-overlay-popup" class="task-overlay-popup">
     <div class="task-content-popup" id="taskContent">
     </div>
-  </div> 
+  </div>
 
   <!-- <footer w3-footer-include-html="/asssets/templates/footer.html"></footer> -->
   <footer>
@@ -392,4 +379,5 @@
 
   <script src="./js/add_task.js"></script>
 </body>
+
 </html>

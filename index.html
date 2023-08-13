@@ -18,14 +18,11 @@
     <script src="./js/summary.js"></script>
 </head>
 
-
-
 <body onload="init()" id="body">
-
-        <div class="logo-container">
-            <img class="white-logo" src="./asssets/img/Join_logo_white.svg" alt="" style="padding-top:37px">
-            <img class="dark-logo" src="./asssets/img/mobile-login-logo-dark.svg" alt="" style="padding-top:37px">
-        </div>
+    <div class="logo-container">
+        <img class="white-logo" src="./asssets/img/Join_logo_white.svg" alt="" style="padding-top:37px">
+        <img class="dark-logo" src="./asssets/img/mobile-login-logo-dark.svg" alt="" style="padding-top:37px">
+    </div>
     <div class="main-content">
         <div id="inside-window" class="inside-window">
             <h1>Log in</h1>
@@ -37,7 +34,8 @@
                         <img src="./asssets/img/email-icon.svg" alt="e-mail icon">
                     </div>
                     <div class="input-field">
-                        <input onkeyup="togglePasswordVisibility()" id="input" class="password" type="password" required placeholder="Password">
+                        <input onkeyup="togglePasswordVisibility()" id="input" class="password" type="password" required
+                            placeholder="Password">
                         <div id="lock-icon-container">
                             <img id="lock-icon" src="./asssets/img/lock-icon.svg" alt="lock">
                         </div>
@@ -63,7 +61,7 @@
             </form>
             <div class="guest-btn-container">
                 <button type="button" onclick="guestLogin()" class="guest-btn">Guest Log
-                        in</button>
+                    in</button>
             </div>
         </div>
     </div>

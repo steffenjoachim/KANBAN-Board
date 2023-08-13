@@ -4,8 +4,8 @@
 function indexHTML() {
     window.location.href = 'index.html'
 };
+
 /**
- * 
  * @returns This method is generating HTML code for a sign-up form. It includes input fields for name, email, and password, as well as a submit button for registering the user. The method also includes some CSS classes and images to style the form.
  */
 function generateSignInHtml() {
@@ -43,17 +43,16 @@ function generateSignInHtml() {
 
         </div>
     </form>
-`
-};
+`;
+}
+
 /**
- * 
  * @returns This method is generating HTML code for a "forgot password" form. It includes a heading, a line image, a paragraph explaining that the user will receive an email with instructions on how to reset their password, and a form with an input field for the user's email address and a "Send me the E-Mail" button. When the user submits the form, the method calls a function called "showEmailSendInfo()" to display information about the email being sent.
  */
 function generateForgotHtml() {
     return `
     <div class="arrow-container">
         <a id="arrow-a" onclick="indexHTML()">
-
         </a>
     </div>
     <h1 class="forgot-password-headline">I forgot my password</h1>
@@ -70,14 +69,13 @@ function generateForgotHtml() {
         <div class="forgot-btn-container">
             <button class="fortgot-password-btn">Send me the E-Mail</button>
         </div>
-
     </div>
     </form>
-    `
+    `;
     return false
-};
+}
+
 /**
- * 
  * @returns This method is generating an HTML code for a reset password form. It includes input fields for a new password and a confirmation password, as well as a "Continue" button to submit the form. The method also includes some CSS classes and images to style the form. The "togglePasswordVisibility()" function is likely used to show or hide the password input field when the user clicks on it.
  */
 function generateResetPasswordHtml() {
@@ -109,6 +107,7 @@ function generateResetPasswordHtml() {
     </div>
  `;
 }
+
 /**
  * @returns This function generates HTML markup for a guest login page. 
  * It includes various CSS and JavaScript files, sets up the page structure with a header, content section, and footer, and initializes some functions and elements for displaying a greeting and user name.
