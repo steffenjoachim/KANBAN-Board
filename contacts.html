@@ -20,11 +20,8 @@
     <link rel="stylesheet" href="./asssets/css/web_header.css">
     <script src="./js/header_include.js"></script>
 </head>
-
 <body onload="loadContacts(); init(); loadNewtasks()">
     <div w3-header-include-html="./asssets/templates/header.html"></div>
-    <!-- <div class="width" w3-header-include-html="./asssets/templates/web_header.html"></div> -->
-
     <div onclick="closeBurgerMenu()" id="web-header" class="web-header">
         <span>Kanban Project Mangement Tool</span>
         <div class="img-container">
@@ -42,7 +39,6 @@
             </div>
         </div>
     </div>
-
     <div class="nav-bar-container">
         <div id="nav-bar" onclick="closeBurgerMenu()" class="logo-container">
             <img class="logo-white" src="./asssets/img/Join_logo_white.svg" alt="">
@@ -74,7 +70,6 @@
         <div>
         </div>
     </div>
-
     <div class="desktop-page">
         <div class="new-contact-frame">
             <div class="new-contact-container-frame">
@@ -102,32 +97,6 @@
                         <hr class="hr-blue-small-left">
                     </div>
                 </div>
-                <div id="desktop-hidden">
-                    <div class="name-add-task-logo">
-                        <span class="contact-logo-big ${contact['icon-color']}">AM</span>
-                        <div class="name-add-task">
-                            <span id="big-name${i}" class="big-name">Anton Mayer</span>
-                            <span  class="email ">+ Add Task</span>
-                        </div>
-                    </div>
-                    <div class="contact-information-frame">
-                        <h3 class="contact-information">Contact Information</h3>
-                        <div class="edit-pen" onclick="openEditContacts()">
-                            <img onmousemove="changePenColorToBlue()" onmouseleave="changePenColorToBlack()"
-                                id="edit-contact-logo" class="edit-contact-logo" src="./asssets/img/edit-contact.svg"
-                                alt="edit contact logo">
-                            <span class="edit-contact-text">Edit Contact</span>
-                        </div>
-                    </div>
-                    <div class="email-data">
-                        <span class="email-head">Email</span>
-                        <span id="email-adress${i}" class="email-adress-blue">antom@gmail.com</span>
-                    </div>
-                    <div class="mobile-data">
-                        <span class="mobile-head">Mobil</span>
-                        <span id="mobile-number${i}" class="mobile-number-blue">+49 1111 111 11 1</span>
-                    </div>
-                </div>
                 <div class="delet-edit-frame">
                     <img class="bin" src="./asssets/img/delete-bin.svg" alt="delete bin">
                     <img onclick="openEditContacts()" class="pen" src="./asssets/img/edit.svg" alt="edit pen">
@@ -148,7 +117,6 @@
                 <img class="join-logo-white d-none" src="./asssets/img/join-logo-white.svg" alt="Join logo">
                 <h1 class="white">Edit Contact</h1>
                 <hr id="hr-blue-small-left" class="hr-blue-small-left">
-
             </div>
             <div class="edit-contact-bottom">
                 <span class="contact-logo-bigger light-orange">TW</span>
@@ -195,14 +163,11 @@
                 <h1 class="white">Add Contact</h1>
                 <span class="tasks-are-better white">Tasks are better with a team</span>
                 <hr id="hr-blue-small-left" class="hr-blue-small-left">
-
             </div>
             <div class="add-contact-bottom">
                 <span class="contact-logo-template gray">
                     <img class="big-head" src="./asssets/img/big-head.svg" alt="person head">
                 </span>
-
-
                 <div class="form-and-buttons">
                     <div onclick="closeAddContactsOverlay()" class="close-x-dark-container">
                         <img class="close-x-dark" src="./asssets/img/close-x-dark.svg" alt="close x-icon">
@@ -232,8 +197,6 @@
                         </div>
                     </form>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -242,17 +205,12 @@
           <span>Contact successfully created</span>
         </div>
      </div>
-
-     <!-- Form-alert -->
     <div id="myCustomPopup" class="popupContainer">
         <div class="popupBody">
           <span id="popupDismiss">&times;</span>
           <p id="popupNote"></p>
         </div>
       </div>
-
-    
-
      <!-------------------- Add Task popUp----------------------->
     <div class="popup-overlay">
         <div class="popup-content" id="popupContent">
@@ -265,16 +223,13 @@
                      <h1>Add Task</h1>
                      <img class="close-task" src="./asssets/img/close-x-dark.svg" alt="" onclick="closePopup()">
                 </div>
-                
                 <div class="inner-wrap">
                   <section class="section-one">
                     <form class="add-task-form">
                       <label for="title-input">Title</label>
                       <input class="all-input" id="title-input" type="text" name="title" required />
-            
                       <label for="description-input" >Description</label>
                       <textarea id="description-input" name="description" required></textarea>
-            
                       <label for="Category">Category</label>
                       <div onclick="selectTaskCategory()" id="select-one" class="select-one">
                         <div class="select-one-div">
@@ -283,9 +238,7 @@
                         </div>
                         <img src="./asssets/img/open.svg" alt="" />
                       </div>
-            
                       <div id="selected-image"></div>
-                  
                       <div id="dropdown" class="d-none">
                         <div onclick="showNewCategoryFields()" id="selected-one" class="selected">
                           <span>New Category</span>
@@ -299,15 +252,12 @@
                             <div class="circle dark-blue"></div>
                           </div>
                       </div>
-                  
                       <div id="new-category-fields" class="d-none">
                         <input id="new-category-name" type="text" placeholder="Category name">
                         <div class="icons-wrapper-two">
                           <img src="./asssets/img/cancel-svg.svg" id="cross-icon" onclick="cancelNewCategory()">
-                          |
                           <img src="./asssets/img/checkmark.svg" id="check-icon" onclick="saveNewCategory()">
                         </div>
-                        
                         <div id="new-category-colors">
                           <div class="circle dark-blue" onclick="selectColor('#2A3647')"></div>
                           <div class="circle green" onclick="selectColor('#00FF00')"></div>
@@ -317,20 +267,17 @@
                           <div class="circle red" onclick="selectColor('#FF0000')"></div>
                         </div>
                       </div>
-                      
                       <label for="Assigned-to">Assigned to</label>
                       <div onclick="selectAssignedTo()" id="assign-one" class="select-one">
                         <span>Select assigned person</span>
                         <img src="./add_task_img/open.svg" alt="" />
                       </div>
-                      
                       <div id="dropdown-assign" class="d-none">
                         <div onclick="showInviteContactFields()" id="assigned-three" class="selected">
                           <span>Invite new contact</span>
                           <img src="./add_task_img/kontakt.svg" id="contact-icon" class="icon-style" />
                         </div>
                       </div>
-
                       <div id="selected-contact"></div>
                       
                       <div id="new-contact-fields" class="d-none">
@@ -341,33 +288,21 @@
                           <img src="./asssets/img/checkmark.svg" id="check-icon2" onclick="saveInviteContact()">
                         </div>
                       </div>
-            
-            
                     </form>
                   </section>
-            
                   <div class="vertical-line"></div>
-            
                   <section class="section-two">
                     <form class="add-task-form">
                       <label for="date-input">Due Date</label>
                       <div class="date-input-container">
                         <input class="all-input" type="date" placeholder="dd/mm/yyyy" />
                       </div>
-            
-                     
-            
                       <label for="prio-buttons">Prio</label>
                       <div id="prio-buttons">
                         <img id="urgent" class="prio-img" src="./asssets/img/urgent-urgent.svg" alt="">
                         <img id="medium" class="prio-img" src="./asssets/img/medium-urgent.svg" alt="">
                         <img id="low" class="prio-img" src="./asssets/img/low-urgent.svg" alt="">
                       </div>
-            
-                      
-            
-            
-            
                       <label for="subTask">Subtasks</label>
                       <div class="subtask-input-wrapper" onmouseover="toggleIcons('block')" onmouseout="toggleIcons('none')">
                         <input type="text" id="subTask" class="subtask-input all-input" placeholder="Add new subtask">

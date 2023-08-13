@@ -67,6 +67,7 @@ function closeEditContacts(){
 function openContactDetails(i){
     let windowWidth = window.innerWidth;
     if (windowWidth <= 768) {
+        console.log('clicked');
         document.getElementById('content-big-contact').classList.remove('d-none');
         document.getElementById('content-big-contact').classList.add('slide-in2');
         renderContactDetailsMobile(i);
