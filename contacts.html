@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="./asssets/css/contact_media.css">
     <link rel="stylesheet" href="./asssets/css/contacts_desktop.css">
     <link rel="stylesheet" href="./asssets/css/header.css">
-    <link rel="stylesheet" href="asssets/css/add_task_popUp.css">
+    <link rel="stylesheet" href="./asssets/css/add_task_popUp.css">
     <link rel="shortcut icon" href="./asssets/img/mobile-login-logo-dark.svg" type="image/x-icon">
     <link rel="stylesheet" href="./asssets/css/footer.css">
-    <script src="js/board.js"></script>
+    <script src="./js/board.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/contacts.js"></script>
     <script src="./js/contacs_create_html.js"></script>
@@ -78,8 +78,8 @@
     <div class="desktop-page">
         <div class="new-contact-frame">
             <div class="new-contact-container-frame">
-                <div onclick="openAddContactsOverlay()" class="new-contact-container">
-                    <span>New Contact</span>
+                <div onclick="openAddContactsOverlay()" class="new-contact-mobile-container">
+                    <!-- <span>New Contact</span> -->
                     <img src="./asssets/img/new-contact.svg" alt="New Contact">
                 </div>
             </div>
@@ -284,7 +284,6 @@
                         <img src="./asssets/img/open.svg" alt="" />
                       </div>
             
-                      <!-- Hinzufügen des neuen Elements für das ausgewählte Bild -->
                       <div id="selected-image"></div>
                   
                       <div id="dropdown" class="d-none">
@@ -380,7 +379,7 @@
                         </div>
                       </div>
             
-                      <div id="subtasks"> <!-- Dieses Element wird als Container für die neuen Subtasks verwendet -->
+                      <div id="subtasks"> 
                         <div class="subtask">
                           <input type="checkbox" id="subtask1" name="subtask1" class="checkbox-subtask" />
                           <label class="subtask-name" for="subtask1">Subtask 1</label>
@@ -404,12 +403,10 @@
                   </section>
                 </div>
             </div>
-            <!-- Inhalt deines Popups -->
         </div>
         
       </div>
       
-    <!-- <footer w3-footer-include-html="./asssets/templates/footer.html"></footer> -->
     <footer>
         <div id="summary-div" class="icon-container summary">
             <a href="./summary.html"><img class="icon" src="./asssets/img/Summary_icon_grey.svg" alt=""></a>
