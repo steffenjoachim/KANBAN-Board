@@ -1,12 +1,17 @@
 function init() {
     loadTargetPage();
     loadUsers();
+    setLocalStorage();
 }
 
 function loadTargetPage() {
     setTimeout(function () {
         indexHTML()
     }, 880);
+}
+function setLocalStorage() {
+    localStorage.removeItem('name');
+    localStorage.setItem('name', JSON.stringify('Guest'));
 }
 
 /**
@@ -60,7 +65,7 @@ function updateArrow() {
     } else {
         document.getElementById('arrow-a').innerHTML = `
         <img src="./asssets/img/back_arrow.svg"style="width:16px; height:16px;">
-        `   
+        `
     }
 }
 function signIn() {
@@ -88,11 +93,12 @@ function forgotPassword() {
 
 
 function showEmailSendInfo() {
-    document.getElementById('sign-up-container').innerHTML = '<img src="./asssets/img/An_e-mail_sent.svg" alt="e-mail icon">'
+    document.getElementById('sign-up-container').innerHTML = '<img id="e-mail-sent-img" src="./asssets/img/An_e-mail_sent.svg" alt="e-mail icon">'
     document.getElementById('sign-up-container').classList.add('fedback-popup-container');
-    setTimeout(function () {
-        resetPassword()
-    }, 1500);
+    document.getElementById('e-mail-sent-img').classList.add('slide-in');
+     setTimeout(function () {
+         resetPassword()
+     }, 1500);
 }
 
 function resetPassword() {

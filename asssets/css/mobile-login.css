@@ -241,7 +241,6 @@ form {
     justify-content: center;
     gap: 35px;
     align-items: baseline;
-
 }
 
 .sign-up-container span {
@@ -343,6 +342,7 @@ form {
     header {
         flex-direction: row;
     }
+
     header img {
         padding-top: 0;
     }
@@ -463,6 +463,10 @@ form {
     .sign-up-container {
         margin-top: 60px;
     }
+    .sign-in-container img {
+        transform: translateY(50vh);
+        transition: transform 0.125s ease-in-out;
+    }
 
     .fedback-popup-container {
         width: 100%;
@@ -474,7 +478,12 @@ form {
         background: #8b82824a;
     }
 
-    .margin{
+    .margin {
         margin-top: 16px;
+    }
+
+    .slide-in {
+        transform: translateY(0);
+        transition: transform 0.125s ease-in-out;
     }
 }
