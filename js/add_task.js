@@ -184,6 +184,7 @@ function createNewTask(
 async function addTaskToArray(newTask) {
   todos.push(newTask);
   // todos.splice(0, todos.length);
+  // todos.splice(0, todos.length);
   await setItem("task", JSON.stringify(todos));
 }
 
