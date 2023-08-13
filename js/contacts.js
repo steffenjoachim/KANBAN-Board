@@ -62,17 +62,19 @@ function closeEditContacts() {
 /**
  * This function is used to open the contact details of the clicked on contact, as complete overlay in the mobile version and on the right side in the tablet and desktop version. Since the click on event is started by clicking on the same element in all versions the if-request is used to determin in which way the contact details will be displayed.
  */
-function openContactDetails(i) {
-  let windowWidth = window.innerWidth;
-  if (windowWidth <= 768) {
-    document.getElementById("content-big-contact").classList.remove("d-none");
-    document.getElementById("content-big-contact").classList.add("slide-in2");
-    renderContactDetailsMobile(i);
-  } else {
-    document.getElementById("desktop-hidden").classList.add("slide-in");
-    renderContactDetailsDesktop(i);
-  }
-}
+
+function openContactDetails(i){
+    let windowWidth = window.innerWidth;
+    if (windowWidth <= 768) {
+        document.getElementById('content-big-contact').classList.remove('d-none');
+        document.getElementById('content-big-contact').classList.add('slide-in2');
+        renderContactDetailsMobile(i);
+    } else {
+        document.getElementById('desktop-hidden').classList.add('slide-in');
+        renderContactDetailsDesktop(i);
+    }  
+ }
+
 
 /**
  * This function is used to close the contact details in the mobile version.

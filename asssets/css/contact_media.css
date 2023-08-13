@@ -1,15 +1,33 @@
 @media(min-width: 350px){
     .new-contact-mobile-container{
-        bottom: -190px !important;
-        right: 0 !important;
+        bottom: 100px !important;
+        right: 24px !important;
       }
 }
 
-@media(min-width: 350px){
+@media(min-width: 370px){
     .new-contact-mobile-container{
-        bottom: 48px !important;
-        right: 0 !important;
+        bottom: 88px !important;
+        right: 40px !important;
       }
+}
+
+@media(min-height: 650px){
+    .bin{
+        margin-top: -80px;
+    }
+}
+
+@media(min-height: 750px){
+    .bin{
+        margin-top: 50px;
+    }
+}
+
+@media(min-height: 850px){
+    .bin{
+        margin-top: 100px;
+    }
 }
 
 
@@ -61,7 +79,7 @@
 
     .content-big-contact{
         display: block !important;
-        width: calc(100% - 400px);
+        width: calc(100% - 370px);
         margin-top: 5px;
         box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.1);
         position: fixed;
@@ -140,7 +158,6 @@
 
     .big-contact-frame{
         margin-top: 40px;
-
     }
 
     .big-contact-frame-header{
@@ -338,7 +355,7 @@
 @media(min-width: 1024px){
 
     .content-big-contact{
-        width: calc(100% - 635px);}
+        width: calc(100% - 600px);}
 
     .new-contact-frame {
         margin-left: 232px;
@@ -364,4 +381,5 @@
 
     .add-contact-bottom, .edit-contact-bottom{
         min-width: 730px;}
+  }
 }

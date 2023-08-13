@@ -139,6 +139,7 @@ body {
 /*////////////////// Searchbar on Screen 1024px /////////////////*/
 
 .secondSearch-bar {
+    display: flex;
     position: relative;
     margin-right: 45px;
     width: 251px;
