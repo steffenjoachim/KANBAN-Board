@@ -121,7 +121,7 @@ function displayTodoCount(boardTodos) {
     document.getElementById('countTodos').textContent = countTodos.toString();
     document.getElementById('countDone').textContent = countDone.toString();
     document.getElementById('countPrio').textContent = countPrio.toString();
-  }
+}
   
 /**
  * This function redirects to the "board.html" page when a div element is clicked
