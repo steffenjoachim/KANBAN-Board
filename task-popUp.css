@@ -14,6 +14,9 @@
 .pink{
     background: #FC71FF;
 }
+.dark-pink{
+    background: #944796;
+  }
 .blue{
     background: #0038FF;
 }
@@ -21,6 +24,9 @@
 .green{
     background: #02CF2F;
 }
+.dark-green{
+    background: #077E21;
+  }
 
 .light-green{
     background: #1FD7C1;
@@ -29,6 +35,11 @@
 .red{
     background: #AF1616 ;
 }
+
+.dark-red{
+    background: #901e1e;
+  }
+  
 .dark-blue{
     background: #2A3647 ;
 }
@@ -42,15 +53,49 @@
 .popUp-head-task {
     display: flex;
     justify-content: space-between;
-    max-width: 569px;
-    margin-right: 34px;
-    margin-left: 12px;
-    margin-bottom: 36px;
+    
+    margin-right: 31px;
+    
+    margin-bottom: 29px;
+    margin-top: 54px;
 }
 
 .popUp-head-task img {
     cursor: pointer;
 }
+
+.edit-wrap {
+    margin-left: 50px;
+    margin-right: 50px;
+    overflow-y: auto;
+    max-height: 824px;
+    
+}
+
+/* Das gilt für den gesamten Scrollbar */
+.edit-wrap::-webkit-scrollbar {
+    width: 5px;  /* Breite der vertikalen Scrollbar */
+    height: 5px; /* Höhe der horizontalen Scrollbar */
+  }
+  
+  /* Handle (Griff) */
+  .edit-wrap::-webkit-scrollbar-thumb {
+    background: #888; /* Farbe des Griffs */
+    border-radius: 2px; /* Rundung des Griffs */
+  }
+  
+  /* Handle (Griff) beim Überfahren */
+  .edit-wrap::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Farbe des Griffs beim Überfahren */
+  }
+  
+  /* Track (Laufschiene) */
+  .edit-wrap::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Farbe der Laufschiene */
+    border-radius: 2px; /* Rundung der Laufschiene */
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 
 .task-category-one {
     text-align: center;
@@ -59,8 +104,8 @@
     font-weight: 400;
     font-size: 21px;
     color: #FFFFFF;
-    width: fit-content;
-    margin-left: 21px;
+    
+    
 }
 
     /* Title  */
@@ -69,9 +114,7 @@
     font-weight: 700;
     font-size: 61px;
     color: #2A3647;
-    margin-left: 33px;
-    line-height: 120%;
-    margin-right: 114px;
+    
 }
 
     /* Description */
@@ -80,36 +123,41 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 120%;
-    margin: 25px 33px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .bolder {
     font-weight: 700;
     margin-right: 25px;
+    font-size: 21px;
 }
 
 .popUp-date {
-    margin-left: 33px;
+    
     font-weight: 400;
-    font-size: 16px;
+    font-size: 21px;
+    margin-top: 14px;
+    margin-bottom: 14px;
 }
 
 .popUp-prio {
     display: flex ;
     align-items: center;
-    margin-left: 33px;
+    
     font-weight: 400;
-    font-size: 16px;
-    margin-top: 35px;
+    font-size: 21px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.popUp-prio-btn {
+/* .popUp-prio-btn {
     width: fit-content;
     padding: 4px 18px;
     background: #FF3D00;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-}
+} */
 
 .popUp-prio-btn span {
     color: #FFFFFF;
@@ -122,7 +170,7 @@
     font-weight: 700;
     font-size: 16px;
     margin-top: 29px;
-    margin-left: 33px;
+    margin-left: 50px;
     margin-bottom: 31px;
 }
 
@@ -130,7 +178,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-left: 33px;
+    margin-left: 50px;
     font-weight: 400;
     font-size: 16px;
     gap: 13px;
@@ -140,6 +188,9 @@
     display: flex;
     align-items: center;
     gap: 25px;
+    margin-left: 50px;
+    margin-bottom: 14px;
+    margin-top: 14px;
 }
 
 .assignedTo-iconE {
@@ -153,13 +204,16 @@
     color: #FFFFFF;
 }
 
+.assignedTo-name {
+    font-size: 21px;
+}
+
 .popUp-btns {
     display: flex;
-    flex-direction: column;
-    gap: 16px;
     max-width: 597px;
-    margin-right: 33px;
+    margin-right: 10%;
     align-items: flex-end;
+    margin-top: 100px;
     
 }
 
@@ -222,15 +276,50 @@
     height: 48px;
 }
 
-.display-none {
-    display: none;
+
+
+@media (max-width: 370px) {
+    .assignedTo-divE {
+        margin-left: 16px;
+    }
+}
+
+@media (max-width: 650px) {
+    
+    #taskContent {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .edit-wrap {
+        width: 100%;
+        max-height: 100%;
+        margin-left: 16px;
+    }
+
+    /* .secondTypebtns{
+        display: none
+    } */
+
 }
 
 @media (max-width: 550px) {
-
-    .secondTypebtns{
-        display: none
+    
+    /* #taskContent {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
     }
+
+    .edit-wrap {
+        width: 100%;
+        height: 100%;
+    } */
+
+    /* .secondTypebtns{
+        display: none
+    } */
 
 }
 @media (min-width: 550px) {
@@ -281,13 +370,13 @@
     border-radius: 30px;
     transform: translate(-50%, -50%);
     width: 623px;
-    height: 824px;
     background-color: #ffffff;
     z-index: 10000;
     transition: opacity 0.3s ease;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    
 
   }
   
@@ -301,3 +390,58 @@
     opacity: 1;
   }
 
+  /* -----editPopup--- */
+
+ 
+  /* .edit-wrap {
+    height: 824px;
+  } */
+
+
+ .edit-wrap button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit-wrap button:hover {
+    background-color: #29abe2;
+  }
+
+  .ok-button {
+    
+    width: 80px;
+    height: 40px;
+    margin-left: 20px;
+    color: white;
+    background-color: #2a3647;
+    border-color: transparent;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    
+  }
+
+  .ok-button:hover {
+    background-color: #29ABE2;
+    border-color: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .cancel-button-edit {
+    width: 80px;
+    height: 40px;
+    border: 1px solid #2A3647;
+    margin-left: 20px;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  .cancel-button-edit:hover {
+    border: 1px solid #29ABE2;
+    color: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  }

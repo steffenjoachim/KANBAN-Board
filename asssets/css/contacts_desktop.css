@@ -23,6 +23,25 @@
     cursor: pointer;
 }
 
+.new-contact-mobile-container{
+  box-sizing: border-box;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+
+  height: 64px;
+  background: #2A3647;
+  border: 1px solid #2A3647;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 100%;
+  cursor: pointer;
+  position: fixed;
+  bottom: -132px;
+  right: -50px;
+}
+
 .contact-information-frame{
     display: flex;
     align-items: center;
@@ -64,6 +83,7 @@
 .close-x-dark{
     height: 21px;
     width: 21px;
+    cursor: pointer;
 }
 
 .create-contact{
@@ -73,7 +93,7 @@
 
   #add-contact, #edit-contact{
     transition: transform 0.125s ease-in-out;
-    transform: translateY(100%);
+    transform: translateY(140%);
   }
   
   .slide-in {
@@ -91,3 +111,29 @@
   .buttons{
     display: flex;
   }
+
+  .contac-succesfully-created-frame {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    bottom: 200px;
+    transform: translateY(400%);
+    transition: transform 0.125s ease-in-out;
+  }
+
+  .contac-succesfully-created-popup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2A3647;
+    border: none;
+    border-radius: 10px;
+    width: 326px;
+    height: 74px;
+    color: #FFFFFF;
+    font-size: 21px;
+    font-weight: 400;
+  }
+
+

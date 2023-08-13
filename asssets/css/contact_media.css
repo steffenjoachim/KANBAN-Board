@@ -1,3 +1,18 @@
+@media(min-width: 350px){
+    .new-contact-mobile-container{
+        bottom: -190px !important;
+        right: 0 !important;
+      }
+}
+
+@media(min-width: 350px){
+    .new-contact-mobile-container{
+        bottom: 48px !important;
+        right: 0 !important;
+      }
+}
+
+
 @media(min-width: 430px){
 
     .contact-logo-big{
@@ -26,6 +41,7 @@
     .content-big-contact {
         bottom: 0;
         left: 0;
+        z-index: -9;
     }
 }
 
@@ -56,11 +72,33 @@
     }
 
 
-    .contact-frame{
+    .contact-frame {
         overflow-y: scroll;
-        height: 740px;
+        height: 950px;
         margin-top: -57px;
-    }
+      }
+      
+      .contact-frame::-webkit-scrollbar {
+        width: 10px; 
+        background-color: #f1f1f1; 
+      }
+      
+      .contact-frame::-webkit-scrollbar-thumb {
+        background-color: #A8A8A8
+        ; 
+        border-radius: 5px; 
+      }
+      
+      .contact-frame::-webkit-scrollbar-thumb:vertical:active {
+        background-color: #555; 
+        border-radius: 5px 5px 0 0; 
+      }
+      
+      .contact-frame::-webkit-scrollbar-thumb:vertical:active {
+        background-color: #555; 
+        border-radius: 0 0 5px 5px; 
+      }
+      
 
     .hr-blue-small-left{
         height: 57px !important;
@@ -152,8 +190,6 @@
         transform: none;
         margin: 0 16px;
         margin-top: 16px;
-        /* height: 80px;
-        width: 80px; */
     }
 
     .edit-contact-head{
@@ -234,6 +270,7 @@
 
     .create-contact{
         margin-left: 18px;
+        margin-right: 16px;
     }
 
     h1{
@@ -258,6 +295,11 @@
         display: flex !important;
         
       }
+
+      .contac-succesfully-created-frame {
+        justify-content: flex-start;
+        left: 202px;
+    }
 }
 
 @media(min-width: 980px){
@@ -268,10 +310,6 @@
 
     .edit-contact-head{
         width: 353px;
-    }
-
-    .create-contact{
-        margin-right: 18px;
     }
 
     .contact-logo-bigger{
@@ -290,12 +328,17 @@
     .close-x-dark{
         margin-top: -96px;
     }
+
+    .contac-succesfully-created-frame {
+        justify-content: flex-start;
+        left: 218px;
+    }
 }
 
 @media(min-width: 1024px){
 
     .content-big-contact{
-        width: calc(100% - 560px);}
+        width: calc(100% - 635px);}
 
     .new-contact-frame {
         margin-left: 232px;
@@ -305,6 +348,16 @@
         min-width: calc(100% - 353) !important;
     }
 
+    .big-contact-frame-header {
+        flex-direction: column !important;
+    }
+
+}
+
+@media(min-width: 1150px){
+
+    .big-contact-frame-header {
+        flex-direction: row !important;
 }
 
 @media(min-width: 1440px){

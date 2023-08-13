@@ -28,6 +28,8 @@ h1 {
 }
 
 .page {
+    display: flex;
+    flex-direction: column;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
   }
@@ -35,3 +37,13 @@ h1 {
   .page.show {
     opacity: 1;
   }
+
+#user-name {
+    color: #29ABE2;
+    font-family: Inter;
+    font-size: 47px;
+    font-weight: 700;
+    line-height: 56px;
+    letter-spacing: 0em;
+    text-align: left;    
+}

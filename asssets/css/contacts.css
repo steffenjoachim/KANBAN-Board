@@ -57,7 +57,7 @@ color: black;
     background: #9327FF;
 }
 
-.blue{
+.dark-blue{
     background: #0223CF;
 }
 
@@ -85,7 +85,7 @@ color: black;
     background: #077E21;
 }
 
-.ligh-red{
+.light-red{
     background: #F42424;
 }
 
@@ -235,6 +235,7 @@ hr {
 
 .back-arrow{
     margin-right: 34px;
+    cursor: pointer;
 }
 
 .better-with-a-team, .contact-information {
@@ -391,8 +392,7 @@ form{
 .input-field-top{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
-    height: 41px;
-    margin: 0 16px 0 16px;
+    margin: 64px 16px 0 16px;
     display: flex;
     justify-content: space-between;
 }
@@ -400,7 +400,6 @@ form{
 .input-field{
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
-    height: 41px;
     margin: 32px 16px 0 16px;
     display: flex;
     justify-content: space-between;
@@ -537,3 +536,154 @@ form{
     margin-left: 8px;
     margin-right: 8px;
 }
+
+
+/*----add-tast-popUp---------*/
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Abdunkelung des Hintergrunds */
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  }
+  
+  .popup-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 30px;
+    transform: translate(-50%, -50%);
+    width: 1116px;
+    height: 914px;
+    background-color: #ffffff;
+    z-index: 10000;
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+    
+
+  }
+  
+  .popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+  
+  .popup-content.active {
+    opacity: 1;
+  }
+
+  .popup-content::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5; /* Hintergrund des Scrollbars
+}
+
+.popup-content::-webkit-scrollbar-thumb {
+    background-color: #888; /* Farbe des Scroll-Handles */
+    border-radius: 10px;
+    border: 3px solid #F5F5F5; /* Farbe des Scrollbar-Hintergrunds */
+}
+
+.popup-content::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Farbe des Scroll-Handles beim Überfahren mit der Maus */
+}
+
+.popup-content::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+
+.popup-content.scrolling {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+} */
+
+.dis-none {
+    display: none;
+}
+
+.add-task-form {
+    height: 100%;
+}
+
+#addTaskOpen {
+    cursor: pointer;
+}
+
+  /*---------------*/
+
+  @media (max-width: 900px) {
+    .popup-overlay.active {
+      background-color: transparent;
+    }
+    .popup-content {
+        background-color: #F5F5F5;
+        overflow-y: unset;
+    }
+  }
+  
+  @media (min-width: 321px) {
+    .popup-overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  /*------------------*/
+
+  @media (max-width: 900px) and (min-width: 280px) {
+    
+
+    
+    .popup-content {
+      position: fixed;
+      top: 80px; /* Höhe des Headers */
+      left: 0;
+      width: 100%;
+      height: calc(100% - 80px); /* Höhe des Fensters minus die Höhe des Headers */
+      transform: none; /* Keine Verschiebung */
+      z-index: 98;
+      border-radius: 0;
+      align-items: flex-start;
+      overflow-y: auto;
+    }
+
+    .popup-overlay.active {
+        top: 80px;
+    }
+    
+    
+
+    #burger-menu {
+        z-index: 9999999;
+    }
+
+    footer {
+        z-index: 0!important;
+    }
+    
+  }
+
+  @media (min-width: 1200px) {
+    
+
+    .popup-content {
+        width: 1116px
+    }
+}
+  
+
+  /*----------------*/
+
+
+  /* @media(min-width:768px) {
+    .popup-content {
+        width: 100%;
+    }
+  } */

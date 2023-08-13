@@ -73,23 +73,34 @@ border: none;
   font-weight: 400;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 .all-input, textarea {
   
   margin-bottom: 10px;
-  
+  text-indent: 21px;
   background: #FFFFFF;
   border: 1px solid #D1D1D1;
   border-radius: 10px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
 }
 input {
   height: 41px;
   width: 100%;
+  font-family: Inter, sans-serif;
 }
 
 textarea {
   height: 93px;
   padding-top:  18px;
   width: 100%;
+  font-family: Inter, sans-serif;
 }
 
 label {
@@ -179,7 +190,10 @@ input[type="date"]::before {
   cursor: pointer;
   transition: 125ms;
   border: 1px solid #D1D1D1;
+  text-indent: 11px;
 }
+
+
 
 .select-one span {
   margin-left: 10px;
@@ -242,9 +256,102 @@ input[type="date"]::before {
   
  }
 
+ #selected-contact {
+  display: flex;
+ }
+
  .color-circle {
   margin-left: 10px;
+
  }
+
+ .circle {
+  width: 20px;
+  height: 20px;
+  border: 3px solid white;
+  border-radius: 50%;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.join-color{
+  background: #2A3647;
+}
+
+/* ======= Colors ======= */
+
+.brown{
+  background: #333303;
+}
+
+.yellow{
+  background: #E1E104;
+}
+
+.orange{
+  background: #FF7A00;
+}
+
+.light-orange{
+  background: #FFC700;
+}
+
+
+.purple{
+  background: #9327FF;
+}
+
+.dark-blue{
+  background: #0223CF;
+}
+
+.blue {
+  background: #0223CF;
+}
+
+.light-blue{
+  background: #29ABE2;
+}
+
+.pink{
+  background: #FC71FF;
+}
+
+.dark-pink{
+  background: #944796;
+}
+
+.light-green{
+  background: #02fe38;
+}
+
+.green{
+  background: #02CF2F;
+}
+
+.dark-green{
+  background: #077E21;
+}
+
+.light-red{
+  background: #F42424;
+}
+
+.red{
+  background: #AF1616;
+}
+
+.dark-red{
+  background: #901e1e;
+}
+
+.gray{
+  background: #D1D1D1;
+}
+
+.white{
+  color: #FFFFFF;
+}
 
  #new-category-fields {
   position: relative; /* Dies macht das div zum Container für absolut positionierte Elemente */
@@ -261,6 +368,9 @@ input[type="date"]::before {
   margin-bottom: 10px;
   box-sizing: border-box;
   position: relative; /* Für die Positionierung der Icons */
+}
+#new-category-colors {
+  display: flex;
 }
 
 .hover-dot {
@@ -300,6 +410,10 @@ input[type="date"]::before {
   margin-right: 10px;
   height: 16px;
   width: 16px;
+}
+
+#delete-subtask {
+  margin-left: 20px;
 }
 
 .select-one img {
@@ -399,6 +513,7 @@ border-top: none;
 #subtasks {
   display: flex;
   flex-direction: column;
+  margin-bottom: 100px;
 }
 
 .subtask-name {
@@ -455,7 +570,7 @@ border-top: none;
 }
 
 .task-added-container {
-    display: flex;
+    display: none;
     justify-content: center;
 }
 
@@ -483,6 +598,19 @@ border-top: none;
   height: 22px;
 }
 
+.dateInput {
+  text-indent: 11px !important;
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .cancel-btn-desktop {
   display: none;
 }
@@ -497,6 +625,12 @@ border-top: none;
       flex-direction: column;
       align-items: center;
     }  
+    form {
+      flex-direction: row;  
+     }
+
+    
+
    .inner-wrap {
     display: flex;
     justify-content: center;
@@ -512,6 +646,7 @@ border-top: none;
     padding-left: 15px;
     position: relative;
    }
+   
 
    
 }
@@ -560,8 +695,9 @@ border-top: none;
   }
 
   .select-one-div {
-    display: flex;
+    display: flex !important;
     justify-content: center;
+    align-items: center;
   }
 
   
@@ -667,4 +803,48 @@ border-top: none;
    .cancel-btn-desktop {
     left: 133px;
 }
+}
+
+/*--alert-popup----*/
+
+.popupContainer {
+  display: none;
+  position: absolute;
+  top: 160px;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+.popupBody {
+  padding: 5px;
+  background-color: #e90000;
+  border: 3px solid red;
+  border-radius: 10px;
+  width: 100%;
+  margin: 16px;
+}
+
+#popupDismiss {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#popupDismiss:hover,
+#popupDismiss:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#popupNote {
+  margin: 16px;
+  font-weight: 700;
+  color: white;
 }

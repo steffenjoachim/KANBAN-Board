@@ -1,33 +1,46 @@
-//  beim hovern auf dem div-count1 wird das img verändert das div bekommt zudem eine onmouseover="changeDoneimage(this)"
+/**
+ * This function change the pen image when hover on the div
+ * 
+ * @param {object} element - This is the div of the img
+ */
 function changePenimage(element) {
     let img = element.querySelector('#summary-pen');
     img.src = './asssets/img/summary-pen.svg';
 }
-// Funktion die das ursprüngliche Bild wiederherzustellt das div bekommt zudem onmouseout="restoreDoneimage(this)"
+/**
+ * This function change (restore) the pen image when hover on the div
+ * 
+ * @param {object} element - This is the div of the img
+ */
 function restorePenimage(element) {
     let img = element.querySelector('#summary-pen');
     img.src = './asssets/img/edit-icon.png';
 }
 
-// Funktionen für das andere div
-
+/**
+ * This function change the check image when hover on the div
+ * 
+ * @param {object} element - This is the div of the img
+ */
 function changeDoneimage(element) {
     let img = element.querySelector('#summary-done');
     img.src = './asssets/img/summary-done.svg';
 }
+
+/**
+ * This function change (restore) the check image when hover on the div
+ * 
+ * @param {object} element - This is the div of the img
+ */
 function restoreDoneimage(element) {
     let img = element.querySelector('#summary-done');
     img.src = './asssets/img/done-icon.png';
 }
 
-async function loadtodos() {
-    try {countTodo = JSON.parse(await getItem('counttodo'))}
-    catch(e) {
-        console.log('Error')
-    }
-}
-
-
+/**
+ * This function creates a short greeting message based on the current time. 
+  It uses the JavaScript date functions to get the current hour. Depending on the time of day, an appropriate welcome message is assigned.
+ */
 function userGreetingOnSummary() {
     let currentTime = new Date().getHours();
     let greetingText;
@@ -45,45 +58,64 @@ function userGreetingOnSummary() {
     document.getElementById('name').innerHTML = name
 }
 
+let boardTodos = [];
 
-function displayTodoCount(todos) {
+/**
+ * This function retrieve tasks from local storage and displaying them
+ */
+async function loadNewtasksboardd() {
+  try {boardTodos = JSON.parse(await getItem('task'))}
+  catch (e) {
+    alert('Error')
+  }
+  displayTodoCount(boardTodos);
+  displayEarliestDueDate(boardTodos)
+} 
+
+/**
+ * This function counts the number of tasks in different status categories 
+   and updates the corresponding counters on a web page.
+ * 
+ * @param {object} boardTodos - this is the array of the tasks
+ */
+function displayTodoCount(boardTodos) {
     let countTodos = 0;
     let countInProgress = 0;
     let countFeedback = 0;
     let countDone = 0;
     let countPrio = 0;
 
-    for (let i = 0; i < todos.length; i++) {
-      if (todos[i].status === 'todo') {
+    for (let i = 0; i < boardTodos.length; i++) {
+      if (boardTodos[i].status === 'todo') {
         countTodos++;
       }
     }
 
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].status === 'inProgress') {
+    for (let i = 0; i < boardTodos.length; i++) {
+        if (boardTodos[i].status === 'inProgress') {
           countInProgress++;
         }
       }
 
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].status === 'feedback') {
+    for (let i = 0; i < boardTodos.length; i++) {
+        if (boardTodos[i].status === 'feedback') {
           countFeedback++;
         }
       }
 
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].status === 'done') {
+    for (let i = 0; i < boardTodos.length; i++) {
+        if (boardTodos[i].status === 'done') {
             countDone++;
         }
       }
 
-    for (let i = 0; i < todos.length; i++) {
-        if (todos[i].prio === 'urgent') {
+    for (let i = 0; i < boardTodos.length; i++) {
+        if (boardTodos[i]['prio']['id'] == 'urgent') {
             countPrio++;
         }
       }
    
-    document.getElementById('countTodo').textContent = todos.length.toString();
+    document.getElementById('countTodo').textContent = boardTodos.length.toString();
     document.getElementById('countInprogress').textContent = countInProgress.toString();
     document.getElementById('countFeedback').textContent = countFeedback.toString();
     document.getElementById('countTodos').textContent = countTodos.toString();
@@ -91,4 +123,44 @@ function displayTodoCount(todos) {
     document.getElementById('countPrio').textContent = countPrio.toString();
   }
   
+/**
+ * This function redirects to the "board.html" page when a div element is clicked
+ */
+  function redirectToBoard() {
+    window.location.href = 'board.html';
+  }
 
+  /**
+   * This function is used to filter the next upcomming 'due date' out of the array boardTodos
+   * 
+   * @param {object} boardTodos - this is the array of the tasks 
+   *  
+   */
+  function displayEarliestDueDate(boardTodos) {
+    let earliestDate = Infinity;
+  
+    boardTodos.forEach(todo => {
+      const dueDateTimestamp = Date.parse(todo.dueDate);
+  
+      if (dueDateTimestamp < earliestDate) {
+        earliestDate = dueDateTimestamp;
+      }
+    });
+  
+    if (earliestDate !== Infinity) {
+      const earliestDateObj = new Date(earliestDate);
+      const earliestDateString = earliestDateObj.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+  
+      const summaryDateElement = document.getElementById("summary-date");
+      summaryDateElement.textContent = earliestDateString;
+  
+      return earliestDateObj;
+    } else {
+      console.log("Keine fälligen Termine vorhanden.");
+      return null;
+    }
+  }

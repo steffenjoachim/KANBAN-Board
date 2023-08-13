@@ -1,44 +1,142 @@
 let categories = []; // Array zum Speichern der Kategorien
 let selectedColor = null;
-let tasksArray = [];
 const subtasks = [];
 
 
+/**
+ * Asynchronously load contacts from storage.
+ */
+async function loadContactsForAssign() {
+  try {
+    contacts = JSON.parse(await getItem('contacts'));
+  } catch (e) {
+    alert('Daten konten nicht geladen werden!');
+  }
+  populateContactList();
+}
+
+/**
+ * Asynchronously load tasks from storage.
+ */
+async function loadNewtasks() {
+  try {
+    todos = JSON.parse(await getItem('task'));
+  } catch (e) {
+    alert('Error');
+  }
+}
+
+/**
+ * Creates a notification and shows it for 1.5 seconds.
+ *
+ * @param {string} message - The notification message.
+ */
+function displayCustomPopup(message) {
+  const popup = document.getElementById("myCustomPopup");
+  const popupMessage = document.getElementById("popupNote");
+  const popupClose = document.getElementById("popupDismiss");
+
+  popupMessage.innerText = message;
+  popup.style.display = "block";
+  setTimeout(function() {
+    popup.style.display = "none";
+  }, 2000);
+  popupClose.onclick = function() {
+    popup.style.display = "none";
+  }
+  window.onclick = function(event) {
+    if (event.target == popup) {
+      popup.style.display = "none";
+    }
+  }
+}
+
+
+function validateForm() {
+  // Mapping von Feldern zu ihren Überprüfungen
+  const fieldChecks = [
+    { value: document.getElementById("title-input").value, message: 'Bitte geben Sie einen Titel ein.' },
+    { value: document.getElementById("description-input").value, message: 'Bitte geben Sie eine Beschreibung ein.' },
+    { value: document.getElementById("select-one").innerText !== "Select task category", message: 'Bitte wählen Sie eine Kategorie aus.' },
+    { value: getAssignedTo().length > 0, message: 'Bitte weisen Sie die Aufgabe einer Person zu.' },
+    { value: document.querySelector(".date-input-container input").value, message: 'Bitte geben Sie ein Fälligkeitsdatum ein.' },
+    { value: getSelectedPrioImage() !== null, message: 'Bitte wählen Sie eine Priorität aus.' },
+  ];
+
+  // Überprüfe jedes Feld
+  for (const check of fieldChecks) {
+    if (!check.value) {
+      displayCustomPopup(check.message);
+      return false;
+    }
+  }
+
+  // Wenn alle Überprüfungen bestanden haben, ist die Formularvalidierung erfolgreich
+  return true;
+}
+
+
+/**
+ * Collects and creates a new task, adds it to task array, and updates UI.
+ */
 async function createTask() {
-  // Hier holen wir die Werte aus den verschiedenen Eingabefeldern
+  if (!validateForm()) {
+    return;
+  }
   let title = document.getElementById("title-input").value;
   let description = document.getElementById("description-input").value;
-  let category = document.getElementById("select-one").innerText;  // Sie müssen den richtigen Weg finden, um den ausgewählten Wert zu erhalten
-  let assignedTo = getAssignedTo(); // Neue Funktion, um die zugewiesene Person zu erhalten
+  let category = document.getElementById("select-one").innerText;
+  let assignedTo = getAssignedTo();
   let dueDate = document.querySelector(".date-input-container input").value;
-  let prio = getSelectedPrio(); 
-  let taskId = calculateId(); 
+  let taskId = calculateId();
+  let subtasks = collectSubtasks();
+  let selectedPrioImage = getSelectedPrioImage();  
+  let newTask = createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, selectedPrioImage.prio, selectedColor);
+  await addTaskToArray(newTask);
+  // todos.splice(0, todos.length);
+  await setItem('task',JSON.stringify(todos));
+  resetInputFields();
+  showTaskAddedNotification();
+}
 
-  // Hier holen wir die Subtasks aus dem Subtask-Array
+/**
+ * Collects all subtasks from the UI and return them as an array.
+ *
+ * @return {Object[]} An array of subtask objects.
+ */
+function collectSubtasks() {
   let subtasks = [];
   const subtaskElements = document.querySelectorAll(".subtask");
-  subtaskElements.forEach((subtaskElement) => {
+  subtaskElements.forEach((subtaskElement, index) => {
     const checkbox = subtaskElement.querySelector(".checkbox-subtask");
     const label = subtaskElement.querySelector(".subtask-name");
     const subtaskObj = {
-      id: checkbox.id,
+      id: index,
       name: label.textContent,
       checked: checkbox.checked
     };
     subtasks.push(subtaskObj);
   });
+  return subtasks;
+}
 
-  // Hier holen wir das ausgewählte Bild
-  let selectedImage = null;
-  const selectedImageElement = document.querySelector("#selected-image img");
-  if (selectedImageElement) {
-    selectedImage = selectedImageElement.src;
-  }
-
-  // Nun erstellen wir ein neues Task-Objekt mit diesen Werten
-  let newTask = {
+/**
+ * Creates a new task object with provided data.
+ *
+ * @param {number} taskId - The id of the task.
+ * @param {string} title - The title of the task.
+ * @param {string} description - The description of the task.
+ * @param {string} category - The category of the task.
+ * @param {string} assignedTo - The individual assigned to the task.
+ * @param {string} dueDate - The due date of the task.
+ * @param {Object[]} subtasks - An array of subtask objects.
+ * @param {Object} prio - The object containing priority id and path to the image representing task priority.
+ * @return {Object} The created task object.
+ */
+function createNewTask(taskId, title, description, category, assignedTo, dueDate, subtasks, prio,selectedColor) {
+  return {
     id: taskId,
-    'status': 'todo',
+    status: "todo",
     title: title,
     description: description,
     category: category,
@@ -46,157 +144,286 @@ async function createTask() {
     dueDate: dueDate,
     prio: prio,
     subtasks: subtasks,
-    selectedImage: selectedImage, // Hier fügen wir das ausgewählte Bild zum Task-Objekt hinzu
+    color: selectedColor,
   };
-
-  // Jetzt können wir das Task-Objekt zu unserem Array hinzufügen
-  tasksArray.push(newTask);
-
-  await setItem('task', JSON.stringify(tasksArray));
-
-  // Und schließlich können wir die Eingabefelder zurücksetzen, damit sie bereit für die Eingabe einer neuen Aufgabe sind
-  resetInputFields();
 }
 
+/**
+ * Asynchronously adds a new task to the task array and saves it to storage.
+ *
+ * @param {Object} newTask - The task to add.
+ */
+async function addTaskToArray(newTask) {
+  todos.push(newTask);
+  // todos.splice(0, todos.length);
+  await setItem("task", JSON.stringify(todos));
+}
 
+/**
+ * Displays a notification indicating that a task was added.
+ */
+function showTaskAddedNotification() {
+  const taskAddedContainer = document.querySelector('.task-added-container');
+  const taskAdded = document.getElementById('task-added');
+
+  // Animation hinzufügen
+  taskAdded.style.animation = 'slideInFromBottom 1s forwards';
+
+  // Benachrichtigung anzeigen
+  taskAddedContainer.style.display = 'flex';
+
+  setTimeout(() => {
+    window.location.href = 'board.html';
+  }, 1500);
+}
+
+/**
+ * Resets all input fields in the UI.
+ */
 function resetInputFields() {
   document.getElementById("title-input").value = "";
   document.getElementById("description-input").value = "";
-  document.getElementById("select-one").innerText = "Select task category";
+  // Zeile zur Rücksetzung von "select-one" entfernt.
   document.getElementById("assign-one").innerText = "Select assigned person";
   document.querySelector(".date-input-container input").value = "";
   document.getElementById("subTask").value = "";
+  document.getElementById('selected-contact').innerHTML = "";
 
   // Subtasks zurücksetzen
   const subtasksContainer = document.getElementById("subtasks");
   subtasksContainer.innerHTML = "";
-
-  // Zurücksetzen des ausgewählten Bilds
-  const selectedImageContainer = document.getElementById("selected-image");
-  if (selectedImageContainer) {
-    selectedImageContainer.innerHTML = "";
-  }
-
   // Zurücksetzen der ausgewählten Priorität
   resetImages();
-
   // Zurücksetzen des "assignedTo"-Feldes
   resetAssignedTo();
+  resetTaskCategoryDropdown();
+  resetSelectedCategory();
 }
 
+
+/**
+ * Calculates a unique ID for a new task.
+ *
+ * @return {number} The calculated unique ID.
+ */
 function calculateId() {
-  if (tasksArray.length === 0) {
-    return 1; // Wenn keine Tasks vorhanden sind, starte mit der ID 1
+  if (todos.length === 0) {
+    return 0; // Wenn keine Tasks vorhanden sind, starte mit der ID 1
   }
-
   // Finde die maximale ID unter den vorhandenen Tasks:
-  const maxId = Math.max(...tasksArray.map(task => task.id));
-
+  const maxId = Math.max(...todos.map(task => task.id));
   // Erhöhe die maximale ID um 1, um eine neue eindeutige ID zu generieren:
   return maxId + 1;
 }
 
 
-// let contacts = [];
 
-// async function loadContacts(){
-//   try{contacts = JSON.parse(await getItem('contacts'))} catch(e){
-//       alert('Daten konten nicht geladen werden!')
-//    }
-// }
-
-
+/**
+ * Manages the dropdown for selecting task category.
+ */
 function selectTaskCategory() {
-    let dropdown = document.getElementById('dropdown');
-    let selectOne = document.getElementById('select-one');
-    let selectThree = document.getElementById('selected-three')
-    
-    if (dropdown.classList.contains('d-none')) {
-        dropdown.classList.remove('d-none');
-        selectOne.style.borderRadius = "10px 10px 0 0";
-        selectOne.style.borderBottom = "none";
-        selectThree.style.borderRadius = "0 0 10px 10px";
-    } else {
-        dropdown.classList.add('d-none');
-        selectOne.style.borderRadius = "10px";
-        selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn das Dropdown-Menü geschlossen ist.
-    } 
-}
-
-function showNewCategoryFields() {
-    document.getElementById('select-one').classList.add('d-none'); // versteckt das Select task category Element
-    document.getElementById('new-category-fields').classList.remove('d-none'); // zeigt das Eingabefeld und die Farbauswahl
-    document.getElementById('dropdown').classList.add('d-none');
-}
-
-function selectOption(event) {
-  let selectOne = document.getElementById('select-one');
-  const selectedText = event.target.querySelector('span').cloneNode(true);
-  const selectedImg = event.target.querySelector('img') ? event.target.querySelector('img').cloneNode(true) : null;
-
-  // select the div containing the span and the img
-  const textAndImgContainer = selectOne.querySelector('div');
-
-  // clear the content of the container and add the new content
-  textAndImgContainer.innerHTML = '';
-
-  textAndImgContainer.appendChild(selectedText);
-  if (selectedImg) {
-    textAndImgContainer.appendChild(selectedImg);
-  }
-
   let dropdown = document.getElementById('dropdown');
+  let selectOne = document.getElementById('select-one');
+  let selectThree = document.getElementById('selected-three')
+
+  if (dropdown.classList.contains('d-none')) {
+    dropdown.classList.remove('d-none');
+    selectOne.style.borderRadius = "10px 10px 0 0";
+    selectOne.style.borderBottom = "none";
+    selectThree.style.borderRadius = "0 0 10px 10px";
+  } else {
+    dropdown.classList.add('d-none');
+    selectOne.style.borderRadius = "10px";
+    selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn das Dropdown-Menü geschlossen ist.
+  }
+  if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
+    checkScrollbar();
+  }
+}
+
+/**
+ * Shows the fields for adding a new task category.
+ */
+function showNewCategoryFields() {
+  document.getElementById('select-one').classList.add('d-none'); // versteckt das Select task category Element
+  document.getElementById('new-category-fields').classList.remove('d-none'); // zeigt das Eingabefeld und die Farbauswahl
+  document.getElementById('dropdown').classList.add('d-none');
+  if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
+    checkScrollbar();
+  }
+}
+
+/**
+ * Gets the selected text and color elements from the event target.
+ *
+ * @param {Event} event - The DOM event from the click
+ * @return {Object} An object containing the selected text and color div elements
+ */
+function getSelectedElements(event) {
+  const selectedText = event.target.querySelector('span').cloneNode(true);
+  const selectedColorDiv = event.target.querySelector('.circle') ? event.target.querySelector('.circle').cloneNode(true) : null;
+  return { selectedText, selectedColorDiv };
+}
+
+/**
+ * Updates the select one container with the selected text and color elements.
+ *
+ * @param {HTMLElement} selectOne - The select one element
+ * @param {Object} selectedElements - An object containing the selected text and color div elements
+ */
+function updateSelectOneContainer(selectOne, selectedElements) {
+  const { selectedText, selectedColorDiv } = selectedElements;
+  const textAndColorContainer = selectOne.querySelector('div');
+  if (textAndColorContainer) {
+    textAndColorContainer.innerHTML = '';
+    textAndColorContainer.appendChild(selectedText);
+    if (selectedColorDiv) {
+      textAndColorContainer.appendChild(selectedColorDiv);
+    }
+  }
+}
+
+/**
+ * Updates the dropdown and select one styles.
+ *
+ * @param {HTMLElement} dropdown - The dropdown element
+ * @param {HTMLElement} selectOne - The select one element
+ */
+function updateDropdown(dropdown, selectOne) {
   dropdown.classList.add('d-none');
-  selectOne.style.borderRadius = "10px";
-  selectOne.style.borderBottom = "";  // Setzt den unteren Rand zurück, wenn eine Option ausgewählt ist.
-
-  // Anzeigen des ausgewählten Bildes
-  const selectedImageContainer = document.getElementById('selected-image');
-  selectedImageContainer.innerHTML = '';
-  if (selectedImg) {
-    const clonedImage = selectedImg.cloneNode(true);
-    selectedImageContainer.appendChild(clonedImage);
+  if (selectOne) {
+    selectOne.style.borderRadius = "10px";
+    selectOne.style.borderBottom = "";
   }
 }
 
-function selectColor(event) {
-    selectedColor = event.target.src;
-    // Hier können Sie eine Funktion hinzufügen, um das ausgewählte Bild hervorzuheben oder eine andere visuelle Rückmeldung zu geben
+/**
+ * Updates the selected color container with the selected color div.
+ *
+ * @param {HTMLElement} selectedColorContainer - The selected color container element
+ * @param {HTMLElement} selectedColorDiv - The selected color div element
+ */
+function updateSelectedColorContainer(selectedColorContainer, selectedColorDiv) {
+  if (selectedColorContainer) {
+    selectedColorContainer.innerHTML = '';
+    if (selectedColorDiv) {
+      const clonedColorDiv = selectedColorDiv.cloneNode(true);
+      selectedColorContainer.appendChild(clonedColorDiv);
+    }
+  }
 }
 
+/**
+ * Handles the select option event, updates the UI accordingly and calls additional functions.
+ *
+ * @param {Event} event - The DOM event from the click
+ * @param {string} color - The selected color value
+ */
+function selectOption(event, color) {
+  let selectOne = document.getElementById('select-one');
+  let dropdown = document.getElementById('dropdown');
+  let selectedColorContainer = document.getElementById('selected-color');
+  const { selectedText, selectedColorDiv } = getSelectedElements(event);
+  if (selectOne) {
+    updateSelectOneContainer(selectOne, { selectedText, selectedColorDiv });
+  }
+  updateDropdown(dropdown, selectOne);
+  updateSelectedColorContainer(selectedColorContainer, selectedColorDiv);
+
+  if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
+    checkScrollbar();
+  }
+  selectColor(color);
+}
+
+/**
+ * Selects the priority color. It updates the global selectedColor variable.
+ *
+ * @param {string} color - The selected color value
+ */
+function selectColor(color) {
+  console.log("selectColor function called with color: " + color);
+  selectedColor = color;
+}
+
+/**
+ * Resets the priority color. It clears the global selectedColor variable.
+ */
+function resetColors() {
+  selectedColor = null;
+  console.log("Color selection reset");
+}
+
+/**
+ * Clears the input fields, hides the input fields and shows the select task category element.
+ */
 function cancelNewCategory() {
-    document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
-    document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
-    document.getElementById('new-category-name').value = '';
-    selectedColor = null;
-    // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
-  }
-  
- 
-
-function saveNewCategory() {
-  const categoryName = document.getElementById('new-category-name').value;
-  
-  if (!categoryName || !selectedColor) {
-    alert('Bitte geben Sie einen Kategorienamen ein und wählen Sie eine Farbe aus.');
-    return;
-  }
-
-  const newCategoryId = document.getElementById('new-category-name').value;
-
-  let newCategory = createCategoryElement(newCategoryId, categoryName, selectedColor);
-  const dropdown = document.getElementById('dropdown');
-  const firstCategory = dropdown.querySelector('.selected');
-  dropdown.insertBefore(newCategory, firstCategory);
-
-  selectOption({ target: newCategory }); // Category auswählen
-
   document.getElementById('select-one').classList.remove('d-none'); // zeigt das Select task category Element
   document.getElementById('new-category-fields').classList.add('d-none'); // versteckt das Eingabefeld und die Farbauswahl
   document.getElementById('new-category-name').value = '';
-  selectedColor = null;
+
   // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
 }
+
+//-SaveNewCategory functions
+
+
+/**
+ * Creates a new category element and inserts it into the dropdown menu.
+ *
+ * @param {string} newCategoryId - The id of the new category.
+ * @param {string} categoryName - The name of the new category.
+ * @param {string} color - The color of the new category.
+ * @return {HTMLElement} The created category element.
+ */
+function createAndInsertCategory(newCategoryId, categoryName, color) {
+  let newCategory = createCategoryElement(newCategoryId, categoryName, color);
+  const dropdown = document.getElementById('dropdown');
+  const firstCategory = dropdown.querySelector('.selected');
+  dropdown.insertBefore(newCategory, firstCategory);
+  return newCategory;
+}
+
+/**
+ * Updates the UI after a new category is created.
+ */
+function updateUIAfterCategoryCreation() {
+  document.getElementById('select-one').classList.remove('d-none');
+  document.getElementById('new-category-fields').classList.add('d-none');
+  document.getElementById('new-category-name').value = '';
+  // Hier können Sie eine Funktion hinzufügen, um die visuelle Rückmeldung für die ausgewählte Farbe zurückzusetzen
+}
+
+/**
+ * Validates the input for a new category.
+ *
+ * @param {string} categoryName - The name of the new category.
+ * @param {string} color - The color of the new category.
+ * @return {boolean} Returns true if the inputs are valid, false otherwise.
+ */
+function validateNewCategoryInputs(categoryName, color) {
+  if (!categoryName || !color) {
+    alert('Bitte geben Sie einen Kategorienamen ein und wählen Sie eine Farbe aus.');
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Saves a new category, validates the inputs, updates the dropdown menu and UI.
+ */
+function saveNewCategory() {
+  const categoryName = document.getElementById('new-category-name').value;
+  if (!validateNewCategoryInputs(categoryName, selectedColor)) return;
+
+  const newCategoryId = categoryName;
+  const newCategory = createAndInsertCategory(newCategoryId, categoryName, selectedColor);
+
+  selectOption({ target: newCategory }, selectedColor);
+
+  updateUIAfterCategoryCreation();
+}
+//-------------------------------//
 
 function createCategoryElement(id, name, color) {
   let newCategory = document.createElement('div');
@@ -207,116 +434,251 @@ function createCategoryElement(id, name, color) {
   let newCategorySpan = document.createElement('span');
   newCategorySpan.textContent = name;
 
-  let newCategoryImg = document.createElement('img');
-  newCategoryImg.src = color;
-  newCategoryImg.className = 'color-circle';
+  let newCategoryColorDiv = document.createElement('div');
+  newCategoryColorDiv.style.backgroundColor = color; // setzt die Hintergrundfarbe auf die ausgewählte Farbe
+  newCategoryColorDiv.className = 'circle'; // diese Klasse sollte in Ihrem CSS definiert sein, um die Form und Größe des Farbkreises zu bestimmen
 
   newCategory.appendChild(newCategorySpan);
-  newCategory.appendChild(newCategoryImg);
+  newCategory.appendChild(newCategoryColorDiv);
 
   return newCategory;
 }
 
 
+//------reset-categorie----//
+
+/**
+ * Resets the selected category. It clears the content and sets a default text.
+ * If an image element is found, it also resets the image source.
+ */
+function resetSelectedCategory() {
+  const selectOne = document.getElementById('select-one');
+  const textAndImgContainer = selectOne.querySelector('div');
+
+  // Set default text
+  const defaultText = document.createElement('span');
+  defaultText.textContent = 'Select task category';
+
+  // Reset content
+  textAndImgContainer.innerHTML = '';
+  textAndImgContainer.appendChild(defaultText);
+
+  // Check if image exists before trying to reset it
+  const imgElement = textAndImgContainer.querySelector('img');
+  if (imgElement) {
+    imgElement.src = 'the path to the default img';
+  }
+}
+
+/**
+ * Resets the task category dropdown. If the dropdown is visible, it hides the dropdown and adjusts the styles.
+ */
+function resetTaskCategoryDropdown() {
+  let dropdown = document.getElementById('dropdown');
+  let selectOne = document.getElementById('select-one');
+
+  if (!dropdown.classList.contains('d-none')) {
+    dropdown.classList.add('d-none');
+    selectOne.style.borderRadius = "10px";
+    selectOne.style.borderBottom = "";
+  }
+}
 
 
-
-// /**
-//  * Wechselt die Sichtbarkeit eines Dropdown-Menüs und ändert den Randradius der Container-Elemente.
-//  * Ist das Dropdown-Menü derzeit ausgeblendet, wird es angezeigt und der Randradius der Container-Elemente angepasst, so dass nur die oberen Ecken abgerundet sind.
-//  * Ist das Dropdown-Menü derzeit sichtbar, wird es ausgeblendet und der Randradius der Container-Elemente zurückgesetzt.
-//  */
-// function selectAssignedTo() {
-//   let dropdownAssign = document.getElementById('dropdown-assign');
-//   let assignOne = document.getElementById('assign-one');
-//   let assignThree = document.getElementById('assigned-three')
-
-//   if (dropdownAssign.classList.contains('d-none')) {
-//       dropdownAssign.classList.remove('d-none');
-//       assignOne.style.borderRadius = "10px 10px 0 0";
-//       assignOne.style.borderBottom = "none";
-//       assignThree.style.borderRadius = "0 0 10px 10px";
-//   } else {
-//       dropdownAssign.classList.add('d-none');
-//       assignOne.style.borderRadius = "10px";
-//       assignOne.style.borderBottom = "";  
-//   }
-// }
-
-// /**
-//  * Aktualisiert den Textinhalt eines Auswahlfeldes mit der ausgewählten Option und verbirgt das Dropdown-Menü.
-//  * Wird jedoch ein Kontrollkästchen (Checkbox) angeklickt, bleibt das Dropdown-Menü sichtbar.
-//  * 
-//  * @param {Event} event - Das Event-Objekt, das die Benutzeraktion darstellt, z. B. ein Klick-Event.
-//  */
-// function selectAssign(event) {
-//   // Prüfen, ob das Ziel nicht ein Kontrollkästchen ist
-//   if (event.target.type !== 'checkbox') {
-//     let assignOne = document.getElementById('assign-one');
-//     assignOne.textContent = event.target.textContent;
-//     let dropdownAssign = document.getElementById('dropdown-assign');
-//     dropdownAssign.classList.add('d-none');
-//     assignOne.style.borderRadius = "10px";
-//     assignOne.style.borderBottom = "";  
-//   }
-// }
-
-// const cancelBtn = document.querySelector('.cancel-btn-desktop');
-// const cancelImg = cancelBtn.querySelector('.cancel-img');
-
-// cancelBtn.addEventListener('mouseenter', () => {
-//   cancelImg.src = './asssets/img/blue-cancel.svg';
-// });
-
-// cancelBtn.addEventListener('mouseleave', () => {
-//   cancelImg.src = './asssets/img/cancel-svg.svg';
-// });
 //---------------------------------------------------
 
+/**
+ * Shows the dropdown for assigning a person.
+ */
+function showDropdown() {
+  let dropdownAssign = document.getElementById(`dropdown-assign`);
+  let assignOne = document.getElementById(`assign-one`);
+  let assignThree = document.getElementById(`assigned-three`)
+
+  if (!contacts) {
+    // Das 'contacts'-Array ist noch nicht geladen, daher keine Aktion ausführen
+    return;
+  }
+
+  dropdownAssign.classList.remove('d-none');
+  assignOne.style.borderRadius = "10px 10px 0 0";
+  assignOne.style.borderBottom = "none";
+  assignThree.style.borderRadius = "0 0 10px 10px";
+
+  if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
+    checkScrollbar();
+  }
+}
+
+/**
+ * Hides the dropdown for assigning a person.
+ */
+function hideDropdown() {
+  let dropdownAssign = document.getElementById(`dropdown-assign`);
+  let assignOne = document.getElementById(`assign-one`);
+
+  dropdownAssign.classList.add('d-none');
+  assignOne.style.borderRadius = "10px";
+  assignOne.style.borderBottom = "";
+  if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
+    checkScrollbar();
+  }
+}
+
+/**
+ * Toggles the display of the dropdown for assigning a person.
+ */
 function selectAssignedTo() {
-  let dropdownAssign = document.getElementById('dropdown-assign');
-  let assignOne = document.getElementById('assign-one');
-  let assignThree = document.getElementById('assigned-three')
+  let dropdownAssign = document.getElementById(`dropdown-assign`);
 
   if (dropdownAssign.classList.contains('d-none')) {
-    dropdownAssign.classList.remove('d-none');
-    assignOne.style.borderRadius = "10px 10px 0 0";
-    assignOne.style.borderBottom = "none";
-    assignThree.style.borderRadius = "0 0 10px 10px";
+    showDropdown();
   } else {
-    dropdownAssign.classList.add('d-none');
-    assignOne.style.borderRadius = "10px";
-    assignOne.style.borderBottom = "";
+    hideDropdown();
   }
 }
 
+/**
+ * Creates a contact div element for the selected contact.
+ * 
+ * @param {Object} selectedContact - The selected contact object.
+ * @returns {HTMLElement} The created contact div element.
+ */
+function createContactDiv(selectedContact) {
+  let contactDiv = document.createElement('div');
+  contactDiv.classList.add(selectedContact['icon-color']);
+  contactDiv.style.borderRadius = '50%';
+  contactDiv.style.width = '50px';
+  contactDiv.style.height = '50px';
+  contactDiv.style.display = 'flex';
+  contactDiv.style.justifyContent = 'center';
+  contactDiv.style.alignItems = 'center';
+  contactDiv.style.color = 'white';
+  contactDiv.textContent = selectedContact.initials;
+
+  return contactDiv;
+}
+
+/**
+ * Adds the contact div element to the selected contact div container.
+ * 
+ * @param {HTMLElement} selectedContactDiv - The container for the selected contact div.
+ * @param {HTMLElement} contactDiv - The contact div element to add.
+ */
+function addContactDivToSelected(selectedContactDiv, contactDiv) {
+  selectedContactDiv.appendChild(contactDiv);
+}
+
+/**
+ * Removes the contact div element from the selected contact div container.
+ * 
+ * @param {HTMLElement} selectedContactDiv - The container for the selected contact div.
+ */
+function removeContactDivFromSelected(selectedContactDiv) {
+  while (selectedContactDiv.firstChild) {
+    selectedContactDiv.firstChild.remove();
+  }
+}
+
+/**
+ * Updates the behavior of the dropdown after selecting a contact.
+ * 
+ * @param {HTMLElement} dropdownAssign - The dropdown assign element.
+ * @param {HTMLElement} assignOne - The assign one element.
+ */
+function updateDropdownBehavior(dropdownAssign, assignOne) {
+  dropdownAssign.classList.remove('d-none');
+  assignOne.style.borderRadius = '10px 10px 0 0';
+  assignOne.style.borderBottom = 'none';
+}
+
+
+/**
+ * Gets the HTML element with the specified ID.
+ * 
+ * @param {string} id - The ID of the element to retrieve.
+ * @returns {HTMLElement} The HTML element with the specified ID.
+ */
+function getElementById(id) {
+  return document.getElementById(id);
+}
+
+/**
+ * Gets the selected contact object from the contacts array based on the selected person name.
+ * 
+ * @param {string} selectedPerson - The name of the selected person.
+ * @returns {Object} The selected contact object.
+ */
+function getSelectedContact(selectedPerson) {
+  return contacts.find(contact => contact.name === selectedPerson);
+}
+
+/**
+ * Performs operations when a checkbox is checked.
+ * 
+ * @param {Event} event - The DOM event from the checkbox click.
+ * @param {Object} selectedContact - The selected contact object.
+ * @param {HTMLElement} selectedContactDiv - The container for the selected contact div.
+ */
+function checkboxCheckedOperations(event, selectedContact, selectedContactDiv) {
+  let contactDiv = createContactDiv(selectedContact);
+  contactDiv.id = `contact-${selectedContact.name}`; 
+  addContactDivToSelected(selectedContactDiv, contactDiv);
+}
+
+/**
+ * Performs operations when a checkbox is unchecked.
+ * 
+ * @param {string} selectedPerson - The name of the selected person.
+ * @param {HTMLElement} dropdownAssign - The dropdown assign element.
+ * @param {HTMLElement} assignOne - The assign one element.
+ */
+function checkboxUncheckedOperations(selectedPerson, dropdownAssign, assignOne) {
+  let contactDivToRemove = getElementById(`contact-${selectedPerson}`);
+  if (contactDivToRemove) {
+    contactDivToRemove.remove();
+  }
+  updateDropdownBehavior(dropdownAssign, assignOne);
+}
+
+/**
+ * Handles the selection of a contact for assignment.
+ * 
+ * @param {Event} event - The DOM event from the click.
+ */
 function selectAssign(event) {
-  const assignOne = document.getElementById('assign-one');
-  const dropdownAssign = document.getElementById('dropdown-assign');
-  
+  const assignOne = getElementById('assign-one');
+  const dropdownAssign = getElementById('dropdown-assign');
+  const selectedContactDiv = getElementById('selected-contact');
+
   if (event.target.type === 'checkbox') {
-    // Überprüfen, ob die Checkbox ausgewählt ist
+    const selectedPerson = event.target.parentElement.textContent.trim();
+    let selectedContact = getSelectedContact(selectedPerson);
+
     if (event.target.checked) {
-      const selectedPerson = event.target.parentElement.textContent.trim();
-      // Hier können Sie die ausgewählte Person weiterverarbeiten, z.B. in einem Array speichern
-      console.log('Ausgewählte Person:', selectedPerson);
+      checkboxCheckedOperations(event, selectedContact, selectedContactDiv);
+    } else {
+      checkboxUncheckedOperations(selectedPerson, dropdownAssign, assignOne);
     }
-    
-    // Dropdown-Verhalten aktualisieren
-    if (!event.target.checked) {
-      dropdownAssign.classList.remove('d-none');
-      assignOne.style.borderRadius = '10px 10px 0 0';
-      assignOne.style.borderBottom = 'none';
-    }
+  }
+
+  if (window.location.pathname.includes('board.html') || window.location.pathname.includes('contacts.html')) {
+    checkScrollbar();
   }
 }
 
+/**
+ * Shows the invite contact fields.
+ */
 function showInviteContactFields() {
   document.getElementById('assign-one').classList.add('d-none');
   document.getElementById('dropdown-assign').classList.add('d-none');
   document.getElementById('new-contact-fields').classList.remove('d-none');
 }
 
+/**
+ * Cancels inviting a new contact and resets the fields.
+ */
 function cancelInviteContact() {
   document.getElementById('assign-one').classList.remove('d-none');
   document.getElementById('dropdown-assign').classList.remove('d-none');
@@ -324,6 +686,9 @@ function cancelInviteContact() {
   document.getElementById('new-contact-email').value = '';
 }
 
+/**
+ * Saves the invited contact, validates the email address, and inserts the contact into the dropdown.
+ */
 function saveInviteContact() {
   const newContactEmail = document.getElementById('new-contact-email').value;
 
@@ -348,102 +713,182 @@ function saveInviteContact() {
   cancelInviteContact();
 }
 
-// const cancelBtn = document.querySelector('.cancel-btn-desktop');
-// // const cancelImg = cancelBtn.querySelector('.cancel-img');
 
-// cancelBtn.addEventListener('mouseenter', () => {
-//   cancelImg.src = './asssets/img/blue-cancel.svg';
-// });
+/**
+ * Validates the email address of the new contact and checks if it matches any existing contacts.
+ * 
+ * @param {string} newContactEmail - The email address of the new contact.
+ * @returns {Object} The matched contact object if found, otherwise false.
+ */
+function validateNewContactEmail(newContactEmail) {
+  if (!newContactEmail) {
+    alert('Please enter an email address.');
+    return false;
+  }
 
-// cancelBtn.addEventListener('mouseleave', () => {
-//   cancelImg.src = './asssets/img/cancel-svg.svg';
-// });
+  const matchedContact = contacts.find(contact => contact.email === newContactEmail);
+  if (!matchedContact) {
+    alert('No matching contact found.');
+    return false;
+  }
 
+  return matchedContact;
+}
+
+/**
+ * Creates a contact div element for the matched contact and inserts it into the dropdown.
+ * 
+ * @param {Object} matchedContact - The matched contact object.
+ */
+function createAndInsertContactDiv(matchedContact) {
+  const contactDiv = document.createElement('div');
+  contactDiv.textContent = matchedContact.name;
+  contactDiv.className = 'selected';
+  contactDiv.setAttribute('onclick', 'selectAssign(event)');
+  getElementById('dropdown-assign').insertBefore(contactDiv, getElementById('assigned-three'));
+}
+
+/**
+ * Saves the invited contact by validating the email address, creating and inserting the contact div, and cancelling the invite contact.
+ *
+ * @returns {void}
+ */
+function saveInviteContact() {
+  const newContactEmail = getElementById('new-contact-email').value;
+  const matchedContact = validateNewContactEmail(newContactEmail);
+
+  if(matchedContact) {
+    createAndInsertContactDiv(matchedContact);
+    cancelInviteContact();
+  }
+}
+
+/**
+ * Retrieves the selected contacts for assignment.
+ * 
+ * @returns {Array<Object>} An array of selected contact objects.
+ */
 function getAssignedTo() {
   const checkboxes = document.querySelectorAll('#dropdown-assign input[type="checkbox"]');
   const selectedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked);
-  const assignedTo = selectedCheckboxes.map(checkbox => checkbox.parentElement.textContent.trim());
-  return assignedTo;
+
+  return selectedCheckboxes.map(checkbox => {
+    const selectedPerson = checkbox.parentElement.textContent.trim();
+    const matchedContact = getSelectedContact(selectedPerson);
+    return matchedContact ? {
+      name: matchedContact.name,
+      initials: matchedContact.initials,
+      iconColor: matchedContact["icon-color"]
+    } : null;
+  }).filter(contact => contact); // Filter out any null contacts
 }
 
 document.querySelector(".create-btn-desktop").addEventListener("click", createTask);
 
-function resetAssignedTo() {
+
+/**
+ * Resets the checkboxes for assigning a person.
+ */
+function resetCheckboxes() {
   const checkboxes = document.querySelectorAll('#dropdown-assign input[type="checkbox"]');
   checkboxes.forEach(checkbox => {
     checkbox.checked = false;
   });
+}
 
-  // Schließen des "assignedTo"-Dropdowns
-  const dropdownAssign = document.getElementById('dropdown-assign');
-  const assignOne = document.getElementById('assign-one');
-  dropdownAssign.classList.add('d-none');
+/**
+ * Resets the assign one element to its default state.
+ * 
+ * @param {HTMLElement} assignOne - The assign one element.
+ */
+function resetAssignOneElement(assignOne) {
+  assignOne.innerHTML = '<span>Select assigned person</span><img src="./add_task_img/open.svg" alt="" />';
   assignOne.style.borderRadius = '10px';
   assignOne.style.borderBottom = '';
 }
 
+
+/**
+ * Resets the assigned to dropdown and assign one element to their default state.
+ */
+function resetAssignedTo() {
+  const dropdownAssign = getElementById('dropdown-assign');
+  const assignOne = getElementById('assign-one');
+
+  resetCheckboxes();
+  dropdownAssign.classList.add('d-none');
+  resetAssignOneElement(assignOne);
+}
+
 //---------------renderContacts-----------
 
-// console.log(populateContactList())
-// Diese Funktion geht durch das 'contacts' Array und erstellt für jeden Kontakt ein div
+
+/**
+ * Erstellt ein neues DIV-Element für einen Kontakt in der Dropdown-Liste.
+ *
+ * @param {number} i - Der Index des Kontakts im 'contacts'-Array.
+ * @returns {HTMLElement} - Das erstellte DIV-Element.
+ */
+function createNewDiv(i) {
+  const newDiv = document.createElement('div');
+  newDiv.onclick = selectAssign;  
+  newDiv.className = 'selected space-between'; 
+  newDiv.id = `assigned-${i + 1}`;
+  return newDiv;
+}
+
+/**
+ * Erstellt ein SPAN-Element für den Namen eines Kontakts.
+ *
+ * @param {Object} contact - Der Kontakt, für den das SPAN-Element erstellt wird.
+ * @returns {HTMLElement} - Das erstellte SPAN-Element.
+ */
+function createNameSpan(contact) {
+  const nameSpan = document.createElement('span');
+  nameSpan.textContent = contact.name;
+  return nameSpan;
+}
+
+/**
+ * Erstellt ein Checkbox-Element für einen Kontakt.
+ *
+ * @param {Object} contact - Der Kontakt, für den das Checkbox-Element erstellt wird.
+ * @returns {HTMLInputElement} - Das erstellte Checkbox-Element.
+ */
+function createCheckbox(contact) {
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.id = `checkbox-${contact.name.toLowerCase()}`;
+  checkbox.className = 'checkbox-style';
+  return checkbox;
+}
+
+/**
+ * Befüllt die Dropdown-Liste mit den Kontakten aus dem 'contacts'-Array.
+ *
+ * @returns {void}
+ */
 function populateContactList() {
   const dropdownAssign = document.getElementById('dropdown-assign');
-  
-  // Gehe durch das 'contacts' Array
+
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
 
-    // Erstelle ein neues div
-    const newDiv = document.createElement('div');
-    newDiv.onclick = selectAssign;  // Verbinde das 'selectAssign' Ereignis mit dem neuen div
-    newDiv.className = 'selected space-between'; // Setze die Klasse für das div
-    newDiv.id = `assigned-${i+1}`; // Setze die id für das div
+    const newDiv = createNewDiv(i);
+    const nameSpan = createNameSpan(contact);
+    const checkbox = createCheckbox(contact);
 
-    // Erstelle einen neuen Span für den Namen
-    const nameSpan = document.createElement('span');
-    nameSpan.textContent = contact.name;
-    
-    // Erstelle ein neues Input-Element für die Checkbox
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox'; 
-    checkbox.id = `checkbox-${contact.name.toLowerCase()}`; 
-    checkbox.className = 'checkbox-style';
-
-    // Füge den Span und das Input-Element zum div hinzu
     newDiv.appendChild(nameSpan);
     newDiv.appendChild(checkbox);
-    
-    // Füge das div zum 'dropdown-assign' div hinzu
     dropdownAssign.insertBefore(newDiv, document.getElementById('assigned-three'));
   }
 }
 
-// Rufe die Funktion auf, wenn das Dokument geladen wird in der contacts.js (function loadContacts)
-
-
-//----------------------------------// 
-
-
-function validateFormSubmission() {
-  const form = document.querySelector('form');
-
-  form.addEventListener('submit', (e) => {
-      // Sie können hier den Selector anpassen, um die ausgewählten Personen zu selektieren
-      const assignedPersons = document.querySelectorAll('#dropdown-assign .selected');
-      
-      if (assignedPersons.length === 0) {
-          alert('Bitte wählen Sie mindestens eine Person aus.');
-          e.preventDefault();
-      }
-  });
-}
-
-// Rufen Sie die Funktion auf, sobald das Dokument geladen ist
-window.addEventListener('DOMContentLoaded', validateFormSubmission);
-
-
-//-----------------------------------//
-
+/**
+ * Toggles the display of the icons wrapper and plus icon.
+ * 
+ * @param {string} displayStatus - The display property value ('block' or 'none') to set on the icons wrapper.
+ */
 function toggleIcons(displayStatus) {
   const iconsWrapper = document.querySelector('.icons-wrapper');
   const plusIcon = document.querySelector('.plus-icon');
@@ -451,55 +896,95 @@ function toggleIcons(displayStatus) {
   plusIcon.style.display = displayStatus === 'block' ? 'none' : 'block';
 }
 
+/**
+ * Clears the subtask input field.
+ */
 function clearInput() {
   const subTaskInput = document.getElementById('subTask');
   subTaskInput.value = '';
 }
 
-
-function createSubtask() {
-  const subTaskInput = document.getElementById('subTask');
-  let taskValue = subTaskInput.value;
-
-  // Das neue div für die Subtask erstellen
+/**
+ * Creates a new subtask element with the provided task value.
+ * 
+ * @param {string} taskValue - The value of the task to create a subtask for.
+ * @returns {HTMLElement} The newly created subtask element.
+ */
+function createSubtaskElement(taskValue) {
   const newSubtask = document.createElement('div');
   newSubtask.className = 'subtask';
 
-  // Neues Input-Feld für die Checkbox erstellen
   const newInput = document.createElement('input');
   newInput.type = 'checkbox';
   newInput.id = taskValue;
   newInput.name = taskValue;
   newInput.className = 'checkbox-subtask';
 
-  // Neues Label für die Subtask erstellen
   const newLabel = document.createElement('label');
   newLabel.className = 'subtask-name';
   newLabel.htmlFor = taskValue;
   newLabel.textContent = taskValue;
 
-  // Die neuen Elemente zum div hinzufügen
+  const deleteImage = document.createElement('img');
+  deleteImage.id = 'delete-subtask';
+  deleteImage.src = './asssets/img/cancel-svg.svg';
+  deleteImage.alt = 'Delete Subtask';
+  deleteImage.onclick = function () {
+    newSubtask.remove();
+  }
+
   newSubtask.appendChild(newInput);
   newSubtask.appendChild(newLabel);
+  newSubtask.appendChild(deleteImage); 
 
-  // Das neue div zum speziellen Container hinzufügen
+  return newSubtask;
+}
+
+/**
+ * Adds the provided subtask element to the subtasks container.
+ * 
+ * @param {HTMLElement} newSubtask - The new subtask element to add to the container.
+ */
+function addSubtaskToContainer(newSubtask) {
   const subtasksContainer = document.getElementById('subtasks');
   subtasksContainer.appendChild(newSubtask);
+}
 
-  // Das neue Subtask-Objekt erstellen und zum Subtask-Array hinzufügen
+/**
+ * Adds the provided subtask to the subtasks array.
+ * 
+ * @param {string} taskValue - The value of the task to create a subtask for.
+ * @param {string} newInputId - The id of the new input element.
+ */
+function addSubtaskToArray(taskValue, newInputId) {
   const newSubtaskObj = {
-    id: newInput.id,
+    id: newInputId,
     name: taskValue,
     checked: false
   };
   subtasks.push(newSubtaskObj);
+}
 
-  // Das Input-Feld leeren
+/**
+ * Creates a new subtask, adds it to the subtasks container and subtasks array, and clears the input field.
+ */
+function createSubtask() {
+  const subTaskInput = document.getElementById('subTask');
+  let taskValue = subTaskInput.value;
+
+  const newSubtask = createSubtaskElement(taskValue);
+  addSubtaskToContainer(newSubtask);
+  addSubtaskToArray(taskValue, newSubtask.firstElementChild.id);
+
   clearInput();
 }
 
 // Buttons
 
+/**
+ * An object containing the default and selected image paths for each priority level.
+ * @type {Object.<string, Object.<string, string>>}
+ */
 const images = {
   "urgent": {
     "default": "./asssets/img/urgent-urgent.svg",
@@ -515,6 +1000,9 @@ const images = {
   }
 };
 
+/**
+ * Resets the priority images to their default state.
+ */
 function resetImages() {
   const prioImages = document.querySelectorAll('.prio-img');
   prioImages.forEach(img => {
@@ -522,14 +1010,22 @@ function resetImages() {
   });
 }
 
+/**
+ * Selects the image and changes its source to the "selected" state.
+ * 
+ * @param {Event} event - The DOM event from the click
+ */
 function selectImage(event) {
   event.target.src = images[event.target.id].selected;
 }
 
+/**
+ * Adds click event listeners to the priority images. On click, it resets the images and selects the clicked image.
+ */
 function setupPriorityClick() {
   const prioImages = document.querySelectorAll('.prio-img');
   prioImages.forEach(img => {
-    img.addEventListener('click', function(event) {
+    img.addEventListener('click', function (event) {
       resetImages();
       selectImage(event);
     });
@@ -538,13 +1034,39 @@ function setupPriorityClick() {
 
 setupPriorityClick();
 
-function getSelectedPrio() {
+/**
+ * Retrieves the priority image that is currently selected.
+ * 
+ * @returns {Object} - An object that contains the id of the selected priority and the path to the corresponding image.
+ */
+function getSelectedPrioImage() {
   const prioImages = document.querySelectorAll('.prio-img');
-  let selectedPriority = "";
+  let selectedPriority = '';
   prioImages.forEach(img => {
-      if (img.src.includes("toggle")) {
-          selectedPriority = img.id; // "urgent", "medium" oder "low"
-      }
+    if (img.src.includes('toggle')) {
+      selectedPriority = img.id;
+    }
   });
-  return selectedPriority;
+
+  // Wenn keine Priorität ausgewählt wurde, gib null zurück
+  if (!selectedPriority) {
+    return null;
+  }
+  let selectedImagePath = '';
+  if (selectedPriority === 'urgent') {
+    selectedImagePath = './asssets/img/inProgress-icon.svg';
+  } else if (selectedPriority === 'medium') {
+    selectedImagePath = './asssets/img/Feedback-icon.svg';
+  } else if (selectedPriority === 'low') {
+    selectedImagePath = './asssets/img/toDo-icon.svg';
+  }
+  // Gib das "prio" Objekt mit Pfad und ID zurück
+  return {prio: {path: selectedImagePath, id: selectedPriority}};
 }
+
+
+
+// Event-Listener für das DOMContentLoaded-Event
+document.addEventListener('DOMContentLoaded', () => {
+
+});
