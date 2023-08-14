@@ -1,10 +1,10 @@
-@font-face{
+@font-face {
   font-family: Inter;
   src: url(./asssets/fonts/Inter-Regular.ttf);
 }
 
 body {
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   margin: 0;
   padding: 0;
   display: flex;
@@ -15,15 +15,15 @@ body {
 
 h1 {
   font-size: 47px;
-   font-weight: 700;
-    color: #000000
+  font-weight: 700;
+  color: #000000;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   width: 100%;
@@ -33,7 +33,7 @@ header {
 }
 
 footer {
-  background-color: #2A3647;
+  background-color: #2a3647;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -44,34 +44,31 @@ footer {
   width: 32px;
   height: 39px;
   margin-left: 25px;
-  margin-top:20px;
-  margin-bottom:20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-
-
 
 #create-button {
   width: 124px;
-height: 51px;
-color: #FFFFFF;
-background: #2A3647;
-border-radius: 10px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: bold;
-font-size: 21px;
-line-height: 120%;
-margin-top: 14px;
-margin-bottom: 14px;
-margin-right: 25px;
-border: none;
+  height: 51px;
+  color: #ffffff;
+  background: #2a3647;
+  border-radius: 10px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 21px;
+  line-height: 120%;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  margin-right: 25px;
+  border: none;
 }
 
 .wrapper {
   margin-top: 114px;
   margin: 33px;
   margin-bottom: 100px;
-  padding-left: 232px;
 }
 
 .wrapper p {
@@ -84,4 +81,10 @@ border: none;
 
 .mg-35 {
   margin-right: 35px;
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    padding-left: 232px;
+  }
 }

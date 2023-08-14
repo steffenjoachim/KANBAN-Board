@@ -1,6 +1,5 @@
-
 body {
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   margin: 0;
   padding: 0;
   display: flex;
@@ -18,7 +17,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   width: 100%;
@@ -28,7 +27,7 @@ header {
 }
 
 footer {
-  background-color: #2A3647;
+  background-color: #2a3647;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -39,28 +38,26 @@ footer {
   width: 32px;
   height: 39px;
   margin-left: 25px;
-  margin-top:20px;
-  margin-bottom:20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-
-
 
 #create-button {
   font-family: Inter, sans-serif !important;
   width: 124px;
-height: 51px;
-color: #FFFFFF;
-background: #2A3647;
-border-radius: 10px;
-font-family: 'Inter';
-font-style: normal;
-font-weight: bold;
-font-size: 21px;
-line-height: 120%;
-margin-top: 14px;
-margin-bottom: 14px;
-margin-right: 25px;
-border: none;
+  height: 51px;
+  color: #ffffff;
+  background: #2a3647;
+  border-radius: 10px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 21px;
+  line-height: 120%;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  margin-right: 25px;
+  border: none;
 }
 
 .wrapper {
@@ -78,14 +75,14 @@ form {
   flex-direction: column;
 }
 
-.all-input, textarea {
-  
+.all-input,
+textarea {
   margin-bottom: 10px;
   text-indent: 21px;
-  background: #FFFFFF;
-  border: 1px solid #D1D1D1;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
   border-radius: 10px;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -98,7 +95,7 @@ input {
 
 textarea {
   height: 93px;
-  padding-top:  18px;
+  padding-top: 18px;
   width: 100%;
   font-family: Inter, sans-serif;
 }
@@ -117,14 +114,13 @@ label {
 }
 
 .prio-button {
-  
   height: 41px;
   width: 100%;
   margin-right: 10px;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  border: #D1D1D1;
+  border: #d1d1d1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,6 +138,7 @@ label {
 .prio-img {
   /* Andere CSS-Regeln hier */
   transition: transform 125ms;
+  cursor: pointer;
 }
 
 .prio-img:hover {
@@ -157,8 +154,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: 24px;
 }
 
-
-
 .date-input-container {
   position: relative;
 }
@@ -171,11 +166,9 @@ input[type="date"]::before {
   right: 10px;
   width: 24px; /* passen Sie diese Werte an, um das Bild passend zu machen */
   height: 24px;
-  background: url('../../add_task_img/calender-icon.svg'); /* ersetzen Sie 'path/to/your/image.png' durch den Pfad zu Ihrem Bild */
+  background: url("../../add_task_img/calender-icon.svg"); /* ersetzen Sie 'path/to/your/image.png' durch den Pfad zu Ihrem Bild */
   background-size: contain;
 }
-
-
 
 .select-one {
   background-color: #fff;
@@ -189,11 +182,9 @@ input[type="date"]::before {
   font-weight: 400;
   cursor: pointer;
   transition: 125ms;
-  border: 1px solid #D1D1D1;
+  border: 1px solid #d1d1d1;
   text-indent: 11px;
 }
-
-
 
 .select-one span {
   margin-left: 10px;
@@ -208,11 +199,11 @@ input[type="date"]::before {
   padding-bottom: 10px;
   font-weight: 400;
   cursor: pointer;
-  border-left: 1px solid #D1D1D1;
-  border-right: 1px solid #D1D1D1;
+  border-left: 1px solid #d1d1d1;
+  border-right: 1px solid #d1d1d1;
 }
 
-.selected span{
+.selected span {
   margin-left: 10px;
 }
 
@@ -227,9 +218,6 @@ input[type="date"]::before {
   max-height: 0;
   overflow: hidden;
   transition: max-height 125ms ease-in-out;
-  
-  
-  
 }
 
 .d-none {
@@ -237,35 +225,32 @@ input[type="date"]::before {
 }
 
 #dropdown:not(.d-none) {
-  max-height: 200px;  
+  max-height: 200px;
 }
- #selected-one {
-  
-  border: 1px solid #D1D1D1;
+#selected-one {
+  border: 1px solid #d1d1d1;
   border-top: none;
   border-bottom: none;
- }
- #selected-two {
-  border: 1px solid #D1D1D1;
+}
+#selected-two {
+  border: 1px solid #d1d1d1;
   border-top: none;
   border-bottom: none;
- }
- #selected-three {
-  border: 1px solid #D1D1D1;
+}
+#selected-three {
+  border: 1px solid #d1d1d1;
   border-top: none;
-  
- }
+}
 
- #selected-contact {
+#selected-contact {
   display: flex;
- }
+}
 
- .color-circle {
+.color-circle {
   margin-left: 10px;
+}
 
- }
-
- .circle {
+.circle {
   width: 20px;
   height: 20px;
   border: 3px solid white;
@@ -274,92 +259,91 @@ input[type="date"]::before {
   cursor: pointer;
 }
 
-.join-color{
-  background: #2A3647;
+.join-color {
+  background: #2a3647;
 }
 
 /* ======= Colors ======= */
 
-.brown{
+.brown {
   background: #333303;
 }
 
-.yellow{
-  background: #E1E104;
+.yellow {
+  background: #e1e104;
 }
 
-.orange{
-  background: #FF7A00;
+.orange {
+  background: #ff7a00;
 }
 
-.light-orange{
-  background: #FFC700;
+.light-orange {
+  background: #ffc700;
 }
 
-
-.purple{
-  background: #9327FF;
+.purple {
+  background: #9327ff;
 }
 
-.dark-blue{
-  background: #0223CF;
+.dark-blue {
+  background: #0223cf;
 }
 
 .blue {
-  background: #0223CF;
+  background: #0223cf;
 }
 
-.light-blue{
-  background: #29ABE2;
+.light-blue {
+  background: #29abe2;
 }
 
-.pink{
-  background: #FC71FF;
+.pink {
+  background: #fc71ff;
 }
 
-.dark-pink{
+.dark-pink {
   background: #944796;
 }
 
-.light-green{
+.light-green {
   background: #02fe38;
 }
 
-.green{
-  background: #02CF2F;
+.green {
+  background: #02cf2f;
 }
 
-.dark-green{
-  background: #077E21;
+.dark-green {
+  background: #077e21;
 }
 
-.light-red{
-  background: #F42424;
+.light-red {
+  background: #f42424;
 }
 
-.red{
-  background: #AF1616;
+.red {
+  background: #af1616;
 }
 
-.dark-red{
+.dark-red {
   background: #901e1e;
 }
 
-.gray{
-  background: #D1D1D1;
+.gray {
+  background: #d1d1d1;
 }
 
-.white{
-  color: #FFFFFF;
+.white {
+  color: #ffffff;
 }
 
- #new-category-fields {
+#new-category-fields {
   position: relative; /* Dies macht das div zum Container für absolut positionierte Elemente */
 }
 
 #new-category-name {
   background-color: #fff;
-  border: 1px solid #D1D1D1;
+  border: 1px solid #d1d1d1;
   border-radius: 10px;
   font-weight: 400;
   width: 100%;
@@ -377,7 +361,7 @@ input[type="date"]::before {
   margin-right: 20px;
 }
 
-.hover-dot:hover{
+.hover-dot:hover {
   border-radius: 50%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
@@ -387,12 +371,12 @@ input[type="date"]::before {
   position: absolute; /* Positioniert das div relativ zum nächstgelegenen positionierten Vorfahren (in diesem Fall #new-category-fields) */
   right: 10px; /* Positioniert das div 10px vom rechten Rand des Containers entfernt */
   top: 30%; /* Positioniert das div auf halber Höhe des Containers */
-  transform: translateY(-50%); /* Verschiebt das div um 50% seiner Höhe nach oben, um es vertikal zu zentrieren */
+  transform: translateY(
+    -50%
+  ); /* Verschiebt das div um 50% seiner Höhe nach oben, um es vertikal zu zentrieren */
 }
 
-
-
- /* ... Assigned-to ... */
+/* ... Assigned-to ... */
 
 /* Checkbox-Stil */
 .checkbox-style {
@@ -417,19 +401,18 @@ input[type="date"]::before {
 }
 
 .select-one img {
-  
   margin-right: 10px;
 }
 
 /* Stil für das neue Dropdown-Menü */
 #dropdown-assign {
-display: flex;
-flex-direction: column;
-width: 100%;
-max-height: 0;
-overflow: hidden;
-transition: max-height 125ms ease-in-out;
-overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 125ms ease-in-out;
+  overflow-y: auto;
 }
 
 /* Für WebKit-Browser wie Chrome, Safari, und neuere Opera-Versionen */
@@ -455,26 +438,26 @@ overflow-y: auto;
 }
 
 #dropdown-assign:not(.d-none) {
-max-height: 200px;  
-border-bottom: 0.5px solid #d1d1d1;
-border-radius: 0 0 10px 10px;
+  max-height: 200px;
+  border-bottom: 0.5px solid #d1d1d1;
+  border-radius: 0 0 10px 10px;
 }
 
 #assigned-one {
-border: 1px solid #D1D1D1;
-border-top: none;
-border-bottom: none;
+  border: 1px solid #d1d1d1;
+  border-top: none;
+  border-bottom: none;
 }
 
 #assigned-two {
-border: 1px solid #D1D1D1;
-border-top: none;
-border-bottom: none;
+  border: 1px solid #d1d1d1;
+  border-top: none;
+  border-bottom: none;
 }
 
 #assigned-three {
-border: 1px solid #D1D1D1;
-border-top: none;
+  border: 1px solid #d1d1d1;
+  border-top: none;
 }
 
 #new-contact-fields {
@@ -483,7 +466,7 @@ border-top: none;
 
 #new-contact-fields input {
   background-color: #fff;
-  border: 1px solid #D1D1D1;
+  border: 1px solid #d1d1d1;
   border-radius: 10px;
   font-weight: 400;
   width: 100%;
@@ -491,14 +474,15 @@ border-top: none;
   padding: 10px;
   margin-bottom: 10px;
   box-sizing: border-box;
-  
 }
 
 .icons-wrapper-three {
   position: absolute; /* Positioniert das div relativ zum nächstgelegenen positionierten Vorfahren (in diesem Fall #new-category-fields) */
   right: 10px; /* Positioniert das div 10px vom rechten Rand des Containers entfernt */
   top: 42%; /* Positioniert das div auf halber Höhe des Containers */
-  transform: translateY(-50%); /* Verschiebt das div um 50% seiner Höhe nach oben, um es vertikal zu zentrieren */
+  transform: translateY(
+    -50%
+  ); /* Verschiebt das div um 50% seiner Höhe nach oben, um es vertikal zu zentrieren */
 }
 
 .space-between {
@@ -507,7 +491,7 @@ border-top: none;
 }
 
 .add-subtask {
-  color: #D1D1D1;
+  color: #d1d1d1;
 }
 
 #subtasks {
@@ -519,7 +503,6 @@ border-top: none;
 .subtask-name {
   margin: 0;
   margin-left: 5px;
-
 }
 
 .subtask {
@@ -534,7 +517,7 @@ border-top: none;
   padding-right: 0;
   font-size: 16px;
   border-radius: 10px;
-  color: #2A3647;
+  color: #2a3647;
   background-image: url(../../asssets/img/plus-black.svg);
   background-repeat: no-repeat;
   background-position: center right 10px;
@@ -543,7 +526,7 @@ border-top: none;
 
 .subtask-input:focus {
   outline: none;
-  border-color: #29ABE2;
+  border-color: #29abe2;
 }
 
 .subtask-input-wrapper {
@@ -566,12 +549,12 @@ border-top: none;
 }
 
 .subtask-input:focus + .icons-wrapper {
-  display: block;  /* Die Icons anzeigen, wenn das Input-Feld fokussiert ist */
+  display: block; /* Die Icons anzeigen, wenn das Input-Feld fokussiert ist */
 }
 
 .task-added-container {
-    display: none;
-    justify-content: center;
+  display: none;
+  justify-content: center;
 }
 
 #task-added {
@@ -580,7 +563,7 @@ border-top: none;
   position: absolute;
   top: 72%;
   color: #fff;
-  background-color: #2A3647;
+  background-color: #2a3647;
   border-radius: 20px;
   padding-top: 25px;
   padding-bottom: 25px;
@@ -618,62 +601,53 @@ border-top: none;
   display: none;
 }
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  form {
+    flex-direction: row;
+  }
 
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }  
-    form {
-      flex-direction: row;  
-     }
-
-    
-
-   .inner-wrap {
+  .inner-wrap {
     display: flex;
     justify-content: center;
-   }
+  }
 
-   .section-one {
+  .section-one {
     min-width: 330px;
     padding-right: 15px;
-   }
+  }
 
-   .section-two {
+  .section-two {
     min-width: 330px;
     padding-left: 15px;
     position: relative;
-   }
-   
-
-   
+  }
 }
 
-@media(min-width:831px) {
+@media (min-width: 831px) {
   .vertical-line {
-    border-left: 1px solid #D1D1D1;  /* Die Dicke und Farbe der Linie anpassen */
-    height: 500px;  /* Höhe nach Bedarf anpassen */
+    border-left: 1px solid #d1d1d1; /* Die Dicke und Farbe der Linie anpassen */
+    height: 500px; /* Höhe nach Bedarf anpassen */
     width: 0;
   }
 
   .section-one {
     min-width: 292px;
     padding-right: 50px;
-   }
+  }
 
-   .section-two {
+  .section-two {
     min-width: 292px;
     padding-left: 45px;
-   }
+  }
 }
 
-@media(min-width:1024px) {
-
-  
-
-  .wrapper{
+@media (min-width: 1024px) {
+  .wrapper {
     align-items: flex-start;
     margin-left: 308px;
     margin-right: 0;
@@ -700,8 +674,6 @@ border-top: none;
     align-items: center;
   }
 
-  
-
   .cancel-btn-desktop {
     display: flex;
     align-items: center;
@@ -709,10 +681,10 @@ border-top: none;
     font-family: Inter, sans-serif !important;
     width: 124px;
     height: 51px;
-    background: #FFFFFF;
-    border: 1px solid #2A3647;
+    background: #ffffff;
+    border: 1px solid #2a3647;
     border-radius: 10px;
-    font-family: 'Inter';
+    font-family: "Inter";
     font-style: normal;
     font-size: 21px;
     height: 55px;
@@ -721,16 +693,17 @@ border-top: none;
     left: 0;
     top: 500px;
     transition: 125ms ease-in-out;
+    cursor: pointer;
   }
 
   .cancel-btn-desktop:hover {
-    border: 1px solid #29ABE2;
-    color: #29ABE2;
+    border: 1px solid #29abe2;
+    color: #29abe2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
   .cancel-img {
-    margin-left: 16px
+    margin-left: 16px;
   }
 
   .cancel-img-hover {
@@ -744,11 +717,11 @@ border-top: none;
     font-family: Inter, sans-serif !important;
     width: 124px;
     height: 51px;
-    background: #2A3647;
+    background: #2a3647;
     color: #ffffff;
-    border: 1px solid #2A3647;
+    border: 1px solid #2a3647;
     border-radius: 10px;
-    font-family: 'Inter';
+    font-family: "Inter";
     font-style: normal;
     font-size: 21px;
     height: 55px;
@@ -757,52 +730,49 @@ border-top: none;
     right: 0;
     top: 500px;
     transition: 125ms ease-in-out;
+    cursor: pointer;
   }
 
   .create-btn-desktop:hover {
-    background-color: #29ABE2;
-    border-color: #29ABE2;
+    background-color: #29abe2;
+    border-color: #29abe2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
-  .create-correctly{
-    margin-left: 16px
+  .create-correctly {
+    margin-left: 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .section-one {
+    min-width: 330px;
+    padding-right: 50px;
   }
 
-  
-}
-
-@media(min-width:1200px) {
-  .section-one {
-    min-width: 330px;
-    padding-right: 50px;
-   }
-
-   .section-two {
+  .section-two {
     min-width: 330px;
     padding-left: 45px;
-   }
+  }
 
-   .cancel-btn-desktop {
+  .cancel-btn-desktop {
     left: 23px;
+  }
 }
 
-   
-}
-
-@media(min-width:1440px) {
+@media (min-width: 1440px) {
   .section-one {
     min-width: 440px;
     padding-right: 50px;
-   }
+  }
 
-   .section-two {
+  .section-two {
     min-width: 440px;
     padding-left: 45px;
-   }
-   .cancel-btn-desktop {
+  }
+  .cancel-btn-desktop {
     left: 133px;
-}
+  }
 }
 
 /*--alert-popup----*/
@@ -816,8 +786,12 @@ border-top: none;
 }
 
 @keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .popupBody {
