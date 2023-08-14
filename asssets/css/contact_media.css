@@ -34,7 +34,7 @@
 .contact-logo-template{
     height: 100px;
     width: 100px;
-}
+}}
 
 @media(min-height: 650px){
     .bin{
