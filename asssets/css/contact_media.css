@@ -10,6 +10,13 @@
         bottom: 88px !important;
         right: 40px !important;
       }
+
+      .tasks-are-better{
+        margin-left: 20px;
+      }
+      .add-contact-h1{
+        margin-left: 20px;
+      }
 }
 
 @media(max-height: 750px){
