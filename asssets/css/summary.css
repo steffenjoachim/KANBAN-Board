@@ -227,7 +227,7 @@ body {
     }
 
     .main-div {
-        padding-top: 130px;
+        padding-top: 100px;
     }
 
     .count-task {
@@ -286,7 +286,6 @@ body {
         margin-left: -39px;
     }
 
-
     .second-section {
         margin-top: 87px;
         gap: 33px;
@@ -296,8 +295,23 @@ body {
     .welcome-title {
         display: block;
     }
+}
 
+@media (max-height: 724px){
+    .count-task div {
+        height: 90px;
+    }
 
+    .task-status {
+        height: 90px;
+    }
 
+    .div-count1 {
+        height: 80px;
+    }
 
+    .s-number {
+        font-size: 34px;
+        margin-top: 0;
+    }
 }

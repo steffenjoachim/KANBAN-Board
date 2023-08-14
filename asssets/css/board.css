@@ -587,9 +587,9 @@ body {
     transform: translateY(86%);
   }
 
-  .main-div {
-    padding-top: 165px;
-  }
+    .main-div {
+        padding-top: 115px;
+    }
 
   .popup-content {
     width: 920px;
@@ -608,3 +608,5 @@ body {
     height: auto;
   }
 }
+
+
