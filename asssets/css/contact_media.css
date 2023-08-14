@@ -411,11 +411,11 @@
 
     .big-contact-frame-header {
         flex-direction: row !important;
-}
+}}
 
-@media(min-width: 1440px){
+/* @media(min-width: 1440px){
 
     .add-contact-bottom, .edit-contact-bottom{
         min-width: 730px;}
   }
-}
+} */

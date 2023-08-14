@@ -94,6 +94,8 @@
   #add-contact, #edit-contact{
     transition: transform 0.125s ease-in-out;
     transform: translateY(140%);
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.5);
   }
   
   .slide-in {
