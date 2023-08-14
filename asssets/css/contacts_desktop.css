@@ -111,6 +111,7 @@
 
   .buttons{
     display: flex;
+    justify-content: center;
   }
 
   .contac-succesfully-created-frame {

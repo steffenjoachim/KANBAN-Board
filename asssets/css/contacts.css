@@ -409,6 +409,7 @@ form{
     border: none;
     margin-top: 6px;
     margin-left: 10px;
+    margin-right: -16px;
     outline: none;
     font-size: 21px;
     font-weight: 400;

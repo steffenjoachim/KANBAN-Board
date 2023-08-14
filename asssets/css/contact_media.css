@@ -12,6 +12,30 @@
       }
 }
 
+@media(max-height: 750px){
+    .add-contact-h1{
+        font-size: 32px !important;
+    }
+    .name-input, .email-input, .tel-input {
+        font-size: 12px;
+        height: 24px
+    }
+    .input-field-top {
+        margin: 48px 16px 0 16px;
+     }
+
+     .edit-contact-head {
+        height:264px
+ }
+ .close-x {
+    margin-bottom: 0;
+}
+
+.contact-logo-template{
+    height: 100px;
+    width: 100px;
+}
+
 @media(min-height: 650px){
     .bin{
         margin-top: -80px;
