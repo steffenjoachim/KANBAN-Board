@@ -19,7 +19,6 @@
     <script src="./js/summary.js"></script>
     <script src="./js/board.js"></script>
     <title>Summary</title>
-    
 </head>
 
 <body onload="init();userGreetingOnSummary(); loadNewtasksboardd()" id="summary" class="page">
@@ -29,8 +28,7 @@
         <div class="img-container">
             <img onclick="location.href='./help.html'" class="question-icon" src="./asssets/img/question_icon.svg"
                 alt="">
-            <img id="person-img" onclick="burgerMenu();" class="person" src="./asssets/img/person.svg"
-                alt="">
+            <img id="person-img" onclick="burgerMenu();" class="person" src="./asssets/img/person.svg" alt="">
         </div>
     </div>
     <div onclick="closeBurgerMenu()" id="background-container">
@@ -42,7 +40,6 @@
             </div>
         </div>
     </div>
-
     <div class="nav-bar-container">
         <div id="nav-bar" onclick="closeBurgerMenu()" class="logo-container">
             <img class="logo-white" src="./asssets/img/Join_logo_white.svg" alt="">
@@ -74,18 +71,14 @@
         <div>
         </div>
     </div>
-
     <div class="main-div">
-
         <span class="head-span-responsive dis-none">Kanban Project Management Tool</span>
         <section class="first-section">
             <span class="head-span">Kanban Project Management Tool</span>
             <span class="title">Summary</span>
             <p class="head-span2">Everthing in a nutshell!</p>
-
             <div class="underHead-line"></div>
         </section>
-
         <section class="second-section">
             <div class="count-task">
                 <div onclick="redirectToBoard()" class="summary-counter textCenter boxshadow">
@@ -101,7 +94,6 @@
                     <span class="counter-description">Awaiting feedback</span>
                 </div>
             </div>
-
             <div class="task-status-title">
                 <div onclick="redirectToBoard()" class="task-status">
                     <div class="task-status-description">
@@ -117,19 +109,21 @@
                         <div>Upcoming Deadline</div>
                     </div>
                 </div>
-
                 <div class="welcome-title">
-                    <span id="greeting"></span><br><b id="name" class="welcome-name"></b></div>
+                    <span id="greeting"></span><br><b id="name" class="welcome-name"></b>
+                </div>
             </div>
             <div class="count-done">
-                <div onclick="redirectToBoard()" class="div-count1" onmouseover="changePenimage(this)" onmouseout="restorePenimage(this)">
+                <div onclick="redirectToBoard()" class="div-count1" onmouseover="changePenimage(this)"
+                    onmouseout="restorePenimage(this)">
                     <img id="summary-pen" class="positionNone" src="./asssets/img/edit-icon.png" alt="">
                     <div class="summary-counter">
                         <div class="s-number" id="countTodos"></div>
                         <div class="counter-description">To-do</div>
                     </div>
                 </div>
-                <div onclick="redirectToBoard()" class="div-count1" onmouseover="changeDoneimage(this)" onmouseout="restoreDoneimage(this)">
+                <div onclick="redirectToBoard()" class="div-count1" onmouseover="changeDoneimage(this)"
+                    onmouseout="restoreDoneimage(this)">
                     <img id="summary-done" class="positionNone" src="./asssets/img/done-icon.png" alt="">
                     <div class="summary-counter">
                         <div class="s-number" id="countDone"></div>
@@ -138,7 +132,6 @@
                 </div>
             </div>
         </section>
-
     </div>
     <footer>
         <div id="summary-div" class="icon-container summary" style="background-color: #091931; height: 87%;">
@@ -159,7 +152,6 @@
         </div>
     </footer>
     <script src="./js/header_include.js"></script>
-   
 </body>
 
 </html>

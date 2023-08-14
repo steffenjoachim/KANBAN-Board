@@ -139,6 +139,7 @@ body {
 /*////////////////// Searchbar on Screen 1024px /////////////////*/
 
 .secondSearch-bar {
+    display: flex;
     position: relative;
     margin-right: 45px;
     width: 251px;
@@ -439,6 +440,10 @@ body {
 .card-change-status span:hover,
 .card-change-status div:hover {
     font-weight: 800;
+}
+
+.close-task {
+    cursor: pointer;
 }
 
 /*---------------*/
