@@ -10,6 +10,13 @@
         bottom: 88px !important;
         right: 40px !important;
       }
+
+      .tasks-are-better{
+        margin-left: 20px;
+      }
+      .add-contact-h1{
+        margin-left: 20px;
+      }
 }
 
 @media(max-height: 750px){
@@ -34,7 +41,7 @@
 .contact-logo-template{
     height: 100px;
     width: 100px;
-}
+}}
 
 @media(min-height: 650px){
     .bin{
@@ -79,11 +86,15 @@
     }
 }
 
-@media(max-width: 768px){
+@media(max-width: 769px){
     .content-big-contact {
         bottom: 0;
         left: 0;
         z-index: -9;
+    }
+
+    .new-contact-frame{
+        width: 100%;
     }
 }
 
@@ -91,7 +102,7 @@
 
 
 
-@media(min-width: 768px){
+@media(min-width: 769px){
 
     .letter-frame {
         width: 100%;
@@ -330,6 +341,7 @@
 
     .slide-in {
         transform: translateX(0) !important;
+        z-index: 9;
       }
 
       .close-x-dark-container{
@@ -399,11 +411,11 @@
 
     .big-contact-frame-header {
         flex-direction: row !important;
-}
+}}
 
-@media(min-width: 1440px){
+/* @media(min-width: 1440px){
 
     .add-contact-bottom, .edit-contact-bottom{
         min-width: 730px;}
   }
-}
+} */
