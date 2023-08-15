@@ -298,7 +298,8 @@ function removeHighlight(id) {
  * @param {number} id - This is the index of the task
  */
 function showProgressBar(element, id) {
-  if (todos[id] && todos[id].subtasks && todos[id].subtasks.length > 0) {
+  const todo = todos.find((todo) => todo.id === id);
+  if (todo && todo.subtasks && todo.subtasks.length > 0) {
     document
       .getElementById(`task-progress${element.id}`)
       .classList.remove("dis-none");
@@ -314,11 +315,12 @@ function showProgressBar(element, id) {
  * @returns - shows the done subtasks and the total number of the subtasks
  */
 function countProgressSteps(id) {
-  let totalSubTask = todos[id]["subtasks"].length;
+  const todo = todos.find((todo) => todo.id === id);
+  let totalSubTask = todo["subtasks"].length;
   let totalSubTaskChecked = 0;
 
   for (let j = 0; j < totalSubTask; j++) {
-    if (todos[id]["subtasks"][j]["checked"] === true) {
+    if (todo["subtasks"][j]["checked"] === true) {
       totalSubTaskChecked++;
     }
   }
@@ -347,9 +349,9 @@ function progressAnimation(totalSubTask, totalSubTaskChecked, id) {
  */
 function renderAssignedContacts(id) {
   let renderedContacts = "";
-
-  if (todos[id] && todos[id].assignedTo) {
-    const assignedContacts = todos[id].assignedTo;
+  const todo = todos.find((todo) => todo.id === id);
+  if (todo && todo.assignedTo) {
+    const assignedContacts = todo.assignedTo;
     const remainingContacts = assignedContacts.length - 2;
 
     for (let j = 0; j < 2 && j < assignedContacts.length; j++) {
@@ -859,7 +861,7 @@ async function saveTask(taskId) {
 
   if (taskIndex !== -1) {
     Object.assign(todos[taskIndex], taskDetails);
-  } 
+  }
 
   await finalizeTaskUpdates();
 }
