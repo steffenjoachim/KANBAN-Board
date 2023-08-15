@@ -364,7 +364,7 @@ body {
   border-radius: 30px;
   transform: translate(-50%, -50%);
   width: 1116px;
-  height: 950px;
+  height: 985px;
   background-color: #ffffff;
   z-index: 10000;
   transition: opacity 0.3s ease;
@@ -599,8 +599,18 @@ body {
 @media (min-width: 1200px) {
   .popup-content {
     width: 1116px;
+    height: 750px;
   }
+
 }
+@media (min-width: 1400px) {
+  .popup-content {
+    height: 985px;
+  }
+
+}
+
+
 
 @media (min-width: 1650px) {
   .task-card {

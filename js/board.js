@@ -513,7 +513,6 @@ function filterAndRenderTodos(
 function openEditPopup(taskId) {
   const task = getTaskById(taskId);
   if (!task) {
-    console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
     return;
   }
   const popupContentHtml = generatePopupContentHtml(task, taskId);
@@ -678,7 +677,6 @@ function editingTask(taskId) {
   const task = todos.find((t) => t.id === Number(taskId));
 
   if (!task) {
-    console.error(`Keine Aufgabe mit der ID ${taskId} gefunden`);
     return;
   }
 
@@ -861,9 +859,7 @@ async function saveTask(taskId) {
 
   if (taskIndex !== -1) {
     Object.assign(todos[taskIndex], taskDetails);
-  } else {
-    console.error(`Task with the ID ${taskId} was not found.`);
-  }
+  } 
 
   await finalizeTaskUpdates();
 }

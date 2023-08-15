@@ -126,14 +126,22 @@ function collectSubtasks() {
   let subtasks = [];
   const subtaskElements = document.querySelectorAll(".subtask");
   subtaskElements.forEach((subtaskElement, index) => {
-    const checkbox = subtaskElement.querySelector(".checkbox-subtask");
-    const label = subtaskElement.querySelector(".subtask-name");
-    const subtaskObj = {
-      id: index,
-      name: label.textContent,
-      checked: checkbox.checked,
-    };
-    subtasks.push(subtaskObj);
+      const checkbox = subtaskElement.querySelector(".checkbox-subtask");
+      const label = subtaskElement.querySelector(".subtask-name");
+
+      // Fehlerbehandlung: Überprüfen Sie, ob label und checkbox existieren.
+      if (!label || !checkbox) {
+          
+          return;  // Skip this iteration
+      }
+
+      const subtaskObj = {
+          id: index,
+          name: label.textContent,
+          checked: checkbox.checked,
+      };
+
+      subtasks.push(subtaskObj);
   });
   return subtasks;
 }
@@ -368,7 +376,6 @@ function selectOption(event, color) {
  * @param {string} color - The selected color value
  */
 function selectColor(color) {
-  console.log("selectColor function called with color: " + color);
   selectedColor = color;
 }
 
@@ -377,7 +384,6 @@ function selectColor(color) {
  */
 function resetColors() {
   selectedColor = null;
-  console.log("Color selection reset");
 }
 
 /**
