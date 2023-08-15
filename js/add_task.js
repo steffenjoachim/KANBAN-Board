@@ -113,6 +113,7 @@ async function createTask() {
     selectedColor
   );
   await addTaskToArray(newTask);
+  // todos.splice(0, todos.length);
   await setItem("task", JSON.stringify(todos));
   resetInputFields();
   showTaskAddedNotification();

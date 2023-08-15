@@ -595,20 +595,40 @@ body {
     width: 920px;
   }
 }
+@media (min-height: 768px) {
+  .popup-content {
+    height: 750px;
+  }
+}
+
+@media (min-height: 868px) {
+  .popup-content {
+    height: 850px;
+  }
+}
+
+@media (min-height: 968px) {
+  .popup-content {
+    height: 950px;
+  }
+}
+
+@media (min-height: 1000px) {
+  .popup-content {
+    height: 985px;
+  }
+}
 
 @media (min-width: 1200px) {
   .popup-content {
     width: 1116px;
-    height: 750px;
   }
 
 }
-@media (min-width: 1400px) {
-  .popup-content {
-    height: 985px;
-  }
 
-}
+
+
+
 
 
 

@@ -888,3 +888,4 @@ async function finalizeTaskUpdates() {
   closeEditPopup();
   closePopup();
 }
+
