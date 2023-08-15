@@ -130,7 +130,7 @@ nav div div {
     max-width: 100%;
 }
 
-@media (max-width:1024px) {
+@media (max-width:1000px) {
     .nav-bar-container,
     .web-header {
         display: none;

@@ -216,7 +216,14 @@ function listdesign(element) {
  * @param {string} status - This is the status that is transfered from the onclick="changeStatus..."
  */
 async function changeStatus(id, status) {
-  todos[id]["status"] = status;
+  const todo = todos.find(todo => todo.id === id);
+  
+  if (!todo) {
+    console.error(`Todo with ID ${id} not found!`);
+    return;
+  }
+
+  todo.status = status;
   await setItem("task", JSON.stringify(todos));
   updateHTML();
 }

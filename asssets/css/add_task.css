@@ -186,6 +186,12 @@ input[type="date"]::before {
   text-indent: 11px;
 }
 
+.select-one-div {
+  display: flex !important;
+  justify-content: center;
+  align-items: center!important;
+}
+
 .select-one span {
   margin-left: 10px;
 }
@@ -671,8 +677,9 @@ input[type="date"]::before {
   .select-one-div {
     display: flex !important;
     justify-content: center;
-    align-items: center;
+    align-items: center!important;
   }
+  
 
   .cancel-btn-desktop {
     display: flex;
