@@ -9,21 +9,6 @@ h1 {
   font-weight: 700;
 }
 
-/* .select-one {
-    background-color: #fff;
-    height: 19px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-weight: 400;
-    cursor: pointer;
-    transition: 125ms;
-    border: 1px solid #D1D1D1;
-  } */
-
 .select-one-div {
   display: flex;
   justify-content: center;
@@ -39,10 +24,10 @@ h1 {
 .all-input,
 textarea {
   margin-bottom: 10px;
-
   background: #ffffff;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
+  text-indent: 10px;
 }
 input {
   height: 41px;
@@ -753,6 +738,7 @@ input[type="date"]::before {
 }
 #selected-contact {
   display: flex;
+  margin-top: 10px;
 }
 
 @media (min-width: 1200px) {
