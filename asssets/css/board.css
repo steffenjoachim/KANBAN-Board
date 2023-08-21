@@ -166,7 +166,7 @@ body {
 }
 
 .list {
-  height: calc(100% - 90px);
+  height: calc(100vh - 400px);
 }
 
 .card-head {
@@ -521,10 +521,11 @@ body {
     margin-left: 282px;
     margin-top: 50px;
   }
+
   .main-div {
-    
+
     height: calc(100vh - 165px);
-    
+
   }
 
   .title-section {
@@ -592,14 +593,15 @@ body {
     transform: translateY(86%);
   }
 
-    .main-div {
-        padding-top: 115px;
-    }
+  .main-div {
+    padding-top: 115px;
+  }
 
   .popup-content {
     width: 920px;
   }
 }
+
 @media (min-height: 768px) {
   .popup-content {
     height: 750px;
@@ -631,17 +633,15 @@ body {
 
 }
 
+@media (max-width: 1395px) {
+  .list {
+    height: auto;
+  }
+}
 
-
-
-
-
-
-@media (min-width: 1650px) {
+@media (min-width: 1869px) {
   .task-card {
     max-width: 370px;
     height: auto;
   }
 }
-
-
